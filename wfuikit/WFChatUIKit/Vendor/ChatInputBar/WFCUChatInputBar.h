@@ -13,6 +13,8 @@
 #define CHAT_INPUT_BAR_HEIGHT 48
 #define TYPING_INTERVAL 10
 
+// 聊天时下方的输入框
+
 @interface WFCUMetionInfo : NSObject
 - (instancetype)initWithType:(int)type target:(NSString *)target range:(NSRange)range;
 @property (nonatomic, assign)NSRange range;

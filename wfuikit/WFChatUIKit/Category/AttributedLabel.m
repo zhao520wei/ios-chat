@@ -53,7 +53,7 @@
     [super touchesBegan:touches withEvent:event];
 }
 
-
+// TextLabel 的 富文本
 -(NSMutableAttributedString*)subStr:(NSString *)string {
     if (!string) {
         return nil;

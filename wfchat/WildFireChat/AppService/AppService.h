@@ -13,6 +13,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+// App 业务相关网络模块代码
+
 @interface AppService : NSObject <WFCUAppServiceProvider>
 + (AppService *)sharedAppService;
 

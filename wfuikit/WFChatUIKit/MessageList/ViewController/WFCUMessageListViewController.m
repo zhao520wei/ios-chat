@@ -61,6 +61,8 @@
 
 #import "WFCUMediaMessageGridViewController.h"
 
+// 聊天详情页面
+
 @interface WFCUMessageListViewController () <UITextFieldDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UINavigationControllerDelegate, WFCUMessageCellDelegate, AVAudioPlayerDelegate, WFCUChatInputBarDelegate, SDPhotoBrowserDelegate, UIGestureRecognizerDelegate>
 @property (nonatomic, strong)NSMutableArray<WFCUMessageModel *> *modelList;
 @property (nonatomic, strong)NSMutableDictionary<NSNumber *, Class> *cellContentDict;
@@ -1345,6 +1347,7 @@
 }
 
 #pragma mark - MessageCellDelegate
+// 自定义消息类型
 - (void)didTapMessageCell:(WFCUMessageCellBase *)cell withModel:(WFCUMessageModel *)model {
     if ([model.message.content isKindOfClass:[WFCCImageMessageContent class]]) {
         if (self.conversation.type == Chatroom_Type) {

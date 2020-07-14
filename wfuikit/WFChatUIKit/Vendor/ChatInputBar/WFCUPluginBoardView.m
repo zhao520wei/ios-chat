@@ -82,7 +82,7 @@
     
     return self;
 }
-
+// modify multi people call
 - (NSMutableArray *)pluginItems {
     if (!_pluginItems) {
         if (self.hasVoip) {

@@ -34,6 +34,8 @@
 #import "UIView+Toast.h"
 #import "WFCUSeletedUserViewController.h"
 
+// 消息的列表页
+
 @interface WFCUConversationTableViewController () <UISearchControllerDelegate, UISearchResultsUpdating, UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong)NSMutableArray<WFCCConversationInfo *> *conversations;
 

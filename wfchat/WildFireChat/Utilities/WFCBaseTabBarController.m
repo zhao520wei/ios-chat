@@ -11,6 +11,7 @@
 #import <WFChatUIKit/WFChatUIKit.h>
 #import "DiscoverViewController.h"
 #import "WFCMeTableViewController.h"
+
 #ifdef WFC_MOMENTS
 #import <WFMomentUIKit/WFMomentUIKit.h>
 #import <WFMomentClient/WFMomentClient.h>
@@ -52,6 +53,17 @@
     item.selectedImage = [[UIImage imageNamed:@"tabbar_contacts_cover"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     [item setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor colorWithRed:0.1 green:0.27 blue:0.9 alpha:0.9]} forState:UIControlStateSelected];
     [self addChildViewController:nav];
+    
+    
+//    vc = [WFCUCompanyArchitectureViewController new];
+//    vc.title = LocalizedString(@"Architecture");
+//    nav = [[UINavigationController alloc] initWithRootViewController:vc];
+//    item = nav.tabBarItem;
+//    item.title = LocalizedString(@"Architecture");
+//    item.image = [UIImage imageNamed:@"tabbar_contacts"];
+//    item.selectedImage = [[UIImage imageNamed:@"tabbar_contacts_cover"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//    [item setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor colorWithRed:0.1 green:0.27 blue:0.9 alpha:0.9]} forState:UIControlStateSelected];
+//    [self addChildViewController:nav];
     
     vc = [DiscoverViewController new];
     vc.title = LocalizedString(@"Discover");

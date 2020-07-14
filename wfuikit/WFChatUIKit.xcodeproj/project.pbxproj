@@ -420,6 +420,9 @@
 		9029D0FF21C5D7930002EBAA /* WFCUCreateChannelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9029D0FD21C5D7930002EBAA /* WFCUCreateChannelViewController.m */; };
 		90414AFC21AF5A93008EF915 /* WFCUConversationSearchTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 90414AFA21AF5A93008EF915 /* WFCUConversationSearchTableViewCell.h */; };
 		90414AFD21AF5A93008EF915 /* WFCUConversationSearchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90414AFB21AF5A93008EF915 /* WFCUConversationSearchTableViewCell.m */; };
+		95A06CCC24B83E760095652E /* LSWTreeView in Resources */ = {isa = PBXBuildFile; fileRef = 95A06CCB24B83E750095652E /* LSWTreeView */; };
+		95A06CCF24B8403C0095652E /* WFCUCompanyArchitectureViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 95A06CCD24B8403C0095652E /* WFCUCompanyArchitectureViewController.h */; };
+		95A06CD024B8403C0095652E /* WFCUCompanyArchitectureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95A06CCE24B8403C0095652E /* WFCUCompanyArchitectureViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -845,6 +848,9 @@
 		9029D0FD21C5D7930002EBAA /* WFCUCreateChannelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WFCUCreateChannelViewController.m; path = WFChatUIKit/CreateGroup/ViewController/WFCUCreateChannelViewController.m; sourceTree = SOURCE_ROOT; };
 		90414AFA21AF5A93008EF915 /* WFCUConversationSearchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFCUConversationSearchTableViewCell.h; sourceTree = "<group>"; };
 		90414AFB21AF5A93008EF915 /* WFCUConversationSearchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFCUConversationSearchTableViewCell.m; sourceTree = "<group>"; };
+		95A06CCB24B83E750095652E /* LSWTreeView */ = {isa = PBXFileReference; lastKnownFileType = folder; path = LSWTreeView; sourceTree = "<group>"; };
+		95A06CCD24B8403C0095652E /* WFCUCompanyArchitectureViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WFCUCompanyArchitectureViewController.h; sourceTree = "<group>"; };
+		95A06CCE24B8403C0095652E /* WFCUCompanyArchitectureViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WFCUCompanyArchitectureViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1652,6 +1658,7 @@
 		2F551065217F5CC100F56C26 /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
+				95A06CCB24B83E750095652E /* LSWTreeView */,
 				1450EA82243891F300BF51FC /* Support */,
 				2F551066217F5CC100F56C26 /* Cell */,
 				2F55106D217F5CC100F56C26 /* ViewController */,
@@ -1685,6 +1692,8 @@
 				14349FA524362A6600FE38B3 /* WFCUSeletedUserViewController.m */,
 				1450EA8724389CA200BF51FC /* WFCUSeletedUserSearchResultViewController.h */,
 				1450EA8824389CA200BF51FC /* WFCUSeletedUserSearchResultViewController.m */,
+				95A06CCD24B8403C0095652E /* WFCUCompanyArchitectureViewController.h */,
+				95A06CCE24B8403C0095652E /* WFCUCompanyArchitectureViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1832,6 +1841,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F518FEF235ED5B300FA3D58 /* WFCUAppServiceProvider.h in Headers */,
+				95A06CCF24B8403C0095652E /* WFCUCompanyArchitectureViewController.h in Headers */,
 				2F36433321C136C400904CAB /* WFCUFavChannelTableViewController.h in Headers */,
 				2F5511F3217F5CC300F56C26 /* UITabBar+badge.h in Headers */,
 				2BD671A42336E821007A9FEC /* WFCUConfigManager.h in Headers */,
@@ -2103,6 +2113,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95A06CCC24B83E760095652E /* LSWTreeView in Resources */,
 				14349F62243392E300FE38B3 /* WFChatUIKit.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2272,6 +2283,7 @@
 				2BDF57B524AD70C8003C1F08 /* DNTapDetectingImageView.m in Sources */,
 				2F5510A7217F5CC200F56C26 /* WFCUMessageCell.m in Sources */,
 				2F5511A1217F5CC200F56C26 /* MKAnnotationView+WebCache.m in Sources */,
+				95A06CD024B8403C0095652E /* WFCUCompanyArchitectureViewController.m in Sources */,
 				2F5510F0217F5CC200F56C26 /* CCHMapTree.m in Sources */,
 				2F551161217F5CC200F56C26 /* KxMenu.m in Sources */,
 				2F551124217F5CC200F56C26 /* FullScreenViewController.m in Sources */,
@@ -2473,10 +2485,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 4P3U5L7UKK;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -2511,10 +2523,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 4P3U5L7UKK;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";

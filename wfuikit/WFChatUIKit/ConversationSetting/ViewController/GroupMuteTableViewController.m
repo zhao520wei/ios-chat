@@ -10,7 +10,6 @@
 #import "SDWebImage.h"
 #import "WFCUContactListViewController.h"
 #import "WFCUGeneralSwitchTableViewCell.h"
-#import "WFCUContactListViewController.h"
 
 @interface GroupMuteTableViewController () <UITableViewDelegate, UITableViewDataSource>
 @property(nonatomic, strong)UITableView *tableView;

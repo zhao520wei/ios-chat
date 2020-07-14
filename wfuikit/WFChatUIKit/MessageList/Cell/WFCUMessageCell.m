@@ -29,12 +29,15 @@
 #define Bubble_Padding_Arraw 16
 #define Bubble_Padding_Another_Side 8
 
+#define GrayTextColor  [UIColor grayColor]
+#define BlueTextColor  [UIColor blueColor]
+// 单个消息的 base
 @interface WFCUMessageCell ()
 @property (nonatomic, strong)UIActivityIndicatorView *activityIndicatorView;
 @property (nonatomic, strong)UIImageView *failureView;
 @property (nonatomic, strong)UIImageView *maskView;
 
-@property (nonatomic, strong)ZCCCircleProgressView *receiptView;
+@property (nonatomic, strong)UILabel *receiptView; // 每条消息左边的状态
 
 @property (nonatomic, strong)UIImageView *selectView;
 @end
@@ -53,7 +56,7 @@
   CGFloat portraitSize = Portrait_Size;
   CGFloat nameLabelHeight = Name_Label_Height + Name_Client_Padding;
   CGFloat clientAreaWidth = [self clientAreaWidth];
-  
+
   CGSize clientArea = [self sizeForClientArea:msgModel withViewWidth:clientAreaWidth];
   CGFloat nameAndClientHeight = clientArea.height;
   if (msgModel.showNameLabel) {
@@ -186,11 +189,17 @@
       if([model.message.content.class getContentFlags] == WFCCPersistFlag_PERSIST_AND_COUNT && (model.message.status == Message_Status_Sent || model.message.status == Message_Status_Readed) && [[WFCCIMService sharedWFCIMService] isReceiptEnabled] && [[WFCCIMService sharedWFCIMService] isUserEnableReceipt]) {
           if (model.message.conversation.type == Single_Type) {
               if (model.message.serverTime <= [[model.readDict objectForKey:model.message.conversation.target] longLongValue]) {
-                  [self.receiptView setProgress:1 subProgress:1];
+//                  [self.receiptView setProgress:1 subProgress:1];
+                  self.receiptView.text = @"已读";
+                  self.receiptView.textColor = GrayTextColor;
               } else if (model.message.serverTime <= [[model.deliveryDict objectForKey:model.message.conversation.target] longLongValue]) {
-                  [self.receiptView setProgress:0 subProgress:1];
+//                  [self.receiptView setProgress:0 subProgress:1];
+                  self.receiptView.text = @"未送达";
+                  self.receiptView.textColor = BlueTextColor;
               } else {
-                  [self.receiptView setProgress:0 subProgress:0];
+//                  [self.receiptView setProgress:0 subProgress:0];
+                  self.receiptView.text = @"未读";
+                  self.receiptView.textColor = BlueTextColor;
               }
               self.receiptView.hidden = NO;
           } else if(model.message.conversation.type == Group_Type) {
@@ -208,9 +217,9 @@
                   groupInfo = [[WFCCIMService sharedWFCIMService] getGroupInfo:model.message.conversation.target refresh:NO];
                   model.deliveryRate = (float)delieveriedCount/(groupInfo.memberCount - 1);
               }
+               __block int readedCount = 0;
               if (model.readRate == -1) {
-                  __block int readedCount = 0;
-
+                 
                   [model.readDict enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSNumber * _Nonnull obj, BOOL * _Nonnull stop) {
                       if ([obj longLongValue] >= messageTS) {
                           readedCount++;
@@ -228,7 +237,10 @@
                   model.deliveryRate = model.readRate;
               }
               
-              [self.receiptView setProgress:model.readRate subProgress:model.deliveryRate];
+//              [self.receiptView setProgress:model.readRate subProgress:model.deliveryRate];
+//              NSInteger count =  model.readRate * 100;
+              self.receiptView.text = [NSString stringWithFormat:@"%d人已读", readedCount];
+              self.receiptView.textColor = BlueTextColor;
               self.receiptView.hidden = NO;
           } else {
               self.receiptView.hidden = YES;
@@ -238,8 +250,10 @@
       }
       
       if (self.receiptView.hidden == NO) {
-          self.receiptView.frame = CGRectMake(self.bubbleView.frame.origin.x - 16, self.frame.size.height - 24 , 14, 14);
+          self.receiptView.frame = CGRectMake(self.bubbleView.frame.origin.x - 42, self.frame.size.height - 24 , 40, 14);
       }
+      
+      
   } else {
     CGFloat top = [WFCUMessageCellBase hightForTimeLabel:model];
     self.portraitView.frame = CGRectMake(Portrait_Padding_Left, top, Portrait_Size, Portrait_Size);
@@ -346,11 +360,14 @@
     }
 }
 
-- (ZCCCircleProgressView *)receiptView {
+- (UILabel *)receiptView {
     if (!_receiptView) {
-        _receiptView = [[ZCCCircleProgressView alloc] initWithFrame:CGRectMake(0, 0, 14, 14)];
+        _receiptView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 40, 14)];
         _receiptView.hidden = YES;
+        _receiptView.font = [UIFont systemFontOfSize:8];
         _receiptView.userInteractionEnabled = YES;
+        _receiptView.backgroundColor = [UIColor clearColor];
+        _receiptView.textAlignment = NSTextAlignmentRight;
         [_receiptView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapReceiptView:)]];
         [self.contentView addSubview:_receiptView];
     }

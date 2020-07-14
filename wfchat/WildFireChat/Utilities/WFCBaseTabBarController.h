@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+//基础的业务 4个tab
 @interface WFCBaseTabBarController : UITabBarController
 @property(nonatomic, assign)BOOL newUser;
 @end

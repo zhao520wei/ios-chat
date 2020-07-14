@@ -54,7 +54,7 @@ alpha:1.0]
    
     CGRect bgRect = self.view.bounds;
     CGFloat paddingEdge = 16;
-    CGFloat inputHeight = 40;
+    CGFloat inputHeight = 50;
     CGFloat hintHeight = 26;
     CGFloat topPos = kStatusBarAndNavigationBarHeight + 45;
     
@@ -105,7 +105,7 @@ alpha:1.0]
     self.passwordField.clearButtonMode = UITextFieldViewModeWhileEditing;
     [self.passwordField addTarget:self action:@selector(textDidChange:) forControlEvents:UIControlEventEditingChanged];
     
-    self.sendCodeBtn = [[UIButton alloc] initWithFrame:CGRectMake(passwordContainer.frame.size.width - 72, (inputHeight - 1 - 23) / 2.0, 72, 23)];
+    self.sendCodeBtn = [[UIButton alloc] initWithFrame:CGRectMake(passwordContainer.frame.size.width - 72, (inputHeight - 1 - 23) / 2.0, 72, 33)];
     [self.sendCodeBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
     self.sendCodeBtn.titleLabel.font = [UIFont pingFangSCWithWeight:FontWeightStyleRegular size:12];
     self.sendCodeBtn.layer.borderWidth = 1;
@@ -312,7 +312,7 @@ alpha:1.0]
         [self updateBtn];
     }
 }
-
+//TODO: 当记住上一次手机号时，这个验证有问题
 - (void)updateBtn {
     if ([self isValidNumber]) {
         if (!self.countdownTimer) {

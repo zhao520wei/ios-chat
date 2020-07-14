@@ -5,11 +5,12 @@
   Created by Heavyrain.lee on 2019/9/16.
   Copyright © 2019 WildFireChat. All rights reserved.
 */
-CFBundleName="野火通";
-CFBundleDisplayName="野火通";
+CFBundleName="倚天移动办公";
+CFBundleDisplayName="倚天移动办公";
 Message="消息";
 Contact="联系人";
-Discover="发现";
+Architecture="组织架构";
+Discover="工作台";
 Settings="设置";
 Chatroom="聊天室";
 DevDocs="开发手册";

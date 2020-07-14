@@ -62,7 +62,7 @@
     
     
     [WFCUConfigManager globalManager].appServiceProvider = [AppService sharedAppService];
-    
+    [WFCUConfigManager globalManager].selectedTheme = ThemeType_White;
 
     NSString *savedToken = [[NSUserDefaults standardUserDefaults] stringForKey:@"savedToken"];
     NSString *savedUserId = [[NSUserDefaults standardUserDefaults] stringForKey:@"savedUserId"];

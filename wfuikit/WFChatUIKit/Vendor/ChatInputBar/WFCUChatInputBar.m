@@ -942,7 +942,8 @@
 - (BOOL)textViewShouldEndEditing:(UITextView *)textView {
     return YES;
 }
-#pragma mark - PluginBoardViewDelegate
+#pragma mark - PluginBoardViewDelegate  聊天对话框的下方选择button action
+
 - (void)onItemClicked:(NSUInteger)itemTag {
     UINavigationController *navi = [self.delegate requireNavi];
   
