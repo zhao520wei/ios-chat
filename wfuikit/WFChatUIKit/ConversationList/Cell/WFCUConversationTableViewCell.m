@@ -149,7 +149,7 @@
         }
     } else {
         if (info.isTop) {
-            [self.contentView setBackgroundColor:[UIColor colorWithHexString:@"0xf7f7f7"]];
+            [self.contentView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
         } else {
             self.contentView.backgroundColor = [UIColor whiteColor];
         }

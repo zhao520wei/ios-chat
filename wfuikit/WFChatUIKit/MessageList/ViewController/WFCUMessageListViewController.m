@@ -45,7 +45,7 @@
 
 #import "WFCUForwardViewController.h"
 
-#import <WFChatClient/WFCChatClient.h>
+
 #if WFCU_SUPPORT_VOIP
 #import <WFAVEngineKit/WFAVEngineKit.h>
 #endif
@@ -60,6 +60,9 @@
 #import "WFCUConversationSearchTableViewController.h"
 
 #import "WFCUMediaMessageGridViewController.h"
+
+#import "WFCULeaveCell.h"
+#import "WFCCLeaveMessageContent.h"
 
 // 聊天详情页面
 
@@ -683,6 +686,9 @@
     [self registerCell:[WFCUInformationCell class] forContent:[WFCCUnknownMessageContent class]];
     [self registerCell:[WFCURecallCell class] forContent:[WFCCRecallMessageContent class]];
     
+    
+    //MARK: 自定义消息类型
+    [self registerCell:[WFCULeaveCell class] forContent:[WFCCLeaveMessageContent class]];
     
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"FooterView"];
@@ -1409,6 +1415,12 @@
         }
         
         [self startPlay:model];
+    } else if ([model.message.content isKindOfClass:[WFCCLeaveMessageContent class]]) {
+        WFCCLeaveMessageContent * leaveMessage = (WFCCLeaveMessageContent *)model.message.content;
+        WFCUBrowserViewController *bvc = [[WFCUBrowserViewController alloc] init];
+        bvc.title = [NSString stringWithFormat:@"%@", leaveMessage.title];
+        bvc.url = @"https://www.baidu.com";
+        [self.navigationController pushViewController:bvc animated:YES];
     }
 }
 
@@ -1748,6 +1760,16 @@
     if (self.conversation.type == Single_Type) {
         [self sendMessage:[WFCCTypingMessageContent contentType:type]];
     }
+}
+
+-(void)sentLeaveMessage{
+    WFCCLeaveMessageContent * leaveMesage = [[WFCCLeaveMessageContent alloc] init];
+    leaveMesage.startTime = [[NSDate date] timeIntervalSinceNow];
+    leaveMesage.endTime = [NSDate dateWithTimeIntervalSinceNow:(60 * 60 * 24)];
+    leaveMesage.title = @"请假单";
+    leaveMesage.reason = @"回家娶媳妇";
+    leaveMesage.status = 1;
+    [self sendMessage:leaveMesage];
 }
 
 #pragma mark - SDPhotoBrowserDelegate

@@ -79,6 +79,7 @@
     UIView *footerView =  [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 146)];
     footerView.backgroundColor = [WFCUConfigManager globalManager].backgroudColor;
     self.tableView.tableFooterView = footerView;
+    self.tableView.separatorColor = [UIColor groupTableViewBackgroundColor];
     if (self.conversation.type  != Group_Type) {
         footerView.frame = CGRectMake(0, 0, 0, 0);
     }
@@ -349,6 +350,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+  
     
     if (self.conversation.type == Single_Type) {
         self.userInfo = [[WFCCIMService sharedWFCIMService] getUserInfo:self.conversation.target refresh:NO];

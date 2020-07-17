@@ -277,15 +277,19 @@
 
 - (void)onTouchDragExit:(id)sender {
     [self.recordView recordButtonDragOutside];
+    NSLog(@"----  onTouchDragExit");
 }
 
 - (void)onTouchDragEnter:(id)sender {
     [self.recordView recordButtonDragInside];
+    NSLog(@"----  onTouchDragEnter");
 }
 
 - (void)onTouchUpInside:(id)sender {
     [self.recordView removeFromSuperview];
     [self recordEnd];
+    
+    NSLog(@"----  onTouchUpInside");
 }
 
 - (void)onTouchUpOutside:(id)sender {
@@ -331,7 +335,7 @@
         [self notifyTyping:1];
     }
 }
-
+// 监听说话音量的大小来调节音量的动画
 - (void)updateMeter:(NSTimer*)timer {
     double voiceMeter = 0;
     if ([self.recorder isRecording]) {
@@ -1012,7 +1016,14 @@
         };
         [[self.delegate requireNavi] presentViewController:navi animated:YES completion:nil];
         [self notifyTyping:4];
+    } else if (itemTag == 6) {
+        // 发送请假单
+        if ([self.delegate respondsToSelector:@selector(sentLeaveMessage)]) {
+            [self.delegate sentLeaveMessage];
+        }
     }
+    
+    
 }
 - (void)checkAndAlertCameraAccessRight {
     AVAuthorizationStatus authStatus =

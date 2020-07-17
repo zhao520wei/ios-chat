@@ -45,7 +45,7 @@
 @implementation AppDelegate
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     //替换为您自己的Bugly账户。
-    [Bugly startWithAppId:@"b21375e023"];
+    [Bugly startWithAppId:@"50a6b54f6e"];
     
     [WFCCNetworkService startLog];
     [WFCCNetworkService sharedInstance].connectionStatusDelegate = self;

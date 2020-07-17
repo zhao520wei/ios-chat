@@ -16,6 +16,7 @@
     recordView.voiceMessageAnimationImages = @[@"VoiceRecordFeedback001",@"VoiceRecordFeedback002",@"VoiceRecordFeedback003",@"VoiceRecordFeedback004",@"VoiceRecordFeedback005",@"VoiceRecordFeedback006",@"VoiceRecordFeedback007",@"VoiceRecordFeedback008",@"VoiceRecordFeedback009",@"VoiceRecordFeedback010",@"VoiceRecordFeedback011",@"VoiceRecordFeedback012",@"VoiceRecordFeedback013",@"VoiceRecordFeedback014",@"VoiceRecordFeedback015",@"VoiceRecordFeedback016",@"VoiceRecordFeedback017",@"VoiceRecordFeedback018",@"VoiceRecordFeedback019",@"VoiceRecordFeedback020"];
     recordView.upCancelText = @"手指上滑取消发送";
     recordView.loosenCancelText = @"松开手指取消发送";
+
 }
 
 - (id)initWithFrame:(CGRect)frame

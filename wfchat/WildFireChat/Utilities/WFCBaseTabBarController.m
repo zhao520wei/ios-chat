@@ -35,6 +35,14 @@
     vc.title = LocalizedString(@"Message");
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
     UITabBarItem *item = nav.tabBarItem;
+//    nav.navigationBar.clipsToBounds = YES;
+//    [nav.navigationBar  setBackgroundImage:[[UIImage alloc] init] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
+//    [nav.navigationBar setShadowImage:[[UIImage alloc] init]];
+    CGFloat width = [UIScreen mainScreen].bounds.size.width;
+    //[UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.3]
+    UIImage *colorImage = [UIImage imageWithColor:[UIColor redColor] size:CGSizeMake(width, 1)];
+    [self.navigationController.navigationBar setShadowImage:colorImage];
+    
     item.title = LocalizedString(@"Message");
     item.image = [UIImage imageNamed:@"tabbar_chat"];
     item.selectedImage = [[UIImage imageNamed:@"tabbar_chat_cover"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
@@ -68,6 +76,7 @@
     vc = [DiscoverViewController new];
     vc.title = LocalizedString(@"Discover");
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
+//    nav.navigationBar.clipsToBounds = YES;
     item = nav.tabBarItem;
     item.title = LocalizedString(@"Discover");
     item.image = [UIImage imageNamed:@"tabbar_discover"];
