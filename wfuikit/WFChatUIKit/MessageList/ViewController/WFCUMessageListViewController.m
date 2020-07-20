@@ -62,7 +62,7 @@
 #import "WFCUMediaMessageGridViewController.h"
 
 #import "WFCULeaveCell.h"
-#import "WFCCLeaveMessageContent.h"
+#import <WFChatClient/WFCCLeaveMessageContent.h>
 
 // 聊天详情页面
 

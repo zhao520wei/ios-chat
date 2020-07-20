@@ -7,7 +7,7 @@
 //
 
 #import "WFCULeaveCell.h"
-#import "WFCCLeaveMessageContent.h"
+#import <WFChatClient/WFCChatClient.h>
 
 @interface WFCULeaveCell ()
 

@@ -422,8 +422,6 @@
 		90414AFD21AF5A93008EF915 /* WFCUConversationSearchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90414AFB21AF5A93008EF915 /* WFCUConversationSearchTableViewCell.m */; };
 		956CBC3B24BD877400BE34A6 /* WFCULeaveCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 956CBC3924BD877400BE34A6 /* WFCULeaveCell.h */; };
 		956CBC3C24BD877400BE34A6 /* WFCULeaveCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 956CBC3A24BD877400BE34A6 /* WFCULeaveCell.m */; };
-		956CBC4024BD8DEE00BE34A6 /* WFCCLeaveMessageContent.h in Headers */ = {isa = PBXBuildFile; fileRef = 956CBC3E24BD8DEE00BE34A6 /* WFCCLeaveMessageContent.h */; };
-		956CBC4124BD8DEF00BE34A6 /* WFCCLeaveMessageContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 956CBC3F24BD8DEE00BE34A6 /* WFCCLeaveMessageContent.m */; };
 		95A06CCC24B83E760095652E /* LSWTreeView in Resources */ = {isa = PBXBuildFile; fileRef = 95A06CCB24B83E750095652E /* LSWTreeView */; };
 		95A06CCF24B8403C0095652E /* WFCUCompanyArchitectureViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 95A06CCD24B8403C0095652E /* WFCUCompanyArchitectureViewController.h */; };
 		95A06CD024B8403C0095652E /* WFCUCompanyArchitectureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95A06CCE24B8403C0095652E /* WFCUCompanyArchitectureViewController.m */; };
@@ -854,8 +852,6 @@
 		90414AFB21AF5A93008EF915 /* WFCUConversationSearchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFCUConversationSearchTableViewCell.m; sourceTree = "<group>"; };
 		956CBC3924BD877400BE34A6 /* WFCULeaveCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WFCULeaveCell.h; sourceTree = "<group>"; };
 		956CBC3A24BD877400BE34A6 /* WFCULeaveCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WFCULeaveCell.m; sourceTree = "<group>"; };
-		956CBC3E24BD8DEE00BE34A6 /* WFCCLeaveMessageContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFCCLeaveMessageContent.h; sourceTree = "<group>"; };
-		956CBC3F24BD8DEE00BE34A6 /* WFCCLeaveMessageContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFCCLeaveMessageContent.m; sourceTree = "<group>"; };
 		95A06CCB24B83E750095652E /* LSWTreeView */ = {isa = PBXFileReference; lastKnownFileType = folder; path = LSWTreeView; sourceTree = "<group>"; };
 		95A06CCD24B8403C0095652E /* WFCUCompanyArchitectureViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WFCUCompanyArchitectureViewController.h; sourceTree = "<group>"; };
 		95A06CCE24B8403C0095652E /* WFCUCompanyArchitectureViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WFCUCompanyArchitectureViewController.m; sourceTree = "<group>"; };
@@ -1847,8 +1843,6 @@
 		956CBC3D24BD8DA500BE34A6 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
-				956CBC3E24BD8DEE00BE34A6 /* WFCCLeaveMessageContent.h */,
-				956CBC3F24BD8DEE00BE34A6 /* WFCCLeaveMessageContent.m */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -2069,7 +2063,6 @@
 				2F55116F217F5CC200F56C26 /* AFHTTPSessionManager.h in Headers */,
 				2F5510A8217F5CC200F56C26 /* WFCUVideoCell.h in Headers */,
 				90414AFC21AF5A93008EF915 /* WFCUConversationSearchTableViewCell.h in Headers */,
-				956CBC4024BD8DEE00BE34A6 /* WFCCLeaveMessageContent.h in Headers */,
 				2B46D4D824ACC64300721792 /* WFCUMediaMessageGridViewController.h in Headers */,
 				2F55115A217F5CC200F56C26 /* SDPhotoBrowserConfig.h in Headers */,
 				2F55110C217F5CC200F56C26 /* FullScreenView.h in Headers */,
@@ -2311,7 +2304,6 @@
 				2F551161217F5CC200F56C26 /* KxMenu.m in Sources */,
 				2F551124217F5CC200F56C26 /* FullScreenViewController.m in Sources */,
 				2F5510E5217F5CC200F56C26 /* WFCUPluginItemView.m in Sources */,
-				956CBC4124BD8DEF00BE34A6 /* WFCCLeaveMessageContent.m in Sources */,
 				2F1439F6217F5DAA00B3E38A /* WFCUSearchGroupTableViewCell.m in Sources */,
 				2F55122B217F5CC300F56C26 /* WFCUMediaMessageDownloader.m in Sources */,
 				2F5510E8217F5CC200F56C26 /* WFCUPluginBoardView.m in Sources */,
