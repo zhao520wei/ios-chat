@@ -10,7 +10,7 @@
 #import "SDWebImage.h"
 #import "UIFont+YH.h"
 #import "UIColor+YH.h"
-#import <WFChatUIKit/WFChatUIKit.h>
+#import "WFCUConfigManager.h"
 
 @interface WFCMeTableViewHeaderViewCell ()
 @property (strong, nonatomic) UIImageView *portrait;
@@ -66,6 +66,6 @@
     _userInfo = userInfo;
     [self.portrait sd_setImageWithURL:[NSURL URLWithString:self.userInfo.portrait] placeholderImage: [UIImage imageNamed:@"PersonalChat"]];
     self.displayName.text = self.userInfo.displayName;
-    self.userName.text = [NSString stringWithFormat:@"野火ID:%@", self.userInfo.name];
+    self.userName.text = [NSString stringWithFormat:@"用户ID:%@", self.userInfo.name];
 }
 @end

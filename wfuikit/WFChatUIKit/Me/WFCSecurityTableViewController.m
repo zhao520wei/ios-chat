@@ -17,7 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = LocalizedString(@"AccountSafety");
+    self.title = WFCString(@"AccountSafety");
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) style:UITableViewStyleGrouped];
     
     self.tableView.delegate = self;
@@ -72,7 +72,7 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     if (indexPath.section == 0) {
-        cell.textLabel.text = LocalizedString(@"ChangePassword");
+        cell.textLabel.text = WFCString(@"ChangePassword");
     }
     
     return cell;

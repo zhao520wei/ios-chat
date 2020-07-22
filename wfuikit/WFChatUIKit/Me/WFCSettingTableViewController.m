@@ -9,15 +9,17 @@
 #import "WFCSettingTableViewController.h"
 #import <WFChatClient/WFCChatClient.h>
 #import "SDWebImage.h"
-#import <WFChatUIKit/WFChatUIKit.h>
 #import "WFCSecurityTableViewController.h"
 #import "WFCAboutViewController.h"
 #import "WFCPrivacyViewController.h"
 #import "WFCPrivacyTableViewController.h"
-#import "WFCDiagnoseViewController.h"
+//#import "WFCDiagnoseViewController.h"
 #import "UIColor+YH.h"
 #import "UIFont+YH.h"
 #import "WFCThemeTableViewController.h"
+#import "WFCUConfigManager.h"
+#import "WFCUMessageListViewController.h"
+
 @interface WFCSettingTableViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong)UITableView *tableView;
 @end
@@ -31,7 +33,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.backgroundColor = [WFCUConfigManager globalManager].backgroudColor;
-    self.title = LocalizedString(@"Settings");
+    self.title = WFCString(@"Settings");
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 0.1)];
     [self.tableView reloadData];
     
@@ -102,8 +104,8 @@
         
         [self presentViewController:alertController animated:YES completion:nil];
     } else if (indexPath.section == 5) {
-        WFCDiagnoseViewController *vc = [[WFCDiagnoseViewController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
+//        WFCDiagnoseViewController *vc = [[WFCDiagnoseViewController alloc] init];
+//        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 
@@ -190,41 +192,41 @@
 
     
     if(indexPath.section == 0) {
-        cell.textLabel.text = LocalizedString(@"PrivacySettings");
+        cell.textLabel.text = WFCString(@"PrivacySettings");
         [self hiddenSeparatorLine:cell];
     } else if(indexPath.section == 1) {
-        cell.textLabel.text = LocalizedString(@"Theme");
+        cell.textLabel.text = WFCString(@"Theme");
         [self hiddenSeparatorLine:cell];
     } else if(indexPath.section == 2) {
         if (indexPath.row == 0) {
             [self showSeparatorLine:cell];
-            cell.textLabel.text = LocalizedString(@"CurrentVersion");
+            cell.textLabel.text = WFCString(@"CurrentVersion");
             cell.detailTextLabel.text = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
             cell.accessoryType = UITableViewCellAccessoryNone;
         } if (indexPath.row == 1) {
-            cell.textLabel.text = LocalizedString(@"HelpFeedback");
+            cell.textLabel.text = WFCString(@"HelpFeedback");
             [self showSeparatorLine:cell];
         } else if (indexPath.row == 2) {
-            cell.textLabel.text = LocalizedString(@"AboutWFChat");
+            cell.textLabel.text = WFCString(@"AboutWFChat");
             [self hiddenSeparatorLine:cell];
         }
     } else if(indexPath.section == 3) {
         if (indexPath.row == 0) {
-            cell.textLabel.text = LocalizedString(@"UserAgreement");
+            cell.textLabel.text = WFCString(@"UserAgreement");
             [self showSeparatorLine:cell];
 
         } if (indexPath.row == 1) {
-            cell.textLabel.text = LocalizedString(@"PrivacyPolicy");
+            cell.textLabel.text = WFCString(@"PrivacyPolicy");
             [self hiddenSeparatorLine:cell];
         }
     } else if(indexPath.section == 4) {
         if (indexPath.row == 0) {
             [self hiddenSeparatorLine:cell];
-            cell.textLabel.text = LocalizedString(@"Complain");
+            cell.textLabel.text = WFCString(@"Complain");
         }
     } else if (indexPath.section == 5) {
         [self hiddenSeparatorLine:cell];
-        cell.textLabel.text = LocalizedString(@"Diagnose");
+        cell.textLabel.text = WFCString(@"Diagnose");
     } else if (indexPath.section == 6) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"buttonCell"];
         for (UIView *subView in cell.subviews) {
@@ -232,7 +234,7 @@
         }
        [self setLastCellSeperatorToLeft:cell];
         UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 48)];
-        [btn setTitle:LocalizedString(@"Logout") forState:UIControlStateNormal];
+        [btn setTitle:WFCString(@"Logout") forState:UIControlStateNormal];
         btn.titleLabel.font = [UIFont pingFangSCWithWeight:FontWeightStyleRegular size:16];
         [btn setTitleColor:[UIColor colorWithHexString:@"0xf95569"]
                   forState:UIControlStateNormal];

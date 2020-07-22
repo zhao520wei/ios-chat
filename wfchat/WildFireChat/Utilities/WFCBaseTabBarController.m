@@ -10,7 +10,6 @@
 #import <WFChatClient/WFCChatClient.h>
 #import <WFChatUIKit/WFChatUIKit.h>
 #import "DiscoverViewController.h"
-#import "WFCMeTableViewController.h"
 
 #ifdef WFC_MOMENTS
 #import <WFMomentUIKit/WFMomentUIKit.h>

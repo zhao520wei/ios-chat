@@ -8,7 +8,7 @@
 
 #import "WFCPrivacyViewController.h"
 #import <WebKit/WebKit.h>
-#import "WFCConfig.h"
+#import "WFCUConfig.h"
 
 @interface WFCPrivacyViewController ()
 @property(nonatomic, strong)WKWebView *webview;

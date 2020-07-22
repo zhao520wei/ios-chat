@@ -86,14 +86,14 @@
         cell.accessoryView = nil;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         if(indexPath.section == 2) {
-            cell.textLabel.text = LocalizedString(@"Moments");
+            cell.textLabel.text = WFCString(@"Moments");
         } else {
-            cell.textLabel.text = LocalizedString(@"Blacklist");
+            cell.textLabel.text = WFCString(@"Blacklist");
         }
         return cell;;
     } else if(indexPath.section == 1) {
         WFCUGeneralSwitchTableViewCell *switchCell = [[WFCUGeneralSwitchTableViewCell alloc] init];
-        switchCell.textLabel.text = LocalizedString(@"MsgReceipt");
+        switchCell.textLabel.text = WFCString(@"MsgReceipt");
         if ([[WFCCIMService sharedWFCIMService] isUserEnableReceipt]) {
             switchCell.on = YES;
         } else {

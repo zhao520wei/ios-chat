@@ -9,11 +9,14 @@
 #import "WFCMeTableViewController.h"
 #import <WFChatClient/WFCChatClient.h>
 #import "SDWebImage.h"
-#import <WFChatUIKit/WFChatUIKit.h>
 #import "WFCSettingTableViewController.h"
 #import "WFCSecurityTableViewController.h"
 #import "WFCMeTableViewHeaderViewCell.h"
 #import "UIColor+YH.h"
+#import "WFCUConfigManager.h"
+#import "WFCUMyProfileTableViewController.h"
+#import "WFCUMessageNotificationViewController.h"
+
 @interface WFCMeTableViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong)UITableView *tableView;
 @property (nonatomic, strong)UIImageView *portraitView;
@@ -54,11 +57,11 @@
     }];
     
     self.itemDataSource = @[
-        @{@"title":LocalizedString(@"MessageNotification"),
+        @{@"title":WFCString(@"MessageNotification"),
           @"image":@"notification_setting"},
-        @{@"title":LocalizedString(@"AccountSafety"),
+        @{@"title":WFCString(@"AccountSafety"),
           @"image":@"safe_setting"},
-        @{@"title":LocalizedString(@"Settings"),
+        @{@"title":WFCString(@"Settings"),
           @"image":@"MoreSetting"}
     ];
 }

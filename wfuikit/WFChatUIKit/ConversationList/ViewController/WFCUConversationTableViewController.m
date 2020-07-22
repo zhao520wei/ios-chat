@@ -303,6 +303,8 @@
     self.definesPresentationContext = YES;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"bar_plus"] style:UIBarButtonItemStyleDone target:self action:@selector(onRightBarBtn:)];
     
+//    self.navigationItem.leftBarButtonItem = [UIBarButtonItem alloc] initWithImage:<#(nullable UIImage *)#> style:UIBarButtonItemStyleDone target:self action:@selector();
+    
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onClearAllUnread:) name:@"kTabBarClearBadgeNotification" object:nil];
     

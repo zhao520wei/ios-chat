@@ -13,7 +13,7 @@
 #import "WFCBaseTabBarController.h"
 #import "MBProgressHUD.h"
 #import "UILabel+YBAttributeTextTapAction.h"
-#import "WFCPrivacyViewController.h"
+
 #import "AppService.h"
 #import "UIColor+YH.h"
 #import "UIFont+YH.h"
@@ -149,7 +149,7 @@ alpha:1.0]
     
     self.privacyLabel = [[UILabel alloc] initWithFrame:CGRectMake(16, self.view.bounds.size.height - 40 - kTabbarSafeBottomMargin, self.view.bounds.size.width-32, 40)];
     self.privacyLabel.textAlignment = NSTextAlignmentCenter;
-    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:@"登录即代表你已同意《野火通用户协议》和《野火通隐私政策》" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:10],
+    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:@"登录即代表你已同意《倚天通用户协议》和《倚天通隐私政策》" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:10],
                                                                                                                      NSForegroundColorAttributeName : [UIColor darkGrayColor]}];
     [text setAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:10],
                           NSForegroundColorAttributeName : [UIColor blueColor]} range:NSMakeRange(9, 9)];
