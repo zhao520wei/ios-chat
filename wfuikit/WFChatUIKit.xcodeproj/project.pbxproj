@@ -443,6 +443,10 @@
 		9530D4FB24C82B5800CCC9F6 /* WFCThemeTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 9530D4F524C82B5700CCC9F6 /* WFCThemeTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9530D4FE24C831D300CCC9F6 /* WFCUConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 9530D4FC24C831D300CCC9F6 /* WFCUConfig.h */; };
 		9530D4FF24C831D300CCC9F6 /* WFCUConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 9530D4FD24C831D300CCC9F6 /* WFCUConfig.m */; };
+		9530D51024C8495000CCC9F6 /* XLSlideMenu.h in Headers */ = {isa = PBXBuildFile; fileRef = 9530D50C24C8495000CCC9F6 /* XLSlideMenu.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9530D51124C8495000CCC9F6 /* UIViewController+XLSlideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 9530D50D24C8495000CCC9F6 /* UIViewController+XLSlideMenu.m */; };
+		9530D51224C8495000CCC9F6 /* XLSlideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 9530D50E24C8495000CCC9F6 /* XLSlideMenu.m */; };
+		9530D51324C8495000CCC9F6 /* UIViewController+XLSlideMenu.h in Headers */ = {isa = PBXBuildFile; fileRef = 9530D50F24C8495000CCC9F6 /* UIViewController+XLSlideMenu.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		956CBC3B24BD877400BE34A6 /* WFCULeaveCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 956CBC3924BD877400BE34A6 /* WFCULeaveCell.h */; };
 		956CBC3C24BD877400BE34A6 /* WFCULeaveCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 956CBC3A24BD877400BE34A6 /* WFCULeaveCell.m */; };
 		95A06CCC24B83E760095652E /* LSWTreeView in Resources */ = {isa = PBXBuildFile; fileRef = 95A06CCB24B83E750095652E /* LSWTreeView */; };
@@ -896,6 +900,10 @@
 		9530D4F524C82B5700CCC9F6 /* WFCThemeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFCThemeTableViewController.h; sourceTree = "<group>"; };
 		9530D4FC24C831D300CCC9F6 /* WFCUConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WFCUConfig.h; sourceTree = "<group>"; };
 		9530D4FD24C831D300CCC9F6 /* WFCUConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WFCUConfig.m; sourceTree = "<group>"; };
+		9530D50C24C8495000CCC9F6 /* XLSlideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLSlideMenu.h; sourceTree = "<group>"; };
+		9530D50D24C8495000CCC9F6 /* UIViewController+XLSlideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+XLSlideMenu.m"; sourceTree = "<group>"; };
+		9530D50E24C8495000CCC9F6 /* XLSlideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLSlideMenu.m; sourceTree = "<group>"; };
+		9530D50F24C8495000CCC9F6 /* UIViewController+XLSlideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+XLSlideMenu.h"; sourceTree = "<group>"; };
 		956CBC3924BD877400BE34A6 /* WFCULeaveCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WFCULeaveCell.h; sourceTree = "<group>"; };
 		956CBC3A24BD877400BE34A6 /* WFCULeaveCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WFCULeaveCell.m; sourceTree = "<group>"; };
 		95A06CCB24B83E750095652E /* LSWTreeView */ = {isa = PBXFileReference; lastKnownFileType = folder; path = LSWTreeView; sourceTree = "<group>"; };
@@ -1102,8 +1110,9 @@
 				2F550EF2217F5CC000F56C26 /* Vendor */,
 				956CBC3D24BD8DA500BE34A6 /* Custom */,
 				9530D4E924C8297200CCC9F6 /* Provacy */,
-				2F550BE2217F4D7B00F56C26 /* WFChatUIKit.h */,
+				9530D50B24C8491100CCC9F6 /* XLSlideMenu */,
 				2F551036217F5CC100F56C26 /* Predefine.h */,
+				2F550BE2217F4D7B00F56C26 /* WFChatUIKit.h */,
 				9530D4FC24C831D300CCC9F6 /* WFCUConfig.h */,
 				9530D4FD24C831D300CCC9F6 /* WFCUConfig.m */,
 				2F550BE3217F4D7B00F56C26 /* Info.plist */,
@@ -1917,6 +1926,17 @@
 			path = Provacy;
 			sourceTree = "<group>";
 		};
+		9530D50B24C8491100CCC9F6 /* XLSlideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				9530D50F24C8495000CCC9F6 /* UIViewController+XLSlideMenu.h */,
+				9530D50D24C8495000CCC9F6 /* UIViewController+XLSlideMenu.m */,
+				9530D50C24C8495000CCC9F6 /* XLSlideMenu.h */,
+				9530D50E24C8495000CCC9F6 /* XLSlideMenu.m */,
+			);
+			path = XLSlideMenu;
+			sourceTree = "<group>";
+		};
 		956CBC3D24BD8DA500BE34A6 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
@@ -1931,6 +1951,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9530D51024C8495000CCC9F6 /* XLSlideMenu.h in Headers */,
+				9530D51324C8495000CCC9F6 /* UIViewController+XLSlideMenu.h in Headers */,
 				9530D4FB24C82B5800CCC9F6 /* WFCThemeTableViewController.h in Headers */,
 				9530D4DD24C827C400CCC9F6 /* WFCSecurityTableViewController.h in Headers */,
 				9530D4ED24C8299100CCC9F6 /* WFCPrivacyViewController.h in Headers */,
@@ -2299,6 +2321,7 @@
 				2F5511C4217F5CC300F56C26 /* NSImage+WebCache.m in Sources */,
 				2B46D4D924ACC64300721792 /* WFCUMediaMessageGridViewController.m in Sources */,
 				2F55120A217F5CC300F56C26 /* WFCUConversationTableViewController.m in Sources */,
+				9530D51224C8495000CCC9F6 /* XLSlideMenu.m in Sources */,
 				2F551167217F5CC200F56C26 /* AFURLResponseSerialization.m in Sources */,
 				2F551112217F5CC200F56C26 /* VideoPlayerSampleViewController.m in Sources */,
 				2F551115217F5CC200F56C26 /* FullScreenView.m in Sources */,
@@ -2326,6 +2349,7 @@
 				2BDF57A924AD70C8003C1F08 /* DNImageFetchOperation.m in Sources */,
 				2F5EB43D22C2E21A00BC8C90 /* GroupManageTableViewController.m in Sources */,
 				2F55109F217F5CC200F56C26 /* WFCULocationCell.m in Sources */,
+				9530D51124C8495000CCC9F6 /* UIViewController+XLSlideMenu.m in Sources */,
 				2F5511E1217F5CC300F56C26 /* YLGIFImage.m in Sources */,
 				2F5511F4217F5CC300F56C26 /* AttributedLabel.m in Sources */,
 				2BEF78A223F6A84D000DE285 /* WFCUMultiVideoViewController.m in Sources */,

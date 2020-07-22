@@ -34,6 +34,8 @@
 #import "UIView+Toast.h"
 #import "WFCUSeletedUserViewController.h"
 
+#import "SDWebImage.h"
+
 // 消息的列表页
 
 @interface WFCUConversationTableViewController () <UISearchControllerDelegate, UISearchResultsUpdating, UITableViewDelegate, UITableViewDataSource>
@@ -200,6 +202,10 @@
                  ]];
 }
 
+- (void)onLeftBatBtn:(UIBarButtonItem *) sender {
+    
+}
+
 - (void)startChatAction:(id)sender {
     WFCUSeletedUserViewController *pvc = [[WFCUSeletedUserViewController alloc] init];
     pvc.type = Horizontal;
@@ -303,7 +309,7 @@
     self.definesPresentationContext = YES;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"bar_plus"] style:UIBarButtonItemStyleDone target:self action:@selector(onRightBarBtn:)];
     
-//    self.navigationItem.leftBarButtonItem = [UIBarButtonItem alloc] initWithImage:<#(nullable UIImage *)#> style:UIBarButtonItemStyleDone target:self action:@selector();
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"bar_plus"]  style:UIBarButtonItemStyleDone target:self action:@selector(onLeftBatBtn:)];
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onClearAllUnread:) name:@"kTabBarClearBadgeNotification" object:nil];

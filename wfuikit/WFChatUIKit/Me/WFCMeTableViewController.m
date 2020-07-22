@@ -16,6 +16,7 @@
 #import "WFCUConfigManager.h"
 #import "WFCUMyProfileTableViewController.h"
 #import "WFCUMessageNotificationViewController.h"
+#import "XLSlideMenu.h"
 
 @interface WFCMeTableViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong)UITableView *tableView;
@@ -64,6 +65,8 @@
         @{@"title":WFCString(@"Settings"),
           @"image":@"MoreSetting"}
     ];
+    
+
 }
 
 
@@ -106,6 +109,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     if(indexPath.section == 0) {
         WFCMeTableViewHeaderViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"profileCell"];
         if (cell == nil) {
@@ -143,24 +147,49 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     if (indexPath.section == 0) {
         WFCUMyProfileTableViewController *vc = [[WFCUMyProfileTableViewController alloc] init];
-        vc.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:vc animated:YES];
+        if (self.navigationController) {
+             vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+        } else {
+            [self.xl_sldeMenu showRootViewControllerAnimated:true];
+            UIViewController * ctrl = (UIViewController *)self.xl_sldeMenu.rootViewController;
+            [nav.navigationController pushViewController:vc animated:true];
+        }
     } else if (indexPath.section == 1) {
         
         WFCUMessageNotificationViewController *mnvc = [[WFCUMessageNotificationViewController alloc] init];
-        mnvc.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:mnvc animated:YES];
+        if (self.navigationController) {
+            mnvc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:mnvc animated:YES];
+        } else {
+            [self.xl_sldeMenu showRootViewControllerAnimated:true];
+            UINavigationController * nav = (UINavigationController *)self.xl_sldeMenu.rootViewController.navigationController;
+            [nav pushViewController:mnvc animated:true];
+        }
 
     } else if(indexPath.section == 2) {
         WFCSecurityTableViewController * stvc = [[WFCSecurityTableViewController alloc] init];
         stvc.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:stvc animated:YES];
+        if (self.navigationController) {
+            [self.navigationController pushViewController:stvc animated:YES];
+        } else {
+            [self.xl_sldeMenu showRootViewControllerAnimated:true];
+            UINavigationController * nav = (UINavigationController *)self.xl_sldeMenu.rootViewController.navigationController;
+            [nav pushViewController:stvc animated:true];
+        }
     } else {
         WFCSettingTableViewController *vc = [[WFCSettingTableViewController alloc] init];
                vc.hidesBottomBarWhenPushed = YES;
-               [self.navigationController pushViewController:vc animated:YES];
+        if (self.navigationController) {
+            [self.navigationController pushViewController:vc animated:YES];
+        } else {
+            [self.xl_sldeMenu showRootViewControllerAnimated:true];
+            UINavigationController * nav = (UINavigationController *)self.xl_sldeMenu.rootViewController.navigationController;
+            [nav pushViewController:vc animated:true];
+        }
     }
     
   

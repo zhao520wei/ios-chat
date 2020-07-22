@@ -67,7 +67,13 @@
     NSString *savedToken = [[NSUserDefaults standardUserDefaults] stringForKey:@"savedToken"];
     NSString *savedUserId = [[NSUserDefaults standardUserDefaults] stringForKey:@"savedUserId"];
     
-    self.window.rootViewController = [WFCBaseTabBarController new];
+    
+    WFCMeTableViewController * meCtrl = [[WFCMeTableViewController alloc]init];
+    WFCBaseTabBarController * rootCtrl = [WFCBaseTabBarController new];
+    XLSlideMenu *slideMenu = [[XLSlideMenu alloc] initWithRootViewController:rootCtrl];
+    slideMenu.leftViewController = meCtrl;
+    
+    self.window.rootViewController = slideMenu;
     self.window.backgroundColor = [UIColor whiteColor];
     
     [self setupNavBar];
