@@ -10,7 +10,7 @@
 #import <WFChatClient/WFCChatClient.h>
 #import "MBProgressHUD.h"
 #import "AppService.h"
-#import <WFChatUIKit/WFChatUIKit.h>
+#import "WFCUGeneralModifyViewController.h"
 
 @interface DeviceInfoViewController ()
 @property(nonatomic, strong)UILabel *nameLabel;

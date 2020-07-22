@@ -8,7 +8,7 @@
 
 #import "WFCBaseTabBarController.h"
 #import <WFChatClient/WFCChatClient.h>
-#import <WFChatUIKit/WFChatUIKit.h>
+  
 #import "DiscoverViewController.h"
 
 #ifdef WFC_MOMENTS
@@ -21,9 +21,12 @@
 #define kImgKey     @"imageName"
 #define kSelImgKey  @"selectedImageName"
 
+#import "WFCMeTableViewController.h"
+#import "WFCUConversationTableViewController.h"
+#import "WFCUContactListViewController.h"
+
 @interface WFCBaseTabBarController ()
-@property (nonatomic, strong)UINavigationController *firstNav;
-@property (nonatomic, strong)UINavigationController *settingNav;
+
 @end
 
 @implementation WFCBaseTabBarController

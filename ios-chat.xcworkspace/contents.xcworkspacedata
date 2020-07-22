@@ -5,9 +5,6 @@
       location = "group:wfchat/WildFireChat.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:wfuikit/WFChatUIKit.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "container:wfclient/WFChatClient.xcodeproj">
    </FileRef>
 </Workspace>

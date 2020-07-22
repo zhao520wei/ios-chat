@@ -23,7 +23,7 @@
 #import "WFCLoginViewController.h"
 #import "WFCConfig.h"
 #import "WFCBaseTabBarController.h"
-#import <WFChatUIKit/WFChatUIKit.h>
+  
 #import <UserNotifications/UserNotifications.h>
 #import "CreateBarCodeViewController.h"
 #import "PCLoginConfirmViewController.h"
@@ -33,6 +33,13 @@
 #import <Bugly/Bugly.h>
 #import "AppService.h"
 #import "UIColor+YH.h"
+#import "WFCUConfigManager.h"
+#import "QrCodeHelper.h"
+#import "WFCMeTableViewController.h"
+#import "XLSlideMenu.h"
+#import "WFCUProfileTableViewController.h"
+#import "WFCUMultiVideoViewController.h"
+#import "WFCUVideoViewController.h"
 
 @interface AppDelegate () <ConnectionStatusDelegate, ReceiveMessageDelegate,
 #if WFCU_SUPPORT_VOIP

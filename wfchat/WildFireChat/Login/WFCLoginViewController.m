@@ -8,7 +8,6 @@
 
 #import "WFCLoginViewController.h"
 #import <WFChatClient/WFCChatClient.h>
-#import <WFChatUIKit/WFChatUIKit.h>
 #import "AppDelegate.h"
 #import "WFCBaseTabBarController.h"
 #import "MBProgressHUD.h"
@@ -17,6 +16,10 @@
 #import "AppService.h"
 #import "UIColor+YH.h"
 #import "UIFont+YH.h"
+#import "WFCUConfigManager.h"
+#import "WFCPrivacyViewController.h"
+
+
 //是否iPhoneX YES:iPhoneX屏幕 NO:传统屏幕
 #define kIs_iPhoneX ([UIScreen mainScreen].bounds.size.height == 812.0f ||[UIScreen mainScreen].bounds.size.height == 896.0f )
 

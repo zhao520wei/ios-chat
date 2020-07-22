@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <WFChatUIKit/WFChatUIKit.h>
+#import "BubbleTipView.h"
+  
 #ifdef WFC_MOMENTS
 #import <WFMomentClient/WFMomentClient.h>
 #endif

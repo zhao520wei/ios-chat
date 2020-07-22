@@ -9,7 +9,6 @@
 #import "DiscoverViewController.h"
 #import "ChatroomListViewController.h"
 #import "DeviceTableViewController.h"
-#import <WFChatUIKit/WFChatUIKit.h>
 #import <WFChatClient/WFCCIMService.h>
 #import "DiscoverMomentsTableViewCell.h"
 #ifdef WFC_MOMENTS
@@ -18,6 +17,10 @@
 #endif
 #import "UIFont+YH.h"
 #import "UIColor+YH.h"
+#import "WFCUConfigManager.h"
+#import "WFCUFavChannelTableViewController.h"
+#import "WFCUMessageListViewController.h"
+#import "WFCUBrowserViewController.h"
 
 @interface DiscoverViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong)UITableView *tableView;

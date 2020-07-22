@@ -11,6 +11,7 @@
 #import "AFNetworking.h"
 #import "WFCConfig.h"
 #import "PCSessionViewController.h"
+#import "WFCUGroupAnnouncement.h"
 
 static AppService *sharedSingleton = nil;
 

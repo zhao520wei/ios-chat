@@ -9,7 +9,7 @@
 #import "GroupInfoViewController.h"
 #import <WFChatClient/WFCChatClient.h>
 #import "SDWebImage.h"
-#import <WFChatUIKit/WFChatUIKit.h>
+#import "WFCUMessageListViewController.h"
 
 
 @interface GroupInfoViewController ()

@@ -12,7 +12,7 @@
 #import "LBXPermission.h"
 #import "LBXPermissionSetting.h"
 #import <WFChatClient/WFCChatClient.h>
-#import <WFChatUIKit/WFChatUIKit.h>
+#import "QrCodeHelper.h"
 
 #define kIs_iPhoneX ([UIScreen mainScreen].bounds.size.height == 812.0f ||[UIScreen mainScreen].bounds.size.height == 896.0f )
 

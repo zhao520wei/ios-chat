@@ -9,7 +9,8 @@
 #import "ChatroomListViewController.h"
 #import <WFChatClient/WFCChatClient.h>
 #import "ChatroomItemCell.h"
-#import <WFChatUIKit/WFChatUIKit.h>
+#import "WFCUConfigManager.h"
+#import "WFCUMessageListViewController.h"
 
 @interface ChatroomListViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 @property (nonatomic, strong) UICollectionView * collectionView;

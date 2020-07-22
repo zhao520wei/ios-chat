@@ -8,6 +8,7 @@
 
 #import "DiscoverMomentsTableViewCell.h"
 #import "SDWebImage.h"
+#import "BubbleTipView.h"
 
 
 @interface DiscoverMomentsTableViewCell ()

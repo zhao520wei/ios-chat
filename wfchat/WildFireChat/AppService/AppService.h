@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <WFChatUIKit/WFChatUIKit.h>
 #import <WFChatClient/WFCChatClient.h>
 #import "Device.h"
+#import "WFCUAppServiceProvider.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
