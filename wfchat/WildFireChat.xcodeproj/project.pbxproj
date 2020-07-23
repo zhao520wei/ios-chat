@@ -1441,14 +1441,14 @@
 		9530D58B24C85BA100CCC9F6 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				9530D58C24C85BA100CCC9F6 /* WFCUConversationSearchTableViewController.h */,
 				9530D58D24C85BA100CCC9F6 /* WFCUReceiptViewController.h */,
-				9530D58E24C85BA100CCC9F6 /* WFCUGroupAnnouncementViewController.m */,
+				9530D59124C85BA100CCC9F6 /* WFCUReceiptViewController.m */,
+				9530D59324C85BA100CCC9F6 /* WFCUConversationTableViewController.h */,
 				9530D58F24C85BA100CCC9F6 /* WFCUConversationTableViewController.m */,
 				9530D59024C85BA100CCC9F6 /* WFCUGroupAnnouncementViewController.h */,
-				9530D59124C85BA100CCC9F6 /* WFCUReceiptViewController.m */,
+				9530D58E24C85BA100CCC9F6 /* WFCUGroupAnnouncementViewController.m */,
+				9530D58C24C85BA100CCC9F6 /* WFCUConversationSearchTableViewController.h */,
 				9530D59224C85BA100CCC9F6 /* WFCUConversationSearchTableViewController.m */,
-				9530D59324C85BA100CCC9F6 /* WFCUConversationTableViewController.h */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";

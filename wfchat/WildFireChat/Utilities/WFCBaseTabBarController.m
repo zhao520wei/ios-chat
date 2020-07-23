@@ -42,8 +42,10 @@
 //    [nav.navigationBar setShadowImage:[[UIImage alloc] init]];
     CGFloat width = [UIScreen mainScreen].bounds.size.width;
     //[UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.3]
-    UIImage *colorImage = [UIImage imageWithColor:[UIColor redColor] size:CGSizeMake(width, 1)];
-    [self.navigationController.navigationBar setShadowImage:colorImage];
+//     [nav.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor clearColor] size:CGSizeMake(self.view.frame.size.width, 0.5)] forBarMetrics:UIBarMetricsDefault ];
+    UIImage *colorImage = [UIImage imageWithColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.02] size:CGSizeMake(width, 1)];
+    [nav.navigationBar setShadowImage:colorImage];
+   
     
     item.title = LocalizedString(@"Message");
     item.image = [UIImage imageNamed:@"tabbar_chat"];

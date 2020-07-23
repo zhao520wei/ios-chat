@@ -35,6 +35,7 @@
 #import "WFCUSeletedUserViewController.h"
 
 #import "SDWebImage.h"
+#import "XLSlideMenu.h"
 
 // 消息的列表页
 
@@ -203,7 +204,7 @@
 }
 
 - (void)onLeftBatBtn:(UIBarButtonItem *) sender {
-    
+    [self.xl_sldeMenu showLeftViewControllerAnimated:true];
 }
 
 - (void)startChatAction:(id)sender {
@@ -309,7 +310,20 @@
     self.definesPresentationContext = YES;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"bar_plus"] style:UIBarButtonItemStyleDone target:self action:@selector(onRightBarBtn:)];
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"bar_plus"]  style:UIBarButtonItemStyleDone target:self action:@selector(onLeftBatBtn:)];
+    WFCCUserInfo *me = [[WFCCIMService sharedWFCIMService] getUserInfo:[WFCCNetworkService sharedInstance].userId refresh:YES];
+    UIButton * headerButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
+//    [headerButton.imageView sd_setImageWithURL:[NSURL URLWithString:me.portrait] placeholderImage:[UIImage imageNamed:@"PersonalChat"]];
+    [headerButton sd_setImageWithURL:[NSURL URLWithString:me.portrait] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"PersonalChat"]];
+    headerButton.layer.cornerRadius  = headerButton.frame.size.width/2;
+    headerButton.layer.masksToBounds = YES;
+    [headerButton addTarget:self action:@selector(onLeftBatBtn:) forControlEvents:UIControlEventTouchUpInside];
+    UIView * backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
+    backgroundView.backgroundColor = UIColor.redColor;
+    backgroundView.layer.cornerRadius  = backgroundView.frame.size.width/2;
+    backgroundView.layer.masksToBounds = YES;
+    [backgroundView addSubview:headerButton];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView: backgroundView];
+    
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onClearAllUnread:) name:@"kTabBarClearBadgeNotification" object:nil];
