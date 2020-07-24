@@ -123,6 +123,7 @@
             self.bubbleView.isShowNotificationNumber = YES;
         }
         [self.bubbleView setBubbleTipNumber:info.unreadCount.unread];
+        self.bubbleView.bubbleTipPositionAdjustment = CGPointMake(-15, 20);
     }
     
     if (info.isSilent) {
@@ -328,12 +329,18 @@
 - (BubbleTipView *)bubbleView {
     if (!_bubbleView) {
         if(self.potraitView) {
-            _bubbleView = [[BubbleTipView alloc] initWithSuperView:self.contentView];
+            _bubbleView = [[BubbleTipView alloc] initWithSuperView:self.timeView];
             _bubbleView.hidden = YES;
         }
     }
     return _bubbleView;
 }
+
+//-(BubbleTipView *)rightBubbleView {
+//    if (!_rightBubbleView) {
+//
+//    }
+//}
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];

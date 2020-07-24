@@ -116,32 +116,32 @@
     if (users.count <= 4) {
         numPerRow = 2;
     }
-        int row = (int)(users.count - 1) / numPerRow + 1;
-        int column = numPerRow;
-        int firstCol = (int)(users.count - (row - 1)*column);
+    int row = (int)(users.count - 1) / numPerRow + 1;
+    int column = numPerRow;
+    int firstCol = (int)(users.count - (row - 1)*column);
     
     CGFloat width = (PortraitWidth - padding) / numPerRow - padding;
     
-        CGFloat Y = (PortraitWidth - (row * (width + padding) + padding))/2;
-        for (int i = 0; i < row; i++) {
-            int c = column;
-            if (i == 0) {
-                c = firstCol;
-            }
-            CGFloat X = (PortraitWidth - (c * (width + padding) + padding))/2;
-            for (int j = 0; j < c; j++) {
-                UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(X + j *(width + padding) + padding, Y + i * (width + padding) + padding, width, width)];
-                int index;
-                if (i == 0) {
-                    index = j;
-                } else {
-                    index = j + (i-1)*column + firstCol;
-                }
-                WFCCUserInfo *user = [users objectAtIndex:index];
-                [imageView sd_setImageWithURL:[NSURL URLWithString:[user.portrait stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] placeholderImage:[UIImage imageNamed:@"PersonalChat"]];
-                [self.combineHeadView addSubview:imageView];
-            }
+    CGFloat Y = (PortraitWidth - (row * (width + padding) + padding))/2;
+    for (int i = 0; i < row; i++) {
+        int c = column;
+        if (i == 0) {
+            c = firstCol;
         }
+        CGFloat X = (PortraitWidth - (c * (width + padding) + padding))/2;
+        for (int j = 0; j < c; j++) {
+            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(X + j *(width + padding) + padding, Y + i * (width + padding) + padding, width, width)];
+            int index;
+            if (i == 0) {
+                index = j;
+            } else {
+                index = j + (i-1)*column + firstCol;
+            }
+            WFCCUserInfo *user = [users objectAtIndex:index];
+            [imageView sd_setImageWithURL:[NSURL URLWithString:[user.portrait stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] placeholderImage:[UIImage imageNamed:@"PersonalChat"]];
+            [self.combineHeadView addSubview:imageView];
+        }
+    }
     
 }
 

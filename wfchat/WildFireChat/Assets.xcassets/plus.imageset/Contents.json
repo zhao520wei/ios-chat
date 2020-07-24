@@ -5,8 +5,8 @@
       "scale" : "1x"
     },
     {
+      "filename" : "plus-1@2x.png",
       "idiom" : "universal",
-      "filename" : "icons8-plus -100.png",
       "scale" : "2x"
     },
     {
@@ -15,7 +15,7 @@
     }
   ],
   "info" : {
-    "version" : 1,
-    "author" : "xcode"
+    "author" : "xcode",
+    "version" : 1
   }
 }

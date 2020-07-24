@@ -13,7 +13,8 @@
 + (void)initialize {
     // UIAppearance Proxy Defaults
     WFCUVoiceRecordView *recordView = [self appearance];
-    recordView.voiceMessageAnimationImages = @[@"VoiceRecordFeedback001",@"VoiceRecordFeedback002",@"VoiceRecordFeedback003",@"VoiceRecordFeedback004",@"VoiceRecordFeedback005",@"VoiceRecordFeedback006",@"VoiceRecordFeedback007",@"VoiceRecordFeedback008",@"VoiceRecordFeedback009",@"VoiceRecordFeedback010",@"VoiceRecordFeedback011",@"VoiceRecordFeedback012",@"VoiceRecordFeedback013",@"VoiceRecordFeedback014",@"VoiceRecordFeedback015",@"VoiceRecordFeedback016",@"VoiceRecordFeedback017",@"VoiceRecordFeedback018",@"VoiceRecordFeedback019",@"VoiceRecordFeedback020"];
+  //  recordView.voiceMessageAnimationImages = @[@"VoiceRecordFeedback001",@"VoiceRecordFeedback002",@"VoiceRecordFeedback003",@"VoiceRecordFeedback004",@"VoiceRecordFeedback005",@"VoiceRecordFeedback006",@"VoiceRecordFeedback007",@"VoiceRecordFeedback008",@"VoiceRecordFeedback009",@"VoiceRecordFeedback010",@"VoiceRecordFeedback011",@"VoiceRecordFeedback012",@"VoiceRecordFeedback013",@"VoiceRecordFeedback014",@"VoiceRecordFeedback015",@"VoiceRecordFeedback016",@"VoiceRecordFeedback017",@"VoiceRecordFeedback018",@"VoiceRecordFeedback019",@"VoiceRecordFeedback020"];
+    recordView.voiceMessageAnimationImages = @[@"NewVoiceSearchFeedback001",@"NewVoiceSearchFeedback002",@"NewVoiceSearchFeedback003",@"NewVoiceSearchFeedback004",@"NewVoiceSearchFeedback005",@"NewVoiceSearchFeedback006",@"NewVoiceSearchFeedback007",@"NewVoiceSearchFeedback008",@"NewVoiceSearchFeedback009",@"NewVoiceSearchFeedback010",@"NewVoiceSearchFeedback01"];
     recordView.upCancelText = @"手指上滑取消发送";
     recordView.loosenCancelText = @"松开手指取消发送";
 
@@ -31,8 +32,8 @@
         bgView.alpha = 0.6;
         [self addSubview:bgView];
         
-        _recordAnimationView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 0, self.bounds.size.width - 20, self.bounds.size.height - 30)];
-        _recordAnimationView.image = [UIImage imageNamed:@"VoiceRecordFeedback001"];
+        _recordAnimationView = [[UIImageView alloc] initWithFrame:CGRectMake(40, 15, self.bounds.size.width - 80, self.bounds.size.height - 50)];
+        _recordAnimationView.image = [UIImage imageNamed:@"NewVoiceRecordFeedback001"];
         _recordAnimationView.contentMode = UIViewContentModeScaleAspectFit;
         [self addSubview:_recordAnimationView];
         
@@ -123,6 +124,7 @@
     _recordAnimationView.image = [UIImage imageNamed:[_voiceMessageAnimationImages objectAtIndex:0]];
     double voiceSound = voiceMeter;
     int index = voiceSound*[_voiceMessageAnimationImages count];
+    NSLog(@"voiceMeter : %f    index : %d", voiceMeter, index);
     if (index >= [_voiceMessageAnimationImages count]) {
         _recordAnimationView.image = [UIImage imageNamed:[_voiceMessageAnimationImages lastObject]];
     } else {

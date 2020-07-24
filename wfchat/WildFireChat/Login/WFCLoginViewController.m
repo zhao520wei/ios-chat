@@ -18,6 +18,7 @@
 #import "UIFont+YH.h"
 #import "WFCUConfigManager.h"
 #import "WFCPrivacyViewController.h"
+#import "UIView+gradient.h"
 
 
 //是否iPhoneX YES:iPhoneX屏幕 NO:传统屏幕
@@ -34,7 +35,10 @@ blue:((float)(rgbValue & 0xFF)) / 255.0                                         
 alpha:1.0]
 
 @interface WFCLoginViewController () <UITextFieldDelegate>
-@property (strong, nonatomic) UILabel *hintLabel;
+
+@property (strong, nonatomic) UIView  * containerView;
+
+
 @property (strong, nonatomic) UITextField *userNameField;
 @property (strong, nonatomic) UITextField *passwordField;
 @property (strong, nonatomic) UIButton *loginBtn;
@@ -53,62 +57,76 @@ alpha:1.0]
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [WFCUConfigManager globalManager].backgroudColor;
+    
+    UIImageView * backgroundImageView = [[UIImageView alloc] initWithFrame: self.view.bounds];
+    backgroundImageView.backgroundColor = [UIColor redColor];
+    backgroundImageView.userInteractionEnabled = true;
+    [self.view addSubview:backgroundImageView];
+    
     NSString *savedName = [[NSUserDefaults standardUserDefaults] stringForKey:@"savedName"];
    
     CGRect bgRect = self.view.bounds;
-    CGFloat paddingEdge = 16;
+    CGFloat paddingEdge = 15;
     CGFloat inputHeight = 50;
     CGFloat hintHeight = 26;
-    CGFloat topPos = kStatusBarAndNavigationBarHeight + 45;
+    CGFloat topPos = 26;
     
-    self.hintLabel = [[UILabel alloc] initWithFrame:CGRectMake(paddingEdge, topPos, bgRect.size.width - paddingEdge - paddingEdge, hintHeight)];
-    [self.hintLabel setText:@"手机号登录"];
-    self.hintLabel.textAlignment = NSTextAlignmentLeft;
-    self.hintLabel.font = [UIFont pingFangSCWithWeight:FontWeightStyleRegular size:hintHeight];
+    self.containerView = [[UIView alloc] initWithFrame:CGRectMake(15, 131, bgRect.size.width - 30, bgRect.size.height - 262)];
+    self.containerView.layer.cornerRadius = 10;
+    self.containerView.layer.masksToBounds = true;
+    self.containerView.backgroundColor = [UIColor whiteColor];
+    [backgroundImageView addSubview:self.containerView];
     
-    topPos += hintHeight + 50;
     
-    UIView *userNameContainer = [[UIView alloc] initWithFrame:CGRectMake(paddingEdge, topPos, bgRect.size.width - 2 * paddingEdge, inputHeight)];
+    UILabel *hintLabel = [[UILabel alloc] initWithFrame:CGRectMake(paddingEdge, topPos, 100, hintHeight)];
+    [hintLabel setText:@"账户名"];
+    hintLabel.textAlignment = NSTextAlignmentLeft;
+    hintLabel.font = [UIFont pingFangSCWithWeight:FontWeightStyleRegular size:17];
     
-    UILabel *userNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 52, inputHeight - 1)];
-    userNameLabel.text = @"手机号";
-    userNameLabel.font = [UIFont pingFangSCWithWeight:FontWeightStyleRegular size:17];
+    topPos += hintHeight + 5;
+    
+    UIView *userNameContainer = [[UIView alloc] initWithFrame:CGRectMake(paddingEdge, topPos, self.containerView.bounds.size.width - 2 * paddingEdge, inputHeight)];
+    
     
     self.userNameLine = [[UIView alloc] initWithFrame:CGRectMake(0, inputHeight - 1, userNameContainer.frame.size.width, 1.f)];
     self.userNameLine.backgroundColor = [UIColor colorWithHexString:@"0xd4d4d4"];
     
-    
-    self.userNameField = [[UITextField alloc] initWithFrame:CGRectMake(87, 0, userNameContainer.frame.size.width - 87, inputHeight - 1)];
+    self.userNameField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, userNameContainer.frame.size.width - 20, inputHeight - 1)];
     self.userNameField.font = [UIFont pingFangSCWithWeight:FontWeightStyleRegular size:16];
-    self.userNameField.placeholder = @"请输入手机号(仅支持中国大陆号码)";
+    self.userNameField.placeholder = @"请输入您的账户名";
     self.userNameField.returnKeyType = UIReturnKeyNext;
     self.userNameField.keyboardType = UIKeyboardTypePhonePad;
     self.userNameField.delegate = self;
     self.userNameField.clearButtonMode = UITextFieldViewModeWhileEditing;
     [self.userNameField addTarget:self action:@selector(textDidChange:) forControlEvents:UIControlEventEditingChanged];
     
-    topPos += inputHeight + 1;
+    topPos += inputHeight + 20;
 
-    UIView *passwordContainer  = [[UIView alloc] initWithFrame:CGRectMake(paddingEdge, topPos, bgRect.size.width - paddingEdge * 2, inputHeight)];
-    UILabel *passwordLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 52, inputHeight - 1)];
-    passwordLabel.text = @"验证码";
+    
+    UILabel * passwordLabel = [[UILabel alloc] initWithFrame:CGRectMake(paddingEdge, topPos, 100, hintHeight)];
+    [passwordLabel setText:@"密码"];
+    passwordLabel.textAlignment = NSTextAlignmentLeft;
     passwordLabel.font = [UIFont pingFangSCWithWeight:FontWeightStyleRegular size:17];
+    
+    topPos += hintHeight + 5;
+    
+    UIView *passwordContainer  = [[UIView alloc] initWithFrame:CGRectMake(paddingEdge, topPos, self.containerView.bounds.size.width - paddingEdge * 2, inputHeight)];
     
     
     self.passwordLine = [[UIView alloc] initWithFrame:CGRectMake(0, inputHeight - 1, passwordContainer.frame.size.width, 1.f)];
     self.passwordLine.backgroundColor = [UIColor colorWithHexString:@"0xd4d4d4"];
     
     
-    self.passwordField = [[UITextField alloc] initWithFrame:CGRectMake(87, 0, passwordContainer.frame.size.width - 87, inputHeight - 1)];
+    self.passwordField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, passwordContainer.frame.size.width - 20 , inputHeight - 1)];
     self.passwordField.font = [UIFont pingFangSCWithWeight:FontWeightStyleRegular size:16];
-    self.passwordField.placeholder = @"请输入验证码";
+    self.passwordField.placeholder = @"请输入您的密码";
     self.passwordField.returnKeyType = UIReturnKeyDone;
     self.passwordField.keyboardType = UIKeyboardTypeNumberPad;
     self.passwordField.delegate = self;
     self.passwordField.clearButtonMode = UITextFieldViewModeWhileEditing;
     [self.passwordField addTarget:self action:@selector(textDidChange:) forControlEvents:UIControlEventEditingChanged];
     
-    self.sendCodeBtn = [[UIButton alloc] initWithFrame:CGRectMake(passwordContainer.frame.size.width - 72, (inputHeight - 1 - 23) / 2.0, 72, 33)];
+    self.sendCodeBtn = [[UIButton alloc] initWithFrame:CGRectMake(passwordContainer.frame.size.width - 72, (inputHeight - 1 - 20) / 2.0, 72, 33)];
     [self.sendCodeBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
     self.sendCodeBtn.titleLabel.font = [UIFont pingFangSCWithWeight:FontWeightStyleRegular size:12];
     self.sendCodeBtn.layer.borderWidth = 1;
@@ -120,40 +138,41 @@ alpha:1.0]
     self.sendCodeBtn.enabled = NO;
     
     
-    topPos += 71;
-    self.loginBtn = [[UIButton alloc] initWithFrame:CGRectMake(paddingEdge, topPos, bgRect.size.width - paddingEdge * 2, 43)];
+    topPos += inputHeight + 58;
+    self.loginBtn = [[UIButton alloc] initWithFrame:CGRectMake(paddingEdge, topPos, self.containerView.bounds.size.width - paddingEdge * 2, 53)];
     [self.loginBtn addTarget:self action:@selector(onLoginButton:) forControlEvents:UIControlEventTouchDown];
     self.loginBtn.layer.masksToBounds = YES;
     self.loginBtn.layer.cornerRadius = 4.f;
     [self.loginBtn setTitle:@"登录" forState:UIControlStateNormal];
     self.loginBtn.backgroundColor = [UIColor colorWithHexString:@"0xe1e1e1"];
-    [self.loginBtn setTitleColor:[UIColor colorWithHexString:@"0xb1b1b1"] forState:UIControlStateNormal];
+    [self.loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.loginBtn.titleLabel.font = [UIFont pingFangSCWithWeight:FontWeightStyleMedium size:16];
     self.loginBtn.enabled = NO;
     
-    [self.view addSubview:self.hintLabel];
+    [self.containerView addSubview:hintLabel];
     
-    [userNameContainer addSubview:userNameLabel];
     [userNameContainer addSubview:self.userNameField];
     [userNameContainer addSubview:self.userNameLine];
-    [self.view addSubview:userNameContainer];
+    [self.containerView addSubview:userNameContainer];
     
-    [self.view addSubview:passwordContainer];
-    [passwordContainer addSubview:passwordLabel];
+    [self.containerView addSubview:passwordLabel];
+    [self.containerView addSubview:passwordContainer];
+    
     [passwordContainer addSubview:self.passwordField];
     [passwordContainer addSubview:self.passwordLine];
     [passwordContainer addSubview:self.sendCodeBtn];
     
-    [self.view addSubview:self.loginBtn];
+    [self.containerView addSubview:self.loginBtn];
     
     self.userNameField.text = savedName;
     
-    [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resetKeyboard:)]];
+    [self.containerView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resetKeyboard:)]];
+    [backgroundImageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resetKeyboard:)]];
     
     self.privacyLabel = [[UILabel alloc] initWithFrame:CGRectMake(16, self.view.bounds.size.height - 40 - kTabbarSafeBottomMargin, self.view.bounds.size.width-32, 40)];
     self.privacyLabel.textAlignment = NSTextAlignmentCenter;
     NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:@"登录即代表你已同意《倚天通用户协议》和《倚天通隐私政策》" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:10],
-                                                                                                                     NSForegroundColorAttributeName : [UIColor darkGrayColor]}];
+                                                                                                                     NSForegroundColorAttributeName : [UIColor whiteColor]}];
     [text setAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:10],
                           NSForegroundColorAttributeName : [UIColor blueColor]} range:NSMakeRange(9, 9)];
     [text setAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:10],
@@ -166,7 +185,7 @@ alpha:1.0]
         [ws.navigationController pushViewController:pvc animated:YES];
     }];
     
-    [self.view addSubview:self.privacyLabel];
+    [backgroundImageView addSubview:self.privacyLabel];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -269,9 +288,11 @@ alpha:1.0]
         
         dispatch_async(dispatch_get_main_queue(), ^{
           [hud hideAnimated:YES];
-            WFCBaseTabBarController *tabBarVC = [WFCBaseTabBarController new];
-            tabBarVC.newUser = newUser;
-            [UIApplication sharedApplication].delegate.window.rootViewController =  tabBarVC;
+//            WFCBaseTabBarController *tabBarVC = [WFCBaseTabBarController new];
+//            tabBarVC.newUser = newUser;
+//            [UIApplication sharedApplication].delegate.window.rootViewController =  tabBarVC;
+            
+            [self dismissViewControllerAnimated:YES completion:nil];
         });
     } error:^(int errCode, NSString *message) {
         NSLog(@"login error with code %d, message %@", errCode, message);
@@ -331,10 +352,11 @@ alpha:1.0]
         
         if ([self isValidCode]) {
             [self.loginBtn setBackgroundColor:[UIColor colorWithRed:0.1 green:0.27 blue:0.9 alpha:0.9]];
-            
+//            [self.loginBtn wfcu_gradientBackgroundColorWithStartColor:[UIColor redColor] withEndColor:[UIColor purpleColor]];
             self.loginBtn.enabled = YES;
         } else {
             [self.loginBtn setBackgroundColor:[UIColor grayColor]];
+//             [self.loginBtn wfcu_gradientBackgroundColorWithStartColor:[UIColor grayColor] withEndColor:[UIColor grayColor]];
             self.loginBtn.enabled = NO;
         }
     } else {
@@ -342,6 +364,7 @@ alpha:1.0]
         [self.sendCodeBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
         
         [self.loginBtn setBackgroundColor:[UIColor grayColor]];
+//        [self.loginBtn wfcu_gradientBackgroundColorWithStartColor:[UIColor grayColor] withEndColor:[UIColor grayColor]];
         self.loginBtn.enabled = NO;
     }
 }

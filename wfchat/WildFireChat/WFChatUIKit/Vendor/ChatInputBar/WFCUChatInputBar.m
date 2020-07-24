@@ -191,8 +191,8 @@
 
 - (void)onTouchDown:(id)sender {
     if ([self canRecord]) {
-        _recordView = [[WFCUVoiceRecordView alloc] initWithFrame:CGRectMake(self.parentView.bounds.size.width/2 - 70, self.parentView.bounds.size.height/2 - 70, 140, 140)];
-        _recordView.center = self.parentView.center;
+        _recordView = [[WFCUVoiceRecordView alloc] initWithFrame:CGRectMake(self.parentView.bounds.size.width/2 - 70, self.parentView.bounds.size.height/2 - 100, 140, 150)];
+//        _recordView.center = self.parentView.center;
         [self.parentView addSubview:_recordView];
         [self.parentView bringSubviewToFront:_recordView];
         

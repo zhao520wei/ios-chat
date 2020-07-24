@@ -13,4 +13,6 @@
 + (UIColor *)dn_hexStringToColor:(NSString *)stringToConvert;
 + (UIColor *)dn_colorWithHexNumber:(NSUInteger)hexColor;
 
+
+
 @end

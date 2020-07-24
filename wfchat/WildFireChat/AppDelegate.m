@@ -117,9 +117,11 @@
         //需要注意token跟clientId是强依赖的，一定要调用getClientId获取到clientId，然后用这个clientId获取token，这样connect才能成功，如果随便使用一个clientId获取到的token将无法链接成功。另外不能多次connect，如果需要切换用户请先disconnect，然后3秒钟之后再connect（如果是用户手动登录可以不用等，因为用户操作很难3秒完成，如果程序自动切换请等3秒）。
         [[WFCCNetworkService sharedInstance] connect:savedUserId token:savedToken];
     } else {
-        UIViewController *loginVC = [[WFCLoginViewController alloc] init];
-        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:loginVC];
-        self.window.rootViewController = nav;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            UIViewController *loginVC = [[WFCLoginViewController alloc] init];
+            [self.window.rootViewController presentViewController:loginVC animated:YES completion:nil];
+        });
+        
     }
     
     return YES;
@@ -257,8 +259,8 @@
             [[WFCCNetworkService sharedInstance] disconnect:YES clearSession:YES];
         } else if (status == kConnectionStatusLogout) {
             UIViewController *loginVC = [[WFCLoginViewController alloc] init];
-            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:loginVC];
-            self.window.rootViewController = nav;
+//            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:loginVC];
+            [self.window.rootViewController presentViewController:loginVC animated:YES completion:nil];
         } 
     });
 }

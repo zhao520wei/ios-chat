@@ -7,10 +7,10 @@
 */
 CFBundleName="倚天移动办公";
 CFBundleDisplayName="倚天移动办公";
-Message="消息";
-Contact="联系人";
+Message="讯息";
+Contact="组织";
 Architecture="组织架构";
-Discover="工作台";
+Discover="工作";
 Settings="设置";
 Chatroom="聊天室";
 DevDocs="开发手册";
@@ -28,6 +28,6 @@ Complain="举报";
 Blacklist="黑名单";
 Logout="退出登录";
 Moments="朋友圈";
-Me="我的";
+Me="档案";
 Rebot="机器人";
 Channel="频道";

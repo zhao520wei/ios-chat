@@ -56,6 +56,18 @@
 @property (nonatomic, assign) BOOL firstAppear;
 
 @property (nonatomic, strong) UIView *pcSessionView;
+
+@property (nonatomic, strong) UIView * tableHeaderView;
+@property (nonatomic, assign) float tableHeaderViewHeight;
+@property (nonatomic, strong) UIView * tableFooterView;
+
+@property (nonatomic, strong) UIButton * todoButton;
+@property (nonatomic, strong) UIButton * unreadButton;
+@property (nonatomic, strong) UIButton * scheduleButton;
+@property (nonatomic, strong) UIButton * pcLoginStatuButton;
+@property (nonatomic, strong) UIStackView * headerStackView ;
+
+
 @end
 
 @implementation WFCUConversationTableViewController
@@ -67,11 +79,22 @@
     self.searchController.dimsBackgroundDuringPresentation = NO;
     if (@available(iOS 13, *)) {
         self.searchController.searchBar.searchBarStyle = UISearchBarStyleDefault;
-        self.searchController.searchBar.searchTextField.backgroundColor = [WFCUConfigManager globalManager].naviBackgroudColor;
         UIImage* searchBarBg = [UIImage imageWithColor:[UIColor whiteColor] size:CGSizeMake(self.view.frame.size.width - 8 * 2, 36) cornerRadius:4];
         [self.searchController.searchBar setSearchFieldBackgroundImage:searchBarBg forState:UIControlStateNormal];
+         self.searchController.searchBar.backgroundColor = [UIColor redColor];
     } else {
         [self.searchController.searchBar setValue:WFCString(@"Cancel") forKey:@"_cancelButtonText"];
+        UIImage* searchBarBg = [UIImage imageWithColor:[UIColor whiteColor] size:CGSizeMake(self.view.frame.size.width - 8 * 2, 36) cornerRadius:4];
+        [self.searchController.searchBar setSearchFieldBackgroundImage:searchBarBg forState:UIControlStateNormal];
+//        self.searchController.searchBar.backgroundColor = [UIColor redColor];
+        
+//        CAGradientLayer *gradient = [CAGradientLayer layer];
+//        gradient.frame = self.searchController.searchBar.bounds;
+//        gradient.colors = @[(id)[UIColor colorWithHexString:@"0x015ebc"].CGColor,(id)[UIColor colorWithHexString:@"0x2a95ff"].CGColor];
+//        gradient.startPoint = CGPointMake(0, 1);
+//        gradient.endPoint = CGPointMake(1, 0);
+//        gradient.locations = @[@(0.0f), @(1.0f)];
+//        [self.searchController.searchBar.layer addSublayer:gradient];
     }
     
     
@@ -86,18 +109,20 @@
     [self.view addSubview:self.tableView];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+
+  
     self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"expansion"];
     self.tableView.separatorColor = [UIColor groupTableViewBackgroundColor];
     if (@available(iOS 11.0, *)) {
         self.navigationItem.searchController = _searchController;
     } else {
+        // TODO:
         self.tableView.tableHeaderView = _searchController.searchBar;
     }
     self.definesPresentationContext = YES;
     
-    [self updatePcSession];
+    [self initTableHeaderAndFooter];
     self.view.backgroundColor = [WFCUConfigManager globalManager].backgroudColor;
 }
 
@@ -175,7 +200,7 @@
 
 - (void)onRightBarBtn:(UIBarButtonItem *)sender {
     CGFloat searchExtra = 0;
-    
+    [self updatePcSession];
     if ([KxMenu isShowing]) {
         [KxMenu dismissMenu];
         return;
@@ -314,11 +339,11 @@
     UIButton * headerButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
 //    [headerButton.imageView sd_setImageWithURL:[NSURL URLWithString:me.portrait] placeholderImage:[UIImage imageNamed:@"PersonalChat"]];
     [headerButton sd_setImageWithURL:[NSURL URLWithString:me.portrait] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"PersonalChat"]];
+    headerButton.backgroundColor = [UIColor blueColor];
     headerButton.layer.cornerRadius  = headerButton.frame.size.width/2;
     headerButton.layer.masksToBounds = YES;
     [headerButton addTarget:self action:@selector(onLeftBatBtn:) forControlEvents:UIControlEventTouchUpInside];
     UIView * backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
-    backgroundView.backgroundColor = UIColor.redColor;
     backgroundView.layer.cornerRadius  = backgroundView.frame.size.width/2;
     backgroundView.layer.masksToBounds = YES;
     [backgroundView addSubview:headerButton];
@@ -443,14 +468,149 @@
     [self.tabBarController.tabBar showBadgeOnItemIndex:0 badgeValue:count];
 }
 
+- (void) initTableHeaderAndFooter {
+    
+    self.tableHeaderViewHeight = 40.0;
+    self.tableHeaderView = [[UIView alloc ]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 40)];
+    self.tableHeaderView.backgroundColor = [WFCUConfigManager globalManager ].backgroudColor ;
+    
+//    CAGradientLayer *gradient = [CAGradientLayer layer];
+//    gradient.frame = self.tableHeaderView.bounds;
+//    gradient.colors = @[(id)[UIColor colorWithHexString:@"0x015ebc"].CGColor,(id)[UIColor colorWithHexString:@"0x2a95ff"].CGColor];
+//    gradient.startPoint = CGPointMake(0, 1);
+//    gradient.endPoint = CGPointMake(1, 0);
+//    gradient.locations = @[@(0.0f), @(1.0f)];
+//
+//    [self.tableHeaderView.layer addSublayer:gradient];
+  
+    self.tableFooterView =  [[UIView alloc ]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 40)];
+    self.tableFooterView.backgroundColor = [UIColor clearColor];
+    
+    UILabel * footLable = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 40)];
+    footLable.text = @"--- 我是有底线的 ---";
+    footLable.font = [UIFont pingFangSCWithWeight:FontWeightStyleRegular size:12];;
+    footLable.textColor = [UIColor colorWithHexString:@"b3b3b3"];
+    footLable.textAlignment = NSTextAlignmentCenter;
+    [self.tableFooterView addSubview:footLable];
+    
+    self.tableView.tableFooterView = self.tableFooterView;
+    
+    [self initTableHeaderButtons];
+    
+}
+
+- (void) initTableHeaderButtons {
+    
+    if (@available(iOS 9.0, *)) {
+        self.headerStackView = [[UIStackView alloc] initWithArrangedSubviews:@[self.todoButton, self.unreadButton, self.scheduleButton]];
+        self.headerStackView.frame = CGRectMake(15, 0, self.view.bounds.size.width - 30, 40);
+        self.headerStackView.alignment = UIStackViewAlignmentFill;
+        self.headerStackView.distribution = UIStackViewDistributionEqualSpacing;
+        [self.tableHeaderView addSubview:self.headerStackView];
+//        [self updatePcSession];
+    } else {
+        // Fallback on earlier versions
+    }
+    
+    
+}
+
+-(UIButton *)todoButton {
+    if (!_todoButton) {
+        _todoButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        _todoButton.frame = CGRectMake(0, 0, 40, 40);
+        [_todoButton setTitle:@"待办" forState:UIControlStateNormal];
+        _todoButton.titleLabel.font = [UIFont pingFangSCWithWeight:FontWeightStyleMedium size:15];
+        _todoButton.titleLabel.textColor = UIColor.blackColor;
+        [_todoButton addTarget:self action:@selector(todoButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return  _todoButton;
+}
+- (UIButton *)unreadButton {
+    if (!_unreadButton) {
+        _unreadButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        _unreadButton.frame = CGRectMake(0, 0, 40, 40);
+        [_unreadButton setTitle:@"未读" forState:UIControlStateNormal];
+        _unreadButton.titleLabel.font = [UIFont pingFangSCWithWeight:FontWeightStyleMedium size:15] ;
+        _unreadButton.titleLabel.textColor = UIColor.blackColor;
+        [_unreadButton addTarget:self action:@selector(unreadButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _unreadButton;
+}
+-(UIButton *)scheduleButton{
+    if (!_scheduleButton) {
+        _scheduleButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        _scheduleButton.frame = CGRectMake(0, 0, 40, 40);
+        [_scheduleButton setTitle:@"日程" forState:UIControlStateNormal];
+        _scheduleButton.titleLabel.font = [UIFont pingFangSCWithWeight:FontWeightStyleMedium size:15];
+        _scheduleButton.titleLabel.textColor = UIColor.redColor;
+        [_scheduleButton addTarget:self action:@selector(scheduleButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _scheduleButton;
+}
+-(UIButton *)pcLoginStatuButton {
+    if (!_pcLoginStatuButton) {
+        _pcLoginStatuButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        _pcLoginStatuButton.frame = CGRectMake(0, 0, 40, 40);
+        [_pcLoginStatuButton setTitle:@"PC" forState:UIControlStateNormal];
+        _pcLoginStatuButton.titleLabel.font = [UIFont pingFangSCWithWeight:FontWeightStyleMedium size:15] ;
+        _pcLoginStatuButton.titleLabel.textColor = UIColor.blackColor;
+        [_pcLoginStatuButton addTarget:self action:@selector(pcLoginStatuButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return  _pcLoginStatuButton;;
+}
+- (void) todoButtonAction {
+    UIViewController* ctrl = [[UIViewController alloc] init];
+    ctrl.hidesBottomBarWhenPushed = true;
+    ctrl.view.backgroundColor = UIColor.redColor;
+    ctrl.title = @"todo";
+    [self.navigationController pushViewController:ctrl animated:true];
+}
+- (void) unreadButtonAction {
+    UIViewController* ctrl = [[UIViewController alloc] init];
+    ctrl.hidesBottomBarWhenPushed = true;
+    ctrl.view.backgroundColor = UIColor.redColor;
+    ctrl.title = @"unread";
+    [self.navigationController pushViewController:ctrl animated:true];
+}
+- (void) scheduleButtonAction {
+    UIViewController* ctrl = [[UIViewController alloc] init];
+    ctrl.hidesBottomBarWhenPushed = true;
+    ctrl.view.backgroundColor = UIColor.redColor;
+    ctrl.title = @"schedule";
+    [self.navigationController pushViewController:ctrl animated:true];
+}
+- (void) pcLoginStatuButtonAction {
+    [self onTapPCBar:nil];
+}
+
+
+- (void) exchangeTableHeaderAndFooter:(BOOL)isShowSearch {
+    if (isShowSearch) {
+        self.tableView.tableHeaderView = nil;
+        self.tableView.tableFooterView = nil;
+    } else {
+        self.tableView.tableFooterView = self.tableFooterView;
+        self.tableHeaderViewHeight = 40;
+        [self updatePcSession];
+    }
+}
+
+
 - (void)updatePcSession {
     NSArray<WFCCPCOnlineInfo *> *onlines = [[WFCCIMService sharedWFCIMService] getPCOnlineInfos];
     
     if (@available(iOS 11.0, *)) {
         if (onlines.count) {
-            self.tableView.tableHeaderView = self.pcSessionView;
+            if (![self.headerStackView.arrangedSubviews containsObject:self.pcLoginStatuButton]) {
+                [self.headerStackView addArrangedSubview:self.pcLoginStatuButton];
+                [self.headerStackView setNeedsLayout];
+            }
         } else {
-            self.tableView.tableHeaderView = nil;
+            
+            if ([self.headerStackView.arrangedSubviews containsObject:self.pcLoginStatuButton]) {
+                [self.headerStackView removeArrangedSubview:self.pcLoginStatuButton];
+            }
         }
     } else {
     }
@@ -833,7 +993,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (self.searchController.isActive) {
-        
+        self.tableHeaderViewHeight = 0.0;
         if (self.searchConversationList.count + self.searchGroupList.count + self.searchFriendList.count > 0) {
             UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 32)];
             header.backgroundColor = [WFCUConfigManager globalManager].backgroudColor;
@@ -873,7 +1033,8 @@
             return header;
         }
     } else {
-        return nil;
+        self.tableHeaderViewHeight = 40.0;
+        return self.tableHeaderView;
     }
 }
 
@@ -881,8 +1042,10 @@
     if (self.searchController.isActive) {
         return 32;
     }
-    return 0;
+    return self.tableHeaderViewHeight;
 }
+
+
 
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -1047,11 +1210,14 @@
     self.isSearchGroupListExpansion = NO;
     self.tabBarController.tabBar.hidden = YES;
     self.extendedLayoutIncludesOpaqueBars = YES;
+    
+    [self exchangeTableHeaderAndFooter:true];
 }
 
 - (void)willDismissSearchController:(UISearchController *)searchController {
     self.tabBarController.tabBar.hidden = NO;
     self.extendedLayoutIncludesOpaqueBars = NO;
+    [self exchangeTableHeaderAndFooter:false];
 }
 
 -(void)updateSearchResultsForSearchController:(UISearchController *)searchController {

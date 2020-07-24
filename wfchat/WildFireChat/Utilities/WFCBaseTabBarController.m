@@ -37,12 +37,7 @@
     vc.title = LocalizedString(@"Message");
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
     UITabBarItem *item = nav.tabBarItem;
-//    nav.navigationBar.clipsToBounds = YES;
-//    [nav.navigationBar  setBackgroundImage:[[UIImage alloc] init] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
-//    [nav.navigationBar setShadowImage:[[UIImage alloc] init]];
     CGFloat width = [UIScreen mainScreen].bounds.size.width;
-    //[UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.3]
-//     [nav.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor clearColor] size:CGSizeMake(self.view.frame.size.width, 0.5)] forBarMetrics:UIBarMetricsDefault ];
     UIImage *colorImage = [UIImage imageWithColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.02] size:CGSizeMake(width, 1)];
     [nav.navigationBar setShadowImage:colorImage];
    
@@ -59,6 +54,7 @@
     vc = [WFCUContactListViewController new];
     vc.title = LocalizedString(@"Contact");
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    [nav.navigationBar setShadowImage:colorImage];
     item = nav.tabBarItem;
     item.title = LocalizedString(@"Contact");
     item.image = [UIImage imageNamed:@"tabbar_contacts"];
@@ -67,21 +63,12 @@
     [self addChildViewController:nav];
     
     
-//    vc = [WFCUCompanyArchitectureViewController new];
-//    vc.title = LocalizedString(@"Architecture");
-//    nav = [[UINavigationController alloc] initWithRootViewController:vc];
-//    item = nav.tabBarItem;
-//    item.title = LocalizedString(@"Architecture");
-//    item.image = [UIImage imageNamed:@"tabbar_contacts"];
-//    item.selectedImage = [[UIImage imageNamed:@"tabbar_contacts_cover"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-//    [item setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor colorWithRed:0.1 green:0.27 blue:0.9 alpha:0.9]} forState:UIControlStateSelected];
-//    [self addChildViewController:nav];
     
     vc = [DiscoverViewController new];
     vc.title = LocalizedString(@"Discover");
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
-//    nav.navigationBar.clipsToBounds = YES;
     item = nav.tabBarItem;
+    [nav.navigationBar setShadowImage:colorImage];
     item.title = LocalizedString(@"Discover");
     item.image = [UIImage imageNamed:@"tabbar_discover"];
     item.selectedImage = [[UIImage imageNamed:@"tabbar_discover_cover"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
@@ -92,6 +79,7 @@
     vc.title = LocalizedString(@"Me");
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     item = nav.tabBarItem;
+    [nav.navigationBar setShadowImage:colorImage];
     item.title = LocalizedString(@"Me");
     item.image = [UIImage imageNamed:@"tabbar_me"];
     item.selectedImage = [[UIImage imageNamed:@"tabbar_me_cover"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];

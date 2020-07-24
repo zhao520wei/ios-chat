@@ -295,6 +295,8 @@
 		9530D80C24C85BA200CCC9F6 /* YLGIFImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 9530D72824C85BA200CCC9F6 /* YLGIFImage.m */; };
 		9530D80D24C85BA200CCC9F6 /* YLImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9530D72924C85BA200CCC9F6 /* YLImageView.m */; };
 		9530D80F24C8604700CCC9F6 /* Stickers.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9530D80E24C8604600CCC9F6 /* Stickers.bundle */; };
+		955C916C24CA8400007AC43C /* UIView+gradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 955C916B24CA8400007AC43C /* UIView+gradient.m */; };
+		955C916E24CABA1F007AC43C /* launch_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 955C916D24CABA1F007AC43C /* launch_icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -872,6 +874,9 @@
 		9530D72A24C85BA200CCC9F6 /* YLGIFImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLGIFImage.h; sourceTree = "<group>"; };
 		9530D72B24C85BA200CCC9F6 /* YLImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLImageView.h; sourceTree = "<group>"; };
 		9530D80E24C8604600CCC9F6 /* Stickers.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Stickers.bundle; path = Frameworks/Stickers.bundle; sourceTree = SOURCE_ROOT; };
+		955C916A24CA8400007AC43C /* UIView+gradient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+gradient.h"; sourceTree = "<group>"; };
+		955C916B24CA8400007AC43C /* UIView+gradient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+gradient.m"; sourceTree = "<group>"; };
+		955C916D24CABA1F007AC43C /* launch_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch_icon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1140,8 +1145,8 @@
 		2FEA5D6721F4AC8900280B23 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				2FEA5D6821F4AC8900280B23 /* WFCLoginViewController.m */,
 				2FEA5D6921F4AC8900280B23 /* WFCLoginViewController.h */,
+				2FEA5D6821F4AC8900280B23 /* WFCLoginViewController.m */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -1181,6 +1186,7 @@
 				2EF30A58201995630060992B /* WildFireChat.entitlements */,
 				2E1D20081FAF0AE600F4405D /* Info.plist */,
 				2E1D20091FAF0AE600F4405D /* main.m */,
+				955C916D24CABA1F007AC43C /* launch_icon.png */,
 				2F1B0DD221E1B38100139CB1 /* ring.caf */,
 				90C1D90F208C12A900E923F4 /* foreman.mp4 */,
 				90C1D910208C12A900E923F4 /* ring.mp3 */,
@@ -1368,15 +1374,17 @@
 				9530D55B24C85BA000CCC9F6 /* TabbarButton.h */,
 				9530D55D24C85BA000CCC9F6 /* AttributedLabel.h */,
 				9530D55E24C85BA000CCC9F6 /* BubbleTipView.m */,
-				9530D56124C85BA000CCC9F6 /* UIView+Toast.h */,
 				9530D56224C85BA000CCC9F6 /* UIView+Screenshot.h */,
+				9530D56B24C85BA000CCC9F6 /* UIView+Screenshot.m */,
 				9530D56324C85BA000CCC9F6 /* UITabBar+badge.h */,
 				9530D56424C85BA000CCC9F6 /* AttributedLabel.m */,
 				9530D56624C85BA000CCC9F6 /* TabbarButton.m */,
 				9530D56724C85BA000CCC9F6 /* BubbleTipView.h */,
 				9530D56A24C85BA000CCC9F6 /* UITabBar+badge.m */,
-				9530D56B24C85BA000CCC9F6 /* UIView+Screenshot.m */,
+				9530D56124C85BA000CCC9F6 /* UIView+Toast.h */,
 				9530D56C24C85BA000CCC9F6 /* UIView+Toast.m */,
+				955C916A24CA8400007AC43C /* UIView+gradient.h */,
+				955C916B24CA8400007AC43C /* UIView+gradient.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -1770,21 +1778,21 @@
 				9530D63824C85BA100CCC9F6 /* WFCUPluginBoardView.h */,
 				9530D63924C85BA100CCC9F6 /* WFCUSelectedFileCollectionViewCell.m */,
 				9530D63A24C85BA100CCC9F6 /* WFCUSelectFileViewController.h */,
+				9530D64A24C85BA100CCC9F6 /* WFCUChatInputBar.h */,
 				9530D63B24C85BA100CCC9F6 /* WFCUChatInputBar.m */,
 				9530D63C24C85BA100CCC9F6 /* WFCULocationPoint.h */,
 				9530D63D24C85BA100CCC9F6 /* WFCUEmotionTextAttachment.h */,
 				9530D63E24C85BA100CCC9F6 /* WFCULocationViewController.m */,
 				9530D63F24C85BA100CCC9F6 /* FaceBoard */,
-				9530D64624C85BA100CCC9F6 /* WFCUPluginItemView.h */,
 				9530D64724C85BA100CCC9F6 /* WFCUVoiceRecordView.h */,
+				9530D64F24C85BA100CCC9F6 /* WFCUVoiceRecordView.m */,
 				9530D64824C85BA100CCC9F6 /* WFCUSelectedFileCollectionViewCell.h */,
 				9530D64924C85BA100CCC9F6 /* WFCUPluginBoardView.m */,
-				9530D64A24C85BA100CCC9F6 /* WFCUChatInputBar.h */,
 				9530D64B24C85BA100CCC9F6 /* WFCUSelectFileViewController.m */,
 				9530D64C24C85BA100CCC9F6 /* WFCULocationViewController.h */,
 				9530D64D24C85BA100CCC9F6 /* WFCUEmotionTextAttachment.m */,
 				9530D64E24C85BA100CCC9F6 /* WFCULocationPoint.m */,
-				9530D64F24C85BA100CCC9F6 /* WFCUVoiceRecordView.m */,
+				9530D64624C85BA100CCC9F6 /* WFCUPluginItemView.h */,
 				9530D65024C85BA100CCC9F6 /* WFCUPluginItemView.m */,
 			);
 			path = ChatInputBar;
@@ -2228,6 +2236,7 @@
 				6E616DA020AB3435002CB8BE /* LICENSE.md in Resources */,
 				2F1B0DD321E1B38100139CB1 /* ring.caf in Resources */,
 				2E1D20041FAF0AE600F4405D /* Assets.xcassets in Resources */,
+				955C916E24CABA1F007AC43C /* launch_icon.png in Resources */,
 				9530D77424C85BA200CCC9F6 /* Emoj.plist in Resources */,
 				2E1D20021FAF0AE600F4405D /* Main.storyboard in Resources */,
 				9530D80F24C8604700CCC9F6 /* Stickers.bundle in Resources */,
@@ -2362,6 +2371,7 @@
 				9530D75F24C85BA200CCC9F6 /* WFCUFavGroupTableViewController.m in Sources */,
 				9530D7D224C85BA200CCC9F6 /* DNAlbumTableViewController.m in Sources */,
 				9530D79024C85BA200CCC9F6 /* WFCUMessageNotificationViewController.m in Sources */,
+				955C916C24CA8400007AC43C /* UIView+gradient.m in Sources */,
 				9530D76D24C85BA200CCC9F6 /* WFCUSeletedUserSearchResultViewController.m in Sources */,
 				9530D74E24C85BA200CCC9F6 /* WFCUGroupMemberTableViewController.m in Sources */,
 				2F94FAB224551D82007713CD /* DeviceViewController.m in Sources */,
