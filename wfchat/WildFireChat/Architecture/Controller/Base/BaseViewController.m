@@ -22,8 +22,9 @@
     // Do any additional setup after loading the view.
     self.rowAnimation = UITableViewRowAnimationNone;
     self.view.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:self.tableview];
-    [self.view addSubview:self.dismissBtn];
+   
+//    [self.view addSubview:self.dismissBtn];
+    
 //    [self loadData];
     
     [self loadRealData];
@@ -88,7 +89,8 @@
         
         BaseTreeNode * baseNode = [weakSelf dealwithDictionaryTree:tree];
         _baseNode = baseNode;
-        
+        weakSelf.currentNode = baseNode;
+        [weakSelf.view addSubview:weakSelf.tableview];
         [weakSelf.tableview reloadData];
     } error:^(NSInteger error_code) {
         
@@ -119,8 +121,14 @@
     if (userList != nil && userList.count > 0) {
         NSMutableArray * array = [self dealwithSubTree:userList];
         simpleNode.userList = array;
+        for (OrganizationNode * node in array) {
+            [simpleNode addSubNode:node];
+        }
+    } else {
+        
     }
     [baseNode addSubNode:simpleNode];
+    
 
     
     return  baseNode;
@@ -150,6 +158,10 @@
         if (userList != nil && userList.count > 0) {
             NSMutableArray * tempArray = [self dealwithSubTree:tempUserList];
             [users addObjectsFromArray:tempArray];
+            for (OrganizationNode * node in tempArray) {
+                [simpleNode addSubNode:node];
+            }
+             
         }
         simpleNode.userList = [users copy];
         [array addObject: simpleNode];
