@@ -63,6 +63,14 @@ alpha:1.0]
     backgroundImageView.userInteractionEnabled = true;
     [self.view addSubview:backgroundImageView];
     
+    
+    CGFloat x = (self.view.bounds.size.width - 271) / 2;
+    UIImageView * headerImage = [[UIImageView alloc] initWithFrame:CGRectMake(x, 60, 271, 28)];
+    headerImage.image = [UIImage imageNamed:@"login_header"];
+
+    [self.view addSubview:headerImage];
+    
+    
     NSString *savedName = [[NSUserDefaults standardUserDefaults] stringForKey:@"savedName"];
    
     CGRect bgRect = self.view.bounds;
@@ -89,7 +97,7 @@ alpha:1.0]
     
     
     self.userNameLine = [[UIView alloc] initWithFrame:CGRectMake(0, inputHeight - 1, userNameContainer.frame.size.width, 1.f)];
-    self.userNameLine.backgroundColor = [UIColor colorWithHexString:@"0xd4d4d4"];
+    self.userNameLine.backgroundColor = [UIColor groupTableViewBackgroundColor];
     
     self.userNameField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, userNameContainer.frame.size.width - 20, inputHeight - 1)];
     self.userNameField.font = [UIFont pingFangSCWithWeight:FontWeightStyleRegular size:16];
@@ -114,7 +122,7 @@ alpha:1.0]
     
     
     self.passwordLine = [[UIView alloc] initWithFrame:CGRectMake(0, inputHeight - 1, passwordContainer.frame.size.width, 1.f)];
-    self.passwordLine.backgroundColor = [UIColor colorWithHexString:@"0xd4d4d4"];
+    self.passwordLine.backgroundColor = [UIColor groupTableViewBackgroundColor];
     
     
     self.passwordField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, passwordContainer.frame.size.width - 20 , inputHeight - 1)];
@@ -172,12 +180,14 @@ alpha:1.0]
     self.privacyLabel = [[UILabel alloc] initWithFrame:CGRectMake(16, self.view.bounds.size.height - 40 - kTabbarSafeBottomMargin, self.view.bounds.size.width-32, 40)];
     self.privacyLabel.textAlignment = NSTextAlignmentCenter;
     NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:@"登录即代表你已同意《倚天通用户协议》和《倚天通隐私政策》" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:10],
-                                                                                                                     NSForegroundColorAttributeName : [UIColor whiteColor]}];
+                                                                                                                                     NSForegroundColorAttributeName : [UIColor whiteColor]}];
     [text setAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:10],
                           NSForegroundColorAttributeName : [UIColor blueColor]} range:NSMakeRange(9, 9)];
     [text setAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:10],
                           NSForegroundColorAttributeName : [UIColor blueColor]} range:NSMakeRange(19, 9)];
     self.privacyLabel.attributedText = text ;
+    [self.privacyLabel setUserInteractionEnabled:YES];
+    
     __weak typeof(self)ws = self;
     [self.privacyLabel yb_addAttributeTapActionWithRanges:@[NSStringFromRange(NSMakeRange(9, 9)), NSStringFromRange(NSMakeRange(19, 9))] tapClicked:^(UILabel *label, NSString *string, NSRange range, NSInteger index) {
         WFCPrivacyViewController * pvc = [[WFCPrivacyViewController alloc] init];
@@ -191,12 +201,12 @@ alpha:1.0]
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-//    self.navigationController.navigationBar.hidden = YES;
+    self.navigationController.navigationBar.hidden = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-//    self.navigationController.navigationBar.hidden = NO;
+    self.navigationController.navigationBar.hidden = NO;
 }
 
 - (void)didReceiveMemoryWarning {

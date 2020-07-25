@@ -298,6 +298,17 @@
 		9534A96E24CAD20A00AF1FC0 /* WFCArchitectureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9534A96D24CAD20A00AF1FC0 /* WFCArchitectureViewController.m */; };
 		955C916C24CA8400007AC43C /* UIView+gradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 955C916B24CA8400007AC43C /* UIView+gradient.m */; };
 		955C916E24CABA1F007AC43C /* launch_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 955C916D24CABA1F007AC43C /* launch_icon.png */; };
+		9569902C24CBDCFC0009F332 /* SinglePersonNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569900624CBDCFB0009F332 /* SinglePersonNode.m */; };
+		9569902D24CBDCFC0009F332 /* OrganizationNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569900824CBDCFB0009F332 /* OrganizationNode.m */; };
+		9569902E24CBDCFC0009F332 /* BaseTreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569900C24CBDCFB0009F332 /* BaseTreeNode.m */; };
+		9569902F24CBDCFC0009F332 /* NodeTreeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569900F24CBDCFB0009F332 /* NodeTreeView.m */; };
+		9569903024CBDCFC0009F332 /* AutoBreadcrumbViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569901624CBDCFB0009F332 /* AutoBreadcrumbViewController.m */; };
+		9569903124CBDCFC0009F332 /* BreadcrumbViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569901824CBDCFB0009F332 /* BreadcrumbViewController.m */; };
+		9569903224CBDCFC0009F332 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569901B24CBDCFB0009F332 /* BaseViewController.m */; };
+		9569903324CBDCFC0009F332 /* TreeOrganizationDisplayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569902024CBDCFC0009F332 /* TreeOrganizationDisplayCell.m */; };
+		9569903424CBDCFC0009F332 /* BreadcrumbHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569902324CBDCFC0009F332 /* BreadcrumbHeaderView.m */; };
+		9569903524CBDCFC0009F332 /* SinglePersonNodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569902724CBDCFC0009F332 /* SinglePersonNodeView.m */; };
+		9569903624CBDCFC0009F332 /* OrganizationNodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569902824CBDCFC0009F332 /* OrganizationNodeView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -880,6 +891,32 @@
 		955C916A24CA8400007AC43C /* UIView+gradient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+gradient.h"; sourceTree = "<group>"; };
 		955C916B24CA8400007AC43C /* UIView+gradient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+gradient.m"; sourceTree = "<group>"; };
 		955C916D24CABA1F007AC43C /* launch_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch_icon.png; sourceTree = "<group>"; };
+		9569900524CBDCFB0009F332 /* OrganizationNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrganizationNode.h; sourceTree = "<group>"; };
+		9569900624CBDCFB0009F332 /* SinglePersonNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinglePersonNode.m; sourceTree = "<group>"; };
+		9569900724CBDCFB0009F332 /* SinglePersonNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinglePersonNode.h; sourceTree = "<group>"; };
+		9569900824CBDCFB0009F332 /* OrganizationNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrganizationNode.m; sourceTree = "<group>"; };
+		9569900B24CBDCFB0009F332 /* BaseTreeNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTreeNode.h; sourceTree = "<group>"; };
+		9569900C24CBDCFB0009F332 /* BaseTreeNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTreeNode.m; sourceTree = "<group>"; };
+		9569900E24CBDCFB0009F332 /* NodeTreeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeTreeView.h; sourceTree = "<group>"; };
+		9569900F24CBDCFB0009F332 /* NodeTreeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NodeTreeView.m; sourceTree = "<group>"; };
+		9569901124CBDCFB0009F332 /* NodeModelProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeModelProtocol.h; sourceTree = "<group>"; };
+		9569901224CBDCFB0009F332 /* NodeViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeViewProtocol.h; sourceTree = "<group>"; };
+		9569901524CBDCFB0009F332 /* AutoBreadcrumbViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoBreadcrumbViewController.h; sourceTree = "<group>"; };
+		9569901624CBDCFB0009F332 /* AutoBreadcrumbViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoBreadcrumbViewController.m; sourceTree = "<group>"; };
+		9569901824CBDCFB0009F332 /* BreadcrumbViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BreadcrumbViewController.m; sourceTree = "<group>"; };
+		9569901924CBDCFB0009F332 /* BreadcrumbViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BreadcrumbViewController.h; sourceTree = "<group>"; };
+		9569901B24CBDCFB0009F332 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		9569901C24CBDCFB0009F332 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		9569901F24CBDCFC0009F332 /* TreeOrganizationDisplayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TreeOrganizationDisplayCell.h; sourceTree = "<group>"; };
+		9569902024CBDCFC0009F332 /* TreeOrganizationDisplayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TreeOrganizationDisplayCell.m; sourceTree = "<group>"; };
+		9569902224CBDCFC0009F332 /* BreadcrumbHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BreadcrumbHeaderView.h; sourceTree = "<group>"; };
+		9569902324CBDCFC0009F332 /* BreadcrumbHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BreadcrumbHeaderView.m; sourceTree = "<group>"; };
+		9569902524CBDCFC0009F332 /* SinglePersonNodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinglePersonNodeView.h; sourceTree = "<group>"; };
+		9569902624CBDCFC0009F332 /* OrganizationNodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrganizationNodeView.h; sourceTree = "<group>"; };
+		9569902724CBDCFC0009F332 /* SinglePersonNodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinglePersonNodeView.m; sourceTree = "<group>"; };
+		9569902824CBDCFC0009F332 /* OrganizationNodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrganizationNodeView.m; sourceTree = "<group>"; };
+		9569902A24CBDCFC0009F332 /* CustomNodeViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomNodeViewProtocol.h; sourceTree = "<group>"; };
+		9569902B24CBDCFC0009F332 /* CustomNodeModelProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomNodeModelProtocol.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -976,11 +1013,11 @@
 				149B3101241D28B200B935D3 /* Category */,
 				9530D5F324C85BA100CCC9F6 /* Me */,
 				9534A96B24CAD15C00AF1FC0 /* Architecture */,
-				2E1D1FFA1FAF0AE600F4405D /* AppDelegate.h */,
-				2E1D1FFB1FAF0AE600F4405D /* AppDelegate.m */,
 				9530D51F24C85BA000CCC9F6 /* WFChatUIKit */,
 				2E1D20BB1FAF127100F4405D /* WFCConfig.h */,
 				2E1D20B11FAF127100F4405D /* WFCConfig.m */,
+				2E1D1FFA1FAF0AE600F4405D /* AppDelegate.h */,
+				2E1D1FFB1FAF0AE600F4405D /* AppDelegate.m */,
 				903EBC942136313B00312C16 /* SupportFiles */,
 			);
 			path = WildFireChat;
@@ -2166,10 +2203,148 @@
 		9534A96B24CAD15C00AF1FC0 /* Architecture */ = {
 			isa = PBXGroup;
 			children = (
+				9569901324CBDCFB0009F332 /* Controller */,
+				9569902924CBDCFC0009F332 /* CustomProtocols */,
+				9569900424CBDCFB0009F332 /* Model */,
+				9569900924CBDCFB0009F332 /* TreeViewTemplate */,
+				9569901D24CBDCFC0009F332 /* View */,
 				9534A96C24CAD20A00AF1FC0 /* WFCArchitectureViewController.h */,
 				9534A96D24CAD20A00AF1FC0 /* WFCArchitectureViewController.m */,
 			);
 			path = Architecture;
+			sourceTree = "<group>";
+		};
+		9569900424CBDCFB0009F332 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9569900524CBDCFB0009F332 /* OrganizationNode.h */,
+				9569900824CBDCFB0009F332 /* OrganizationNode.m */,
+				9569900724CBDCFB0009F332 /* SinglePersonNode.h */,
+				9569900624CBDCFB0009F332 /* SinglePersonNode.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9569900924CBDCFB0009F332 /* TreeViewTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				9569900A24CBDCFB0009F332 /* Nodes */,
+				9569900D24CBDCFB0009F332 /* Views */,
+				9569901024CBDCFB0009F332 /* Protocols */,
+			);
+			path = TreeViewTemplate;
+			sourceTree = "<group>";
+		};
+		9569900A24CBDCFB0009F332 /* Nodes */ = {
+			isa = PBXGroup;
+			children = (
+				9569900B24CBDCFB0009F332 /* BaseTreeNode.h */,
+				9569900C24CBDCFB0009F332 /* BaseTreeNode.m */,
+			);
+			path = Nodes;
+			sourceTree = "<group>";
+		};
+		9569900D24CBDCFB0009F332 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9569900E24CBDCFB0009F332 /* NodeTreeView.h */,
+				9569900F24CBDCFB0009F332 /* NodeTreeView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9569901024CBDCFB0009F332 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				9569901124CBDCFB0009F332 /* NodeModelProtocol.h */,
+				9569901224CBDCFB0009F332 /* NodeViewProtocol.h */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		9569901324CBDCFB0009F332 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9569901424CBDCFB0009F332 /* AutoRefresh */,
+				9569901724CBDCFB0009F332 /* ManaulRefresh */,
+				9569901A24CBDCFB0009F332 /* Base */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		9569901424CBDCFB0009F332 /* AutoRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				9569901524CBDCFB0009F332 /* AutoBreadcrumbViewController.h */,
+				9569901624CBDCFB0009F332 /* AutoBreadcrumbViewController.m */,
+			);
+			path = AutoRefresh;
+			sourceTree = "<group>";
+		};
+		9569901724CBDCFB0009F332 /* ManaulRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				9569901924CBDCFB0009F332 /* BreadcrumbViewController.h */,
+				9569901824CBDCFB0009F332 /* BreadcrumbViewController.m */,
+			);
+			path = ManaulRefresh;
+			sourceTree = "<group>";
+		};
+		9569901A24CBDCFB0009F332 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				9569901C24CBDCFB0009F332 /* BaseViewController.h */,
+				9569901B24CBDCFB0009F332 /* BaseViewController.m */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		9569901D24CBDCFC0009F332 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9569901E24CBDCFC0009F332 /* Cells */,
+				9569902124CBDCFC0009F332 /* Others */,
+				9569902424CBDCFC0009F332 /* NodeViews */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9569901E24CBDCFC0009F332 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				9569901F24CBDCFC0009F332 /* TreeOrganizationDisplayCell.h */,
+				9569902024CBDCFC0009F332 /* TreeOrganizationDisplayCell.m */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		9569902124CBDCFC0009F332 /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				9569902224CBDCFC0009F332 /* BreadcrumbHeaderView.h */,
+				9569902324CBDCFC0009F332 /* BreadcrumbHeaderView.m */,
+			);
+			path = Others;
+			sourceTree = "<group>";
+		};
+		9569902424CBDCFC0009F332 /* NodeViews */ = {
+			isa = PBXGroup;
+			children = (
+				9569902524CBDCFC0009F332 /* SinglePersonNodeView.h */,
+				9569902724CBDCFC0009F332 /* SinglePersonNodeView.m */,
+				9569902624CBDCFC0009F332 /* OrganizationNodeView.h */,
+				9569902824CBDCFC0009F332 /* OrganizationNodeView.m */,
+			);
+			path = NodeViews;
+			sourceTree = "<group>";
+		};
+		9569902924CBDCFC0009F332 /* CustomProtocols */ = {
+			isa = PBXGroup;
+			children = (
+				9569902A24CBDCFC0009F332 /* CustomNodeViewProtocol.h */,
+				9569902B24CBDCFC0009F332 /* CustomNodeModelProtocol.h */,
+			);
+			path = CustomProtocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2344,6 +2519,7 @@
 				9530D73424C85BA200CCC9F6 /* WFCUFileCell.m in Sources */,
 				9530D7DC24C85BA200CCC9F6 /* DNTapDetectingImageView.m in Sources */,
 				9530D77B24C85BA200CCC9F6 /* WFCUForwardViewController.m in Sources */,
+				9569903424CBDCFC0009F332 /* BreadcrumbHeaderView.m in Sources */,
 				2F94FB9022291577005BD461 /* LBXScanView.m in Sources */,
 				9530D7CC24C85BA200CCC9F6 /* SDBrowserImageView.m in Sources */,
 				2F4B0EB3245C232E000A41C6 /* CreateDeviceViewController.m in Sources */,
@@ -2380,6 +2556,7 @@
 				9530D7B624C85BA200CCC9F6 /* CCHMapClusterControllerDebugPolygon.m in Sources */,
 				9530D73024C85BA200CCC9F6 /* WFCUTextCell.m in Sources */,
 				2F4B0EAA245BFCE7000A41C6 /* DeviceTableViewController.m in Sources */,
+				9569902F24CBDCFC0009F332 /* NodeTreeView.m in Sources */,
 				9530D78924C85BA200CCC9F6 /* WFCMeTableViewHeaderViewCell.m in Sources */,
 				9530D75F24C85BA200CCC9F6 /* WFCUFavGroupTableViewController.m in Sources */,
 				9530D7D224C85BA200CCC9F6 /* DNAlbumTableViewController.m in Sources */,
@@ -2387,6 +2564,7 @@
 				955C916C24CA8400007AC43C /* UIView+gradient.m in Sources */,
 				9530D76D24C85BA200CCC9F6 /* WFCUSeletedUserSearchResultViewController.m in Sources */,
 				9530D74E24C85BA200CCC9F6 /* WFCUGroupMemberTableViewController.m in Sources */,
+				9569903624CBDCFC0009F332 /* OrganizationNodeView.m in Sources */,
 				2F94FAB224551D82007713CD /* DeviceViewController.m in Sources */,
 				9530D78724C85BA200CCC9F6 /* WFCDiagnoseViewController.m in Sources */,
 				9530D80524C85BA200CCC9F6 /* TYAlertFadeAnimation.m in Sources */,
@@ -2408,6 +2586,7 @@
 				2F94FC9922291813005BD461 /* LBXAlertAction.m in Sources */,
 				9530D75124C85BA200CCC9F6 /* WFCUProfileTableViewController.m in Sources */,
 				2E1D20D91FAF127100F4405D /* DiscoverViewController.m in Sources */,
+				9569903324CBDCFC0009F332 /* TreeOrganizationDisplayCell.m in Sources */,
 				9530D7F624C85BA200CCC9F6 /* UIImage+MultiFormat.m in Sources */,
 				9530D79A24C85BA200CCC9F6 /* WFCUConversationSettingMemberCell.m in Sources */,
 				9530D73124C85BA200CCC9F6 /* WFCUStickerCell.m in Sources */,
@@ -2424,21 +2603,26 @@
 				9530D7D724C85BA200CCC9F6 /* DNAssetsViewCell.m in Sources */,
 				2F94FCA422291813005BD461 /* LBXPermissionPhotos.m in Sources */,
 				9530D79C24C85BA200CCC9F6 /* GroupMemberControlTableViewController.m in Sources */,
+				9569903124CBDCFC0009F332 /* BreadcrumbViewController.m in Sources */,
 				90854281222A04C80009713D /* QQLBXScanViewController.m in Sources */,
 				9530D73C24C85BA200CCC9F6 /* MediaMessageGridViewCell.m in Sources */,
 				9530D7AD24C85BA200CCC9F6 /* WFCULocationPoint.m in Sources */,
 				9530D7C724C85BA200CCC9F6 /* KZVideoViewController.m in Sources */,
+				9569902E24CBDCFC0009F332 /* BaseTreeNode.m in Sources */,
 				9530D7CA24C85BA200CCC9F6 /* SDPhotoBrowser.m in Sources */,
 				9530D79224C85BA200CCC9F6 /* WFCUWaitingAnimationView.m in Sources */,
 				9530D7EA24C85BA200CCC9F6 /* SDRefreshView.m in Sources */,
 				9530D80924C85BA200CCC9F6 /* TYShowAlertView.m in Sources */,
+				9569903224CBDCFC0009F332 /* BaseViewController.m in Sources */,
 				9530D76924C85BA200CCC9F6 /* WFCUSelectedUserInfo.m in Sources */,
+				9569903524CBDCFC0009F332 /* SinglePersonNodeView.m in Sources */,
 				9530D80824C85BA200CCC9F6 /* TYAlertDropDownAnimation.m in Sources */,
 				9530D7BA24C85BA200CCC9F6 /* CCHCenterOfMassMapClusterer.m in Sources */,
 				9530D79724C85BA200CCC9F6 /* WFCUParticipantCollectionViewCell.m in Sources */,
 				9530D7E624C85BA200CCC9F6 /* MBProgressHUD.m in Sources */,
 				9530D7A124C85BA200CCC9F6 /* WFCUConversationSettingViewController.m in Sources */,
 				9530D7D324C85BA200CCC9F6 /* DNImagePickerController.m in Sources */,
+				9569902D24CBDCFC0009F332 /* OrganizationNode.m in Sources */,
 				9530D74F24C85BA200CCC9F6 /* WFCUGeneralModifyViewController.m in Sources */,
 				9530D72F24C85BA200CCC9F6 /* WFCUAddFriendViewController.m in Sources */,
 				9530D7B224C85BA200CCC9F6 /* CCHMapClusterController.m in Sources */,
@@ -2476,6 +2660,7 @@
 				9530D74D24C85BA200CCC9F6 /* WFCUImagePreviewViewController.m in Sources */,
 				9530D79524C85BA200CCC9F6 /* WFCUVideoViewController.m in Sources */,
 				9530D80724C85BA200CCC9F6 /* UIView+TYAutoLayout.m in Sources */,
+				9569902C24CBDCFC0009F332 /* SinglePersonNode.m in Sources */,
 				9530D75824C85BA200CCC9F6 /* WFCUConversationSearchTableViewCell.m in Sources */,
 				9530D80D24C85BA200CCC9F6 /* YLImageView.m in Sources */,
 				9530D74924C85BA200CCC9F6 /* TabbarButton.m in Sources */,
@@ -2506,6 +2691,7 @@
 				9530D7F224C85BA200CCC9F6 /* FLAnimatedImage.m in Sources */,
 				9530D74424C85BA200CCC9F6 /* BubbleTipView.m in Sources */,
 				9530D7E124C85BA200CCC9F6 /* AFHTTPSessionManager.m in Sources */,
+				9569903024CBDCFC0009F332 /* AutoBreadcrumbViewController.m in Sources */,
 				9530D78C24C85BA200CCC9F6 /* WFCPrivacyTableViewController.m in Sources */,
 				9530D80B24C85BA200CCC9F6 /* TYAlertController.m in Sources */,
 				2F94FCA822291813005BD461 /* LBXPermission.m in Sources */,

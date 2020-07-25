@@ -25,6 +25,8 @@
 #import "WFCUConversationTableViewController.h"
 #import "WFCUContactListViewController.h"
 #import "WFCArchitectureViewController.h"
+#import "AutoBreadcrumbViewController.h"
+#import "UIColor+YH.h"
 
 @interface WFCBaseTabBarController ()
 
@@ -46,14 +48,14 @@
     item.title = LocalizedString(@"Message");
     item.image = [UIImage imageNamed:@"tabbar_chat"];
     item.selectedImage = [[UIImage imageNamed:@"tabbar_chat_cover"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    [item setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor colorWithRed:0.1 green:0.27 blue:0.9 alpha:0.9]} forState:UIControlStateSelected];
+    [item setTitleTextAttributes:@{NSForegroundColorAttributeName : kMainColor} forState:UIControlStateSelected];
     [self addChildViewController:nav];
     
     self.firstNav = nav;
     
     
     
-    vc = [WFCArchitectureViewController new];
+    vc = [AutoBreadcrumbViewController new];
     vc.title = LocalizedString(@"Contact");
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [nav.navigationBar setShadowImage:colorImage];
@@ -61,7 +63,7 @@
     item.title = LocalizedString(@"Contact");
     item.image = [UIImage imageNamed:@"tabbar_contacts"];
     item.selectedImage = [[UIImage imageNamed:@"tabbar_contacts_cover"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    [item setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor colorWithRed:0.1 green:0.27 blue:0.9 alpha:0.9]} forState:UIControlStateSelected];
+    [item setTitleTextAttributes:@{NSForegroundColorAttributeName : kMainColor} forState:UIControlStateSelected];
     [self addChildViewController:nav];
     
     
@@ -74,7 +76,7 @@
     item.title = LocalizedString(@"Contact");
     item.image = [UIImage imageNamed:@"tabbar_contacts"];
     item.selectedImage = [[UIImage imageNamed:@"tabbar_contacts_cover"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    [item setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor colorWithRed:0.1 green:0.27 blue:0.9 alpha:0.9]} forState:UIControlStateSelected];
+    [item setTitleTextAttributes:@{NSForegroundColorAttributeName : kMainColor} forState:UIControlStateSelected];
     [self addChildViewController:nav];
     
     
@@ -87,7 +89,7 @@
     item.title = LocalizedString(@"Discover");
     item.image = [UIImage imageNamed:@"tabbar_discover"];
     item.selectedImage = [[UIImage imageNamed:@"tabbar_discover_cover"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    [item setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor colorWithRed:0.1 green:0.27 blue:0.9 alpha:0.9]} forState:UIControlStateSelected];
+    [item setTitleTextAttributes:@{NSForegroundColorAttributeName : kMainColor} forState:UIControlStateSelected];
     [self addChildViewController:nav];
     
     vc = [WFCMeTableViewController new];
@@ -98,7 +100,7 @@
     item.title = LocalizedString(@"Me");
     item.image = [UIImage imageNamed:@"tabbar_me"];
     item.selectedImage = [[UIImage imageNamed:@"tabbar_me_cover"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    [item setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor colorWithRed:0.1 green:0.27 blue:0.9 alpha:0.9]} forState:UIControlStateSelected];
+    [item setTitleTextAttributes:@{NSForegroundColorAttributeName : kMainColor} forState:UIControlStateSelected];
     [self addChildViewController:nav];
     self.settingNav = nav;
 
