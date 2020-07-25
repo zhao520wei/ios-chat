@@ -12,7 +12,7 @@
 //例如：example.com或www.example.com或im.example.com或imtest.example.com是支持的；xx.example.com或xx.yy.example.com是不支持的。如果是专业版必须用域名，社区版建议也用域名。
 //NSString *IM_SERVER_HOST = @"wildfirechat.cn";
 //NSString *IM_SERVER_HOST = @"120.79.76.162:8080";
-NSString *IM_SERVER_HOST =  @"192.168.2.101:8889";
+NSString *IM_SERVER_HOST =  @"192.168.2.101";
 //NSString *IM_SERVER_HOST =  @"192.168.2.188";
 
 // App Server默认使用的是8888端口，替换为自己部署的服务时需要注意端口别填错了
@@ -20,7 +20,7 @@ NSString *IM_SERVER_HOST =  @"192.168.2.101:8889";
 //NSString *APP_SERVER_ADDRESS = @"http://wildfirechat.cn:8888";
 //NSString *APP_SERVER_ADDRESS = @"https://app.wildfirechat.cn";
 //NSString *APP_SERVER_ADDRESS = @"http://120.79.76.162:8888";
-NSString *APP_SERVER_ADDRESS = @"http://192.168.2.101:8888";
+NSString *APP_SERVER_ADDRESS = @"http://192.168.2.101:8889";
 //NSString *APP_SERVER_ADDRESS = @"http://192.168.2.188:8888";
 
 NSString *ICE_ADDRESS = @"turn:turn.wildfirechat.cn:3478";

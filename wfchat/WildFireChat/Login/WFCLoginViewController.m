@@ -59,7 +59,7 @@ alpha:1.0]
     self.view.backgroundColor = [WFCUConfigManager globalManager].backgroudColor;
     
     UIImageView * backgroundImageView = [[UIImageView alloc] initWithFrame: self.view.bounds];
-    backgroundImageView.backgroundColor = [UIColor redColor];
+    backgroundImageView.image = [UIImage imageNamed:@"login_background"];
     backgroundImageView.userInteractionEnabled = true;
     [self.view addSubview:backgroundImageView];
     
@@ -183,6 +183,7 @@ alpha:1.0]
         WFCPrivacyViewController * pvc = [[WFCPrivacyViewController alloc] init];
         pvc.isPrivacy = (range.location == 19);
         [ws.navigationController pushViewController:pvc animated:YES];
+        
     }];
     
     [backgroundImageView addSubview:self.privacyLabel];
@@ -190,12 +191,12 @@ alpha:1.0]
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.navigationController.navigationBar.hidden = YES;
+//    self.navigationController.navigationBar.hidden = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    self.navigationController.navigationBar.hidden = NO;
+//    self.navigationController.navigationBar.hidden = NO;
 }
 
 - (void)didReceiveMemoryWarning {

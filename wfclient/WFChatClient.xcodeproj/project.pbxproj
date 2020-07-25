@@ -134,12 +134,12 @@
 		90E4D1E01FFB0AE200B9A4E4 /* WFCCLocationMessageContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E4D1DE1FFB0AE200B9A4E4 /* WFCCLocationMessageContent.m */; };
 		90F584991FFDB39800F7FFA8 /* WFCCChangeGroupPortraitNotificationContent.h in Headers */ = {isa = PBXBuildFile; fileRef = 90F584971FFDB39700F7FFA8 /* WFCCChangeGroupPortraitNotificationContent.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		90F5849A1FFDB39800F7FFA8 /* WFCCChangeGroupPortraitNotificationContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F584981FFDB39800F7FFA8 /* WFCCChangeGroupPortraitNotificationContent.m */; };
+		9534A96A24CACACB00AF1FC0 /* WFCCLeaveMessageContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 956CBC3624BD4CC000BE34A6 /* WFCCLeaveMessageContent.m */; };
 		956CBC4424BD8EBA00BE34A6 /* WFCCGroupMemberMutedNotificationContent.h in Headers */ = {isa = PBXBuildFile; fileRef = 956CBC4224BD8EB900BE34A6 /* WFCCGroupMemberMutedNotificationContent.h */; };
 		956CBC4524BD8EBA00BE34A6 /* WFCCGroupMemberMutedNotificationContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 956CBC4324BD8EBA00BE34A6 /* WFCCGroupMemberMutedNotificationContent.m */; };
 		95D197EB24C532C400004273 /* TestClass.h in Headers */ = {isa = PBXBuildFile; fileRef = 95D197E924C532C400004273 /* TestClass.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		95D197EC24C532C400004273 /* TestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D197EA24C532C400004273 /* TestClass.m */; };
 		95FB01BB24C56C5A0022283E /* WFCCLeaveMessageContent.h in Headers */ = {isa = PBXBuildFile; fileRef = 956CBC3524BD4CC000BE34A6 /* WFCCLeaveMessageContent.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		95FB01BD24C56DF40022283E /* WFCCLeaveMessageContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 95FB01BC24C56DF30022283E /* WFCCLeaveMessageContent.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -278,7 +278,6 @@
 		956CBC4324BD8EBA00BE34A6 /* WFCCGroupMemberMutedNotificationContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFCCGroupMemberMutedNotificationContent.m; sourceTree = "<group>"; };
 		95D197E924C532C400004273 /* TestClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestClass.h; sourceTree = "<group>"; };
 		95D197EA24C532C400004273 /* TestClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestClass.m; sourceTree = "<group>"; };
-		95FB01BC24C56DF30022283E /* WFCCLeaveMessageContent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = WFCCLeaveMessageContent.m; path = WFChatClient/Messages/WFCCLeaveMessageContent.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -301,7 +300,6 @@
 		2E6B50911FAE98E5006B6E31 = {
 			isa = PBXGroup;
 			children = (
-				95FB01BC24C56DF30022283E /* WFCCLeaveMessageContent.m */,
 				2E6B509D1FAE98E6006B6E31 /* WFChatClient */,
 				2E6B509C1FAE98E6006B6E31 /* Products */,
 				901E270C21F1543C00A163CB /* Frameworks */,
@@ -681,7 +679,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95FB01BD24C56DF40022283E /* WFCCLeaveMessageContent.m in Sources */,
+				9534A96A24CACACB00AF1FC0 /* WFCCLeaveMessageContent.m in Sources */,
 				95D197EC24C532C400004273 /* TestClass.m in Sources */,
 				2E6B50FE1FAE9B10006B6E31 /* WFCCImageMessageContent.m in Sources */,
 				2E6B51001FAE9B10006B6E31 /* WFCCKickoffGroupMemberNotificaionContent.m in Sources */,

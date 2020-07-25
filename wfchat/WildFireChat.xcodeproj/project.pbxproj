@@ -295,6 +295,7 @@
 		9530D80C24C85BA200CCC9F6 /* YLGIFImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 9530D72824C85BA200CCC9F6 /* YLGIFImage.m */; };
 		9530D80D24C85BA200CCC9F6 /* YLImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9530D72924C85BA200CCC9F6 /* YLImageView.m */; };
 		9530D80F24C8604700CCC9F6 /* Stickers.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9530D80E24C8604600CCC9F6 /* Stickers.bundle */; };
+		9534A96E24CAD20A00AF1FC0 /* WFCArchitectureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9534A96D24CAD20A00AF1FC0 /* WFCArchitectureViewController.m */; };
 		955C916C24CA8400007AC43C /* UIView+gradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 955C916B24CA8400007AC43C /* UIView+gradient.m */; };
 		955C916E24CABA1F007AC43C /* launch_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 955C916D24CABA1F007AC43C /* launch_icon.png */; };
 /* End PBXBuildFile section */
@@ -874,6 +875,8 @@
 		9530D72A24C85BA200CCC9F6 /* YLGIFImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLGIFImage.h; sourceTree = "<group>"; };
 		9530D72B24C85BA200CCC9F6 /* YLImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLImageView.h; sourceTree = "<group>"; };
 		9530D80E24C8604600CCC9F6 /* Stickers.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Stickers.bundle; path = Frameworks/Stickers.bundle; sourceTree = SOURCE_ROOT; };
+		9534A96C24CAD20A00AF1FC0 /* WFCArchitectureViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WFCArchitectureViewController.h; sourceTree = "<group>"; };
+		9534A96D24CAD20A00AF1FC0 /* WFCArchitectureViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WFCArchitectureViewController.m; sourceTree = "<group>"; };
 		955C916A24CA8400007AC43C /* UIView+gradient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+gradient.h"; sourceTree = "<group>"; };
 		955C916B24CA8400007AC43C /* UIView+gradient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+gradient.m"; sourceTree = "<group>"; };
 		955C916D24CABA1F007AC43C /* launch_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch_icon.png; sourceTree = "<group>"; };
@@ -972,6 +975,7 @@
 				2BF692E5232DBA840072036A /* Utilities */,
 				149B3101241D28B200B935D3 /* Category */,
 				9530D5F324C85BA100CCC9F6 /* Me */,
+				9534A96B24CAD15C00AF1FC0 /* Architecture */,
 				2E1D1FFA1FAF0AE600F4405D /* AppDelegate.h */,
 				2E1D1FFB1FAF0AE600F4405D /* AppDelegate.m */,
 				9530D51F24C85BA000CCC9F6 /* WFChatUIKit */,
@@ -1579,15 +1583,15 @@
 		9530D5BE24C85BA100CCC9F6 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				9530D5BF24C85BA100CCC9F6 /* WFCUSeletedUserViewController.h */,
-				9530D5C024C85BA100CCC9F6 /* WFCUSeletedUserSearchResultViewController.m */,
-				9530D5C124C85BA100CCC9F6 /* WFCUCompanyArchitectureViewController.h */,
-				9530D5C224C85BA100CCC9F6 /* WFCUContactListViewController.h */,
 				9530D5C324C85BA100CCC9F6 /* SeletedUserViewController.h */,
+				9530D5BF24C85BA100CCC9F6 /* WFCUSeletedUserViewController.h */,
 				9530D5C424C85BA100CCC9F6 /* WFCUSeletedUserViewController.m */,
+				9530D5C224C85BA100CCC9F6 /* WFCUContactListViewController.h */,
 				9530D5C524C85BA100CCC9F6 /* WFCUContactListViewController.m */,
+				9530D5C124C85BA100CCC9F6 /* WFCUCompanyArchitectureViewController.h */,
 				9530D5C624C85BA100CCC9F6 /* WFCUCompanyArchitectureViewController.m */,
 				9530D5C724C85BA100CCC9F6 /* WFCUSeletedUserSearchResultViewController.h */,
+				9530D5C024C85BA100CCC9F6 /* WFCUSeletedUserSearchResultViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1655,11 +1659,11 @@
 				9530D5F824C85BA100CCC9F6 /* WFCSecurityTableViewController.m */,
 				9530D5F924C85BA100CCC9F6 /* WFCDiagnoseViewController.m */,
 				9530D5FA24C85BA100CCC9F6 /* WFCMeTableViewController.h */,
+				9530D60724C85BA100CCC9F6 /* WFCMeTableViewController.m */,
 				9530D5FB24C85BA100CCC9F6 /* WFCThemeTableViewController.h */,
 				9530D5FC24C85BA100CCC9F6 /* WFCThemeTableViewCell.h */,
 				9530D5FD24C85BA100CCC9F6 /* WFCUMyPortraitViewController.m */,
 				9530D5FE24C85BA100CCC9F6 /* WFCUMyProfileTableViewController.h */,
-				9530D5FF24C85BA100CCC9F6 /* WFCMeTableViewHeaderViewCell.m */,
 				9530D60024C85BA100CCC9F6 /* WFCUMessageNotificationViewController.h */,
 				9530D60124C85BA100CCC9F6 /* WFCUModifyMyProfileViewController.h */,
 				9530D60224C85BA100CCC9F6 /* WFCAboutViewController.m */,
@@ -1667,11 +1671,11 @@
 				9530D60424C85BA100CCC9F6 /* WFCPrivacyTableViewController.m */,
 				9530D60524C85BA100CCC9F6 /* WFCThemeTableViewCell.m */,
 				9530D60624C85BA100CCC9F6 /* WFCThemeTableViewController.m */,
-				9530D60724C85BA100CCC9F6 /* WFCMeTableViewController.m */,
 				9530D60824C85BA100CCC9F6 /* WFCDiagnoseViewController.h */,
 				9530D60924C85BA100CCC9F6 /* WFCSecurityTableViewController.h */,
 				9530D60A24C85BA100CCC9F6 /* WFCUMessageNotificationViewController.m */,
 				9530D60B24C85BA100CCC9F6 /* WFCMeTableViewHeaderViewCell.h */,
+				9530D5FF24C85BA100CCC9F6 /* WFCMeTableViewHeaderViewCell.m */,
 				9530D60C24C85BA100CCC9F6 /* WFCUMyProfileTableViewController.m */,
 				9530D60D24C85BA100CCC9F6 /* WFCUMyPortraitViewController.h */,
 			);
@@ -2159,6 +2163,15 @@
 			path = YLGIFImage;
 			sourceTree = "<group>";
 		};
+		9534A96B24CAD15C00AF1FC0 /* Architecture */ = {
+			isa = PBXGroup;
+			children = (
+				9534A96C24CAD20A00AF1FC0 /* WFCArchitectureViewController.h */,
+				9534A96D24CAD20A00AF1FC0 /* WFCArchitectureViewController.m */,
+			);
+			path = Architecture;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2449,6 +2462,7 @@
 				9530D77F24C85BA200CCC9F6 /* WFCUSearchChannelViewController.m in Sources */,
 				9530D7C824C85BA200CCC9F6 /* KZVideoListViewController.m in Sources */,
 				9530D7BE24C85BA200CCC9F6 /* AirplayActiveView.m in Sources */,
+				9534A96E24CAD20A00AF1FC0 /* WFCArchitectureViewController.m in Sources */,
 				9530D7B124C85BA200CCC9F6 /* CCHMapTree.m in Sources */,
 				9530D74724C85BA200CCC9F6 /* AttributedLabel.m in Sources */,
 				9530D7C924C85BA200CCC9F6 /* KZVideoSupport.m in Sources */,

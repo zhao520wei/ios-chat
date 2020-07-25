@@ -339,7 +339,10 @@
     UIButton * headerButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
 //    [headerButton.imageView sd_setImageWithURL:[NSURL URLWithString:me.portrait] placeholderImage:[UIImage imageNamed:@"PersonalChat"]];
     [headerButton sd_setImageWithURL:[NSURL URLWithString:me.portrait] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"PersonalChat"]];
-    headerButton.backgroundColor = [UIColor blueColor];
+    if (!headerButton.imageView.image) {
+        [headerButton setImage:[UIImage imageNamed:@"PersonalChat"] forState:UIControlStateNormal];
+    }
+ 
     headerButton.layer.cornerRadius  = headerButton.frame.size.width/2;
     headerButton.layer.masksToBounds = YES;
     [headerButton addTarget:self action:@selector(onLeftBatBtn:) forControlEvents:UIControlEventTouchUpInside];

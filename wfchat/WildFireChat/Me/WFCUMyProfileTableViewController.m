@@ -98,7 +98,7 @@
     [self.cells1 addObject:cell];
     UIImage *qrcode = [UIImage imageNamed:@"qrcode"];
     
-    UIImageView *qrview = [[UIImageView alloc] initWithFrame:CGRectMake(width - 56, 5, 30, 30)];
+    UIImageView *qrview = [[UIImageView alloc] initWithFrame:CGRectMake(width - 56, 5, 20, 20)];
     qrview.image = qrcode;
     [cell addSubview:qrview];
 

@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
+        <deployment version="2304" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,59 +12,29 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Llm-lL-Icb"/>
-                        <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
+                        <viewControllerLayoutGuide type="top" id="UDp-kD-6xf"/>
+                        <viewControllerLayoutGuide type="bottom" id="ymO-C9-09y"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="倚天软件" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KzX-an-6n1">
-                                <rect key="frame" x="171" y="657.66666666666663" width="72.333333333333314" height="25.333333333333371"/>
-                                <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="18"/>
-                                <color key="textColor" red="0.70196078431372544" green="0.70196078431372544" blue="0.70196078431372544" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="倚天协同办公" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sna-TE-jWh">
-                                <rect key="frame" x="135" y="240" width="144" height="68"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="68" id="hl5-mF-IXn"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="PingFangSC-Medium" family="PingFang SC" pointSize="24"/>
-                                <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch_icon" highlighted="YES" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T1L-D4-c7B">
-                                <rect key="frame" x="157" y="112" width="100" height="100"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="2RT-eT-Ofu"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="3sF-KC-Jvi"/>
-                                    <constraint firstAttribute="width" constant="100" id="LPd-ZV-SB0"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="s2k-tS-erE"/>
-                                </constraints>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vsS-k2-tqh">
+                                <rect key="frame" x="20" y="0.0" width="374" height="736"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="sna-TE-jWh" firstAttribute="top" secondItem="T1L-D4-c7B" secondAttribute="bottom" constant="28" id="CbK-CP-WLD"/>
-                            <constraint firstItem="T1L-D4-c7B" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="112" id="Uua-Fb-eZx"/>
-                            <constraint firstItem="T1L-D4-c7B" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="XSI-Uz-0re"/>
-                            <constraint firstItem="T1L-D4-c7B" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="112" id="cIj-GX-QbZ"/>
-                            <constraint firstItem="T1L-D4-c7B" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="112" id="fbh-bZ-mcl"/>
-                            <constraint firstItem="sna-TE-jWh" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="k0h-6U-pcl"/>
-                            <constraint firstItem="sna-TE-jWh" firstAttribute="top" secondItem="T1L-D4-c7B" secondAttribute="bottom" constant="28" id="sS2-yT-c66"/>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="KzX-an-6n1" secondAttribute="bottom" constant="53" id="uOh-HW-M3P"/>
-                            <constraint firstItem="KzX-an-6n1" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="vBr-O0-VcM"/>
-                            <constraint firstItem="sna-TE-jWh" firstAttribute="top" secondItem="T1L-D4-c7B" secondAttribute="bottom" constant="28" id="xvl-5m-NHg"/>
+                            <constraint firstItem="vsS-k2-tqh" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" id="83r-x5-Hhi"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="vsS-k2-tqh" secondAttribute="trailing" id="F1V-xn-PDv"/>
+                            <constraint firstItem="ymO-C9-09y" firstAttribute="top" secondItem="vsS-k2-tqh" secondAttribute="bottom" id="WCa-Ay-FNU"/>
+                            <constraint firstItem="vsS-k2-tqh" firstAttribute="top" secondItem="UDp-kD-6xf" secondAttribute="bottom" id="buc-is-0an"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="52" y="374.66266866566718"/>
+            <point key="canvasLocation" x="50.724637681159422" y="374.18478260869568"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="launch_icon" width="29" height="29"/>
-    </resources>
 </document>

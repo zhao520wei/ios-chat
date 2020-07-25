@@ -24,6 +24,7 @@
 #import "WFCMeTableViewController.h"
 #import "WFCUConversationTableViewController.h"
 #import "WFCUContactListViewController.h"
+#import "WFCArchitectureViewController.h"
 
 @interface WFCBaseTabBarController ()
 
@@ -49,6 +50,20 @@
     [self addChildViewController:nav];
     
     self.firstNav = nav;
+    
+    
+    
+    vc = [WFCArchitectureViewController new];
+    vc.title = LocalizedString(@"Contact");
+    nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    [nav.navigationBar setShadowImage:colorImage];
+    item = nav.tabBarItem;
+    item.title = LocalizedString(@"Contact");
+    item.image = [UIImage imageNamed:@"tabbar_contacts"];
+    item.selectedImage = [[UIImage imageNamed:@"tabbar_contacts_cover"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    [item setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor colorWithRed:0.1 green:0.27 blue:0.9 alpha:0.9]} forState:UIControlStateSelected];
+    [self addChildViewController:nav];
+    
     
  
     vc = [WFCUContactListViewController new];
