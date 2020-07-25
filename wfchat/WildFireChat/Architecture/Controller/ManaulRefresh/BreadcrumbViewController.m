@@ -82,7 +82,7 @@
             [self.breadcrumbView addSelectedNode:node withTitle:cusNode.name];
         }else if ([node isMemberOfClass:[OrganizationNode  class]]){
             OrganizationNode *simpleNode = (OrganizationNode *)node;
-            [self.breadcrumbView addSelectedNode:simpleNode withTitle:simpleNode.title];
+            [self.breadcrumbView addSelectedNode:simpleNode withTitle:simpleNode.name];
         }else{
             [self.breadcrumbView addSelectedNode:node withTitle:@"xxx公司"];
         }

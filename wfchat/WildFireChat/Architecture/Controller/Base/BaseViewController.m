@@ -7,6 +7,7 @@
 //
 
 #import "BaseViewController.h"
+#import "AppService.h"
 
 @interface BaseViewController ()
 
@@ -23,7 +24,9 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.tableview];
     [self.view addSubview:self.dismissBtn];
-    [self loadData];
+//    [self loadData];
+    
+    [self loadRealData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -77,6 +80,86 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 #pragma mark ======== Private Methods ========
+
+
+- (void) loadRealData {
+    __weak __typeof(self) weakSelf = self;
+    [[AppService sharedAppService] getCompanyArchitectureDataWithSuccess:^(NSDictionary * _Nonnull tree) {
+        
+        BaseTreeNode * baseNode = [weakSelf dealwithDictionaryTree:tree];
+        _baseNode = baseNode;
+        
+        [weakSelf.tableview reloadData];
+    } error:^(NSInteger error_code) {
+        
+    }];
+    
+}
+
+
+- (BaseTreeNode *) dealwithDictionaryTree:(NSDictionary *) tree {
+    BaseTreeNode *baseNode = [[BaseTreeNode alloc]init];
+    baseNode.fatherNode = baseNode;//父节点等于自身
+    
+    NSString * address = [tree objectForKey:@"address"];
+    NSString * createTime = [tree objectForKey:@"createTime"];
+    NSString * itemId = [tree objectForKey:@"id"];
+    NSString * name = [tree objectForKey:@"name"];
+    NSString * pathIds = [tree objectForKey:@"pathIds"];
+    NSMutableArray * subList = [tree mutableArrayValueForKey:@"subList"];
+    NSMutableArray * userList = [tree mutableArrayValueForKey:@"userList"];
+    
+    OrganizationNode *simpleNode = [[OrganizationNode alloc]init];
+    simpleNode.name = name;
+    simpleNode.address = address;
+    simpleNode.itemId = itemId;
+    simpleNode.pathIds = pathIds;
+    simpleNode.createTime = createTime;
+    simpleNode.subList = subList;
+    if (userList != nil && userList.count > 0) {
+        NSMutableArray * array = [self dealwithSubTree:userList];
+        simpleNode.userList = array;
+    }
+    [baseNode addSubNode:simpleNode];
+
+    
+    return  baseNode;
+}
+
+- (NSMutableArray *) dealwithSubTree:(NSArray *)userList {
+    
+    NSMutableArray * array = [NSMutableArray array];
+    
+    for (int i= 0; i < userList.count; i++) {
+        NSDictionary * tree = userList[i];
+        NSString * address = tree[@"address"];
+        NSString * createTime = tree[@"createTime"];
+        NSString * itemId = tree[@"id"];
+        NSString * name = tree[@"name"];
+        NSString * pathIds = tree[@"pathIds"];
+        NSMutableArray * temSubList = [tree mutableArrayValueForKey:@"subList"];
+        NSMutableArray * tempUserList = [tree mutableArrayValueForKey:@"userList"];
+        OrganizationNode *simpleNode = [[OrganizationNode alloc]init];
+        simpleNode.name = name;
+        simpleNode.address = address;
+        simpleNode.itemId = itemId;
+        simpleNode.pathIds = pathIds;
+        simpleNode.createTime = createTime;
+        simpleNode.subList = temSubList;
+        NSMutableArray * users = [NSMutableArray array];
+        if (userList != nil && userList.count > 0) {
+            NSMutableArray * tempArray = [self dealwithSubTree:tempUserList];
+            [users addObjectsFromArray:tempArray];
+        }
+        simpleNode.userList = [users copy];
+        [array addObject: simpleNode];
+    }
+    
+    return  array;
+}
+
+
+
 - (void)loadData{
     //数据处理
     BaseTreeNode *baseNode = [[BaseTreeNode alloc]init];
@@ -85,20 +168,20 @@
     for (int i = 0; i<10; i++) {
         if (i<8) {
             OrganizationNode *simpleNode = [[OrganizationNode alloc]init];
-            simpleNode.title = [NSString stringWithFormat:@"部门%d",i];
+            simpleNode.name = [NSString stringWithFormat:@"部门%d",i];
             simpleNode.nodeHeight = 50;
             for (int j = 0; j<5; j++) {
                 OrganizationNode *personNode = [[OrganizationNode alloc]init];
                 personNode.nodeHeight = 50;
-                personNode.title = [NSString stringWithFormat:@"%@的分部门%d",simpleNode.title,j];
+                personNode.name = [NSString stringWithFormat:@"%@的分部门%d",simpleNode.name,j];
                 for (int k = 0; k<6; k++) {
                     OrganizationNode *personNode0 = [[OrganizationNode alloc]init];
-                    personNode0.title = [NSString stringWithFormat:@"分部门%d的人员%d",j,k];
+                    personNode0.name = [NSString stringWithFormat:@"分部门%d的人员%d",j,k];
                     personNode0.nodeHeight = 50;
                     for (int m = 0; m<7; m++) {
                         SinglePersonNode *personNode1 = [[SinglePersonNode alloc]init];
                         personNode1.nodeHeight = 50;
-                        personNode1.name = [NSString stringWithFormat:@"%@-张三%d",personNode.title,m];
+                        personNode1.name = [NSString stringWithFormat:@"%@-张三%d",personNode.name,m];
                         personNode1.IDNum =@"1003022";
                         personNode1.dePartment =@"资金部";
                         [personNode0 addSubNode:personNode1];

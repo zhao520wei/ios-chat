@@ -12,7 +12,15 @@
 /**
  左侧标题
  */
-@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString *name;
+
+@property (nonatomic, copy) NSString *address;
+
+@property (nonatomic, copy) NSString *itemId;
+@property (nonatomic, copy) NSString *pathIds;
+@property (nonatomic, strong) NSMutableArray *subList;
+@property (nonatomic, strong) NSMutableArray *userList;
+@property (nonatomic, copy) NSString * createTime;
 
 @end
 //Organization;

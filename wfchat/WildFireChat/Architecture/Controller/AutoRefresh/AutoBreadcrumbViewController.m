@@ -22,6 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.title = @"组织架构";
 }
 
 - (void)didReceiveMemoryWarning {
@@ -38,7 +39,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 44;
+    return 50;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
@@ -81,7 +82,7 @@
             [self.breadcrumbView addSelectedNode:personNode withTitle:personNode.name];
         }else if ([node isMemberOfClass:[OrganizationNode  class]]){
             OrganizationNode *orgNode = (OrganizationNode *)node;
-            [self.breadcrumbView addSelectedNode:orgNode withTitle:orgNode.title];
+            [self.breadcrumbView addSelectedNode:orgNode withTitle:orgNode.name];
         }else{
             [self.breadcrumbView addSelectedNode:node withTitle:@"xxx公司"];
         }

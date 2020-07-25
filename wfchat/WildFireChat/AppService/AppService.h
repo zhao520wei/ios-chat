@@ -11,6 +11,7 @@
 #import "Device.h"
 #import "WFCUAppServiceProvider.h"
 
+
 NS_ASSUME_NONNULL_BEGIN
 
 // App 业务相关网络模块代码
@@ -42,6 +43,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)delDevice:(NSString *)deviceId
           success:(void(^)(Device *device))successBlock
             error:(void(^)(int error_code))errorBlock;
+
+- (void)getCompanyArchitectureDataWithSuccess:(void(^)(NSDictionary *tree))successBlock
+                                        error:(void(^)(NSInteger error_code))errorBlock;
 @end
 
 NS_ASSUME_NONNULL_END

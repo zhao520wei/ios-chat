@@ -53,7 +53,7 @@ nodeLevel = _nodeLevel;
 - (instancetype)init{
     if (self = [super init]) {
         _subNodes = [NSMutableArray array];
-        _nodeHeight = 44;
+        _nodeHeight = 50;
         _subTreeHeight = 0;
     }
     return self;

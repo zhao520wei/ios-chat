@@ -13,6 +13,7 @@
 #import "PCSessionViewController.h"
 #import "WFCUGroupAnnouncement.h"
 
+
 static AppService *sharedSingleton = nil;
 
 @implementation AppService 
@@ -372,4 +373,27 @@ static AppService *sharedSingleton = nil;
         errorBlock(-1);
     }];
 }
+
+
+- (void)getCompanyArchitectureDataWithSuccess:(void(^)(NSDictionary *tree))successBlock
+                                        error:(void(^)(NSInteger error_code))errorBlock{
+    NSString * path = @"/department/tree";
+    NSDictionary *param = @{};
+    [self post:path data:param success:^(NSDictionary *dict) {
+        NSLog(@"/department/tree : %@", dict);
+        NSInteger code = [dict[@"code"] integerValue];
+        NSDictionary * result = [dict[@"result"] firstObject];
+        if (result != nil) {
+            successBlock(result);
+        } else {
+            errorBlock(code);
+        }
+        
+    } error:^(NSError * _Nonnull error) {
+        NSLog(@"/department/tree : %@",error.description);
+        errorBlock(error.code);
+    }];
+    
+}
+
 @end
