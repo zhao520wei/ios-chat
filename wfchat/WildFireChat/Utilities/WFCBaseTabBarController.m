@@ -27,6 +27,7 @@
 #import "WFCArchitectureViewController.h"
 #import "AutoBreadcrumbViewController.h"
 #import "UIColor+YH.h"
+#import "WFCUConfigManager.h"
 
 @interface WFCBaseTabBarController ()
 
@@ -152,6 +153,15 @@
             [self.view removeFromSuperview];
             [superView addSubview:self.view];
         }
+    }
+}
+
+- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
+    WFCUConfigManager * manager = [WFCUConfigManager globalManager];
+    if ([item.title isEqualToString:LocalizedString(@"Message")]) {
+        manager.isNotFirstTab = NO;
+    } else {
+        manager.isNotFirstTab = YES;
     }
 }
 

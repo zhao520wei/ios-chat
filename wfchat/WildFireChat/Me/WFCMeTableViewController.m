@@ -178,7 +178,9 @@
             [self.navigationController pushViewController:stvc animated:YES];
         } else {
             [self.xl_sldeMenu showRootViewControllerAnimated:true];
+            NSLog(@" --- %@ ", [self.xl_sldeMenu.rootViewController class]);
             WFCBaseTabBarController * ctrl = (WFCBaseTabBarController *)self.xl_sldeMenu.rootViewController;
+            
             [ctrl.firstNav pushViewController:stvc animated:true];
         }
     } else {

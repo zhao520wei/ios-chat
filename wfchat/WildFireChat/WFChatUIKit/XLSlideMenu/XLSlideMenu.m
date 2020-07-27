@@ -7,6 +7,7 @@
 //  GitHub:https://github.com/mengxianliang/XLSlideMenu
 
 #import "XLSlideMenu.h"
+#import "WFCUConfigManager.h"
 
 //菜单的显示区域占屏幕宽度的百分比
 static CGFloat MenuWidthScale = 0.8f;
@@ -102,6 +103,11 @@ static CGFloat MinActionSpeed = 500;
 #pragma mark -
 #pragma mark 拖拽方法
 -(void)pan:(UIPanGestureRecognizer*)pan{
+    WFCUConfigManager * manager = [WFCUConfigManager globalManager];
+    if (manager.isNotFirstTab) {
+        return;
+    } 
+    
     switch (pan.state) {
             //记录起始位置 方便拖拽移动
         case UIGestureRecognizerStateBegan:

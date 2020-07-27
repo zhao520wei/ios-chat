@@ -195,7 +195,7 @@
                 singlePersonNode1.mobile = tempDic[@"mobile"];
                 singlePersonNode1.password = tempDic[@"password"];
                 singlePersonNode1.uid = tempDic[@"uid"];
-                 singlePersonNode1.name = tempDic[@"name"];
+                singlePersonNode1.name = tempDic[@"name"];
                 [simpleNode addSubNode:singlePersonNode1];
             }
         }
