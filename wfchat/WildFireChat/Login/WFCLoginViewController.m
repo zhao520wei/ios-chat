@@ -152,7 +152,7 @@ alpha:1.0]
     self.loginBtn.layer.masksToBounds = YES;
     self.loginBtn.layer.cornerRadius = 4.f;
     [self.loginBtn setTitle:@"登录" forState:UIControlStateNormal];
-    self.loginBtn.backgroundColor = [UIColor colorWithHexString:@"0xe1e1e1"];
+    self.loginBtn.backgroundColor = kMainColor;
     [self.loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.loginBtn.titleLabel.font = [UIFont pingFangSCWithWeight:FontWeightStyleMedium size:16];
     self.loginBtn.enabled = NO;

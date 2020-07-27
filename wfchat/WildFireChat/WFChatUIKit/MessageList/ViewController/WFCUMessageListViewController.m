@@ -1419,7 +1419,8 @@
         WFCCLeaveMessageContent * leaveMessage = (WFCCLeaveMessageContent *)model.message.content;
         WFCUBrowserViewController *bvc = [[WFCUBrowserViewController alloc] init];
         bvc.title = [NSString stringWithFormat:@"%@", leaveMessage.title];
-        bvc.url = @"https://www.baidu.com";
+//        bvc.url = @"https://www.baidu.com";
+        bvc.url = leaveMessage.targetUrl;
         [self.navigationController pushViewController:bvc animated:YES];
     }
 }
@@ -1771,8 +1772,9 @@
     leaveMesage.startTime = [[NSDate date] timeIntervalSinceNow];
     leaveMesage.endTime = [NSDate dateWithTimeIntervalSinceNow:(60 * 60 * 24)];
     leaveMesage.title = @"请假单";
-    leaveMesage.reason = @"回家娶媳妇";
+    leaveMesage.reason = @"回家";
     leaveMesage.status = 1;
+    leaveMesage.targetUrl = @"https://www.baidu.com";
     [self sendMessage:leaveMesage];
 }
 

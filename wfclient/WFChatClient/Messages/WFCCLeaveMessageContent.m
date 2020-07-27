@@ -22,6 +22,8 @@
     [dataDict setObject:@(self.startTime) forKey:@"startTime"];
     [dataDict setObject:@(self.endTime) forKey:@"endTime"];
     [dataDict setObject:self.title forKey:@"title"];
+    [dataDict setObject:self.targetUrl forKey:@"targetUrl"];
+    [dataDict setObject:@(self.status) forKey:@"status"];
     payload.content = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:dataDict
                                                                                      options:kNilOptions
                                                                                        error:nil] encoding:NSUTF8StringEncoding];
@@ -49,6 +51,9 @@
         if ([allKey containsObject:@"targetUrl"]) {
             self.targetUrl = dictionary[@"targetUrl"] ;
         }
+        if ([allKey containsObject:@"status"]) {
+            self.status = [dictionary[@"status"] intValue];
+        }
     }
 }
 
@@ -60,13 +65,19 @@
     return WFCCPersistFlag_PERSIST_AND_COUNT;
 }
 
-+ (instancetype)contentWith:(NSString *)reason startTime:(int64_t)startTime entTime:(int64_t)endTime status:(int)status{
++ (instancetype)contentWithTitle:(NSString *)title
+                          reason:(NSString *)reason
+                       startTime:(int64_t)startTime
+                         entTime:(int64_t)endTime
+                          status:(int) status
+                       targetUrl:(NSString *)targetUrl{
     WFCCLeaveMessageContent *content = [[WFCCLeaveMessageContent alloc] init];
     content.reason = reason;
     content.startTime = startTime;
     content.endTime = endTime;
     content.status = status;
-    content.title = @"请假单1";
+    content.title = title;
+    content.targetUrl = targetUrl;
     return content;
 }
 

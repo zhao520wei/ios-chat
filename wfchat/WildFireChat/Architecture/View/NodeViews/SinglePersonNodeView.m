@@ -56,9 +56,9 @@
         self.selectBtn.selected = NO;
         
     }
-    _nameLabel.text = personNode.name;
-    _IDLabel.text = personNode.IDNum;
-    _departmentLabel.text = personNode.dePartment;
+    _nameLabel.text = personNode.displayName;
+    _IDLabel.text = [NSString stringWithFormat:@"%@", personNode.IDNum];
+    _departmentLabel.text = personNode.name;
 }
 
 - (void)layoutSubviews{

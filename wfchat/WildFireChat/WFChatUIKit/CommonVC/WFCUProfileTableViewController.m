@@ -21,6 +21,9 @@
 #import "UIFont+YH.h"
 #import "UIColor+YH.h"
 #import "WFCUConfigManager.h"
+
+//TODO: 这个页面需要删除好多东西
+
 @interface WFCUProfileTableViewController () <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate>
 @property (strong, nonatomic)UIImageView *portraitView;
 @property (strong, nonatomic)UILabel *aliasLabel;
@@ -94,14 +97,14 @@
     NSString *title;
     UIActionSheet *actionSheet;
     
-    NSString *friendTitle;
+//    NSString *friendTitle;
     NSString *blacklistTitle;
-    if ([[WFCCIMService sharedWFCIMService] isMyFriend:self.userId]) {
-        friendTitle = WFCString(@"DeleteFriend");
-    } else {
-        friendTitle = WFCString(@"AddFriend");
-        
-    }
+//    if ([[WFCCIMService sharedWFCIMService] isMyFriend:self.userId]) {
+//        friendTitle = WFCString(@"DeleteFriend");
+//    } else {
+//        friendTitle = WFCString(@"AddFriend");
+//
+//    }
     
     if ([[WFCCIMService sharedWFCIMService] isBlackListed:self.userId]) {
         blacklistTitle = WFCString(@"RemoveFromBlacklist");
@@ -109,7 +112,7 @@
         blacklistTitle = WFCString(@"Add2Blacklist");
     }
     
-    actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:WFCString(@"Cancel") destructiveButtonTitle:friendTitle otherButtonTitles:blacklistTitle, WFCString(@"SetAlias"), nil];
+    actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:WFCString(@"Cancel") destructiveButtonTitle:nil otherButtonTitles:blacklistTitle, WFCString(@"SetAlias"), nil];
     
     [actionSheet showInView:self.view];
 }
@@ -476,39 +479,41 @@
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if(buttonIndex == 0) {// friend
-        if ([[WFCCIMService sharedWFCIMService] isMyFriend:self.userId]) {
-            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-            hud.label.text = @"处理中...";
-            [hud showAnimated:YES];
-            
-            [[WFCCIMService sharedWFCIMService] deleteFriend:self.userId success:^{
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [hud hideAnimated:YES];
-
-                    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-                    hud.mode = MBProgressHUDModeText;
-                    hud.label.text = @"处理成功";
-                    hud.offset = CGPointMake(0.f, MBProgressMaxOffset);
-                    [hud hideAnimated:YES afterDelay:1.f];
-                });
-            } error:^(int error_code) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [hud hideAnimated:YES];
-
-                    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-                    hud.mode = MBProgressHUDModeText;
-                    hud.label.text = @"处理失败";
-                    hud.offset = CGPointMake(0.f, MBProgressMaxOffset);
-                    [hud hideAnimated:YES afterDelay:1.f];
-                });
-            }];
-        } else {
-            WFCUVerifyRequestViewController *vc = [[WFCUVerifyRequestViewController alloc] init];
-            vc.userId = self.userId;
-            [self.navigationController pushViewController:vc animated:YES];
-        }
-    } else if(buttonIndex == 1) {// blacklist
+    if(buttonIndex == 2) {// friend
+//        if ([[WFCCIMService sharedWFCIMService] isMyFriend:self.userId]) {
+//            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//            hud.label.text = @"处理中...";
+//            [hud showAnimated:YES];
+//
+//            [[WFCCIMService sharedWFCIMService] deleteFriend:self.userId success:^{
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    [hud hideAnimated:YES];
+//
+//                    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//                    hud.mode = MBProgressHUDModeText;
+//                    hud.label.text = @"处理成功";
+//                    hud.offset = CGPointMake(0.f, MBProgressMaxOffset);
+//                    [hud hideAnimated:YES afterDelay:1.f];
+//                });
+//            } error:^(int error_code) {
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    [hud hideAnimated:YES];
+//
+//                    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//                    hud.mode = MBProgressHUDModeText;
+//                    hud.label.text = @"处理失败";
+//                    hud.offset = CGPointMake(0.f, MBProgressMaxOffset);
+//                    [hud hideAnimated:YES afterDelay:1.f];
+//                });
+//            }];
+//        } else {
+//            WFCUVerifyRequestViewController *vc = [[WFCUVerifyRequestViewController alloc] init];
+//            vc.userId = self.userId;
+//            [self.navigationController pushViewController:vc animated:YES];
+//        }
+        
+        
+    } else if(buttonIndex == 0) {// blacklist
         if ([[WFCCIMService sharedWFCIMService] isBlackListed:self.userId]) {
             //0 取消屏蔽
             MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -555,7 +560,7 @@
                 [hud hideAnimated:YES afterDelay:1.f];
             }];
         }
-    } else if(buttonIndex == 2) {// alias
+    } else if(buttonIndex == 1) {// alias
         [self setFriendNote];
     }
 }

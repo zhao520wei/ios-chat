@@ -973,7 +973,8 @@ public:
 }
 
 - (BOOL)isMyFriend:(NSString *)userId {
-    return mars::stn::MessageDB::Instance()->isMyFriend([userId UTF8String]);
+    return true;
+//    return mars::stn::MessageDB::Instance()->isMyFriend([userId UTF8String]);
 }
 
 - (NSArray<NSString *> *)getMyFriendList:(BOOL)refresh {

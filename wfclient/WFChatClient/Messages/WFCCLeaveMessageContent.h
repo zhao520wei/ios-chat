@@ -22,10 +22,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param startTime 开始时间
 /// @param endTime 结束时间
 /// @param status  当前状态
-+ (instancetype)contentWith:(NSString *)reason
-                  startTime:(int64_t)startTime
-                    entTime:(int64_t)endTime
-                     status:(int) status;
++ (instancetype)contentWithTitle:(NSString *)title
+                          reason:(NSString *)reason
+                       startTime:(int64_t)startTime
+                         entTime:(int64_t)endTime
+                          status:(int) status
+                       targetUrl:(NSString *)targetUrl;
 
 @property (nonatomic, copy) NSString * title;
 
