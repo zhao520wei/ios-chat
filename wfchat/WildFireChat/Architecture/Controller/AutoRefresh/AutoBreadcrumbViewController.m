@@ -31,8 +31,8 @@
     self.title = @"组织架构";
     
     if (self.isAbleSelected) {
-        [self.view addSubview:self.dismissBtn];
-        [self.view addSubview:self.sureBtn];
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.dismissBtn];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.sureBtn];
         
         [self clearAllSelectedNode];
     }
@@ -113,6 +113,10 @@
     // self.currentNode 中找出所有选中的Node
     [self preorder:self.currentNode];
     
+    if (self.selectedNode) {
+        self.selectedNode([self.selectedNodes copy]);
+    }
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -124,18 +128,20 @@
 
 /// 前序遍历
 - (void)preorder:(BaseTreeNode *)node {
-    if (node.subNodes != nil && node.subNodes.count > 0) {
-        return;
-    }
-    
+   
     if ([node isMemberOfClass:[SinglePersonNode class]]) {
         SinglePersonNode * single = (SinglePersonNode *)node;
-        if (single.isSelected) {
+        if (single.selected) {
             [self.selectedNodes addObject:single];
         }
     }
+    if (node.subNodes == nil || node.subNodes.count == 0) {
+           return;
+       }
+    for (BaseTreeNode *tempNode in node.subNodes) {
+        [self preorder:tempNode];
+    }
     
-    [self preorder:node.subNodes];
     
 }
 

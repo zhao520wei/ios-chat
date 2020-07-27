@@ -838,9 +838,65 @@
     if (indexPath.row == self.memberCollectionCount-self.extraBtnNumber) {
         AutoBreadcrumbViewController * selectVC = [[AutoBreadcrumbViewController alloc] init];
         selectVC.isAbleSelected = true;
-       
-        [self presentViewController:selectVC animated:YES completion:nil];
         
+        if (self.conversation.type == Group_Type) {
+            selectVC.selectedNode = ^(NSArray<SinglePersonNode *> *nodes){
+                NSMutableArray * contacts = [NSMutableArray array];
+                for (SinglePersonNode * node in nodes) {
+                    [contacts addObject:node.uid];
+                }
+                [[WFCCIMService sharedWFCIMService] addMembers:contacts toGroup:ws.conversation.target notifyLines:@[@(0)] notifyContent:nil success:^{
+                    [[WFCCIMService sharedWFCIMService] getGroupMembers:ws.conversation.target forceUpdate:YES];
+                    
+                } error:^(int error_code) {
+                    if (error_code == ERROR_CODE_GROUP_EXCEED_MAX_MEMBER_COUNT) {
+                        [ws.view makeToast:WFCString(@"ExceedGroupMaxMemberCount") duration:1 position:CSToastPositionCenter];
+                    } else {
+                        [ws.view makeToast:WFCString(@"NetworkError") duration:1 position:CSToastPositionCenter];
+                    }
+                }];
+            };
+        } else {
+            selectVC.selectedNode = ^(NSArray<SinglePersonNode *> *nodes) {
+                NSMutableArray * contacts = [NSMutableArray array];
+                for (SinglePersonNode * node in nodes) {
+                    [contacts addObject:node.uid];
+                }
+#if !WFCU_GROUP_GRID_PORTRAIT
+                WFCUCreateGroupViewController *vc = [[WFCUCreateGroupViewController alloc] init];
+                vc.memberIds = [contacts mutableCopy];
+                if(![vc.memberIds containsObject:self.conversation.target]) {
+                    [vc.memberIds insertObject:self.conversation.target atIndex:0];
+                }
+                
+                if(![vc.memberIds containsObject:[WFCCNetworkService sharedInstance].userId]) {
+                    [vc.memberIds insertObject:[WFCCNetworkService sharedInstance].userId atIndex:0];
+                }
+                
+                vc.hidesBottomBarWhenPushed = YES;
+                UINavigationController *nav = self.navigationController;
+                [self.navigationController popToRootViewControllerAnimated:NO];
+                [nav pushViewController:vc animated:YES];
+                
+                vc.onSuccess = ^(NSString *groupId) {
+                    WFCUMessageListViewController *mvc = [[WFCUMessageListViewController alloc] init];
+                    mvc.conversation = [[WFCCConversation alloc] init];
+                    mvc.conversation.type = Group_Type;
+                    mvc.conversation.target = groupId;
+                    mvc.conversation.line = 0;
+                    
+                    mvc.hidesBottomBarWhenPushed = YES;
+                    [nav pushViewController:mvc animated:YES];
+                };
+#else
+                [self createGroup:contacts];
+#endif
+            };
+        }
+    
+        
+        UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:selectVC];
+        [self.navigationController presentViewController:navi animated:YES completion:nil];
         
        /*
         WFCUContactListViewController *pvc = [[WFCUContactListViewController alloc] init];

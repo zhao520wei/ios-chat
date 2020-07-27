@@ -18,8 +18,6 @@
 
 @property (nonatomic, copy) NSString *itemId;
 @property (nonatomic, copy) NSString *pathIds;
-@property (nonatomic, strong) NSMutableArray *subList;
-@property (nonatomic, strong) NSMutableArray *userList;
 @property (nonatomic, copy) NSString * createTime;
 
 @end

@@ -13,6 +13,6 @@
 
 @property (nonatomic, assign) BOOL isAbleSelected; // 是否是可选择状态
 
-
+@property (nonatomic, copy) void(^selectedNode)(NSArray<SinglePersonNode *> *nodes);
 
 @end
