@@ -83,18 +83,19 @@
 
 - (void)nodeTreeView:(NodeTreeView *_Nonnull)treeView didSelectNode:(id<NodeModelProtocol>_Nonnull)node{
     id selectNode = node;
-    
+
     if ([selectNode isMemberOfClass:[SinglePersonNode class]]) {
         SinglePersonNode *personNode = (SinglePersonNode *)selectNode;
         if (personNode.subNodes.count == 0 && !self.isAbleSelected) {
-            
             WFCUProfileTableViewController * profileVC = [[WFCUProfileTableViewController alloc]init];
             profileVC.userId = personNode.uid;
             profileVC.hidesBottomBarWhenPushed = YES;
             [self.viewController.navigationController pushViewController:profileVC animated:YES];
+            return;
         }
         
     }
+    
     //通过node来刷新headerView，通过回调传给外界
     if (self.selectNode) {
         if ([selectNode isMemberOfClass:[SinglePersonNode class]]  && self.isAbleSelected) {
@@ -102,7 +103,15 @@
             personNode.selected = !personNode.selected;
             self.selectNode(personNode);
         } else {
-            self.selectNode(selectNode);
+            if ([selectNode isMemberOfClass:[OrganizationNode class]]) {
+                OrganizationNode *node = (OrganizationNode *)selectNode;
+                if (node.subNodes.count > 0) {
+                    self.selectNode(selectNode);
+                }
+            }else {
+                 self.selectNode(selectNode);
+            }
+            
         }
     }
 }

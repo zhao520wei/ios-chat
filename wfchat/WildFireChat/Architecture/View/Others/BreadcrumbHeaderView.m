@@ -72,16 +72,16 @@
             CGFloat btnWidth;
             btn.tag = 1000+i;
             [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
-            btn.titleLabel.font = [UIFont systemFontOfSize:14];
+            btn.titleLabel.font = [UIFont boldSystemFontOfSize:16];
             if (i == self.allNodes.count-1) {
                 [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
                 [btn setTitle:[NSString stringWithFormat:@"%@",self.allTitles[i]] forState:UIControlStateNormal];
                 [btn setImage:nil forState:UIControlStateNormal];
-                btnWidth = [self.allTitles[i] widthForFont:[UIFont systemFontOfSize:14]];
+                btnWidth = [self.allTitles[i] widthForFont:[UIFont boldSystemFontOfSize:16]];
             }else{
                 [btn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
                 [btn setTitle:[NSString stringWithFormat:@"%@->",self.allTitles[i]] forState:UIControlStateNormal];
-                btnWidth = [btn.titleLabel.text widthForFont:[UIFont systemFontOfSize:14]]+6;
+                btnWidth = [btn.titleLabel.text widthForFont:[UIFont boldSystemFontOfSize:16]]+6;
             }
             btn.frame = CGRectMake(left, 0, btnWidth, self.frame.size.height);
             left += btnWidth;

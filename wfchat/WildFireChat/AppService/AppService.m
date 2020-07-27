@@ -13,6 +13,7 @@
 #import "PCSessionViewController.h"
 #import "WFCUGroupAnnouncement.h"
 
+#define kCompanyArchitectureJson   @"kCompanyArchitectureJson"
 
 static AppService *sharedSingleton = nil;
 
@@ -374,6 +375,18 @@ static AppService *sharedSingleton = nil;
     }];
 }
 
+- (void) loadCompanyArchitectureDataWithSuccess:(void(^)(NSDictionary *tree))successBlock
+                                          error:(void(^)(NSInteger error_code))errorBlock {
+    
+    NSDictionary * result = [[NSUserDefaults standardUserDefaults] dictionaryForKey:kCompanyArchitectureJson];
+    if (result) {
+        successBlock(result);
+    } else {
+        [self getCompanyArchitectureDataWithSuccess:successBlock error:errorBlock];
+    }
+    
+}
+
 
 - (void)getCompanyArchitectureDataWithSuccess:(void(^)(NSDictionary *tree))successBlock
                                         error:(void(^)(NSInteger error_code))errorBlock{
@@ -383,6 +396,9 @@ static AppService *sharedSingleton = nil;
         NSLog(@"/department/tree : %@", dict);
         NSInteger code = [dict[@"code"] integerValue];
         NSDictionary * result = [dict[@"result"] firstObject];
+        
+        [[NSUserDefaults standardUserDefaults] setObject:result forKey:kCompanyArchitectureJson];
+        [[NSUserDefaults standardUserDefaults] synchronize];
         if (result != nil) {
             successBlock(result);
         } else {

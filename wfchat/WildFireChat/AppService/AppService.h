@@ -44,6 +44,9 @@ NS_ASSUME_NONNULL_BEGIN
           success:(void(^)(Device *device))successBlock
             error:(void(^)(int error_code))errorBlock;
 
+- (void) loadCompanyArchitectureDataWithSuccess:(void(^)(NSDictionary *tree))successBlock
+                                          error:(void(^)(NSInteger error_code))errorBlock;
+
 - (void)getCompanyArchitectureDataWithSuccess:(void(^)(NSDictionary *tree))successBlock
                                         error:(void(^)(NSInteger error_code))errorBlock;
 @end

@@ -81,8 +81,8 @@
 
 - (void) loadRealData {
     __weak __typeof(self) weakSelf = self;
-    [[AppService sharedAppService] getCompanyArchitectureDataWithSuccess:^(NSDictionary * _Nonnull tree) {
-        
+    
+    [[AppService sharedAppService] loadCompanyArchitectureDataWithSuccess:^(NSDictionary * _Nonnull tree) {
         BaseTreeNode * baseNode = [weakSelf dealwithDictionaryTree:tree];
         _baseNode = baseNode;
         weakSelf.currentNode = baseNode;
@@ -91,6 +91,17 @@
     } error:^(NSInteger error_code) {
         
     }];
+    
+//    [[AppService sharedAppService] getCompanyArchitectureDataWithSuccess:^(NSDictionary * _Nonnull tree) {
+//
+//        BaseTreeNode * baseNode = [weakSelf dealwithDictionaryTree:tree];
+//        _baseNode = baseNode;
+//        weakSelf.currentNode = baseNode;
+//        [weakSelf.view addSubview:weakSelf.tableview];
+//        [weakSelf.tableview reloadData];
+//    } error:^(NSInteger error_code) {
+//
+//    }];
     
 }
 

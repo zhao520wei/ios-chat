@@ -7,6 +7,7 @@
 //
 
 #import "SinglePersonNodeView.h"
+#import "UIFont+YH.h"
 
 
 
@@ -64,12 +65,12 @@
         }
     }
     _nameLabel.text = personNode.displayName;
-    _IDLabel.text = [NSString stringWithFormat:@"%@", personNode.mobile];
-    _departmentLabel.text = personNode.address;
+//    _IDLabel.text = [NSString stringWithFormat:@"%@", personNode.mobile];
+//    _departmentLabel.text = personNode.address;
     
-    _nameLabel.backgroundColor = UIColor.redColor;
-    _IDLabel.backgroundColor = UIColor.purpleColor;
-    _departmentLabel.backgroundColor = UIColor.orangeColor;
+//    _nameLabel.backgroundColor = UIColor.redColor;
+//    _IDLabel.backgroundColor = UIColor.purpleColor;
+//    _departmentLabel.backgroundColor = UIColor.orangeColor;
 }
 
 - (void)layoutSubviews{
@@ -105,8 +106,8 @@
 - (UILabel *)nameLabel{
     if (!_nameLabel) {
         _nameLabel = [[UILabel alloc]init];
-        _nameLabel.font = [UIFont systemFontOfSize:14];
-        _nameLabel.textColor = [UIColor blackColor];
+        _nameLabel.font = [UIFont pingFangSCWithWeight:FontWeightStyleRegular size:16];
+        _nameLabel.textColor = kMainColor;
         _nameLabel.numberOfLines = 0;
         _nameLabel.lineBreakMode = NSLineBreakByTruncatingMiddle;
 
@@ -117,7 +118,7 @@
 - (UILabel *)IDLabel{
     if (!_IDLabel) {
         _IDLabel = [[UILabel alloc]init];
-        _IDLabel.font = [UIFont systemFontOfSize:14];
+        _IDLabel.font = [UIFont pingFangSCWithWeight:FontWeightStyleRegular size:16];
         _IDLabel.textColor = [UIColor blackColor];
     }
     return _IDLabel;
@@ -126,7 +127,7 @@
 - (UILabel *)departmentLabel{
     if (!_departmentLabel) {
         _departmentLabel = [[UILabel alloc]init];
-        _departmentLabel.font = [UIFont systemFontOfSize:14];
+        _departmentLabel.font = [UIFont pingFangSCWithWeight:FontWeightStyleRegular size:16];
         _departmentLabel.textColor = [UIColor blackColor];
         _departmentLabel.numberOfLines = 0;
         _departmentLabel.lineBreakMode = NSLineBreakByTruncatingMiddle;
