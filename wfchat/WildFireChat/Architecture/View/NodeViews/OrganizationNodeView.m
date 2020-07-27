@@ -39,6 +39,8 @@
     //将node转为该view对应的指定node，然后执行操作
     OrganizationNode *simpleNode = (OrganizationNode *)node;
     self.titleLabel.text = simpleNode.name;
+    
+    [self.rightImgView setHidden: !(simpleNode.subNodes > 0)];
 }
 
 - (void)layoutSubviews{

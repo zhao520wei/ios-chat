@@ -58,11 +58,13 @@
 - (id<NodeViewProtocol>_Nonnull)nodeTreeView:(NodeTreeView *)treeView viewForNode:(id<NodeModelProtocol>)node{
     id _node = node;
     if ([_node isMemberOfClass:[SinglePersonNode class]]) {
-        return [[SinglePersonNodeView alloc]initWithFrame:CGRectMake(0, 0,kScreenWidth, node.nodeHeight)];
+        SinglePersonNodeView * singleNode = [[SinglePersonNodeView alloc]initWithFrame:CGRectMake(0, 0,kScreenWidth, node.nodeHeight) withIsAbleSelected:self.isAbleSelected];
+        return singleNode;
     }else if([_node isMemberOfClass:[OrganizationNode class]]){
         return [[OrganizationNodeView alloc]initWithFrame:CGRectMake(0, 0,kScreenWidth, node.nodeHeight)];
     }
-    return [[SinglePersonNodeView alloc]initWithFrame:CGRectMake(0, 0,[UIScreen mainScreen].bounds.size.width, node.nodeHeight)];
+    SinglePersonNodeView * singleNode =  [[SinglePersonNodeView alloc]initWithFrame:CGRectMake(0, 0,[UIScreen mainScreen].bounds.size.width, node.nodeHeight) withIsAbleSelected:self.isAbleSelected];
+    return singleNode;
 }
 
 - (CGFloat)nodeTreeView:(NodeTreeView *_Nonnull)treeView indentAtNodeLevel:(NSInteger)nodeLevel{
@@ -81,19 +83,27 @@
 
 - (void)nodeTreeView:(NodeTreeView *_Nonnull)treeView didSelectNode:(id<NodeModelProtocol>_Nonnull)node{
     id selectNode = node;
+    
     if ([selectNode isMemberOfClass:[SinglePersonNode class]]) {
         SinglePersonNode *personNode = (SinglePersonNode *)selectNode;
-        if (personNode.subNodes.count == 0) {
-            personNode.selected = !personNode.selected;
+        if (personNode.subNodes.count == 0 && !self.isAbleSelected) {
+            
             WFCUProfileTableViewController * profileVC = [[WFCUProfileTableViewController alloc]init];
             profileVC.userId = personNode.uid;
             profileVC.hidesBottomBarWhenPushed = YES;
             [self.viewController.navigationController pushViewController:profileVC animated:YES];
         }
+        
     }
     //通过node来刷新headerView，通过回调传给外界
     if (self.selectNode) {
-        self.selectNode((BaseTreeNode *)node);
+        if ([selectNode isMemberOfClass:[SinglePersonNode class]]  && self.isAbleSelected) {
+            SinglePersonNode *personNode = (SinglePersonNode *)selectNode;
+            personNode.selected = !personNode.selected;
+            self.selectNode(personNode);
+        } else {
+            self.selectNode(selectNode);
+        }
     }
 }
 

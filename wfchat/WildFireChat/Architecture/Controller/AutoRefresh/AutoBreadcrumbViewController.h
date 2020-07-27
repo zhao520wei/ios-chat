@@ -11,4 +11,8 @@
 
 @interface AutoBreadcrumbViewController : BaseViewController
 
+@property (nonatomic, assign) BOOL isAbleSelected; // 是否是可选择状态
+
+
+
 @end

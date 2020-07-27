@@ -79,7 +79,7 @@
         self.currentNode = node;
         if ([node isMemberOfClass:[SinglePersonNode class]]) {
             SinglePersonNode *cusNode = (SinglePersonNode *)node;
-            [self.breadcrumbView addSelectedNode:node withTitle:cusNode.name];
+            [self.breadcrumbView addSelectedNode:node withTitle:cusNode.displayName];
         }else if ([node isMemberOfClass:[OrganizationNode  class]]){
             OrganizationNode *simpleNode = (OrganizationNode *)node;
             [self.breadcrumbView addSelectedNode:simpleNode withTitle:simpleNode.name];

@@ -8,6 +8,8 @@
 
 #import "SinglePersonNodeView.h"
 
+
+
 @interface SinglePersonNodeView ()
 /**
  姓名
@@ -26,6 +28,9 @@
  */
 @property (nonatomic, strong) UIButton *selectBtn;
 
+
+@property (nonatomic, assign) BOOL isAbleSelected;// 是否能选中状态
+
 @end
 
 @implementation SinglePersonNodeView
@@ -37,9 +42,10 @@
     // Drawing code
 }
 */
-- (instancetype)initWithFrame:(CGRect)frame{
+- (instancetype)initWithFrame:(CGRect)frame withIsAbleSelected:(BOOL)isCanSelected{
     if (self = [super initWithFrame:frame]) {
-        [self setupSubviews];
+        self.isAbleSelected = isCanSelected;
+        [self setupSubviewsWithIsAbleSelected:isCanSelected];
     }
     return self;
 }
@@ -50,29 +56,41 @@
 - (void)updateNodeViewWithNodeModel:(id<NodeModelProtocol>)node{
     //将node转为该view对应的指定node，然后执行操作
     SinglePersonNode *personNode = (SinglePersonNode *)node;
-    if (personNode.selected == YES) {
-        self.selectBtn.selected = YES;
-    }else{
-        self.selectBtn.selected = NO;
-        
+    if (self.isAbleSelected) {
+        if (personNode.selected == YES) {
+            self.selectBtn.selected = YES;
+        }else{
+            self.selectBtn.selected = NO;
+        }
     }
     _nameLabel.text = personNode.displayName;
-    _IDLabel.text = [NSString stringWithFormat:@"%@", personNode.IDNum];
-    _departmentLabel.text = personNode.name;
+    _IDLabel.text = [NSString stringWithFormat:@"%@", personNode.mobile];
+    _departmentLabel.text = personNode.address;
+    
+    _nameLabel.backgroundColor = UIColor.redColor;
+    _IDLabel.backgroundColor = UIColor.purpleColor;
+    _departmentLabel.backgroundColor = UIColor.orangeColor;
 }
 
 - (void)layoutSubviews{
     [super layoutSubviews];
-    _selectBtn.frame = CGRectMake(12, self.frame.size.height/2-6, 18, 18);
-    _nameLabel.frame = CGRectMake(12+12+18, 0, 80, self.frame.size.height);
-    _IDLabel.frame = CGRectMake(12+12+18+80+12, self.frame.size.height/2-7, 60, 14);
-    _departmentLabel.frame = CGRectMake(12+12+18+80+12+60+12, 0, self.frame.size.width-(12+12+18+60+12+80+12+12), self.frame.size.height);
+    CGFloat leftOffset = 12.0;
+    if (self.isAbleSelected) {
+        _selectBtn.frame = CGRectMake(12, self.frame.size.height/2-6, 18, 18);
+        leftOffset += 50.0 ;
+    }
+    
+    _nameLabel.frame = CGRectMake(12+leftOffset, 0, 80, self.frame.size.height);
+    _IDLabel.frame = CGRectMake(12+leftOffset+80+12, self.frame.size.height/2-7, 150, 14);
+    _departmentLabel.frame = CGRectMake(12+leftOffset+80+12+150+12, 0, self.frame.size.width-(12+leftOffset+150+12+80+12+12), self.frame.size.height);
 }
 
 #pragma mark ======== Private Methods ========
 
-- (void)setupSubviews{
-    [self addSubview:self.selectBtn];
+- (void)setupSubviewsWithIsAbleSelected:(BOOL)isCanSelected{
+    if (isCanSelected) {
+        [self addSubview:self.selectBtn];
+    }
     [self addSubview:self.nameLabel];
     [self addSubview:self.IDLabel];
     [self addSubview:self.departmentLabel];
@@ -124,5 +142,7 @@
     }
     return _selectBtn;
 }
+
+
 
 @end

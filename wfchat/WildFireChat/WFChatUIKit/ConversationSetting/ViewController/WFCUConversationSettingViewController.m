@@ -31,6 +31,7 @@
 #import "WFCUGroupAnnouncementViewController.h"
 #import "UIFont+YH.h"
 #import "UIColor+YH.h"
+#import "AutoBreadcrumbViewController.h"
 
 @interface WFCUConversationSettingViewController () <UITableViewDataSource, UITableViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource>
 @property (nonatomic, strong)UICollectionView *memberCollectionView;
@@ -835,6 +836,13 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     __weak typeof(self)ws = self;
     if (indexPath.row == self.memberCollectionCount-self.extraBtnNumber) {
+        AutoBreadcrumbViewController * selectVC = [[AutoBreadcrumbViewController alloc] init];
+        selectVC.isAbleSelected = true;
+       
+        [self presentViewController:selectVC animated:YES completion:nil];
+        
+        
+       /*
         WFCUContactListViewController *pvc = [[WFCUContactListViewController alloc] init];
         pvc.selectContact = YES;
         pvc.multiSelect = YES;
@@ -895,6 +903,8 @@
         pvc.disableUsers = disabledUser;
         UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:pvc];
         [self.navigationController presentViewController:navi animated:YES completion:nil];
+        
+        */
     } else if(indexPath.row == self.memberCollectionCount-self.extraBtnNumber + 1) {
         WFCUContactListViewController *pvc = [[WFCUContactListViewController alloc] init];
         pvc.selectContact = YES;

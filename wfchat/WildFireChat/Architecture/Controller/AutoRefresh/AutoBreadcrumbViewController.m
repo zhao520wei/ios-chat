@@ -15,6 +15,12 @@
  */
 @property (nonatomic, strong) BreadcrumbHeaderView *breadcrumbView;
 
+@property (nonatomic, strong) UIButton *dismissBtn;
+
+@property (nonatomic, strong) UIButton *sureBtn;
+
+@property (nonatomic, retain) NSMutableArray<SinglePersonNode *> * selectedNodes;
+
 @end
 
 @implementation AutoBreadcrumbViewController
@@ -23,6 +29,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"组织架构";
+    
+    if (self.isAbleSelected) {
+        [self.view addSubview:self.dismissBtn];
+        [self.view addSubview:self.sureBtn];
+        
+        [self clearAllSelectedNode];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,11 +69,12 @@
         //cell事件的block回调,只负责将所选择的点传递出来，更新headerview，不需要手动刷新
         __weak typeof(self)weakSelf = self;
         cell.selectNode = ^(BaseTreeNode *node) {
-            if (node.subNodes.count > 0) {
+//            if (node.subNodes.count > 0) {
                 [weakSelf selectNode:node nodeTreeAnimation:weakSelf.rowAnimation];
-            }
+//            }
         };
     }
+    cell.isAbleSelected = self.isAbleSelected;
     [cell reloadTreeViewWithNode:self.currentNode RowAnimation:self.rowAnimation];
     return cell;
 }
@@ -79,7 +93,7 @@
     if (node.subNodes.count>0) {
         if ([node isMemberOfClass:[SinglePersonNode class]]) {
             SinglePersonNode *personNode = (SinglePersonNode *)node;
-            [self.breadcrumbView addSelectedNode:personNode withTitle:personNode.name];
+            [self.breadcrumbView addSelectedNode:personNode withTitle:personNode.displayName];
         }else if ([node isMemberOfClass:[OrganizationNode  class]]){
             OrganizationNode *orgNode = (OrganizationNode *)node;
             [self.breadcrumbView addSelectedNode:orgNode withTitle:orgNode.name];
@@ -91,7 +105,39 @@
 
 #pragma mark ======== Event Response ========
 
+- (void) dismiss {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void) sure {
+    // self.currentNode 中找出所有选中的Node
+    [self preorder:self.currentNode];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void) clearAllSelectedNode {
+    
+}
+
 #pragma mark ======== Private Methods ========
+
+/// 前序遍历
+- (void)preorder:(BaseTreeNode *)node {
+    if (node.subNodes != nil && node.subNodes.count > 0) {
+        return;
+    }
+    
+    if ([node isMemberOfClass:[SinglePersonNode class]]) {
+        SinglePersonNode * single = (SinglePersonNode *)node;
+        if (single.isSelected) {
+            [self.selectedNodes addObject:single];
+        }
+    }
+    
+    [self preorder:node.subNodes];
+    
+}
 
 #pragma mark ======== Setters && Getters ========
 - (BreadcrumbHeaderView *)breadcrumbView{
@@ -116,6 +162,38 @@
     }
     return _breadcrumbView;
 }
+
+- (UIButton *)dismissBtn{
+    if (!_dismissBtn) {
+        _dismissBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _dismissBtn.frame = CGRectMake(10,12 , 44, 40);
+        _dismissBtn.contentMode = UIViewContentModeLeft;
+        [_dismissBtn setTitle:@"取消" forState:UIControlStateNormal];
+        [_dismissBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [_dismissBtn addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _dismissBtn;
+}
+
+- (UIButton *)sureBtn{
+    if (!_sureBtn) {
+        _sureBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _sureBtn.frame = CGRectMake(kScreenWidth - 10 - 44,12 , 44, 40);
+        _sureBtn.contentMode = UIViewContentModeLeft;
+        [_sureBtn setTitle:@"确定" forState:UIControlStateNormal];
+        [_sureBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [_sureBtn addTarget:self action:@selector(sure) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _sureBtn;
+}
+
+-(NSMutableArray<SinglePersonNode *> *)selectedNodes {
+    if (!_selectedNodes) {
+        _selectedNodes = [NSMutableArray array];
+    }
+    return  _selectedNodes;
+}
+
 /*
  #pragma mark - Navigation
  

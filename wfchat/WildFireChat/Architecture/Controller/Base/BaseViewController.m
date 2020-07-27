@@ -11,7 +11,7 @@
 
 @interface BaseViewController ()
 
-@property (nonatomic, strong) UIButton *dismissBtn;
+
 
 @end
 
@@ -23,8 +23,6 @@
     self.rowAnimation = UITableViewRowAnimationNone;
     self.view.backgroundColor = [UIColor whiteColor];
    
-//    [self.view addSubview:self.dismissBtn];
-    
 //    [self loadData];
     
     [self loadRealData];
@@ -77,9 +75,7 @@
 #pragma mark ======== Notifications && Observers ========
 
 #pragma mark ======== Event Response ========
-- (void)dismiss{
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
+
 #pragma mark ======== Private Methods ========
 
 
@@ -117,22 +113,21 @@
     simpleNode.itemId = itemId;
     simpleNode.pathIds = pathIds;
     simpleNode.createTime = createTime;
-    
-    [baseNode addSubNode:simpleNode];
+
    
     if (subList != nil && subList.count > 0) {
         NSMutableArray * array = [self dealwithSubTree:subList];
-        simpleNode.userList = array;
         for (OrganizationNode * node in array) {
             [simpleNode addSubNode:node];
         }
+        [baseNode addSubNode: simpleNode];
     }
     
     if (userList != nil && userList.count > 0) {
         for (NSDictionary * tempDic in userList) {
             SinglePersonNode *singlePersonNode1 = [[SinglePersonNode alloc]init];
             singlePersonNode1.nodeHeight = 50;
-            singlePersonNode1.name = tempDic[@"displayName"];
+            singlePersonNode1.displayName = tempDic[@"displayName"];
             singlePersonNode1.address = tempDic[@"address"];
             singlePersonNode1.did = tempDic[@"did"];
             singlePersonNode1.gender = tempDic[@"gender"];
@@ -140,6 +135,7 @@
             singlePersonNode1.mobile = tempDic[@"mobile"];
             singlePersonNode1.password = tempDic[@"password"];
             singlePersonNode1.uid = tempDic[@"uid"];
+            singlePersonNode1.name = tempDic[@"name"];
             [baseNode addSubNode:singlePersonNode1];
         }
         
@@ -167,7 +163,7 @@
         simpleNode.itemId = itemId;
         simpleNode.pathIds = pathIds;
         simpleNode.createTime = createTime;
-        simpleNode.subList = temSubList;
+
         NSMutableArray * users = [NSMutableArray array];
         if (temSubList != nil && temSubList.count > 0) {
             NSMutableArray * tempArray = [self dealwithSubTree:temSubList];
@@ -180,7 +176,7 @@
             for (NSDictionary * tempDic in tempUserList) {
                 SinglePersonNode *singlePersonNode1 = [[SinglePersonNode alloc]init];
                 singlePersonNode1.nodeHeight = 50;
-                singlePersonNode1.name = tempDic[@"displayName"];
+                singlePersonNode1.displayName = tempDic[@"displayName"];
                 singlePersonNode1.address = tempDic[@"address"];
                 singlePersonNode1.did = tempDic[@"did"];
                 singlePersonNode1.gender = tempDic[@"gender"];
@@ -188,11 +184,11 @@
                 singlePersonNode1.mobile = tempDic[@"mobile"];
                 singlePersonNode1.password = tempDic[@"password"];
                 singlePersonNode1.uid = tempDic[@"uid"];
+                 singlePersonNode1.name = tempDic[@"name"];
                 [simpleNode addSubNode:singlePersonNode1];
             }
         }
         
-        simpleNode.userList = [users copy];
         [array addObject: simpleNode];
     }
     
@@ -203,6 +199,8 @@
 
 - (void)loadData{
     //数据处理
+    [self.view addSubview:self.tableview];
+    
     BaseTreeNode *baseNode = [[BaseTreeNode alloc]init];
     baseNode.fatherNode = baseNode;//父节点等于自身
     _baseNode = baseNode;
@@ -260,17 +258,7 @@
     return _tableview;
 }
 
-- (UIButton *)dismissBtn{
-    if (!_dismissBtn) {
-        _dismissBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _dismissBtn.frame = CGRectMake(6,12 , 44, 40);
-        _dismissBtn.contentMode = UIViewContentModeLeft;
-        [_dismissBtn setTitle:@"返回" forState:UIControlStateNormal];
-        [_dismissBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [_dismissBtn addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _dismissBtn;
-}
+
 /*
  #pragma mark - Navigation
  

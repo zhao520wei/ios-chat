@@ -12,4 +12,6 @@
 
 @interface SinglePersonNodeView : UIView<NodeViewProtocol>
 
+- (instancetype)initWithFrame:(CGRect)frame withIsAbleSelected:(BOOL)isCanSelected;
+
 @end
