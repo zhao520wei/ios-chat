@@ -9,6 +9,8 @@
 #import "TreeOrganizationDisplayCell.h"
 #import "SinglePersonNodeView.h"
 #import "OrganizationNodeView.h"
+#import "WFCUProfileTableViewController.h"
+#import "UIView+TYAlertView.h"
 
 @interface TreeOrganizationDisplayCell ()<NodeTreeViewDelegate>
 
@@ -83,6 +85,10 @@
         SinglePersonNode *personNode = (SinglePersonNode *)selectNode;
         if (personNode.subNodes.count == 0) {
             personNode.selected = !personNode.selected;
+            WFCUProfileTableViewController * profileVC = [[WFCUProfileTableViewController alloc]init];
+            profileVC.userId = personNode.uid;
+            profileVC.hidesBottomBarWhenPushed = YES;
+            [self.viewController.navigationController pushViewController:profileVC animated:YES];
         }
     }
     //通过node来刷新headerView，通过回调传给外界

@@ -117,29 +117,43 @@
     simpleNode.itemId = itemId;
     simpleNode.pathIds = pathIds;
     simpleNode.createTime = createTime;
-    simpleNode.subList = subList;
-    if (userList != nil && userList.count > 0) {
-        NSMutableArray * array = [self dealwithSubTree:userList];
+    
+    [baseNode addSubNode:simpleNode];
+   
+    if (subList != nil && subList.count > 0) {
+        NSMutableArray * array = [self dealwithSubTree:subList];
         simpleNode.userList = array;
         for (OrganizationNode * node in array) {
             [simpleNode addSubNode:node];
         }
-    } else {
+    }
+    
+    if (userList != nil && userList.count > 0) {
+        for (NSDictionary * tempDic in userList) {
+            SinglePersonNode *singlePersonNode1 = [[SinglePersonNode alloc]init];
+            singlePersonNode1.nodeHeight = 50;
+            singlePersonNode1.name = tempDic[@"displayName"];
+            singlePersonNode1.address = tempDic[@"address"];
+            singlePersonNode1.did = tempDic[@"did"];
+            singlePersonNode1.gender = tempDic[@"gender"];
+            singlePersonNode1.IDNum = tempDic[@"id"] ;
+            singlePersonNode1.mobile = tempDic[@"mobile"];
+            singlePersonNode1.password = tempDic[@"password"];
+            singlePersonNode1.uid = tempDic[@"uid"];
+            [baseNode addSubNode:singlePersonNode1];
+        }
         
     }
-    [baseNode addSubNode:simpleNode];
-    
-
     
     return  baseNode;
 }
 
-- (NSMutableArray *) dealwithSubTree:(NSArray *)userList {
+- (NSMutableArray *) dealwithSubTree:(NSArray *)subList {
     
     NSMutableArray * array = [NSMutableArray array];
     
-    for (int i= 0; i < userList.count; i++) {
-        NSDictionary * tree = userList[i];
+    for (int i= 0; i < subList.count; i++) {
+        NSDictionary * tree = subList[i];
         NSString * address = tree[@"address"];
         NSString * createTime = tree[@"createTime"];
         NSString * itemId = tree[@"id"];
@@ -155,14 +169,29 @@
         simpleNode.createTime = createTime;
         simpleNode.subList = temSubList;
         NSMutableArray * users = [NSMutableArray array];
-        if (userList != nil && userList.count > 0) {
-            NSMutableArray * tempArray = [self dealwithSubTree:tempUserList];
+        if (temSubList != nil && temSubList.count > 0) {
+            NSMutableArray * tempArray = [self dealwithSubTree:temSubList];
             [users addObjectsFromArray:tempArray];
             for (OrganizationNode * node in tempArray) {
                 [simpleNode addSubNode:node];
             }
-             
         }
+        if (tempUserList != nil && tempUserList.count > 0) {
+            for (NSDictionary * tempDic in tempUserList) {
+                SinglePersonNode *singlePersonNode1 = [[SinglePersonNode alloc]init];
+                singlePersonNode1.nodeHeight = 50;
+                singlePersonNode1.name = tempDic[@"displayName"];
+                singlePersonNode1.address = tempDic[@"address"];
+                singlePersonNode1.did = tempDic[@"did"];
+                singlePersonNode1.gender = tempDic[@"gender"];
+                singlePersonNode1.IDNum = tempDic[@"id"] ;
+                singlePersonNode1.mobile = tempDic[@"mobile"];
+                singlePersonNode1.password = tempDic[@"password"];
+                singlePersonNode1.uid = tempDic[@"uid"];
+                [simpleNode addSubNode:singlePersonNode1];
+            }
+        }
+        
         simpleNode.userList = [users copy];
         [array addObject: simpleNode];
     }
@@ -195,7 +224,7 @@
                         personNode1.nodeHeight = 50;
                         personNode1.name = [NSString stringWithFormat:@"%@-张三%d",personNode.name,m];
                         personNode1.IDNum =@"1003022";
-                        personNode1.dePartment =@"资金部";
+                        personNode1.displayName =@"资金部";
                         [personNode0 addSubNode:personNode1];
                     }
                     [personNode addSubNode:personNode0];

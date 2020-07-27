@@ -84,7 +84,7 @@
             OrganizationNode *orgNode = (OrganizationNode *)node;
             [self.breadcrumbView addSelectedNode:orgNode withTitle:orgNode.name];
         }else{
-            [self.breadcrumbView addSelectedNode:node withTitle:@"xxx公司"];
+            [self.breadcrumbView addSelectedNode:node withTitle:@"倚天科技公司"];
         }
     }
 }
@@ -102,7 +102,7 @@
         _breadcrumbView.showsHorizontalScrollIndicator = YES;
         _breadcrumbView.backgroundColor = [UIColor colorWithRed:236/255.0 green:236/255.0 blue:236/255.0 alpha:1.0];
         __weak typeof(self)weakSelf = self;
-        [_breadcrumbView addSelectedNode:weakSelf.currentNode withTitle:@"xxx公司"];
+        [_breadcrumbView addSelectedNode:weakSelf.currentNode withTitle:@"倚天科技公司"];
         _breadcrumbView.selectNode = ^(BaseTreeNode *node,UITableViewRowAnimation nodeTreeAnimation) {
             if (node.subNodes.count == 0) {
                 NSLog(@"do nothing");

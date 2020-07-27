@@ -12,15 +12,24 @@
 /**
  姓名
  */
-@property (nonatomic, copy) NSString *name;
-/**
- 工号
- */
-@property (nonatomic, copy) NSString *IDNum;
-/**
- 部门
- */
-@property (nonatomic, copy) NSString *dePartment;
+@property (nonatomic, copy) NSString * displayName;
+
+@property (nonatomic, copy) NSString * IDNum;
+
+@property (nonatomic, copy) NSString * did;
+
+@property (nonatomic, copy) NSString * gender;
+
+@property (nonatomic, copy) NSString * mobile;
+
+@property (nonatomic, copy) NSString * name;
+
+@property (nonatomic, copy) NSString * password;
+
+@property (nonatomic, copy) NSString * uid;
+
+@property (nonatomic, copy) NSString * address;
+
 /**
  是否选中
  */
