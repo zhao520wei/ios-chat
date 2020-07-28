@@ -50,6 +50,8 @@ alpha:1.0]
 
 #define  kTabbarSafeBottomMargin        (kIs_iPhoneX ? 34.f : 0.f)
 
+#define kTabBarHeight (CGFloat)(kIs_iPhoneX?(49.0 + 34.0):(49.0))
+
 #define kMessageListChanged  @"kMessageListChanged"
 
 #define WFCU_SUPPORT_VOIP 1
@@ -73,6 +75,9 @@ alpha:1.0]
 #define kSavedUserId    @"savedUserId"
 #define kSavedWebToken  @"savedWebToken"
 
+
+// app通知
+#define kUserLoginSuccessNotification @"kUserLoginSuccessNotification"
 
 
 #endif /* WFChat_Prefix_Header_pch */

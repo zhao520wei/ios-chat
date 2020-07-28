@@ -34,6 +34,7 @@ green:((float)((rgbValue & 0xFF00) >> 8)) / 255.0                               
 blue:((float)(rgbValue & 0xFF)) / 255.0                                                           \
 alpha:1.0]
 
+
 @interface WFCLoginViewController () <UITextFieldDelegate>
 
 @property (strong, nonatomic) UIView  * containerView;
@@ -293,7 +294,8 @@ alpha:1.0]
         [[NSUserDefaults standardUserDefaults] setObject:userId forKey:kSavedUserId];
         [[NSUserDefaults standardUserDefaults] setObject:webToken forKey:kSavedWebToken];
         [[NSUserDefaults standardUserDefaults] synchronize];
-        
+        [[NSNotificationCenter defaultCenter] postNotificationName:kUserLoginSuccessNotification object:nil];
+        NSLog(@"token :%@  \n webToken: %@ \n userID: %@",token,webToken,userId);
         
     //需要注意token跟clientId是强依赖的，一定要调用getClientId获取到clientId，然后用这个clientId获取token，这样connect才能成功，如果随便使用一个clientId获取到的token将无法链接成功。
         [[WFCCNetworkService sharedInstance] connect:userId token:token];

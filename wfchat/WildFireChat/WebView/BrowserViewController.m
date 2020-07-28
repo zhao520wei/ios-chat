@@ -88,7 +88,7 @@
 - (NJKWebViewProgressView *)progressView {
     if (!_progressView) {
         _progressView = [[NJKWebViewProgressView alloc] init];
-        _progressView.progressBarView.backgroundColor = [UIColor redColor];
+        _progressView.progressBarView.backgroundColor = kMainColor;
     }
     return _progressView;
 }
@@ -123,7 +123,7 @@
                                                style:UIBarButtonItemStylePlain
                                               target:self
                                               action:@selector(kswv_closeBarButtonItemHandler)];
-        _closeBarButtonItem.tintColor = [UIColor redColor];
+        _closeBarButtonItem.tintColor = kMainColor;
     }
     return _closeBarButtonItem;
 }
@@ -136,7 +136,7 @@
 //                                                            action:@selector(kswv_moreBarButtonItemHandler)];
 //        _moreBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"分享_01.png"] style:UIBarButtonItemStylePlain target:self action:@selector(kswv_moreBarButtonItemHandler)];
         _moreBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"分享" style:UIBarButtonItemStylePlain target:self action:@selector(kswv_moreBarButtonItemHandler)];
-        _moreBarButtonItem.tintColor = [UIColor redColor];
+        _moreBarButtonItem.tintColor = kMainColor;
     }
     return _moreBarButtonItem;
 }
@@ -183,7 +183,7 @@
     self.URL = [NSURL URLWithString:[NSString stringWithFormat:@"%@?%@", self.URL.absoluteString,webToken]];
     
     [self.view addSubview:self.webView];
-    self.webView.frame = self.view.bounds;
+    self.webView.frame = CGRectMake(0, 0, kScreenWidth, self.view.bounds.size.height - kTabBarHeight);
     
     
     self.navigationController.navigationBar.tintColor = kMainColor;
@@ -191,32 +191,34 @@
     self.navigationItem.leftBarButtonItem = self.backBarButtonItem;
     
     
-//     加载地址, 当url为空时加载测试页
-         //[NSURL URLWithString:@"http://www.163.com"]
-
-        if (self.URL == nil) {
-            NSString *path = [[NSBundle mainBundle] pathForResource:@"demo" ofType:@"html"];
-            self.URL = [NSURL fileURLWithPath:path];
-        }
-
-        self.webView.allowsBackForwardNavigationGestures = YES;
-        
+    //     加载地址, 当url为空时加载测试页
+    //[NSURL URLWithString:@"http://www.163.com"]
     
-
-//        if (self.URL == nil) {
-//            self.URL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"404" ofType:@"html"]];
-//        }
-
-        NSString *str = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle].infoDictionary objectForKey:@"CFBundleExecutable"], KS_APP_VERSION];
-        
-        [self.webView setValue:str forKey:@"applicationNameForUserAgent"];
+    if (self.URL == nil) {
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"demo" ofType:@"html"];
+        self.URL = [NSURL fileURLWithPath:path];
+    }
+    
+    self.webView.allowsBackForwardNavigationGestures = YES;
+    
+    
+    
+    //        if (self.URL == nil) {
+    //            self.URL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"404" ofType:@"html"]];
+    //        }
+    
+    NSString *str = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle].infoDictionary objectForKey:@"CFBundleExecutable"], KS_APP_VERSION];
+    
+    [self.webView setValue:str forKey:@"applicationNameForUserAgent"];
     //    NSURLRequest *request = [NSURLRequest requestWithURL:self.URL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:60];
     //    [self.webView loadRequest:request];
-        [self.webView loadRequest:[NSURLRequest requestWithURL:self.URL]];
-        
-        self.basePath = self.URL.path;
+    [self.webView loadRequest:[NSURLRequest requestWithURL:self.URL]];
+    
+    self.basePath = self.URL.path;
     //    NSLog(@"%@", self.webView.customUserAgent);
-
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onUserLoginSuccessed) name:kUserLoginSuccessNotification object:nil];
 }
 
 - (void)didMoveToParentViewController:(UIViewController *)parent {
@@ -266,6 +268,7 @@
  返回按钮点击事件
  */
 - (void)kswv_backBarButtonItemHandler {
+    
     if (self.backBarButtonItem == nil) {
         return;
     }
@@ -277,7 +280,7 @@
         //如果有则返回
         [self.webView goBack];
         //同时设置返回按钮和关闭按钮为导航栏左边的按钮
-        self.navigationItem.leftBarButtonItems = @[self.backBarButtonItem, self.closeBarButtonItem];
+        self.navigationItem.leftBarButtonItems = @[self.backBarButtonItem];
     } else {
         [self kswv_closeBarButtonItemHandler];
     }
@@ -304,6 +307,12 @@
     }
 }
 
+- (void) onUserLoginSuccessed {
+    NSString * webToken = [[NSUserDefaults standardUserDefaults] stringForKey:kSavedWebToken];
+    self.URL = [NSURL URLWithString:[NSString stringWithFormat:@"%@?%@", self.URL.absoluteString,webToken]];
+    [self.webView reload];
+}
+
 - (void)updateFrameOfProgressView {
     CGFloat progressBarHeight = 2.0f;
     CGRect navigationBarBounds = self.navigationController.navigationBar.bounds;
@@ -315,14 +324,14 @@
 
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler {
     
-    NSLog(@"%@", navigationResponse.response);
+    NSLog(@" ---- %@", navigationResponse.response);
     
     decisionHandler(WKNavigationResponsePolicyAllow);
 }
 
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
-    NSLog(@"%@",navigationAction.request.URL);
-    NSLog(@"%@", navigationAction.request.allHTTPHeaderFields);
+    NSLog(@"+++ %@",navigationAction.request.URL);
+    NSLog(@"+++ %@", navigationAction.request.allHTTPHeaderFields);
     
     if ([[NSString stringWithFormat:@"%@",navigationAction.request.URL] rangeOfString:@"comfirmPay"].location !=NSNotFound ) {
         NSLog(@"没有登录");

@@ -42,6 +42,7 @@
 @property (strong, nonatomic)UITableViewCell *voipCallCell;
 @property (strong, nonatomic)UITableViewCell *addFriendCell;
 @property (strong, nonatomic)UITableViewCell *momentCell;
+@property (strong, nonatomic)UITableViewCell *phoneCell;
 
 
 @property (nonatomic, strong)UITableView *tableView;
@@ -232,6 +233,24 @@
         self.momentCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
+    self.phoneCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"momentCell"];
+    for (UIView *subView in self.phoneCell.subviews) {
+           [subView removeFromSuperview];
+    }
+    NSString * phoneNum = [NSString stringWithFormat:@"电话: %@",self.userInfo.mobile];
+    UIButton *phoneButton = [[UIButton alloc] initWithFrame:CGRectMake(16, 0, self.view.frame.size.width - 100, 50)];
+    [phoneButton setTitle: phoneNum forState:UIControlStateNormal];
+    [phoneButton setTitleColor:[WFCUConfigManager globalManager].textColor forState:UIControlStateNormal];
+    phoneButton.titleLabel.font = [UIFont pingFangSCWithWeight:FontWeightStyleRegular size:16];
+    phoneButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [phoneButton addTarget:self action:@selector(phoneClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.phoneCell addSubview:phoneButton];
+    self.phoneCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    
+    
+    
+    
     if ([[WFCCIMService sharedWFCIMService] isMyFriend:self.userId]) {
         self.sendMessageCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
         for (UIView *subView in self.sendMessageCell.subviews) {
@@ -301,6 +320,10 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (void) phoneClick {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", self.userInfo.mobile]]];
+}
+
 
 - (void)onSendMessageBtn:(id)sender {
     WFCUMessageListViewController *mvc = [[WFCUMessageListViewController alloc] init];
@@ -367,7 +390,7 @@
     if (section == 0) {
         return self.headerCells.count;
     } else if (section == 1) {
-        if (self.momentCell) {
+        if (self.phoneCell) {
             return 1;
         } else {
             return 0;
@@ -388,7 +411,7 @@
     if (indexPath.section == 0) {
        return self.headerCells[indexPath.row];
     } else if (indexPath.section == 1) {
-        return self.momentCell;
+        return self.phoneCell;
     } else if (indexPath.section == 1) {
            return self.cells[indexPath.row];
     } else {
@@ -442,8 +465,8 @@
             return 50;
         }
     } else if(indexPath.section == 1) {
-        if (self.momentCell) {
-            return 70;
+        if (self.phoneCell) {
+            return 50;
         } else {
             return 0;
         }
@@ -452,6 +475,10 @@
     }  else {
         return 50;
     }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:true];
 }
 
 #pragma mark -  UIActionSheetDelegate <NSObject>

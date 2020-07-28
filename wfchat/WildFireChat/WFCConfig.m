@@ -33,4 +33,4 @@ NSString *USER_AGREEMENT_URL = @"https://www.wildfirechat.cn/wildfirechat_user_a
 
 
 
-NSString * APP_WORK_ADDRESS = @"http://communicate.thinker.vc/bord/work";
+NSString * APP_WORK_ADDRESS = @"http://communicate.thinker.vc/bord/work?notabar=true";
