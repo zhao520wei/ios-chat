@@ -100,6 +100,7 @@
     vc.title = LocalizedString(@"Me");
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     item = nav.tabBarItem;
+    //    item = [[UITabBarItem alloc]initWithTitle:LocalizedString(@"Me") image:[UIImage imageNamed:@"tabbar_me"] selectedImage:[[UIImage imageNamed:@"tabbar_me_cover"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     [nav.navigationBar setShadowImage:colorImage];
     item.title = LocalizedString(@"Me");
     item.image = [UIImage imageNamed:@"tabbar_me"];
@@ -107,10 +108,12 @@
     [item setTitleTextAttributes:@{NSForegroundColorAttributeName : kMainColor} forState:UIControlStateSelected];
     [self addChildViewController:nav];
     self.settingNav = nav;
+    
 
 #ifdef WFC_MOMENTS
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onReceiveComments:) name:kReceiveComments object:nil];
 #endif
+    
 }
 
 - (void)onReceiveComments:(NSNotification *)notification {

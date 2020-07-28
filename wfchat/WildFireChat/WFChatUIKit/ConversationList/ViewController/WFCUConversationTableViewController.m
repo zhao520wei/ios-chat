@@ -36,6 +36,8 @@
 
 #import "SDWebImage.h"
 #import "XLSlideMenu.h"
+#import "AutoBreadcrumbViewController.h"
+
 
 // 消息的列表页
 
@@ -213,14 +215,14 @@
                                     image:[UIImage imageNamed:@"menu_start_chat"]
                                    target:self
                                    action:@selector(startChatAction:)],
-                     [KxMenuItem menuItem:WFCString(@"AddFriend")
-                                    image:[UIImage imageNamed:@"menu_add_friends"]
-                                   target:self
-                                   action:@selector(addFriendsAction:)],
-                     [KxMenuItem menuItem:WFCString(@"SubscribeChannel")
-                                    image:[UIImage imageNamed:@"menu_listen_channel"]
-                                   target:self
-                                   action:@selector(listenChannelAction:)],
+//                     [KxMenuItem menuItem:WFCString(@"AddFriend")
+//                                    image:[UIImage imageNamed:@"menu_add_friends"]
+//                                   target:self
+//                                   action:@selector(addFriendsAction:)],
+//                     [KxMenuItem menuItem:WFCString(@"SubscribeChannel")
+//                                    image:[UIImage imageNamed:@"menu_listen_channel"]
+//                                   target:self
+//                                   action:@selector(listenChannelAction:)],
                      [KxMenuItem menuItem:WFCString(@"ScanQRCode")
                                     image:[UIImage imageNamed:@"menu_scan_qr"]
                                    target:self
@@ -233,6 +235,43 @@
 }
 
 - (void)startChatAction:(id)sender {
+    
+    AutoBreadcrumbViewController * selectVC = [[AutoBreadcrumbViewController alloc] init];
+    selectVC.isAbleSelected = true;
+    UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:selectVC];
+    navi.modalPresentationStyle = UIModalPresentationFullScreen;
+    __weak typeof(self)ws = self;
+    selectVC.selectedNode = ^(NSArray<SinglePersonNode *> *nodes){
+        [navi dismissViewControllerAnimated:NO completion:nil];
+        NSMutableArray * contacts = [NSMutableArray array];
+        for (SinglePersonNode * node in nodes) {
+            [contacts addObject:node.uid];
+        }
+        
+        if (contacts.count == 1) {
+            WFCUMessageListViewController *mvc = [[WFCUMessageListViewController alloc] init];
+            mvc.conversation = [WFCCConversation conversationWithType:Single_Type target:contacts[0] line:0];
+            mvc.hidesBottomBarWhenPushed = YES;
+            [ws.navigationController pushViewController:mvc animated:YES];
+        } else {
+#if !WFCU_GROUP_GRID_PORTRAIT
+            WFCUCreateGroupViewController *vc = [[WFCUCreateGroupViewController alloc] init];
+            vc.memberIds = [contacts mutableCopy];
+            if (![vc.memberIds containsObject:[WFCCNetworkService sharedInstance].userId]) {
+                [vc.memberIds insertObject:[WFCCNetworkService sharedInstance].userId atIndex:0];
+            }
+            vc.hidesBottomBarWhenPushed = YES;
+            [ws.navigationController pushViewController:vc animated:YES];
+#else
+            [self createGroup:contacts];
+#endif
+        }
+        
+    };
+    
+     [self.navigationController presentViewController:navi animated:YES completion:nil];
+    
+ /*
     WFCUSeletedUserViewController *pvc = [[WFCUSeletedUserViewController alloc] init];
     pvc.type = Horizontal;
     UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:pvc];
@@ -261,6 +300,7 @@
     };
     
     [self.navigationController presentViewController:navi animated:YES completion:nil];
+    */
 }
 
 #if WFCU_GROUP_GRID_PORTRAIT
@@ -489,7 +529,7 @@
 }
 
 - (void) checkTableFooterLabelInfo {
-    if (self.conversations.count > 10) {
+    if (self.conversations.count > 6) {
         // 这里判断数据源是否超过10个，然后显示这个话
            UILabel * footLable = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 40)];
            footLable.text = @"--- 我是有底线的 ---";
@@ -1100,9 +1140,8 @@
     }];
     
     
-    
-    setTop.backgroundColor = [UIColor purpleColor];
-    setUntop.backgroundColor = [UIColor orangeColor];
+    setTop.backgroundColor = kMainColor;
+    setUntop.backgroundColor = [UIColor redColor];
     
     if (self.conversations[indexPath.row].isTop) {
         return @[delete, setUntop ];

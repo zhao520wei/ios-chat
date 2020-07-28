@@ -40,6 +40,7 @@
 #import "WFCUProfileTableViewController.h"
 #import "WFCUMultiVideoViewController.h"
 #import "WFCUVideoViewController.h"
+#import "MBProgressHUD.h"
 
 @interface AppDelegate () <ConnectionStatusDelegate, ReceiveMessageDelegate,
 #if WFCU_SUPPORT_VOIP
@@ -300,6 +301,12 @@
         vc2.hidesBottomBarWhenPushed = YES;
         [navigator pushViewController:vc2 animated:YES];
         return YES;
+    } else {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.window.rootViewController.view animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.label.text = @"不是系统中的二维码";
+        hud.offset = CGPointMake(0.f, MBProgressMaxOffset);
+        [hud hideAnimated:YES afterDelay:2.f];
     }
     return NO;
 }
