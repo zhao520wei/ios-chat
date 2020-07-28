@@ -30,14 +30,19 @@ static AppService *sharedSingleton = nil;
     return sharedSingleton;
 }
 
-- (void)login:(NSString *)user password:(NSString *)password success:(void(^)(NSString *userId, NSString *token, BOOL newUser))successBlock error:(void(^)(int errCode, NSString *message))errorBlock {
+- (void)login:(NSString *)user password:(NSString *)password success:(void(^)(NSString *userId, NSString *token, NSString  *webToken, BOOL newUser))successBlock error:(void(^)(int errCode, NSString *message))errorBlock {
     
     [self post:@"/login" data:@{@"mobile":user, @"code":password, @"clientId":[[WFCCNetworkService sharedInstance] getClientId], @"platform":@(Platform_iOS)} success:^(NSDictionary *dict) {
         if([dict[@"code"] intValue] == 0) {
             NSString *userId = dict[@"result"][@"userId"];
             NSString *token = dict[@"result"][@"token"];
             BOOL newUser = [dict[@"result"][@"register"] boolValue];
-            successBlock(userId, token, newUser);
+            NSString * webToken = @"";
+            if ([[dict allValues] containsObject:@"webToken"]) {
+                webToken = dict[@"result"][@"webToken"];
+            }
+            
+            successBlock(userId, token, webToken, newUser);
         } else {
             errorBlock([dict[@"code"] intValue], dict[@"message"]);
         }

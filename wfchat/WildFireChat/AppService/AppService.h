@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface AppService : NSObject <WFCUAppServiceProvider>
 + (AppService *)sharedAppService;
 
-- (void)login:(NSString *)user password:(NSString *)password success:(void(^)(NSString *userId, NSString *token, BOOL newUser))successBlock error:(void(^)(int errCode, NSString *message))errorBlock;
+- (void)login:(NSString *)user password:(NSString *)password success:(void(^)(NSString *userId, NSString *token,NSString  *webToken, BOOL newUser))successBlock error:(void(^)(int errCode, NSString *message))errorBlock;
 
 - (void)sendCode:(NSString *)phoneNumber success:(void(^)(void))successBlock error:(void(^)(NSString *message))errorBlock;
 

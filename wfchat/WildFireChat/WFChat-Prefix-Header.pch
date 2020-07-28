@@ -65,4 +65,14 @@ alpha:1.0]
 
 #define kMainColor [UIColor colorWithRed:46.0/255.0 green:103.0/255.0 blue:234.0/255.0 alpha:1]
 
+
+
+//NSUserDefaults 中存储的Key
+#define kSavedName      @"savedName"
+#define kSavedToken     @"savedToken"
+#define kSavedUserId    @"savedUserId"
+#define kSavedWebToken  @"savedWebToken"
+
+
+
 #endif /* WFChat_Prefix_Header_pch */

@@ -71,7 +71,7 @@ alpha:1.0]
     [self.view addSubview:headerImage];
     
     
-    NSString *savedName = [[NSUserDefaults standardUserDefaults] stringForKey:@"savedName"];
+    NSString *savedName = [[NSUserDefaults standardUserDefaults] stringForKey:kSavedName];
    
     CGRect bgRect = self.view.bounds;
     CGFloat paddingEdge = 15;
@@ -287,10 +287,11 @@ alpha:1.0]
   hud.label.text = @"登录中...";
   [hud showAnimated:YES];
   
-    [[AppService sharedAppService] login:user password:password success:^(NSString *userId, NSString *token, BOOL newUser) {
-        [[NSUserDefaults standardUserDefaults] setObject:user forKey:@"savedName"];
-        [[NSUserDefaults standardUserDefaults] setObject:token forKey:@"savedToken"];
-        [[NSUserDefaults standardUserDefaults] setObject:userId forKey:@"savedUserId"];
+    [[AppService sharedAppService] login:user password:password success:^(NSString *userId, NSString *token, NSString  *webToken, BOOL newUser) {
+        [[NSUserDefaults standardUserDefaults] setObject:user forKey:kSavedName];
+        [[NSUserDefaults standardUserDefaults] setObject:token forKey:kSavedToken];
+        [[NSUserDefaults standardUserDefaults] setObject:userId forKey:kSavedUserId];
+        [[NSUserDefaults standardUserDefaults] setObject:webToken forKey:kSavedWebToken];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
         

@@ -458,6 +458,7 @@
 - (void)refreshList {
     self.conversations = [[[WFCCIMService sharedWFCIMService] getConversationInfos:@[@(Single_Type), @(Group_Type), @(Channel_Type)] lines:@[@(0)]] mutableCopy];
     [self updateBadgeNumber];
+    [self checkTableFooterLabelInfo];
     [self.tableView reloadData];
 }
 
@@ -477,30 +478,33 @@
     self.tableHeaderView = [[UIView alloc ]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 40)];
     self.tableHeaderView.backgroundColor = [WFCUConfigManager globalManager ].backgroudColor ;
     
-//    CAGradientLayer *gradient = [CAGradientLayer layer];
-//    gradient.frame = self.tableHeaderView.bounds;
-//    gradient.colors = @[(id)[UIColor colorWithHexString:@"0x015ebc"].CGColor,(id)[UIColor colorWithHexString:@"0x2a95ff"].CGColor];
-//    gradient.startPoint = CGPointMake(0, 1);
-//    gradient.endPoint = CGPointMake(1, 0);
-//    gradient.locations = @[@(0.0f), @(1.0f)];
-//
-//    [self.tableHeaderView.layer addSublayer:gradient];
   
     self.tableFooterView =  [[UIView alloc ]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 40)];
     self.tableFooterView.backgroundColor = [UIColor clearColor];
     
-    UILabel * footLable = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 40)];
-    footLable.text = @"--- 我是有底线的 ---";
-    footLable.font = [UIFont pingFangSCWithWeight:FontWeightStyleRegular size:12];;
-    footLable.textColor = [UIColor colorWithHexString:@"b3b3b3"];
-    footLable.textAlignment = NSTextAlignmentCenter;
-    [self.tableFooterView addSubview:footLable];
-    
-    self.tableView.tableFooterView = self.tableFooterView;
+    [self checkTableFooterLabelInfo];
     
     [self initTableHeaderButtons];
     
 }
+
+- (void) checkTableFooterLabelInfo {
+    if (self.conversations.count > 10) {
+        // 这里判断数据源是否超过10个，然后显示这个话
+           UILabel * footLable = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 40)];
+           footLable.text = @"--- 我是有底线的 ---";
+           footLable.font = [UIFont pingFangSCWithWeight:FontWeightStyleRegular size:12];;
+           footLable.textColor = [UIColor colorWithHexString:@"b3b3b3"];
+           footLable.textAlignment = NSTextAlignmentCenter;
+           [self.tableFooterView addSubview:footLable];
+           
+           self.tableView.tableFooterView = self.tableFooterView;
+    } else {
+        self.tableView.tableFooterView = nil;
+    }
+   
+}
+
 
 - (void) initTableHeaderButtons {
     

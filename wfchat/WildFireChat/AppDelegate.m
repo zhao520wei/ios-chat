@@ -71,8 +71,9 @@
     [WFCUConfigManager globalManager].appServiceProvider = [AppService sharedAppService];
     [WFCUConfigManager globalManager].selectedTheme = ThemeType_White;
 
-    NSString *savedToken = [[NSUserDefaults standardUserDefaults] stringForKey:@"savedToken"];
-    NSString *savedUserId = [[NSUserDefaults standardUserDefaults] stringForKey:@"savedUserId"];
+    NSString *savedToken = [[NSUserDefaults standardUserDefaults] stringForKey:kSavedToken];
+    NSString *savedUserId = [[NSUserDefaults standardUserDefaults] stringForKey:kSavedUserId];
+    NSString *savedWebToken = [[NSUserDefaults standardUserDefaults] stringForKey:kSavedWebToken];
     
     
     WFCMeTableViewController * meCtrl = [[WFCMeTableViewController alloc]init];
