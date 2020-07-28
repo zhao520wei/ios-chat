@@ -21,4 +21,8 @@ extern NSString *ICE_PASSWORD;
 ////用户协议和隐私政策，上线前请替换成您自己的内容
 extern NSString *USER_PRIVACY_URL;
 extern NSString *USER_AGREEMENT_URL;
+
+
+extern NSString * APP_WORK_ADDRESS;
+
 #endif /* Config_h */

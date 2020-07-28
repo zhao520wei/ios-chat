@@ -28,6 +28,8 @@
 #import "AutoBreadcrumbViewController.h"
 #import "UIColor+YH.h"
 #import "WFCUConfigManager.h"
+#import "BrowserViewController.h"
+#import "WFCConfig.h"
 
 @interface WFCBaseTabBarController ()
 
@@ -93,7 +95,8 @@
     [item setTitleTextAttributes:@{NSForegroundColorAttributeName : kMainColor} forState:UIControlStateSelected];
     [self addChildViewController:nav];
     
-    vc = [WFCMeTableViewController new];
+      
+    vc = [[BrowserViewController alloc] initWithURL:[NSURL URLWithString: APP_WORK_ADDRESS]];
     vc.title = LocalizedString(@"Me");
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     item = nav.tabBarItem;

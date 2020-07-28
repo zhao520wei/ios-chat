@@ -308,6 +308,11 @@
 		9569903424CBDCFC0009F332 /* BreadcrumbHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569902324CBDCFC0009F332 /* BreadcrumbHeaderView.m */; };
 		9569903524CBDCFC0009F332 /* SinglePersonNodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569902724CBDCFC0009F332 /* SinglePersonNodeView.m */; };
 		9569903624CBDCFC0009F332 /* OrganizationNodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569902824CBDCFC0009F332 /* OrganizationNodeView.m */; };
+		95CDA8DE24CFC8C600EEA41E /* BrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CDA8DB24CFC8C600EEA41E /* BrowserViewController.m */; };
+		95CDA8DF24CFC8C600EEA41E /* demo.html in Resources */ = {isa = PBXBuildFile; fileRef = 95CDA8DC24CFC8C600EEA41E /* demo.html */; };
+		95CDA8E024CFC8C600EEA41E /* demo.js in Resources */ = {isa = PBXBuildFile; fileRef = 95CDA8DD24CFC8C600EEA41E /* demo.js */; };
+		95CDA8E624CFCBF900EEA41E /* NJKWebViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CDA8E324CFCBF800EEA41E /* NJKWebViewProgress.m */; };
+		95CDA8E724CFCBF900EEA41E /* NJKWebViewProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CDA8E524CFCBF800EEA41E /* NJKWebViewProgressView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -914,6 +919,14 @@
 		9569902824CBDCFC0009F332 /* OrganizationNodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrganizationNodeView.m; sourceTree = "<group>"; };
 		9569902A24CBDCFC0009F332 /* CustomNodeViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomNodeViewProtocol.h; sourceTree = "<group>"; };
 		9569902B24CBDCFC0009F332 /* CustomNodeModelProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomNodeModelProtocol.h; sourceTree = "<group>"; };
+		95CDA8DA24CFC8C600EEA41E /* BrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowserViewController.h; sourceTree = "<group>"; };
+		95CDA8DB24CFC8C600EEA41E /* BrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrowserViewController.m; sourceTree = "<group>"; };
+		95CDA8DC24CFC8C600EEA41E /* demo.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = demo.html; sourceTree = "<group>"; };
+		95CDA8DD24CFC8C600EEA41E /* demo.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = demo.js; sourceTree = "<group>"; };
+		95CDA8E224CFCBF800EEA41E /* NJKWebViewProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NJKWebViewProgressView.h; sourceTree = "<group>"; };
+		95CDA8E324CFCBF800EEA41E /* NJKWebViewProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJKWebViewProgress.m; sourceTree = "<group>"; };
+		95CDA8E424CFCBF800EEA41E /* NJKWebViewProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NJKWebViewProgress.h; sourceTree = "<group>"; };
+		95CDA8E524CFCBF800EEA41E /* NJKWebViewProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJKWebViewProgressView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1011,6 +1024,7 @@
 				9530D5F324C85BA100CCC9F6 /* Me */,
 				9534A96B24CAD15C00AF1FC0 /* Architecture */,
 				9530D51F24C85BA000CCC9F6 /* WFChatUIKit */,
+				95CDA8D924CFBFB200EEA41E /* WebView */,
 				2E1D20BB1FAF127100F4405D /* WFCConfig.h */,
 				2E1D20B11FAF127100F4405D /* WFCConfig.m */,
 				2E1D1FFA1FAF0AE600F4405D /* AppDelegate.h */,
@@ -2334,6 +2348,29 @@
 			path = CustomProtocols;
 			sourceTree = "<group>";
 		};
+		95CDA8D924CFBFB200EEA41E /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				95CDA8E124CFCBF800EEA41E /* NJKWebViewProgress */,
+				95CDA8DA24CFC8C600EEA41E /* BrowserViewController.h */,
+				95CDA8DB24CFC8C600EEA41E /* BrowserViewController.m */,
+				95CDA8DC24CFC8C600EEA41E /* demo.html */,
+				95CDA8DD24CFC8C600EEA41E /* demo.js */,
+			);
+			path = WebView;
+			sourceTree = "<group>";
+		};
+		95CDA8E124CFCBF800EEA41E /* NJKWebViewProgress */ = {
+			isa = PBXGroup;
+			children = (
+				95CDA8E224CFCBF800EEA41E /* NJKWebViewProgressView.h */,
+				95CDA8E324CFCBF800EEA41E /* NJKWebViewProgress.m */,
+				95CDA8E424CFCBF800EEA41E /* NJKWebViewProgress.h */,
+				95CDA8E524CFCBF800EEA41E /* NJKWebViewProgressView.m */,
+			);
+			path = NJKWebViewProgress;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2408,6 +2445,8 @@
 			files = (
 				2E1D20071FAF0AE600F4405D /* LaunchScreen.storyboard in Resources */,
 				2FBF915D232F6A47003521FF /* InfoPlist.strings in Resources */,
+				95CDA8DF24CFC8C600EEA41E /* demo.html in Resources */,
+				95CDA8E024CFC8C600EEA41E /* demo.js in Resources */,
 				6E616DA020AB3435002CB8BE /* LICENSE.md in Resources */,
 				2F1B0DD321E1B38100139CB1 /* ring.caf in Resources */,
 				2E1D20041FAF0AE600F4405D /* Assets.xcassets in Resources */,
@@ -2573,6 +2612,7 @@
 				2F94FC9922291813005BD461 /* LBXAlertAction.m in Sources */,
 				9530D75124C85BA200CCC9F6 /* WFCUProfileTableViewController.m in Sources */,
 				2E1D20D91FAF127100F4405D /* DiscoverViewController.m in Sources */,
+				95CDA8DE24CFC8C600EEA41E /* BrowserViewController.m in Sources */,
 				9569903324CBDCFC0009F332 /* TreeOrganizationDisplayCell.m in Sources */,
 				9530D7F624C85BA200CCC9F6 /* UIImage+MultiFormat.m in Sources */,
 				9530D79A24C85BA200CCC9F6 /* WFCUConversationSettingMemberCell.m in Sources */,
@@ -2640,6 +2680,7 @@
 				9530D7F124C85BA200CCC9F6 /* FLAnimatedImageView+WebCache.m in Sources */,
 				9530D74A24C85BA200CCC9F6 /* UITabBar+badge.m in Sources */,
 				9530D7E824C85BA200CCC9F6 /* UIView+SDExtension.m in Sources */,
+				95CDA8E624CFCBF900EEA41E /* NJKWebViewProgress.m in Sources */,
 				9530D74324C85BA200CCC9F6 /* WFCUCreateChannelViewController.m in Sources */,
 				2F94FB8F22291577005BD461 /* LBXScanLineAnimation.m in Sources */,
 				9530D75E24C85BA200CCC9F6 /* WFCUGroupAnnouncement.m in Sources */,
@@ -2691,6 +2732,7 @@
 				9530D75224C85BA200CCC9F6 /* WFCUInviteGroupMemberViewController.m in Sources */,
 				9530D79924C85BA200CCC9F6 /* WFCUSwitchTableViewCell.m in Sources */,
 				2F94FC9D22291813005BD461 /* UIAlertController+supportedInterfaceOrientations.m in Sources */,
+				95CDA8E724CFCBF900EEA41E /* NJKWebViewProgressView.m in Sources */,
 				9530D7E524C85BA200CCC9F6 /* AFSecurityPolicy.m in Sources */,
 				9530D73524C85BA200CCC9F6 /* WFCULeaveCell.m in Sources */,
 				9530D7F724C85BA200CCC9F6 /* SDWebImageCompat.m in Sources */,

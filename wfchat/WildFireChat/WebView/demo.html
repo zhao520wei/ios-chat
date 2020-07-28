@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <meta content="email=no" name="format-detection" />
+    <meta name="format-detection" content="telphone=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>我是测试页</title>
+    <link href="http://qjxhb987-10051296.file.myqcloud.com/static/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="text-center">
+        <br/>
+        <var id="showTitle"></var>
+        <script type="text/javascript">
+            //弹出普通消息
+            function alert1() {
+                alert('abc');
+            }
+            //弹出带标题的消息
+            function alert2() {
+                alert('abc', 'hello');
+            }
+            //自定义弹出消息
+            function alert3() {
+                var settings = {
+                    title: 'abc', message: 'hello', buttons: [
+                        {
+                            name: 'Yes', callback: function () {
+                                document.getElementById('showTitle').innerHTML = '你好,世界!!!';
+                            }
+                        },
+                        {
+                            name: 'No', callback: function () {
+                                document.getElementById('showTitle').innerHTML = '再见,世界!!!';
+                            }
+                        }
+                    ]
+                };
+                alert(settings);
+            }
+            function testGoBack() {
+                tsingda.log('abbbbb');
+                tsingda.goBack();
+            }
+            function testPayment() {
+                tsingda.payment('wxpay', {
+                    partnerId: "11", //商家向财付通申请的商家id
+                    prepayId: "22", //预支付订单
+                    nonceStr: "", //随机串，防重发
+                    timeStamp: "", //时间戳，防重发
+                    package: "", //商家根据财付通文档填写的数据和签名
+                    sign: "" //商家根据微信开放平台文档对数据做的签名
+                }, function (data) { //支付完成回调
+                    //                console.log(data);
+                    alert('aaa');
+                    alert(data.partnerId);
+                }, function (err) { //支付失败回调
+                    //                console.log(err);
+                });
+            }
+            function testOpenShareAlert() {
+                tsingda.openShareAlert();
+            }
+            function testOpenLogin() {
+                tsingda.openLogin();
+            }
+            function testOpenQR() {
+                tsingda.openQR(function (str) {
+                    alert(str);
+                });
+            }
+            function testLocation() {
+                tsingda.location(function (data) {
+                    alert(JSON.stringify(data));
+                });
+            }
+            function testOpenAlbum() {
+                tsingda.openAlbum(3, function (urls) {
+                    alert(JSON.stringify(urls));
+                });
+            }
+            function testFetchDeviceID() {
+                tsingda.fetchDeviceID(function (deviceId) {
+                    alert(deviceId);
+                });
+            }
+            function testStore1() {
+                //保存字符串
+                tsingda.store.set('my1', '123', function (key, value) {
+                    alert('读取到的值1,key:' + key + ',value:' + value);
+                });
+                //保存JSON
+                tsingda.store.set('my2', { 'a': 'a', 'b': 'b' }, function (key, value) {
+                    alert('读取到的值2,key:' + key + ',value:' + value);
+                });
+            }
+            function testStore2() {
+                tsingda.store.get('my1', function (key, value) {
+                    alert('读取到的值1,key:' + key + ',value:' + value);
+                });
+                tsingda.store.get('my2', function (key, value) {
+                    alert('读取到的值2,key:' + key + ',value:' + value);
+                });
+            }
+            function testStore3() {
+                tsingda.store.remove('my', function () {
+                    alert('删除完成');
+                });
+            }
+            function testStore4() {
+                tsingda.store.clear(function () {
+                    alert('清除完成');
+                });
+            }
+            function testFetchLoginState() {
+                tsingda.fetchUserLoginState(function (state) {
+                    if (state == 1) {
+                        alert('登录了');
+                    } else {
+                        alert("没登录");
+                    }
+                });
+            }
+            function testOpenMallList() {
+                tsingda.openMallList();
+            }
+        </script>
+        <br/>
+        
+        <p>
+            <button class="btn btn-default" onclick="javascript:alert1();">Alert1</button>
+            <button class="btn btn-default" onclick="javascript:alert2();">Alert2</button>
+            <button class="btn btn-default" onclick="javascript:alert3();">Alert3</button>
+        </p>
+        <p>
+            <button class="btn btn-default" onclick="javascript:testGoBack();">返回到上一级页面</button>
+        </p>
+        <p>
+            <button class="btn btn-default" onclick="javascript:testPayment();">微信支付</button>
+        </p>
+        <p>
+            <button class="btn btn-default" onclick="javascript:testOpenShareAlert();">打开分享菜单</button>
+        </p>
+        <p>
+            <button class="btn btn-default" onclick="javascript:testOpenLogin();">打开登录</button>
+        </p>
+        <p>
+            <button class="btn btn-default" onclick="javascript:testOpenQR();">打开扫描二维码</button>
+        </p>
+        <p>
+            <button class="btn btn-default" onclick="javascript:testLocation();">获取位置</button>
+        </p>
+        <p>
+            <button class="btn btn-default" onclick="javascript:testOpenAlbum();">从相册获取图片并上传到服务器</button>
+        </p>
+        <p>
+            <button class="btn btn-default" onclick="javascript:testFetchDeviceID();">获取设备唯一ID</button>
+            <br/> 注:iOS获取的ID在某种条件下是可变的，不能表示一个ID对应一个设备
+        </p>
+        <p>
+            <button class="btn btn-default" onclick="javascript:testStore1();">保存数据到本地</button>
+        </p>
+        <p>
+            <button class="btn btn-default" onclick="javascript:testStore2();">读取数据从本地</button>
+        </p>
+        <p>
+            <button class="btn btn-default" onclick="javascript:testStore3();">删除数据从本地</button>
+        </p>
+        <p>
+            <button class="btn btn-default" onclick="javascript:testStore4();">清除数据从本地</button>
+        </p>
+        <p>
+            <button class="btn btn-default" onclick="javascript:testFetchLoginState();">获取本地登录状态</button>
+        </p>
+        <p>
+            <button class="btn btn-default" onclick="javascript:testOpenMallList();">打开商城列表</button>
+        </p>
+    </div>
+    <script type="text/javascript" src="demo.js"></script>
+    <script type="text/javascript">
+                                                     // //普通分享调用
+                                                     // tsingda.ready(function () {
+                                                     //     /** 注册分享 **/
+                                                     //     var share_data = {title: '你好', desc: '你好世界', link: 'http://www.baidu.com', imageUrl: ''};
+                                                     //     tsingda.configMenus(['WeChatSession', 'WeChatTimeline', 'IntraoralSession', 'IntraoralFriend', 'AgencyHomePage']);
+                                                     //     tsingda.share('WeChatSession', share_data, function () {
+                                                     //                   alert('');
+                                                     //     }, function () {
+                                                     //
+                                                     //     });
+                                                     //     tsingda.share('WeChatTimeline', share_data, function () {
+                                                     //
+                                                     //     }, function () {
+                                                     //
+                                                     //     });
+                                                     //     tsingda.share('TencentQQFriend', share_data, function () {
+                                                     //
+                                                     //     }, function () {
+                                                     //
+                                                     //     });
+                                                     //     tsingda.share('IntraoralFriend', share_data, function () {
+                                                     //
+                                                     //     }, function () {
+                                                     //
+                                                     //     });
+                                                     // });
+
+                                                     //高级分项调用
+                                                     //ready方法H5必须调用,这里表示客户端准备完成,可以进行交互处理
+                                                     tsingda.ready(function () {
+                                                         //不显示右上角分享菜单
+                                                         tsingda.displayMenusButton(false);
+                                                         //注册分享菜单
+                                                         tsingda.configMenus(['WeChatSession', 'WeChatTimeline', 'IntraoralSession', 'IntraoralFriend', 'AgencyHomePage']);
+                                                         //设置分享调用由H5处理
+                                                         tsingda.autoShared(false);
+                                                         //添加分享菜单点击事件
+                                                         tsingda.event.on('TsingdaJSBridgeEventOnMenusClickItem', function (type) {
+                                                             //alert('点了按钮:' + type);
+                                                             //在这里可以处理H5要做的事,比如发送一个ajax
+                                                             // $.post('xxx', {xxx:'xxx'}, function () {
+                                                             //   //处理完之后可以调用客户端方法来进行分享
+                                                             tsingda.sendShared(type, { title: '你好', desc: '你好世界', link: 'http://www.baidu.com', imageUrl: '' });
+                                                             // });
+                                                         });
+                                                         //分享完成触发
+                                                         tsingda.event.on('TsingdaJSBridgeEventOnSharedSuccess', function (type) {
+                                                             alert('分享完成:' + type);
+                                                         });
+                                                         //分享失败触发
+                                                         tsingda.event.on('TsingdaJSBridgeEventOnSharedFailure', function (type) {
+                                                             alert('分享失败:' + type);
+                                                         });
+
+
+                                                     });
+    </script>
+</body>
+
+</html>
