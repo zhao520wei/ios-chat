@@ -2276,18 +2276,10 @@
 		9569901324CBDCFB0009F332 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				9569901424CBDCFB0009F332 /* AutoRefresh */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		9569901424CBDCFB0009F332 /* AutoRefresh */ = {
-			isa = PBXGroup;
-			children = (
 				9569901524CBDCFB0009F332 /* AutoBreadcrumbViewController.h */,
 				9569901624CBDCFB0009F332 /* AutoBreadcrumbViewController.m */,
 			);
-			path = AutoRefresh;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		9569901D24CBDCFC0009F332 /* View */ = {
