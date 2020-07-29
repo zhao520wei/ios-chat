@@ -304,7 +304,6 @@
 		9569902E24CBDCFC0009F332 /* BaseTreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569900C24CBDCFB0009F332 /* BaseTreeNode.m */; };
 		9569902F24CBDCFC0009F332 /* NodeTreeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569900F24CBDCFB0009F332 /* NodeTreeView.m */; };
 		9569903024CBDCFC0009F332 /* AutoBreadcrumbViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569901624CBDCFB0009F332 /* AutoBreadcrumbViewController.m */; };
-		9569903224CBDCFC0009F332 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569901B24CBDCFB0009F332 /* BaseViewController.m */; };
 		9569903324CBDCFC0009F332 /* TreeOrganizationDisplayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569902024CBDCFC0009F332 /* TreeOrganizationDisplayCell.m */; };
 		9569903424CBDCFC0009F332 /* BreadcrumbHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569902324CBDCFC0009F332 /* BreadcrumbHeaderView.m */; };
 		9569903524CBDCFC0009F332 /* SinglePersonNodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569902724CBDCFC0009F332 /* SinglePersonNodeView.m */; };
@@ -910,8 +909,6 @@
 		9569901224CBDCFB0009F332 /* NodeViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeViewProtocol.h; sourceTree = "<group>"; };
 		9569901524CBDCFB0009F332 /* AutoBreadcrumbViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoBreadcrumbViewController.h; sourceTree = "<group>"; };
 		9569901624CBDCFB0009F332 /* AutoBreadcrumbViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoBreadcrumbViewController.m; sourceTree = "<group>"; };
-		9569901B24CBDCFB0009F332 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
-		9569901C24CBDCFB0009F332 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		9569901F24CBDCFC0009F332 /* TreeOrganizationDisplayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TreeOrganizationDisplayCell.h; sourceTree = "<group>"; };
 		9569902024CBDCFC0009F332 /* TreeOrganizationDisplayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TreeOrganizationDisplayCell.m; sourceTree = "<group>"; };
 		9569902224CBDCFC0009F332 /* BreadcrumbHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BreadcrumbHeaderView.h; sourceTree = "<group>"; };
@@ -2280,7 +2277,6 @@
 			isa = PBXGroup;
 			children = (
 				9569901424CBDCFB0009F332 /* AutoRefresh */,
-				9569901A24CBDCFB0009F332 /* Base */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2292,15 +2288,6 @@
 				9569901624CBDCFB0009F332 /* AutoBreadcrumbViewController.m */,
 			);
 			path = AutoRefresh;
-			sourceTree = "<group>";
-		};
-		9569901A24CBDCFB0009F332 /* Base */ = {
-			isa = PBXGroup;
-			children = (
-				9569901C24CBDCFB0009F332 /* BaseViewController.h */,
-				9569901B24CBDCFB0009F332 /* BaseViewController.m */,
-			);
-			path = Base;
 			sourceTree = "<group>";
 		};
 		9569901D24CBDCFC0009F332 /* View */ = {
@@ -2644,7 +2631,6 @@
 				9530D79224C85BA200CCC9F6 /* WFCUWaitingAnimationView.m in Sources */,
 				9530D7EA24C85BA200CCC9F6 /* SDRefreshView.m in Sources */,
 				9530D80924C85BA200CCC9F6 /* TYShowAlertView.m in Sources */,
-				9569903224CBDCFC0009F332 /* BaseViewController.m in Sources */,
 				9530D76924C85BA200CCC9F6 /* WFCUSelectedUserInfo.m in Sources */,
 				9569903524CBDCFC0009F332 /* SinglePersonNodeView.m in Sources */,
 				9530D80824C85BA200CCC9F6 /* TYAlertDropDownAnimation.m in Sources */,
