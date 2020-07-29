@@ -41,6 +41,7 @@
 #import "WFCUMultiVideoViewController.h"
 #import "WFCUVideoViewController.h"
 #import "MBProgressHUD.h"
+#import "WFCURLCache.h"
 
 @interface AppDelegate () <ConnectionStatusDelegate, ReceiveMessageDelegate,
 #if WFCU_SUPPORT_VOIP
@@ -84,6 +85,14 @@
     
     self.window.rootViewController = slideMenu;
     self.window.backgroundColor = [UIColor whiteColor];
+    
+    // 缓存路径 可以是Documents或者tmp文件夹
+    NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject; // the path to the cache file
+    NSUInteger discCapacity = 10*1024*1024;
+    NSUInteger memoryCapacity = 512*1024;
+    WFCURLCache *cache = [[WFCURLCache alloc] initWithMemoryCapacity: memoryCapacity
+                                            diskCapacity: discCapacity diskPath:path];
+    [NSURLCache setSharedURLCache:cache];
     
     [self setupNavBar];
     

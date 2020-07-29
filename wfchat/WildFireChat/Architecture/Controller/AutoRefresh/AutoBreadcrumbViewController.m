@@ -48,7 +48,7 @@
 #pragma mark ======== System Delegate ========
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return self.currentNode.subTreeHeight;
+    return  kScreenHeight - kTabBarHeight ; //self.currentNode.subTreeHeight
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -58,6 +58,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 12;
 }
+
 
 #pragma mark UITableViewDelegate
 
@@ -82,6 +83,9 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     return self.breadcrumbView;
 }
+
+
+
 
 #pragma mark ======== Custom Delegate ========
 

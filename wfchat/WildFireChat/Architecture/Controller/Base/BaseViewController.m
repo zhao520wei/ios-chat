@@ -45,11 +45,11 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.currentNode?1:0;
+    return self.currentNode? 1:0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return self.currentNode.currentTreeHeight;
+    return self.currentNode.nodeHeight;
 }
 
 #pragma mark UITableViewDelegate
@@ -57,7 +57,7 @@
     static NSString *CELL_ID = @"StructureTreeOrganizationDisplayCellID";
     TreeOrganizationDisplayCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_ID];
     if (cell == nil) {
-        cell = [[TreeOrganizationDisplayCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CELL_ID treeStyle:NodeTreeViewStyleExpansion];
+        cell = [[TreeOrganizationDisplayCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CELL_ID treeStyle:NodeTreeViewStyleBreadcrumbs];
         //cell事件的block回调
         __weak typeof(self)weakSelf = self;
         cell.selectNode = ^(BaseTreeNode *node) {
@@ -81,13 +81,10 @@
 
 - (void) loadRealData {
     __weak __typeof(self) weakSelf = self;
-    
+    [self.view addSubview:self.tableview];
     [[AppService sharedAppService] loadCompanyArchitectureDataWithSuccess:^(NSDictionary * _Nonnull tree) {
-        BaseTreeNode * baseNode = [weakSelf dealwithDictionaryTree:tree];
-        _baseNode = baseNode;
-        weakSelf.currentNode = baseNode;
-        [weakSelf.view addSubview:weakSelf.tableview];
-        [weakSelf.tableview reloadData];
+        [weakSelf dealwithDictionaryTree:tree];
+    
     } error:^(NSInteger error_code) {
         
     }];
@@ -106,38 +103,39 @@
 }
 
 
-- (BaseTreeNode *) dealwithDictionaryTree:(NSDictionary *) tree {
+- (void) dealwithDictionaryTree:(NSDictionary *) tree {
     BaseTreeNode *baseNode = [[BaseTreeNode alloc]init];
     baseNode.fatherNode = baseNode;//父节点等于自身
+     _baseNode = baseNode;
     
-    NSString * address = [tree objectForKey:@"address"];
-    NSString * createTime = [tree objectForKey:@"createTime"];
-    NSString * itemId = [tree objectForKey:@"id"];
-    NSString * name = [tree objectForKey:@"name"];
-    NSString * pathIds = [tree objectForKey:@"pathIds"];
+//    NSString * address = [tree objectForKey:@"address"];
+//    NSString * createTime = [tree objectForKey:@"createTime"];
+//    NSString * itemId = [tree objectForKey:@"id"];
+//    NSString * name = [tree objectForKey:@"name"];
+//    NSString * pathIds = [tree objectForKey:@"pathIds"];
     NSMutableArray * subList = [tree mutableArrayValueForKey:@"subList"];
     NSMutableArray * userList = [tree mutableArrayValueForKey:@"userList"];
     
-    OrganizationNode *simpleNode = [[OrganizationNode alloc]init];
-    simpleNode.name = name;
-    simpleNode.address = address;
-    simpleNode.itemId = itemId;
-    simpleNode.pathIds = pathIds;
-    simpleNode.createTime = createTime;
-
+//    OrganizationNode *simpleNode = [[OrganizationNode alloc]init];
+//    simpleNode.name = name;
+//    simpleNode.address = address;
+//    simpleNode.itemId = itemId;
+//    simpleNode.pathIds = pathIds;
+//    simpleNode.createTime = createTime;
+//    simpleNode.nodeHeight = 50.0;
    
     if (subList != nil && subList.count > 0) {
         NSMutableArray * array = [self dealwithSubTree:subList];
         for (OrganizationNode * node in array) {
-            [simpleNode addSubNode:node];
+            [baseNode addSubNode:node];
         }
-        [baseNode addSubNode: simpleNode];
     }
+//    [baseNode addSubNode: simpleNode];
     
     if (userList != nil && userList.count > 0) {
         for (NSDictionary * tempDic in userList) {
             SinglePersonNode *singlePersonNode1 = [[SinglePersonNode alloc]init];
-            singlePersonNode1.nodeHeight = 50;
+            singlePersonNode1.nodeHeight = 50.0;
             singlePersonNode1.displayName = tempDic[@"displayName"];
             singlePersonNode1.address = tempDic[@"address"];
             singlePersonNode1.did = tempDic[@"did"];
@@ -148,11 +146,14 @@
             singlePersonNode1.uid = tempDic[@"uid"];
             singlePersonNode1.name = tempDic[@"name"];
             [baseNode addSubNode:singlePersonNode1];
+            
         }
         
     }
     
-    return  baseNode;
+    self.currentNode = baseNode;
+    [self.tableview reloadData];
+    
 }
 
 - (NSMutableArray *) dealwithSubTree:(NSArray *)subList {
@@ -174,11 +175,10 @@
         simpleNode.itemId = itemId;
         simpleNode.pathIds = pathIds;
         simpleNode.createTime = createTime;
+        simpleNode.nodeHeight = 50.0;
 
-        NSMutableArray * users = [NSMutableArray array];
         if (temSubList != nil && temSubList.count > 0) {
             NSMutableArray * tempArray = [self dealwithSubTree:temSubList];
-            [users addObjectsFromArray:tempArray];
             for (OrganizationNode * node in tempArray) {
                 [simpleNode addSubNode:node];
             }
@@ -196,6 +196,7 @@
                 singlePersonNode1.password = tempDic[@"password"];
                 singlePersonNode1.uid = tempDic[@"uid"];
                 singlePersonNode1.name = tempDic[@"name"];
+                singlePersonNode1.nodeHeight = 50.0;
                 [simpleNode addSubNode:singlePersonNode1];
             }
         }
@@ -215,8 +216,8 @@
     BaseTreeNode *baseNode = [[BaseTreeNode alloc]init];
     baseNode.fatherNode = baseNode;//父节点等于自身
     _baseNode = baseNode;
-    for (int i = 0; i<10; i++) {
-        if (i<8) {
+    for (int i = 0; i<5; i++) {
+        if (i<3) {
             OrganizationNode *simpleNode = [[OrganizationNode alloc]init];
             simpleNode.name = [NSString stringWithFormat:@"部门%d",i];
             simpleNode.nodeHeight = 50;

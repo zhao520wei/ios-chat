@@ -10,8 +10,11 @@
 #import <WebKit/WebKit.h>
 #import "NJKWebViewProgress.h"
 #import "NJKWebViewProgressView.h"
+#import "WFCConfig.h"
 
 #define KS_APP_VERSION      [[NSBundle mainBundle].infoDictionary objectForKey:@"CFBundleShortVersionString"]
+
+
 
 @interface BrowserViewController ()<WKNavigationDelegate, WKUIDelegate,WKScriptMessageHandler>
 
@@ -24,6 +27,8 @@
 @property (nonatomic, strong) UIBarButtonItem *backBarButtonItem;   //返回按钮
 @property (nonatomic, strong) UIBarButtonItem *closeBarButtonItem;  //关闭按钮
 @property (nonatomic, strong) UIBarButtonItem *moreBarButtonItem;  //右侧按钮
+
+@property(nonatomic, assign) BrowserSourceType * sourceType;
 
 /**
  返回按钮点击事件
@@ -96,10 +101,10 @@
 - (UIBarButtonItem *)backBarButtonItem {
     if (_backBarButtonItem == nil) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-//        UIImage *image = [UIImage imageNamed:@"kswv_back.png"];
-//        //        image = [image kswv_imageWithTintColor:[UIColor blueColor]];
-//        [button setImage:image forState:UIControlStateNormal];
-        [button setTitle:@"返回" forState:UIControlStateNormal];
+        UIImage *image = [UIImage imageNamed:@"nav_back"];
+        //        image = [image kswv_imageWithTintColor:[UIColor blueColor]];
+        [button setImage:image forState:UIControlStateNormal];
+//        [button setTitle:@"返回" forState:UIControlStateNormal];
         [button setTintColor:[UIColor blackColor]];
         [button addTarget:self action:@selector(backButtonHandler:) forControlEvents:UIControlEventTouchUpInside];
         [button.titleLabel setFont:[UIFont systemFontOfSize:17]];
@@ -144,15 +149,15 @@
 
 #pragma mark - Init
 
-+ (instancetype)createInstanceWithURL:(NSURL *)URL {
-    return [[BrowserViewController alloc] initWithURL:URL];
++ (instancetype)createInstanceWithURL:(NSURL *)URL withType:(BrowserSourceType)type{
+    return [[BrowserViewController alloc] initWithURL:URL withType:type];
 }
 
-- (instancetype)initWithURL:(NSURL *)URL {
+- (instancetype)initWithURL:(NSURL *)URL withType:(BrowserSourceType)type{
     self = [super init];
     if (self) {
         self.URL = URL;
-        
+        self.sourceType = type;
     }
     return self;
 }
@@ -160,9 +165,12 @@
 - (void)dealloc {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     [self.progressView removeFromSuperview];
+//    [self removeObserver:self forKeyPath:kUserLoginSuccessNotification];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self setProgressView:nil];
     @try {
         [_webView removeObserver:self forKeyPath:@"estimatedProgress"];
+        [_webView removeObserver:self forKeyPath:@"URL"];
     } @catch (NSException *exception) {
     }
     [_webView stopLoading];
@@ -183,16 +191,15 @@
     self.URL = [NSURL URLWithString:[NSString stringWithFormat:@"%@?%@", self.URL.absoluteString,webToken]];
     
     [self.view addSubview:self.webView];
-    self.webView.frame = CGRectMake(0, 0, kScreenWidth, self.view.bounds.size.height - kTabBarHeight);
-    
+
     
     self.navigationController.navigationBar.tintColor = kMainColor;
-    
-    self.navigationItem.leftBarButtonItem = self.backBarButtonItem;
-    
-    
-    //     加载地址, 当url为空时加载测试页
-    //[NSURL URLWithString:@"http://www.163.com"]
+    if (self.sourceType != BrowserSourceWork) {
+        self.navigationItem.leftBarButtonItem = self.backBarButtonItem;
+        self.webView.frame = self.view.bounds;
+    }else {
+        self.webView.frame = CGRectMake(0, 0, kScreenWidth, self.view.bounds.size.height - kTabBarHeight);
+    }
     
     if (self.URL == nil) {
         NSString *path = [[NSBundle mainBundle] pathForResource:@"demo" ofType:@"html"];
@@ -202,21 +209,12 @@
     self.webView.allowsBackForwardNavigationGestures = YES;
     
     
-    
-    //        if (self.URL == nil) {
-    //            self.URL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"404" ofType:@"html"]];
-    //        }
-    
     NSString *str = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle].infoDictionary objectForKey:@"CFBundleExecutable"], KS_APP_VERSION];
     
     [self.webView setValue:str forKey:@"applicationNameForUserAgent"];
-    //    NSURLRequest *request = [NSURLRequest requestWithURL:self.URL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:60];
-    //    [self.webView loadRequest:request];
     [self.webView loadRequest:[NSURLRequest requestWithURL:self.URL]];
     
     self.basePath = self.URL.path;
-    //    NSLog(@"%@", self.webView.customUserAgent);
-    
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onUserLoginSuccessed) name:kUserLoginSuccessNotification object:nil];
 }
@@ -280,7 +278,12 @@
         //如果有则返回
         [self.webView goBack];
         //同时设置返回按钮和关闭按钮为导航栏左边的按钮
-        self.navigationItem.leftBarButtonItems = @[self.backBarButtonItem];
+        if (self.sourceType == BrowserSourceWork) {
+            self.navigationItem.leftBarButtonItems = @[self.backBarButtonItem];
+        } else {
+            self.navigationItem.leftBarButtonItems = @[self.backBarButtonItem, self.closeBarButtonItem];
+        }
+        
     } else {
         [self kswv_closeBarButtonItemHandler];
     }
@@ -303,6 +306,17 @@
             [self.progressView setProgress:progress animated:YES];
         } else {
             [self.progressView setProgress:progress animated:NO];
+        }
+    }else if ([keyPath isEqualToString:@"URL"]){
+        // 可以在这里进行拦截并做相应的处理
+        NSLog(@"URL------%@",_webView.URL.absoluteString);
+        if (self.sourceType == BrowserSourceWork) {
+            if ([_webView.URL.absoluteString isEqualToString:[NSString stringWithFormat:@"%@?",AppWebWork]]) {
+                [self.navigationItem.leftBarButtonItem.customView setHidden:YES];
+            } else {
+                self.navigationItem.leftBarButtonItem = self.backBarButtonItem;
+                [self.navigationItem.leftBarButtonItem.customView setHidden:NO];
+            }
         }
     }
 }
@@ -399,6 +413,7 @@
 - (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation {
     //KVO监听加载进度
     [self.webView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
+    [webView addObserver:self forKeyPath:@"URL" options:NSKeyValueObservingOptionNew context:nil];
 }
 
 //完成加载

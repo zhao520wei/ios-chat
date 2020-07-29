@@ -296,6 +296,7 @@
 		9530D80D24C85BA200CCC9F6 /* YLImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9530D72924C85BA200CCC9F6 /* YLImageView.m */; };
 		9530D80F24C8604700CCC9F6 /* Stickers.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9530D80E24C8604600CCC9F6 /* Stickers.bundle */; };
 		9534A96E24CAD20A00AF1FC0 /* WFCArchitectureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9534A96D24CAD20A00AF1FC0 /* WFCArchitectureViewController.m */; };
+		9539B4AA24D154CB00DEA036 /* WFCURLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 9539B4A924D154CB00DEA036 /* WFCURLCache.m */; };
 		955C916C24CA8400007AC43C /* UIView+gradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 955C916B24CA8400007AC43C /* UIView+gradient.m */; };
 		955C916E24CABA1F007AC43C /* launch_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 955C916D24CABA1F007AC43C /* launch_icon.png */; };
 		9569902C24CBDCFC0009F332 /* SinglePersonNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569900624CBDCFB0009F332 /* SinglePersonNode.m */; };
@@ -892,6 +893,8 @@
 		9530D80E24C8604600CCC9F6 /* Stickers.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Stickers.bundle; path = Frameworks/Stickers.bundle; sourceTree = SOURCE_ROOT; };
 		9534A96C24CAD20A00AF1FC0 /* WFCArchitectureViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WFCArchitectureViewController.h; sourceTree = "<group>"; };
 		9534A96D24CAD20A00AF1FC0 /* WFCArchitectureViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WFCArchitectureViewController.m; sourceTree = "<group>"; };
+		9539B4A824D154CB00DEA036 /* WFCURLCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WFCURLCache.h; sourceTree = "<group>"; };
+		9539B4A924D154CB00DEA036 /* WFCURLCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WFCURLCache.m; sourceTree = "<group>"; };
 		955C916A24CA8400007AC43C /* UIView+gradient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+gradient.h"; sourceTree = "<group>"; };
 		955C916B24CA8400007AC43C /* UIView+gradient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+gradient.m"; sourceTree = "<group>"; };
 		955C916D24CABA1F007AC43C /* launch_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch_icon.png; sourceTree = "<group>"; };
@@ -2354,6 +2357,8 @@
 				95CDA8E124CFCBF800EEA41E /* NJKWebViewProgress */,
 				95CDA8DA24CFC8C600EEA41E /* BrowserViewController.h */,
 				95CDA8DB24CFC8C600EEA41E /* BrowserViewController.m */,
+				9539B4A824D154CB00DEA036 /* WFCURLCache.h */,
+				9539B4A924D154CB00DEA036 /* WFCURLCache.m */,
 				95CDA8DC24CFC8C600EEA41E /* demo.html */,
 				95CDA8DD24CFC8C600EEA41E /* demo.js */,
 			);
@@ -2696,6 +2701,7 @@
 				9530D78024C85BA200CCC9F6 /* WFCUChannelTableViewCell.m in Sources */,
 				9530D78124C85BA200CCC9F6 /* WFCUConfigManager.m in Sources */,
 				9530D7D924C85BA200CCC9F6 /* DNBadgeLabel.m in Sources */,
+				9539B4AA24D154CB00DEA036 /* WFCURLCache.m in Sources */,
 				9530D7A624C85BA200CCC9F6 /* WFCULocationViewController.m in Sources */,
 				9530D7E724C85BA200CCC9F6 /* SDRefreshHeaderView.m in Sources */,
 				9530D7AB24C85BA200CCC9F6 /* WFCUSelectFileViewController.m in Sources */,

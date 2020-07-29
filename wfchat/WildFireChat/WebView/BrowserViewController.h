@@ -10,6 +10,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+
+typedef enum : NSUInteger {
+    BrowserSourceWork,
+    BrowserSourceTodo,
+    BrowserSourceUnread,
+    BrowserSourceDate,
+} BrowserSourceType;
+
+
 @interface BrowserViewController : UIViewController
 
 
@@ -25,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return instancetype
  */
-- (instancetype)initWithURL:(NSURL *)URL;
+- (instancetype)initWithURL:(NSURL *)URL withType:(BrowserSourceType)type;
 
 /**
  创建实例对象
@@ -34,7 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return instancetype
  */
-+ (instancetype)createInstanceWithURL:(NSURL *)URL;
++ (instancetype)createInstanceWithURL:(NSURL *)URL withType:(BrowserSourceType)type;
 
 
 @end

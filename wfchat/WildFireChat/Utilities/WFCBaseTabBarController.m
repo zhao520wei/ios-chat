@@ -96,7 +96,7 @@
     [self addChildViewController:nav];
     
       
-    vc = [[BrowserViewController alloc] initWithURL:[NSURL URLWithString: APP_WORK_ADDRESS]];
+    vc = [[BrowserViewController alloc] initWithURL:[NSURL URLWithString: AppWebWork] withType:BrowserSourceWork];
     vc.title = LocalizedString(@"Me");
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     item = nav.tabBarItem;

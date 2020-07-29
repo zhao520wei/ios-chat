@@ -37,6 +37,8 @@
 #import "SDWebImage.h"
 #import "XLSlideMenu.h"
 #import "AutoBreadcrumbViewController.h"
+#import "BrowserViewController.h"
+#import "WFCConfig.h"
 
 
 // 消息的列表页
@@ -607,24 +609,18 @@
     return  _pcLoginStatuButton;;
 }
 - (void) todoButtonAction {
-    UIViewController* ctrl = [[UIViewController alloc] init];
+    BrowserViewController* ctrl = [[BrowserViewController alloc] initWithURL:[NSURL URLWithString:AppWebTodo] withType:BrowserSourceTodo];
     ctrl.hidesBottomBarWhenPushed = true;
-    ctrl.view.backgroundColor = UIColor.redColor;
-    ctrl.title = @"todo";
     [self.navigationController pushViewController:ctrl animated:true];
 }
 - (void) unreadButtonAction {
-    UIViewController* ctrl = [[UIViewController alloc] init];
+    BrowserViewController* ctrl = [[BrowserViewController alloc] initWithURL:[NSURL URLWithString:AppWebUnread] withType:BrowserSourceUnread];
     ctrl.hidesBottomBarWhenPushed = true;
-    ctrl.view.backgroundColor = UIColor.redColor;
-    ctrl.title = @"unread";
     [self.navigationController pushViewController:ctrl animated:true];
 }
 - (void) scheduleButtonAction {
-    UIViewController* ctrl = [[UIViewController alloc] init];
+    BrowserViewController* ctrl = [[BrowserViewController alloc] initWithURL:[NSURL URLWithString:AppWebDate] withType:BrowserSourceDate];
     ctrl.hidesBottomBarWhenPushed = true;
-    ctrl.view.backgroundColor = UIColor.redColor;
-    ctrl.title = @"schedule";
     [self.navigationController pushViewController:ctrl animated:true];
 }
 - (void) pcLoginStatuButtonAction {

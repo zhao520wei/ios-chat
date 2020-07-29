@@ -23,6 +23,9 @@ extern NSString *USER_PRIVACY_URL;
 extern NSString *USER_AGREEMENT_URL;
 
 
-extern NSString * APP_WORK_ADDRESS;
+extern NSString * AppWebWork;
+extern NSString * AppWebTodo;
+extern NSString * AppWebUnread;
+extern NSString * AppWebDate;
 
 #endif /* Config_h */

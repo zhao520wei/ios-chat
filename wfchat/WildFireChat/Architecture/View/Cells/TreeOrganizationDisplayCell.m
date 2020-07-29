@@ -120,6 +120,7 @@
 
 - (void)setupSubviews{
     [self.contentView addSubview:self.treeView];
+    NSLog(@"TreeOrganizationDisplayCell height : %f     treeView height: %f", self.contentView.frame.size.height ,self.treeView.frame.size.height );
 }
 
 /**
