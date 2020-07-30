@@ -188,7 +188,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     NSString * webToken = [[NSUserDefaults standardUserDefaults] stringForKey:kSavedWebToken];
-    self.URL = [NSURL URLWithString:[NSString stringWithFormat:@"%@?%@", self.URL.absoluteString,webToken]];
+    self.URL = [NSURL URLWithString:[NSString stringWithFormat:@"%@", self.URL.absoluteString]];
     
     [self.view addSubview:self.webView];
 

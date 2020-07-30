@@ -78,6 +78,8 @@
 		90C1D911208C12A900E923F4 /* foreman.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 90C1D90F208C12A900E923F4 /* foreman.mp4 */; };
 		90C1D912208C12A900E923F4 /* ring.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 90C1D910208C12A900E923F4 /* ring.mp3 */; };
 		90FF267E222AB34B0001D8AF /* PCLoginConfirmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FF267D222AB34B0001D8AF /* PCLoginConfirmViewController.m */; };
+		95181F2C24D2A29600EC60C1 /* WFCNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95181F2B24D2A29600EC60C1 /* WFCNavigationController.m */; };
+		95181F3024D2A2DB00EC60C1 /* CRGradientNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 95181F2E24D2A2DB00EC60C1 /* CRGradientNavigationBar.m */; };
 		9530D51A24C8502F00CCC9F6 /* WFCBaseTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9530D51824C8502E00CCC9F6 /* WFCBaseTabBarController.m */; };
 		9530D72C24C85BA200CCC9F6 /* WFCPrivacyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9530D52224C85BA000CCC9F6 /* WFCPrivacyViewController.m */; };
 		9530D72D24C85BA200CCC9F6 /* Archive.zip in Resources */ = {isa = PBXBuildFile; fileRef = 9530D52424C85BA000CCC9F6 /* Archive.zip */; };
@@ -446,6 +448,10 @@
 		90C1D910208C12A900E923F4 /* ring.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ring.mp3; sourceTree = "<group>"; };
 		90FF267C222AB34B0001D8AF /* PCLoginConfirmViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PCLoginConfirmViewController.h; sourceTree = "<group>"; };
 		90FF267D222AB34B0001D8AF /* PCLoginConfirmViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PCLoginConfirmViewController.m; sourceTree = "<group>"; };
+		95181F2A24D2A29600EC60C1 /* WFCNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WFCNavigationController.h; sourceTree = "<group>"; };
+		95181F2B24D2A29600EC60C1 /* WFCNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WFCNavigationController.m; sourceTree = "<group>"; };
+		95181F2E24D2A2DB00EC60C1 /* CRGradientNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRGradientNavigationBar.m; sourceTree = "<group>"; };
+		95181F2F24D2A2DB00EC60C1 /* CRGradientNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRGradientNavigationBar.h; sourceTree = "<group>"; };
 		9530D51824C8502E00CCC9F6 /* WFCBaseTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFCBaseTabBarController.m; sourceTree = "<group>"; };
 		9530D51924C8502E00CCC9F6 /* WFCBaseTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFCBaseTabBarController.h; sourceTree = "<group>"; };
 		9530D52224C85BA000CCC9F6 /* WFCPrivacyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFCPrivacyViewController.m; sourceTree = "<group>"; };
@@ -1016,6 +1022,7 @@
 				9534A96B24CAD15C00AF1FC0 /* Architecture */,
 				9530D51F24C85BA000CCC9F6 /* WFChatUIKit */,
 				95CDA8D924CFBFB200EEA41E /* WebView */,
+				95181F2924D2A26900EC60C1 /* Navigation */,
 				2E1D20BB1FAF127100F4405D /* WFCConfig.h */,
 				2E1D20B11FAF127100F4405D /* WFCConfig.m */,
 				2E1D1FFA1FAF0AE600F4405D /* AppDelegate.h */,
@@ -1260,6 +1267,25 @@
 			path = chatroom;
 			sourceTree = "<group>";
 		};
+		95181F2924D2A26900EC60C1 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				95181F2D24D2A2DB00EC60C1 /* CRGradientNavigationBar */,
+				95181F2A24D2A29600EC60C1 /* WFCNavigationController.h */,
+				95181F2B24D2A29600EC60C1 /* WFCNavigationController.m */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		95181F2D24D2A2DB00EC60C1 /* CRGradientNavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				95181F2F24D2A2DB00EC60C1 /* CRGradientNavigationBar.h */,
+				95181F2E24D2A2DB00EC60C1 /* CRGradientNavigationBar.m */,
+			);
+			path = CRGradientNavigationBar;
+			sourceTree = "<group>";
+		};
 		9530D51F24C85BA000CCC9F6 /* WFChatUIKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -1415,15 +1441,15 @@
 			isa = PBXGroup;
 			children = (
 				9530D55B24C85BA000CCC9F6 /* TabbarButton.h */,
-				9530D55D24C85BA000CCC9F6 /* AttributedLabel.h */,
+				9530D56624C85BA000CCC9F6 /* TabbarButton.m */,
+				9530D56724C85BA000CCC9F6 /* BubbleTipView.h */,
 				9530D55E24C85BA000CCC9F6 /* BubbleTipView.m */,
 				9530D56224C85BA000CCC9F6 /* UIView+Screenshot.h */,
 				9530D56B24C85BA000CCC9F6 /* UIView+Screenshot.m */,
 				9530D56324C85BA000CCC9F6 /* UITabBar+badge.h */,
-				9530D56424C85BA000CCC9F6 /* AttributedLabel.m */,
-				9530D56624C85BA000CCC9F6 /* TabbarButton.m */,
-				9530D56724C85BA000CCC9F6 /* BubbleTipView.h */,
 				9530D56A24C85BA000CCC9F6 /* UITabBar+badge.m */,
+				9530D55D24C85BA000CCC9F6 /* AttributedLabel.h */,
+				9530D56424C85BA000CCC9F6 /* AttributedLabel.m */,
 				9530D56124C85BA000CCC9F6 /* UIView+Toast.h */,
 				9530D56C24C85BA000CCC9F6 /* UIView+Toast.m */,
 				955C916A24CA8400007AC43C /* UIView+gradient.h */,
@@ -2661,6 +2687,7 @@
 				9530D80C24C85BA200CCC9F6 /* YLGIFImage.m in Sources */,
 				90854287222A06870009713D /* CreateBarCodeViewController.m in Sources */,
 				9530D73324C85BA200CCC9F6 /* WFCULocationCell.m in Sources */,
+				95181F3024D2A2DB00EC60C1 /* CRGradientNavigationBar.m in Sources */,
 				9530D77E24C85BA200CCC9F6 /* WFCUFavChannelTableViewController.m in Sources */,
 				9530D7C424C85BA200CCC9F6 /* VideoPlayerKit.m in Sources */,
 				9530D7C624C85BA200CCC9F6 /* KZVideoPlayer.m in Sources */,
@@ -2676,6 +2703,7 @@
 				9530D7F224C85BA200CCC9F6 /* FLAnimatedImage.m in Sources */,
 				9530D74424C85BA200CCC9F6 /* BubbleTipView.m in Sources */,
 				9530D7E124C85BA200CCC9F6 /* AFHTTPSessionManager.m in Sources */,
+				95181F2C24D2A29600EC60C1 /* WFCNavigationController.m in Sources */,
 				9569903024CBDCFC0009F332 /* AutoBreadcrumbViewController.m in Sources */,
 				9530D78C24C85BA200CCC9F6 /* WFCPrivacyTableViewController.m in Sources */,
 				9530D80B24C85BA200CCC9F6 /* TYAlertController.m in Sources */,

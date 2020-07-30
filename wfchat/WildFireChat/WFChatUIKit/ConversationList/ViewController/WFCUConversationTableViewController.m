@@ -85,7 +85,7 @@
         self.searchController.searchBar.searchBarStyle = UISearchBarStyleDefault;
         UIImage* searchBarBg = [UIImage imageWithColor:[UIColor whiteColor] size:CGSizeMake(self.view.frame.size.width - 8 * 2, 36) cornerRadius:4];
         [self.searchController.searchBar setSearchFieldBackgroundImage:searchBarBg forState:UIControlStateNormal];
-         self.searchController.searchBar.backgroundColor = [UIColor redColor];
+//         self.searchController.searchBar.backgroundColor = [UIColor redColor];
     } else {
         [self.searchController.searchBar setValue:WFCString(@"Cancel") forKey:@"_cancelButtonText"];
         UIImage* searchBarBg = [UIImage imageWithColor:[UIColor whiteColor] size:CGSizeMake(self.view.frame.size.width - 8 * 2, 36) cornerRadius:4];
@@ -388,13 +388,13 @@
     headerButton.layer.cornerRadius  = headerButton.frame.size.width/2;
     headerButton.layer.masksToBounds = YES;
     [headerButton addTarget:self action:@selector(onLeftBatBtn:) forControlEvents:UIControlEventTouchUpInside];
-    UIView * backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
-    backgroundView.layer.cornerRadius  = backgroundView.frame.size.width/2;
-    backgroundView.layer.masksToBounds = YES;
-    [backgroundView addSubview:headerButton];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView: backgroundView];
+    UIView * leftBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
+    leftBackgroundView.layer.cornerRadius  = leftBackgroundView.frame.size.width/2;
+    leftBackgroundView.layer.masksToBounds = YES;
+    [leftBackgroundView addSubview:headerButton];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView: leftBackgroundView];
     
-    
+   
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onClearAllUnread:) name:@"kTabBarClearBadgeNotification" object:nil];
     
@@ -676,6 +676,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    
     if (self.firstAppear) {
         self.firstAppear = NO;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onConnectionStatusChanged:) name:kConnectionStatusChanged object:nil];
@@ -692,6 +693,7 @@
     [self refreshList];
     [self refreshLeftButton];
 }
+
 
 - (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection {
     [super traitCollectionDidChange:previousTraitCollection];

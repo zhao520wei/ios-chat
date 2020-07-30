@@ -8,6 +8,7 @@
 
 #import "WFCULeaveCell.h"
 #import <WFChatClient/WFCChatClient.h>
+#import "AttributedLabel.h"
 
 @interface WFCULeaveCell ()
 
@@ -37,10 +38,12 @@
     [super setModel:model];
     
     WFCCLeaveMessageContent *leaveContent = (WFCCLeaveMessageContent *)model.message.content;
-    self.titleLabel.text = [NSString stringWithFormat:@"  %@",leaveContent.title];
-    self.contentLabel.text = [NSString stringWithFormat:@"  请假事由: %@\n  开始时间： %lld\n  结束时间: %lld",leaveContent.reason,leaveContent.startTime,leaveContent.endTime];
+    self.titleLabel.text = [NSString stringWithFormat:@"   %@",leaveContent.title];
+    
+    NSString * contentStr = [NSString stringWithFormat:@"   请假事由: %@\n   开始时间： %lld\n   结束时间: %lld",leaveContent.reason,leaveContent.startTime,leaveContent.endTime];
+    [self.contentLabel setText:contentStr lineSpacing:5.0];
 
-    self.bottomLabel.text = @"  查看详情";
+    self.bottomLabel.text = @"   查看详情";
 }
 
 
@@ -59,7 +62,7 @@
 
 - (UILabel *)contentLabel{
     if (!_contentLabel) {
-        _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 30 + 10, self.bubbleView.frame.size.width, self.bubbleView.frame.size.height - 80)];
+        _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 30 + 5, self.bubbleView.frame.size.width, self.bubbleView.frame.size.height - 60)];
         _contentLabel.font = [UIFont systemFontOfSize:14];
         _contentLabel.textAlignment = NSTextAlignmentLeft;
         _contentLabel.backgroundColor = [UIColor clearColor];
@@ -70,7 +73,7 @@
 }
 -(UILabel *)bottomLabel{
     if (!_bottomLabel) {
-        _bottomLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.bubbleView.frame.size.height - 30, self.bubbleView.frame.size.width, 30)];
+        _bottomLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.bubbleView.frame.size.height - 20, self.bubbleView.frame.size.width, 20)];
         _bottomLabel.font = [UIFont systemFontOfSize:14];
         _bottomLabel.textAlignment = NSTextAlignmentLeft;
         _bottomLabel.backgroundColor = [UIColor colorWithRed:0.7f green:0.7f blue:0.7f alpha:0.5f];
