@@ -75,15 +75,15 @@
 
 - (void)layoutSubviews{
     [super layoutSubviews];
-    CGFloat leftOffset = 12.0;
+    CGFloat leftOffset = 15.0;
     if (self.isAbleSelected) {
-        _selectBtn.frame = CGRectMake(12, self.frame.size.height/2-6, 18, 18);
+        _selectBtn.frame = CGRectMake(15, self.frame.size.height/2-6, 18, 18);
         leftOffset += 50.0 ;
     }
     
-    _nameLabel.frame = CGRectMake(12+leftOffset, 0, 80, self.frame.size.height);
-    _IDLabel.frame = CGRectMake(12+leftOffset+80+12, self.frame.size.height/2-7, 150, 14);
-    _departmentLabel.frame = CGRectMake(12+leftOffset+80+12+150+12, 0, self.frame.size.width-(12+leftOffset+150+12+80+12+12), self.frame.size.height);
+    _nameLabel.frame = CGRectMake(15+leftOffset, 0, self.frame.size.width - 100, self.frame.size.height);
+    _IDLabel.frame = CGRectMake(15+leftOffset+80+12, self.frame.size.height/2-7, 150, 14);
+    _departmentLabel.frame = CGRectMake(15+leftOffset+80+12+150+12, 0, self.frame.size.width-(15+leftOffset+150+12+80+12+12), self.frame.size.height);
 }
 
 #pragma mark ======== Private Methods ========

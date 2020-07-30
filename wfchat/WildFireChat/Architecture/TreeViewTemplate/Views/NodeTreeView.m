@@ -356,6 +356,7 @@ static inline void RecursiveLayoutSubviews(UIView *_Nonnull view){
         _tableview.tableFooterView = [[UIView alloc]init];
         _tableview.backgroundColor = [UIColor whiteColor];
         _tableview.scrollEnabled = NO;
+        _tableview.separatorColor = [UIColor groupTableViewBackgroundColor];
     }
     return _tableview;
 }

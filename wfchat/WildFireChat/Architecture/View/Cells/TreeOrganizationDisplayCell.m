@@ -11,6 +11,9 @@
 #import "OrganizationNodeView.h"
 #import "WFCUProfileTableViewController.h"
 #import "UIView+TYAlertView.h"
+#import "WFCUMessageListViewController.h"
+#import <WFChatClient/WFCChatClient.h>
+#import "AutoBreadcrumbViewController.h"
 
 @interface TreeOrganizationDisplayCell ()<NodeTreeViewDelegate>
 
@@ -87,10 +90,20 @@
     if ([selectNode isMemberOfClass:[SinglePersonNode class]]) {
         SinglePersonNode *personNode = (SinglePersonNode *)selectNode;
         if (personNode.subNodes.count == 0 && !self.isAbleSelected) {
-            WFCUProfileTableViewController * profileVC = [[WFCUProfileTableViewController alloc]init];
-            profileVC.userId = personNode.uid;
-            profileVC.hidesBottomBarWhenPushed = YES;
-            [self.viewController.navigationController pushViewController:profileVC animated:YES];
+            
+            if ([personNode.address isEqualToString:kGroupNodeMark]) {
+                WFCUMessageListViewController *mvc = [[WFCUMessageListViewController alloc] init];
+                NSString *groupId = personNode.uid;
+                mvc.conversation = [WFCCConversation conversationWithType:Group_Type target:groupId line:0];
+                mvc.hidesBottomBarWhenPushed = YES;
+                [self.viewController.navigationController pushViewController:mvc animated:YES];
+            } else {
+                WFCUProfileTableViewController * profileVC = [[WFCUProfileTableViewController alloc]init];
+                profileVC.userId = personNode.uid;
+                profileVC.hidesBottomBarWhenPushed = YES;
+                [self.viewController.navigationController pushViewController:profileVC animated:YES];
+            }
+           
             return;
         }
         

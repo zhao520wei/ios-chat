@@ -1410,9 +1410,9 @@
 		9530D54F24C85BA000CCC9F6 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				9530D55024C85BA000CCC9F6 /* WFCUMediaMessageGridViewController.h */,
 				9530D55124C85BA000CCC9F6 /* WFCUMessageListViewController.h */,
 				9530D55224C85BA000CCC9F6 /* WFCUMessageListViewController.m */,
+				9530D55024C85BA000CCC9F6 /* WFCUMediaMessageGridViewController.h */,
 				9530D55324C85BA000CCC9F6 /* WFCUMediaMessageGridViewController.m */,
 			);
 			path = ViewController;

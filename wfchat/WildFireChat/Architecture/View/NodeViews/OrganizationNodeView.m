@@ -45,8 +45,8 @@
 
 - (void)layoutSubviews{
     [super layoutSubviews];
-    self.titleLabel.frame = CGRectMake(12, 0, 200, self.frame.size.height);
-    self.rightImgView.frame = CGRectMake(self.frame.size.width - 12 -12, self.frame.size.height/2-6, 12, 12);
+    self.titleLabel.frame = CGRectMake(15, 0, 200, self.frame.size.height);
+    self.rightImgView.frame = CGRectMake(self.frame.size.width - 12 -15, self.frame.size.height/2-6, 12, 16);
 }
 
 #pragma mark ======== Private Methods ========

@@ -805,7 +805,7 @@
     [self.chatInputBar resetInputBarStatue];
 }
 
-
+// 发送普通的文字消息
 - (void)sendMessage:(WFCCMessageContent *)content {
     //发送消息时，client会发出"kSendingMessageStatusUpdated“的通知，消息界面收到通知后加入到列表中。
     __weak typeof(self) ws = self;
@@ -1006,7 +1006,9 @@
 #endif
 
 - (void)onSendingMessage:(NSNotification *)notification {
+    
     WFCCMessage *message = [notification.userInfo objectForKey:@"message"];
+    
     WFCCMessageStatus status = [[notification.userInfo objectForKey:@"status"] integerValue];
     if (status == Message_Status_Sending) {
         if ([message.conversation isEqual:self.conversation]) {

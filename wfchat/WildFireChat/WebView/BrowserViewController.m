@@ -311,7 +311,7 @@
         // 可以在这里进行拦截并做相应的处理
         NSLog(@"URL------%@",_webView.URL.absoluteString);
         if (self.sourceType == BrowserSourceWork) {
-            if ([_webView.URL.absoluteString isEqualToString:[NSString stringWithFormat:@"%@?",AppWebWork]]) {
+            if ([_webView.URL.absoluteString isEqualToString:[NSString stringWithFormat:@"%@",AppWebWork]]) {
                 [self.navigationItem.leftBarButtonItem.customView setHidden:YES];
             } else {
                 self.navigationItem.leftBarButtonItem = self.backBarButtonItem;

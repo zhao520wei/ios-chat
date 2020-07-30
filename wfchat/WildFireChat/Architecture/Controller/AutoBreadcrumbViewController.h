@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "SinglePersonNode.h"
 
+extern NSString * kGroupNodeMark;
+
 @interface AutoBreadcrumbViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic, assign) BOOL isAbleSelected; // 是否是可选择状态
