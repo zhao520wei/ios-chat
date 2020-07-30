@@ -139,12 +139,9 @@
 		9530D76824C85BA200CCC9F6 /* WFCUContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9530D5B324C85BA100CCC9F6 /* WFCUContactTableViewCell.m */; };
 		9530D76924C85BA200CCC9F6 /* WFCUSelectedUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 9530D5B724C85BA100CCC9F6 /* WFCUSelectedUserInfo.m */; };
 		9530D76A24C85BA200CCC9F6 /* WFCUUserSectionKeySupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 9530D5B824C85BA100CCC9F6 /* WFCUUserSectionKeySupport.m */; };
-		9530D76B24C85BA200CCC9F6 /* LSWTreeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9530D5BA24C85BA100CCC9F6 /* LSWTreeView.m */; };
-		9530D76C24C85BA200CCC9F6 /* LSWTreeViewDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9530D5BC24C85BA100CCC9F6 /* LSWTreeViewDataModel.m */; };
 		9530D76D24C85BA200CCC9F6 /* WFCUSeletedUserSearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9530D5C024C85BA100CCC9F6 /* WFCUSeletedUserSearchResultViewController.m */; };
 		9530D76E24C85BA200CCC9F6 /* WFCUSeletedUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9530D5C424C85BA100CCC9F6 /* WFCUSeletedUserViewController.m */; };
 		9530D76F24C85BA200CCC9F6 /* WFCUContactListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9530D5C524C85BA100CCC9F6 /* WFCUContactListViewController.m */; };
-		9530D77024C85BA200CCC9F6 /* WFCUCompanyArchitectureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9530D5C624C85BA100CCC9F6 /* WFCUCompanyArchitectureViewController.m */; };
 		9530D77124C85BA200CCC9F6 /* wfc.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9530D5C924C85BA100CCC9F6 /* wfc.strings */; };
 		9530D77424C85BA200CCC9F6 /* Emoj.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9530D5CE24C85BA100CCC9F6 /* Emoj.plist */; };
 		9530D77524C85BA200CCC9F6 /* WFCUShareMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9530D5CF24C85BA100CCC9F6 /* WFCUShareMessageView.xib */; };
@@ -570,18 +567,12 @@
 		9530D5B624C85BA100CCC9F6 /* WFCUUserSectionKeySupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFCUUserSectionKeySupport.h; sourceTree = "<group>"; };
 		9530D5B724C85BA100CCC9F6 /* WFCUSelectedUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFCUSelectedUserInfo.m; sourceTree = "<group>"; };
 		9530D5B824C85BA100CCC9F6 /* WFCUUserSectionKeySupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFCUUserSectionKeySupport.m; sourceTree = "<group>"; };
-		9530D5BA24C85BA100CCC9F6 /* LSWTreeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSWTreeView.m; sourceTree = "<group>"; };
-		9530D5BB24C85BA100CCC9F6 /* LSWTreeViewDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSWTreeViewDataModel.h; sourceTree = "<group>"; };
-		9530D5BC24C85BA100CCC9F6 /* LSWTreeViewDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSWTreeViewDataModel.m; sourceTree = "<group>"; };
-		9530D5BD24C85BA100CCC9F6 /* LSWTreeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSWTreeView.h; sourceTree = "<group>"; };
 		9530D5BF24C85BA100CCC9F6 /* WFCUSeletedUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFCUSeletedUserViewController.h; sourceTree = "<group>"; };
 		9530D5C024C85BA100CCC9F6 /* WFCUSeletedUserSearchResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFCUSeletedUserSearchResultViewController.m; sourceTree = "<group>"; };
-		9530D5C124C85BA100CCC9F6 /* WFCUCompanyArchitectureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFCUCompanyArchitectureViewController.h; sourceTree = "<group>"; };
 		9530D5C224C85BA100CCC9F6 /* WFCUContactListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFCUContactListViewController.h; sourceTree = "<group>"; };
 		9530D5C324C85BA100CCC9F6 /* SeletedUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeletedUserViewController.h; sourceTree = "<group>"; };
 		9530D5C424C85BA100CCC9F6 /* WFCUSeletedUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFCUSeletedUserViewController.m; sourceTree = "<group>"; };
 		9530D5C524C85BA100CCC9F6 /* WFCUContactListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFCUContactListViewController.m; sourceTree = "<group>"; };
-		9530D5C624C85BA100CCC9F6 /* WFCUCompanyArchitectureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFCUCompanyArchitectureViewController.m; sourceTree = "<group>"; };
 		9530D5C724C85BA100CCC9F6 /* WFCUSeletedUserSearchResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFCUSeletedUserSearchResultViewController.h; sourceTree = "<group>"; };
 		9530D5CA24C85BA100CCC9F6 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/wfc.strings"; sourceTree = "<group>"; };
 		9530D5CC24C85BA100CCC9F6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/wfc.strings; sourceTree = "<group>"; };
@@ -1583,7 +1574,6 @@
 			children = (
 				9530D5A924C85BA100CCC9F6 /* Cell */,
 				9530D5B424C85BA100CCC9F6 /* Support */,
-				9530D5B924C85BA100CCC9F6 /* LSWTreeView */,
 				9530D5BE24C85BA100CCC9F6 /* ViewController */,
 			);
 			path = Contacts;
@@ -1617,17 +1607,6 @@
 			path = Support;
 			sourceTree = "<group>";
 		};
-		9530D5B924C85BA100CCC9F6 /* LSWTreeView */ = {
-			isa = PBXGroup;
-			children = (
-				9530D5BA24C85BA100CCC9F6 /* LSWTreeView.m */,
-				9530D5BB24C85BA100CCC9F6 /* LSWTreeViewDataModel.h */,
-				9530D5BC24C85BA100CCC9F6 /* LSWTreeViewDataModel.m */,
-				9530D5BD24C85BA100CCC9F6 /* LSWTreeView.h */,
-			);
-			path = LSWTreeView;
-			sourceTree = "<group>";
-		};
 		9530D5BE24C85BA100CCC9F6 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -1636,8 +1615,6 @@
 				9530D5C424C85BA100CCC9F6 /* WFCUSeletedUserViewController.m */,
 				9530D5C224C85BA100CCC9F6 /* WFCUContactListViewController.h */,
 				9530D5C524C85BA100CCC9F6 /* WFCUContactListViewController.m */,
-				9530D5C124C85BA100CCC9F6 /* WFCUCompanyArchitectureViewController.h */,
-				9530D5C624C85BA100CCC9F6 /* WFCUCompanyArchitectureViewController.m */,
 				9530D5C724C85BA100CCC9F6 /* WFCUSeletedUserSearchResultViewController.h */,
 				9530D5C024C85BA100CCC9F6 /* WFCUSeletedUserSearchResultViewController.m */,
 			);
@@ -2549,13 +2526,11 @@
 				9530D76624C85BA200CCC9F6 /* WFCUContactSelectTableViewCell.m in Sources */,
 				9530D7C024C85BA200CCC9F6 /* VideoPlayerSampleView.m in Sources */,
 				9085427B2229FF160009713D /* StyleDIY.m in Sources */,
-				9530D76B24C85BA200CCC9F6 /* LSWTreeView.m in Sources */,
 				9530D7A724C85BA200CCC9F6 /* WFCUStickerItem.m in Sources */,
 				9530D7B824C85BA200CCC9F6 /* CCHFadeInOutMapAnimator.m in Sources */,
 				9530D79624C85BA200CCC9F6 /* WFCUParticipantCollectionViewLayout.m in Sources */,
 				2F94FB9222291577005BD461 /* LBXScanTypes.m in Sources */,
 				2F94FC9A22291813005BD461 /* UIWindow+LBXHierarchy.m in Sources */,
-				9530D76C24C85BA200CCC9F6 /* LSWTreeViewDataModel.m in Sources */,
 				2F7268FD21F714C900E05F9C /* UILabel+YBAttributeTextTapAction.m in Sources */,
 				9530D74124C85BA200CCC9F6 /* WFCUMediaMessageGridViewController.m in Sources */,
 				9530D80624C85BA200CCC9F6 /* TYAlertController+TransitionAnimate.m in Sources */,
@@ -2578,7 +2553,6 @@
 				2F94FAB224551D82007713CD /* DeviceViewController.m in Sources */,
 				9530D78724C85BA200CCC9F6 /* WFCDiagnoseViewController.m in Sources */,
 				9530D80524C85BA200CCC9F6 /* TYAlertFadeAnimation.m in Sources */,
-				9530D77024C85BA200CCC9F6 /* WFCUCompanyArchitectureViewController.m in Sources */,
 				9530D79D24C85BA200CCC9F6 /* GroupMuteTableViewController.m in Sources */,
 				9530D7AC24C85BA200CCC9F6 /* WFCUEmotionTextAttachment.m in Sources */,
 				9530D7FB24C85BA200CCC9F6 /* NSData+ImageContentType.m in Sources */,
