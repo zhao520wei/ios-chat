@@ -75,7 +75,7 @@
 
     NSString *savedToken = [[NSUserDefaults standardUserDefaults] stringForKey:kSavedToken];
     NSString *savedUserId = [[NSUserDefaults standardUserDefaults] stringForKey:kSavedUserId];
-    NSString *savedWebToken = [[NSUserDefaults standardUserDefaults] stringForKey:kSavedWebToken];
+//    NSString *savedWebToken = [[NSUserDefaults standardUserDefaults] stringForKey:kSavedWebToken];
     
     
     WFCMeTableViewController * meCtrl = [[WFCMeTableViewController alloc]init];

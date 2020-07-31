@@ -81,10 +81,10 @@
 
 - (void) loadRealData {
     __weak __typeof(self) weakSelf = self;
-    [self.view addSubview:self.tableview];
+
     [[AppService sharedAppService] loadCompanyArchitectureDataWithSuccess:^(NSDictionary * _Nonnull tree) {
+        [weakSelf.view addSubview:weakSelf.tableview];
         [weakSelf dealwithDictionaryTree:tree];
-        
     } error:^(NSInteger error_code) {
         
     }];

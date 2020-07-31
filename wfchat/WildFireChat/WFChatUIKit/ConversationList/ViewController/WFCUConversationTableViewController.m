@@ -643,16 +643,14 @@ API_AVAILABLE(ios(9.0))
 - (void)updatePcSession {
     NSArray<WFCCPCOnlineInfo *> *onlines = [[WFCCIMService sharedWFCIMService] getPCOnlineInfos];
     
-    if (@available(iOS 11.0, *)) {
-        if (onlines.count) {
-            [self.headerStackView addArrangedSubview:self.pcLoginStatuButton];
-        } else {
-            [self.headerStackView removeArrangedSubview:self.pcLoginStatuButton];
-            [self.pcLoginStatuButton removeFromSuperview];
-        }
+    if (onlines.count) {
+        [self.headerStackView addArrangedSubview:self.pcLoginStatuButton];
     } else {
+        [self.headerStackView removeArrangedSubview:self.pcLoginStatuButton];
+        [self.pcLoginStatuButton removeFromSuperview];
     }
     
+
 }
 
 - (void) testStackView:(BOOL)isExchange {
