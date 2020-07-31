@@ -14,6 +14,7 @@
 #import "WFCUMessageListViewController.h"
 #import <WFChatClient/WFCChatClient.h>
 #import "AutoBreadcrumbViewController.h"
+#import "MBProgressHUD.h"
 
 @interface TreeOrganizationDisplayCell ()<NodeTreeViewDelegate>
 
@@ -120,6 +121,12 @@
                 OrganizationNode *node = (OrganizationNode *)selectNode;
                 if (node.subNodes.count > 0) {
                     self.selectNode(selectNode);
+                } else {
+                    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.viewController.view animated:YES];
+                    hud.mode = MBProgressHUDModeText;
+                    hud.label.text = @"没有下一级了!";
+                    hud.offset = CGPointMake(0.f, MBProgressMaxOffset);
+                    [hud hideAnimated:YES afterDelay:2.f];
                 }
             }else {
                  self.selectNode(selectNode);

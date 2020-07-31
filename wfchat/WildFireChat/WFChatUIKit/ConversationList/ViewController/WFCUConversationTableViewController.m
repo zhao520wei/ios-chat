@@ -43,6 +43,7 @@
 
 // 消息的列表页
 
+API_AVAILABLE(ios(9.0))
 @interface WFCUConversationTableViewController () <UISearchControllerDelegate, UISearchResultsUpdating, UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong)NSMutableArray<WFCCConversationInfo *> *conversations;
 
@@ -204,7 +205,6 @@
 
 - (void)onRightBarBtn:(UIBarButtonItem *)sender {
     CGFloat searchExtra = 0;
-    [self updatePcSession];
     if ([KxMenu isShowing]) {
         [KxMenu dismissMenu];
         return;
@@ -600,8 +600,9 @@
 -(UIButton *)pcLoginStatuButton {
     if (!_pcLoginStatuButton) {
         _pcLoginStatuButton = [UIButton buttonWithType:UIButtonTypeSystem];
-        _pcLoginStatuButton.frame = CGRectMake(0, 0, 40, 40);
-        [_pcLoginStatuButton setTitle:@"PC" forState:UIControlStateNormal];
+        _pcLoginStatuButton.frame = CGRectMake(0, 0, 30, 30);
+//        [_pcLoginStatuButton setImage:[UIImage imageNamed:@"pc_session"] forState:UIControlStateNormal];
+        [_pcLoginStatuButton setTitle:@"PC已登录" forState:UIControlStateNormal];
         _pcLoginStatuButton.titleLabel.font = [UIFont pingFangSCWithWeight:FontWeightStyleMedium size:15] ;
         _pcLoginStatuButton.titleLabel.textColor = UIColor.blackColor;
         [_pcLoginStatuButton addTarget:self action:@selector(pcLoginStatuButtonAction) forControlEvents:UIControlEventTouchUpInside];
@@ -639,25 +640,30 @@
     }
 }
 
-
 - (void)updatePcSession {
     NSArray<WFCCPCOnlineInfo *> *onlines = [[WFCCIMService sharedWFCIMService] getPCOnlineInfos];
     
     if (@available(iOS 11.0, *)) {
         if (onlines.count) {
-            if (![self.headerStackView.arrangedSubviews containsObject:self.pcLoginStatuButton]) {
-                [self.headerStackView addArrangedSubview:self.pcLoginStatuButton];
-                [self.headerStackView setNeedsLayout];
-            }
+            [self.headerStackView addArrangedSubview:self.pcLoginStatuButton];
         } else {
-            
-            if ([self.headerStackView.arrangedSubviews containsObject:self.pcLoginStatuButton]) {
-                [self.headerStackView removeArrangedSubview:self.pcLoginStatuButton];
-            }
+            [self.headerStackView removeArrangedSubview:self.pcLoginStatuButton];
+            [self.pcLoginStatuButton removeFromSuperview];
         }
     } else {
     }
     
+}
+
+- (void) testStackView:(BOOL)isExchange {
+    if (isExchange) {
+        [self.headerStackView addArrangedSubview:self.pcLoginStatuButton];
+       
+    } else {
+        [self.headerStackView removeArrangedSubview:self.pcLoginStatuButton];
+        [self.pcLoginStatuButton removeFromSuperview];
+       
+    }
 }
 
 - (void)didReceiveMemoryWarning {

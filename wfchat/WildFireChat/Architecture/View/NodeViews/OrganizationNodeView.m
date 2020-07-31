@@ -40,7 +40,7 @@
     OrganizationNode *simpleNode = (OrganizationNode *)node;
     self.titleLabel.text = simpleNode.name;
     
-    [self.rightImgView setHidden: !(simpleNode.subNodes > 0)];
+    [self.rightImgView setHidden: !(simpleNode.subNodes.count > 0)];
 }
 
 - (void)layoutSubviews{
