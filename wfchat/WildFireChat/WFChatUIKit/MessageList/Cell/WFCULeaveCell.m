@@ -25,7 +25,7 @@
 + (CGSize)sizeForClientArea:(WFCUMessageModel *)msgModel withViewWidth:(CGFloat)width {
     WFCCLeaveMessageContent *imgContent = (WFCCLeaveMessageContent *)msgModel.message.content;
     
-    CGSize size = CGSizeMake(150, 130);
+    CGSize size = CGSizeMake(200, 130);
     
     if (size.height > width || size.width > width) {
         float scale = MIN(width/size.height, width/size.width);
@@ -53,7 +53,7 @@
         _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.bubbleView.frame.size.width, 30)];
         _titleLabel.font = [UIFont systemFontOfSize:16];
         _titleLabel.textAlignment = NSTextAlignmentLeft;
-        _titleLabel.backgroundColor = [UIColor colorWithRed:0.7f green:0.7f blue:0.7f alpha:0.5f];
+        _titleLabel.backgroundColor = [UIColor clearColor];
         _titleLabel.numberOfLines = 1;
         [self.bubbleView addSubview:_titleLabel];
     }
@@ -63,9 +63,10 @@
 - (UILabel *)contentLabel{
     if (!_contentLabel) {
         _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 30 + 5, self.bubbleView.frame.size.width, self.bubbleView.frame.size.height - 60)];
-        _contentLabel.font = [UIFont systemFontOfSize:14];
+        _contentLabel.font = [UIFont systemFontOfSize:15];
         _contentLabel.textAlignment = NSTextAlignmentLeft;
         _contentLabel.backgroundColor = [UIColor clearColor];
+        _contentLabel.textColor = [UIColor grayColor];
         _contentLabel.numberOfLines = 0;
         [self.bubbleView addSubview:_contentLabel];
     }
@@ -73,10 +74,10 @@
 }
 -(UILabel *)bottomLabel{
     if (!_bottomLabel) {
-        _bottomLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.bubbleView.frame.size.height - 20, self.bubbleView.frame.size.width, 20)];
-        _bottomLabel.font = [UIFont systemFontOfSize:14];
+        _bottomLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.bubbleView.frame.size.height - 25, self.bubbleView.frame.size.width, 25)];
+        _bottomLabel.font = [UIFont systemFontOfSize:15];
         _bottomLabel.textAlignment = NSTextAlignmentLeft;
-        _bottomLabel.backgroundColor = [UIColor colorWithRed:0.7f green:0.7f blue:0.7f alpha:0.5f];
+        _bottomLabel.backgroundColor = [UIColor clearColor];
         _bottomLabel.numberOfLines = 1;
         _bottomLabel.textColor  = kMainColor;
         [self.bubbleView addSubview:_bottomLabel];

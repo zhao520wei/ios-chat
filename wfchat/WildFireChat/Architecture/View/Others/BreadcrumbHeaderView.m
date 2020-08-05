@@ -79,7 +79,7 @@
                 [btn setImage:nil forState:UIControlStateNormal];
                 btnWidth = [self.allTitles[i] widthForFont:[UIFont boldSystemFontOfSize:16]];
             }else{
-                [btn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+                [btn setTitleColor:kMainColor forState:UIControlStateNormal];
                 [btn setTitle:[NSString stringWithFormat:@"%@->",self.allTitles[i]] forState:UIControlStateNormal];
                 btnWidth = [btn.titleLabel.text widthForFont:[UIFont boldSystemFontOfSize:16]]+6;
             }

@@ -164,6 +164,7 @@ static NSString* const dnAssetsViewCellReuseIdentifier = @"DNAssetsViewCell";
 }
 
 #pragma mark - priviate methods
+//MARK: 发送图片
 - (void)sendImages {
     [DNImagePickerHelper saveAblumIdentifier:self.album.identifier];
     

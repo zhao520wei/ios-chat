@@ -269,9 +269,9 @@ alpha:1.0]
 
 - (void)resetKeyboard:(id)sender {
     [self.userNameField resignFirstResponder];
-    self.userNameLine.backgroundColor = [UIColor grayColor];
+    self.userNameLine.backgroundColor = [UIColor groupTableViewBackgroundColor];
     [self.passwordField resignFirstResponder];
-    self.passwordLine.backgroundColor = [UIColor grayColor];
+    self.passwordLine.backgroundColor = [UIColor groupTableViewBackgroundColor];
 }
 
 - (void)onLoginButton:(id)sender {
@@ -335,9 +335,9 @@ alpha:1.0]
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     if (textField == self.userNameField) {
         self.userNameLine.backgroundColor = [UIColor colorWithRed:0.1 green:0.27 blue:0.9 alpha:0.9];
-        self.passwordLine.backgroundColor = [UIColor grayColor];
+        self.passwordLine.backgroundColor = [UIColor groupTableViewBackgroundColor];
     } else if (textField == self.passwordField) {
-        self.userNameLine.backgroundColor = [UIColor grayColor];
+        self.userNameLine.backgroundColor = [UIColor groupTableViewBackgroundColor];
         self.passwordLine.backgroundColor = [UIColor colorWithRed:0.1 green:0.27 blue:0.9 alpha:0.9];
     }
     return YES;
