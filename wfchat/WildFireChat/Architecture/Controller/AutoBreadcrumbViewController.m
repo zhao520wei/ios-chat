@@ -317,11 +317,25 @@
     TreeOrganizationDisplayCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_ID];
     if (cell == nil) {
         cell = [[TreeOrganizationDisplayCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CELL_ID treeStyle:NodeTreeViewStyleBreadcrumbs treeRefreshPolicy:NodeTreeRefreshPolicyAutomic];
+        cell.isSingleSelected = self.isSingleSelected;
         //cell事件的block回调,只负责将所选择的点传递出来，更新headerview，不需要手动刷新
         __weak typeof(self)weakSelf = self;
         cell.selectNode = ^(BaseTreeNode *node) {
+            
+            if (self.isSingleSelected) {
+                if ([node isMemberOfClass:[SinglePersonNode class]]) {
+                    SinglePersonNode * single = (SinglePersonNode *)node;
+                    weakSelf.selectedNode(@[single]);
+                    [weakSelf dismiss];
+                } else {
+                    [weakSelf selectNode:node nodeTreeAnimation:weakSelf.rowAnimation];
+                }
+            } else {
+              [weakSelf selectNode:node nodeTreeAnimation:weakSelf.rowAnimation];
+            }
+            
             //            if (node.subNodes.count > 0) {
-            [weakSelf selectNode:node nodeTreeAnimation:weakSelf.rowAnimation];
+            //[weakSelf selectNode:node nodeTreeAnimation:weakSelf.rowAnimation];
             //            }
         };
     }
@@ -362,7 +376,12 @@
 #pragma mark ======== Event Response ========
 
 - (void) dismiss {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    if (self.isSingleSelected) {
+         [self.navigationController popViewControllerAnimated:true];
+    } else {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+    
 }
 
 - (void) sure {
@@ -373,7 +392,12 @@
         self.selectedNode([self.selectedNodes copy]);
     }
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    if (self.isSingleSelected) {
+        [self.navigationController popViewControllerAnimated:true];
+    }else {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+
 }
 
 - (void) clearAllSelectedNode {

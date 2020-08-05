@@ -16,6 +16,8 @@
 
 @property (nonatomic, assign) BOOL isAbleSelected;
 
+@property(nonatomic, assign) BOOL isSingleSelected;
+
 @property (nonatomic, copy) void(^selectNode)(BaseTreeNode *node);
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier treeStyle:(NodeTreeViewStyle)treeStyle;

@@ -29,7 +29,7 @@
     self.messageTextView.layer.cornerRadius = 8.f;
     self.messageTextView.contentInset = UIEdgeInsetsMake(2, 8, 2, 2);
     self.messageTextView.layer.borderWidth = 0.5f;
-    self.messageTextView.layer.borderColor = [[UIColor greenColor] CGColor];
+    self.messageTextView.layer.borderColor = [kMainColor CGColor];
 }
 
 - (IBAction)sendAction:(id)sender {

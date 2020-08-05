@@ -90,7 +90,7 @@
 
     if ([selectNode isMemberOfClass:[SinglePersonNode class]]) {
         SinglePersonNode *personNode = (SinglePersonNode *)selectNode;
-        if (personNode.subNodes.count == 0 && !self.isAbleSelected) {
+        if (personNode.subNodes.count == 0 && !self.isAbleSelected && !self.isSingleSelected) {
             
             if ([personNode.address isEqualToString:kGroupNodeMark]) {
                 WFCUMessageListViewController *mvc = [[WFCUMessageListViewController alloc] init];

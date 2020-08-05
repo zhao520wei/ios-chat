@@ -19,6 +19,7 @@
 #import "WFCUContactListViewController.h"
 #import "WFCUConfigManager.h"
 #import "UIImage+ERCategory.h"
+#import "AutoBreadcrumbViewController.h"
 
 @interface WFCUForwardViewController () <UITableViewDataSource, UISearchControllerDelegate, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating>
 @property (nonatomic, strong)UITableView *tableView;
@@ -286,12 +287,33 @@
         }
     } else {
         if (indexPath.section == 0) { //new conversation
-            WFCUContactListViewController *pvc = [[WFCUContactListViewController alloc] init];
-            pvc.selectContact = YES;
-            pvc.multiSelect = NO;
-            pvc.isPushed = YES;
+//            WFCUContactListViewController *pvc = [[WFCUContactListViewController alloc] init];
+//            pvc.selectContact = YES;
+//            pvc.multiSelect = NO;
+//            pvc.isPushed = YES;
+//            __weak typeof(self)ws = self;
+//            pvc.selectResult = ^(NSArray<NSString *> *contacts) {
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    if (contacts.count == 1) {
+//                        WFCCConversation *conversation = [[WFCCConversation alloc] init];
+//                        conversation.type = Single_Type;
+//                        conversation.target = contacts[0];
+//                        conversation.line = 0;
+//                        [ws altertSend:conversation];
+//                    }
+//                });
+//            };
+            
+            AutoBreadcrumbViewController * pvc = [[AutoBreadcrumbViewController alloc] init];
+            pvc.isAbleSelected = false;
+            pvc.isSingleSelected = YES;
+            [self.navigationController pushViewController:pvc animated:YES];
             __weak typeof(self)ws = self;
-            pvc.selectResult = ^(NSArray<NSString *> *contacts) {
+            pvc.selectedNode = ^(NSArray<SinglePersonNode *> *nodes) {
+                NSMutableArray * contacts = [NSMutableArray array];
+                for (SinglePersonNode * node in nodes) {
+                    [contacts addObject:node.uid];
+                }
                 dispatch_async(dispatch_get_main_queue(), ^{
                     if (contacts.count == 1) {
                         WFCCConversation *conversation = [[WFCCConversation alloc] init];
@@ -303,7 +325,6 @@
                 });
             };
             
-            [self.navigationController pushViewController:pvc animated:YES];
             return;
         } else {
             selectedConv = self.conversations[indexPath.row].conversation;

@@ -15,6 +15,8 @@ extern NSString * kGroupNodeMark;
 
 @property (nonatomic, assign) BOOL isAbleSelected; // 是否是可选择状态
 
+@property (nonatomic, assign) BOOL isSingleSelected; // 是单选还是多选。  单选时没有选择框
+
 @property (nonatomic, copy) void(^selectedNode)(NSArray<SinglePersonNode *> *nodes);
 
 

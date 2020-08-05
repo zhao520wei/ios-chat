@@ -7,7 +7,7 @@
 */
 CFBundleName="倚天移动办公";
 CFBundleDisplayName="倚天移动办公";
-Message="讯息";
+Message="信息";
 Contact="组织";
 Architecture="组织架构";
 Discover="工作";
