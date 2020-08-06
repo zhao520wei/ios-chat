@@ -290,7 +290,8 @@
 #pragma mark ======== System Delegate ========
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return  kScreenHeight - kTabBarHeight ; //self.currentNode.subTreeHeight
+    // 这个应该是单颗树下最多数量 * 50
+    return  kScreenHeight + 100.0 ; //self.currentNode.subTreeHeight
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{

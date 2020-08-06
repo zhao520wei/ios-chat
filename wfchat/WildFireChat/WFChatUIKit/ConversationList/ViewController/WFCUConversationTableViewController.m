@@ -72,6 +72,8 @@ API_AVAILABLE(ios(9.0))
 @property (nonatomic, strong) UIButton * pcLoginStatuButton;
 @property (nonatomic, strong) UIStackView * headerStackView ;
 
+@property (nonatomic, strong) UIButton * headerButton;
+
 
 @end
 
@@ -201,6 +203,25 @@ API_AVAILABLE(ios(9.0))
             }
         }
     }
+}
+
+-(UIButton *)headerButton {
+    if (!_headerButton) {
+        _headerButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
+    }
+    return _headerButton;
+}
+
+- (void)onLoginSuccessUpdated {
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        WFCCUserInfo *me = [[WFCCIMService sharedWFCIMService] getUserInfo:[WFCCNetworkService sharedInstance].userId refresh:YES];
+          [self.headerButton sd_setImageWithURL:[NSURL URLWithString:me.portrait] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"PersonalChat"]];
+    });
+  
+//    if (!self.headerButton.imageView.image) {
+//        [self.headerButton setImage:[UIImage imageNamed:@"PersonalChat"] forState:UIControlStateNormal];
+//    }
+    
 }
 
 - (void)onRightBarBtn:(UIBarButtonItem *)sender {
@@ -377,24 +398,17 @@ API_AVAILABLE(ios(9.0))
     self.definesPresentationContext = YES;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"bar_plus"] style:UIBarButtonItemStyleDone target:self action:@selector(onRightBarBtn:)];
     
+    
     WFCCUserInfo *me = [[WFCCIMService sharedWFCIMService] getUserInfo:[WFCCNetworkService sharedInstance].userId refresh:YES];
-    UIButton * headerButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
-//    [headerButton.imageView sd_setImageWithURL:[NSURL URLWithString:me.portrait] placeholderImage:[UIImage imageNamed:@"PersonalChat"]];
-    [headerButton sd_setImageWithURL:[NSURL URLWithString:me.portrait] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"PersonalChat"]];
-    if (!headerButton.imageView.image) {
-        [headerButton setImage:[UIImage imageNamed:@"PersonalChat"] forState:UIControlStateNormal];
-    }
- 
-    headerButton.layer.cornerRadius  = headerButton.frame.size.width/2;
-    headerButton.layer.masksToBounds = YES;
-    [headerButton addTarget:self action:@selector(onLeftBatBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [self.headerButton sd_setImageWithURL:[NSURL URLWithString:me.portrait] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"PersonalChat"]];
+    self.headerButton.layer.cornerRadius  = self.headerButton.frame.size.width/2;
+    self.headerButton.layer.masksToBounds = YES;
+    [self.headerButton addTarget:self action:@selector(onLeftBatBtn:) forControlEvents:UIControlEventTouchUpInside];
     UIView * leftBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
     leftBackgroundView.layer.cornerRadius  = leftBackgroundView.frame.size.width/2;
     leftBackgroundView.layer.masksToBounds = YES;
-    [leftBackgroundView addSubview:headerButton];
+    [leftBackgroundView addSubview:self.headerButton];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView: leftBackgroundView];
-    
-   
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onClearAllUnread:) name:@"kTabBarClearBadgeNotification" object:nil];
     
@@ -406,8 +420,15 @@ API_AVAILABLE(ios(9.0))
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onSendingMessageStatusUpdated:) name:kSendingMessageStatusUpdated object:nil];
     
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onLoginSuccessUpdated) name:kUserLoginSuccessNotification object:nil];
+    
     self.firstAppear = YES;
 }
+
+
+
 
 - (void)updateConnectionStatus:(ConnectionStatus)status {
     UIView *title;
