@@ -35,10 +35,11 @@
 #import "WFCUSeletedUserViewController.h"
 
 #import "SDWebImage.h"
-#import "XLSlideMenu.h"
 #import "AutoBreadcrumbViewController.h"
 #import "BrowserViewController.h"
 #import "WFCConfig.h"
+#import "UIViewController+ZYSliderViewController.h"
+#import "ZYSliderViewController.h"
 
 
 // 消息的列表页
@@ -255,11 +256,12 @@ API_AVAILABLE(ios(9.0))
 }
 
 - (void)onLeftBatBtn:(UIBarButtonItem *) sender {
-    [self.xl_sldeMenu showLeftViewControllerAnimated:true];
+//    [self.xl_sldeMenu showLeftViewControllerAnimated:true];
+     [[self sliderViewController] showLeft];
 }
 
 - (void)startChatAction:(id)sender {
-    
+    /*
     AutoBreadcrumbViewController * selectVC = [[AutoBreadcrumbViewController alloc] init];
     selectVC.isAbleSelected = true;
     UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:selectVC];
@@ -294,8 +296,9 @@ API_AVAILABLE(ios(9.0))
     };
     
      [self.navigationController presentViewController:navi animated:YES completion:nil];
+    */
     
- /*
+ 
     WFCUSeletedUserViewController *pvc = [[WFCUSeletedUserViewController alloc] init];
     pvc.type = Horizontal;
     UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:pvc];
@@ -324,7 +327,7 @@ API_AVAILABLE(ios(9.0))
     };
     
     [self.navigationController presentViewController:navi animated:YES completion:nil];
-    */
+    
 }
 
 #if WFCU_GROUP_GRID_PORTRAIT

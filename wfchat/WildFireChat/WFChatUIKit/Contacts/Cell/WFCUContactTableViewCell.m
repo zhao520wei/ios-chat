@@ -33,14 +33,15 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     if (self.isBig) {
-          _portraitView.frame = CGRectMake(8, (self.frame.size.height - 52) / 2.0, 52, 52);
+        _portraitView.frame = CGRectMake(8, (self.frame.size.height - 52) / 2.0, 52, 52);
         _nameLabel.frame = CGRectMake(72, (self.frame.size.height - 20) / 2.0, [UIScreen mainScreen].bounds.size.width - 64, 20);
         _nameLabel.font = [UIFont systemFontOfSize:20];
-      } else {
-          _portraitView.frame = CGRectMake(16, (self.frame.size.height - 40) / 2.0, 40, 40);
-          _nameLabel.frame = CGRectMake(16 + 40 + 11, (self.frame.size.height - 17) / 2.0, [UIScreen mainScreen].bounds.size.width - (16 + 40 + 11), 17);
-            _nameLabel.font = [UIFont pingFangSCWithWeight:FontWeightStyleRegular size:16];
-      }
+        
+    } else {
+        _portraitView.frame = CGRectMake(16, (self.frame.size.height - 40) / 2.0, 40, 40);
+        _nameLabel.frame = CGRectMake(16 + 40 + 11, (self.frame.size.height - 17) / 2.0, [UIScreen mainScreen].bounds.size.width - (16 + 40 + 11), 17);
+        _nameLabel.font = [UIFont pingFangSCWithWeight:FontWeightStyleRegular size:16];
+    }
 }
 - (void)onUserInfoUpdated:(NSNotification *)notification {
     WFCCUserInfo *userInfo = notification.userInfo[@"userInfo"];

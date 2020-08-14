@@ -33,8 +33,8 @@
 
 - (UIImageView *)portrait {
     if (!_portrait) {
-        _portrait = [[UIImageView alloc] initWithFrame:CGRectMake(16, 64, 60, 60)];
-        _portrait.layer.cornerRadius = 10.0;
+        _portrait = [[UIImageView alloc] initWithFrame:CGRectMake(26, 64, 60, 60)];
+        _portrait.layer.cornerRadius = 30.0;
         _portrait.layer.masksToBounds = YES;
         [self.contentView addSubview:_portrait];
     }
@@ -44,9 +44,9 @@
 
 - (UILabel *)displayName {
     if (!_displayName) {
-        _displayName = [[UILabel alloc] initWithFrame:CGRectMake(16 + 60 + 20, 64, [UIScreen mainScreen].bounds.size.width - 64, 32)];
+        _displayName = [[UILabel alloc] initWithFrame:CGRectMake(26 + 60 + 20, 64, [UIScreen mainScreen].bounds.size.width - 64, 32)];
         [_displayName setFont:[UIFont pingFangSCWithWeight:FontWeightStyleSemibold size:20]];
-        _displayName.textColor = [WFCUConfigManager globalManager].naviTextColor;
+        _displayName.textColor = UIColor.whiteColor;//[WFCUConfigManager globalManager].naviTextColor;
         [self.contentView addSubview:_displayName];
     }
     return _displayName;
@@ -54,9 +54,9 @@
 
 - (UILabel *)userName {
     if (!_userName) {
-        _userName = [[UILabel alloc] initWithFrame:CGRectMake(16 + 60 + 20, 64 + 32 + 8, [UIScreen mainScreen].bounds.size.width - 128, 14)];
+        _userName = [[UILabel alloc] initWithFrame:CGRectMake(26 + 60 + 20, 64 + 32 + 8, [UIScreen mainScreen].bounds.size.width - 128, 14)];
         [_userName setFont:[UIFont systemFontOfSize:14]];
-        _userName.textColor = [WFCUConfigManager globalManager].naviTextColor;
+        _userName.textColor = UIColor.whiteColor ;//[WFCUConfigManager globalManager].naviTextColor;
         [self.contentView addSubview:_userName];
     }
     return _userName;
@@ -66,6 +66,6 @@
     _userInfo = userInfo;
     [self.portrait sd_setImageWithURL:[NSURL URLWithString:self.userInfo.portrait] placeholderImage: [UIImage imageNamed:@"PersonalChat"]];
     self.displayName.text = self.userInfo.displayName;
-    self.userName.text = [NSString stringWithFormat:@"用户ID:%@", self.userInfo.name];
+    self.userName.text = [NSString stringWithFormat:@"职务:%@", self.userInfo.company];
 }
 @end

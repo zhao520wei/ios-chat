@@ -132,8 +132,6 @@
 		9530D75F24C85BA200CCC9F6 /* WFCUFavGroupTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9530D59A24C85BA100CCC9F6 /* WFCUFavGroupTableViewController.m */; };
 		9530D76024C85BA200CCC9F6 /* WFCUFriendRequestTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9530D59F24C85BA100CCC9F6 /* WFCUFriendRequestTableViewCell.m */; };
 		9530D76124C85BA200CCC9F6 /* WFCUFriendRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9530D5A224C85BA100CCC9F6 /* WFCUFriendRequestViewController.m */; };
-		9530D76224C85BA200CCC9F6 /* UIViewController+XLSlideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 9530D5A424C85BA100CCC9F6 /* UIViewController+XLSlideMenu.m */; };
-		9530D76324C85BA200CCC9F6 /* XLSlideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 9530D5A524C85BA100CCC9F6 /* XLSlideMenu.m */; };
 		9530D76424C85BA200CCC9F6 /* WFCUSelectedUserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9530D5AB24C85BA100CCC9F6 /* WFCUSelectedUserTableViewCell.m */; };
 		9530D76524C85BA200CCC9F6 /* WFCUNewFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9530D5AC24C85BA100CCC9F6 /* WFCUNewFriendTableViewCell.m */; };
 		9530D76624C85BA200CCC9F6 /* WFCUContactSelectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9530D5AF24C85BA100CCC9F6 /* WFCUContactSelectTableViewCell.m */; };
@@ -313,6 +311,9 @@
 		95CDA8E024CFC8C600EEA41E /* demo.js in Resources */ = {isa = PBXBuildFile; fileRef = 95CDA8DD24CFC8C600EEA41E /* demo.js */; };
 		95CDA8E624CFCBF900EEA41E /* NJKWebViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CDA8E324CFCBF800EEA41E /* NJKWebViewProgress.m */; };
 		95CDA8E724CFCBF900EEA41E /* NJKWebViewProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CDA8E524CFCBF800EEA41E /* NJKWebViewProgressView.m */; };
+		95F481D124E6626B0091D57E /* ZYSliderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F481CE24E6626B0091D57E /* ZYSliderViewController.m */; };
+		95F481D224E6626B0091D57E /* UIViewController+ZYSliderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F481CF24E6626B0091D57E /* UIViewController+ZYSliderViewController.m */; };
+		95F481D524E672C70091D57E /* MeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F481D424E672C70091D57E /* MeTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -556,10 +557,6 @@
 		9530D59F24C85BA100CCC9F6 /* WFCUFriendRequestTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFCUFriendRequestTableViewCell.m; sourceTree = "<group>"; };
 		9530D5A124C85BA100CCC9F6 /* WFCUFriendRequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFCUFriendRequestViewController.h; sourceTree = "<group>"; };
 		9530D5A224C85BA100CCC9F6 /* WFCUFriendRequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFCUFriendRequestViewController.m; sourceTree = "<group>"; };
-		9530D5A424C85BA100CCC9F6 /* UIViewController+XLSlideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+XLSlideMenu.m"; sourceTree = "<group>"; };
-		9530D5A524C85BA100CCC9F6 /* XLSlideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLSlideMenu.m; sourceTree = "<group>"; };
-		9530D5A624C85BA100CCC9F6 /* UIViewController+XLSlideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+XLSlideMenu.h"; sourceTree = "<group>"; };
-		9530D5A724C85BA100CCC9F6 /* XLSlideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLSlideMenu.h; sourceTree = "<group>"; };
 		9530D5AA24C85BA100CCC9F6 /* WFCUContactSelectTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFCUContactSelectTableViewCell.h; sourceTree = "<group>"; };
 		9530D5AB24C85BA100CCC9F6 /* WFCUSelectedUserTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFCUSelectedUserTableViewCell.m; sourceTree = "<group>"; };
 		9530D5AC24C85BA100CCC9F6 /* WFCUNewFriendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFCUNewFriendTableViewCell.m; sourceTree = "<group>"; };
@@ -927,6 +924,12 @@
 		95CDA8E324CFCBF800EEA41E /* NJKWebViewProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJKWebViewProgress.m; sourceTree = "<group>"; };
 		95CDA8E424CFCBF800EEA41E /* NJKWebViewProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NJKWebViewProgress.h; sourceTree = "<group>"; };
 		95CDA8E524CFCBF800EEA41E /* NJKWebViewProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJKWebViewProgressView.m; sourceTree = "<group>"; };
+		95F481CD24E6626B0091D57E /* UIViewController+ZYSliderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ZYSliderViewController.h"; sourceTree = "<group>"; };
+		95F481CE24E6626B0091D57E /* ZYSliderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYSliderViewController.m; sourceTree = "<group>"; };
+		95F481CF24E6626B0091D57E /* UIViewController+ZYSliderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ZYSliderViewController.m"; sourceTree = "<group>"; };
+		95F481D024E6626B0091D57E /* ZYSliderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYSliderViewController.h; sourceTree = "<group>"; };
+		95F481D324E672C70091D57E /* MeTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MeTableViewCell.h; sourceTree = "<group>"; };
+		95F481D424E672C70091D57E /* MeTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MeTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1294,6 +1297,7 @@
 		9530D51F24C85BA000CCC9F6 /* WFChatUIKit */ = {
 			isa = PBXGroup;
 			children = (
+				95F481CC24E6626B0091D57E /* ZYSliderViewController */,
 				9530D52124C85BA000CCC9F6 /* Provacy */,
 				9530D52624C85BA000CCC9F6 /* AddFriend */,
 				9530D52C24C85BA000CCC9F6 /* MessageList */,
@@ -1303,7 +1307,6 @@
 				9530D58224C85BA100CCC9F6 /* ConversationList */,
 				9530D59424C85BA100CCC9F6 /* Group */,
 				9530D59C24C85BA100CCC9F6 /* FriendRequest */,
-				9530D5A324C85BA100CCC9F6 /* XLSlideMenu */,
 				9530D5A824C85BA100CCC9F6 /* Contacts */,
 				9530D5C824C85BA100CCC9F6 /* Resources */,
 				9530D5DA24C85BA100CCC9F6 /* ForwardMessage */,
@@ -1589,17 +1592,6 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		9530D5A324C85BA100CCC9F6 /* XLSlideMenu */ = {
-			isa = PBXGroup;
-			children = (
-				9530D5A424C85BA100CCC9F6 /* UIViewController+XLSlideMenu.m */,
-				9530D5A524C85BA100CCC9F6 /* XLSlideMenu.m */,
-				9530D5A624C85BA100CCC9F6 /* UIViewController+XLSlideMenu.h */,
-				9530D5A724C85BA100CCC9F6 /* XLSlideMenu.h */,
-			);
-			path = XLSlideMenu;
-			sourceTree = "<group>";
-		};
 		9530D5A824C85BA100CCC9F6 /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
@@ -1716,6 +1708,8 @@
 				9530D5F924C85BA100CCC9F6 /* WFCDiagnoseViewController.m */,
 				9530D5FA24C85BA100CCC9F6 /* WFCMeTableViewController.h */,
 				9530D60724C85BA100CCC9F6 /* WFCMeTableViewController.m */,
+				95F481D324E672C70091D57E /* MeTableViewCell.h */,
+				95F481D424E672C70091D57E /* MeTableViewCell.m */,
 				9530D5FB24C85BA100CCC9F6 /* WFCThemeTableViewController.h */,
 				9530D5FC24C85BA100CCC9F6 /* WFCThemeTableViewCell.h */,
 				9530D5FD24C85BA100CCC9F6 /* WFCUMyPortraitViewController.m */,
@@ -2363,6 +2357,17 @@
 			path = NJKWebViewProgress;
 			sourceTree = "<group>";
 		};
+		95F481CC24E6626B0091D57E /* ZYSliderViewController */ = {
+			isa = PBXGroup;
+			children = (
+				95F481CD24E6626B0091D57E /* UIViewController+ZYSliderViewController.h */,
+				95F481CE24E6626B0091D57E /* ZYSliderViewController.m */,
+				95F481CF24E6626B0091D57E /* UIViewController+ZYSliderViewController.m */,
+				95F481D024E6626B0091D57E /* ZYSliderViewController.h */,
+			);
+			path = ZYSliderViewController;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2569,7 +2574,6 @@
 				9530D74024C85BA200CCC9F6 /* WFCUMessageListViewController.m in Sources */,
 				9530D78B24C85BA200CCC9F6 /* WFCSettingTableViewController.m in Sources */,
 				9530D72C24C85BA200CCC9F6 /* WFCPrivacyViewController.m in Sources */,
-				9530D76224C85BA200CCC9F6 /* UIViewController+XLSlideMenu.m in Sources */,
 				9530D7A424C85BA200CCC9F6 /* WFCUSelectedFileCollectionViewCell.m in Sources */,
 				2E1D200A1FAF0AE600F4405D /* main.m in Sources */,
 				9530D76624C85BA200CCC9F6 /* WFCUContactSelectTableViewCell.m in Sources */,
@@ -2590,6 +2594,7 @@
 				9530D7B624C85BA200CCC9F6 /* CCHMapClusterControllerDebugPolygon.m in Sources */,
 				9530D73024C85BA200CCC9F6 /* WFCUTextCell.m in Sources */,
 				2F4B0EAA245BFCE7000A41C6 /* DeviceTableViewController.m in Sources */,
+				95F481D124E6626B0091D57E /* ZYSliderViewController.m in Sources */,
 				9569902F24CBDCFC0009F332 /* NodeTreeView.m in Sources */,
 				9530D78924C85BA200CCC9F6 /* WFCMeTableViewHeaderViewCell.m in Sources */,
 				9530D75F24C85BA200CCC9F6 /* WFCUFavGroupTableViewController.m in Sources */,
@@ -2597,7 +2602,9 @@
 				9530D79024C85BA200CCC9F6 /* WFCUMessageNotificationViewController.m in Sources */,
 				955C916C24CA8400007AC43C /* UIView+gradient.m in Sources */,
 				9530D76D24C85BA200CCC9F6 /* WFCUSeletedUserSearchResultViewController.m in Sources */,
+				95F481D524E672C70091D57E /* MeTableViewCell.m in Sources */,
 				9530D74E24C85BA200CCC9F6 /* WFCUGroupMemberTableViewController.m in Sources */,
+				95F481D224E6626B0091D57E /* UIViewController+ZYSliderViewController.m in Sources */,
 				9569903624CBDCFC0009F332 /* OrganizationNodeView.m in Sources */,
 				2F94FAB224551D82007713CD /* DeviceViewController.m in Sources */,
 				9530D78724C85BA200CCC9F6 /* WFCDiagnoseViewController.m in Sources */,
@@ -2666,7 +2673,6 @@
 				2F94FCA722291813005BD461 /* LBXPermissionCamera.m in Sources */,
 				9530D75424C85BA200CCC9F6 /* WFCUGroupMemberTableViewCell.m in Sources */,
 				2F94FC9C22291813005BD461 /* UIAlertView+LBXAlertAction.m in Sources */,
-				9530D76324C85BA200CCC9F6 /* XLSlideMenu.m in Sources */,
 				9530D76E24C85BA200CCC9F6 /* WFCUSeletedUserViewController.m in Sources */,
 				909ACDAF2130473100A64FE7 /* ChatroomListViewController.m in Sources */,
 				9530D73A24C85BA200CCC9F6 /* WFCUCallSummaryCell.m in Sources */,

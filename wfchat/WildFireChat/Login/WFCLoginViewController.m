@@ -135,16 +135,16 @@ alpha:1.0]
     self.passwordField.clearButtonMode = UITextFieldViewModeWhileEditing;
     [self.passwordField addTarget:self action:@selector(textDidChange:) forControlEvents:UIControlEventEditingChanged];
     
-    self.sendCodeBtn = [[UIButton alloc] initWithFrame:CGRectMake(passwordContainer.frame.size.width - 72, (inputHeight - 1 - 20) / 2.0, 72, 33)];
-    [self.sendCodeBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
-    self.sendCodeBtn.titleLabel.font = [UIFont pingFangSCWithWeight:FontWeightStyleRegular size:12];
-    self.sendCodeBtn.layer.borderWidth = 1;
-    self.sendCodeBtn.layer.cornerRadius = 4;
-    self.sendCodeBtn.layer.borderColor = [UIColor colorWithHexString:@"0x191919"].CGColor;
-    [self.sendCodeBtn setTitleColor:[UIColor colorWithHexString:@"0x171717"] forState:UIControlStateNormal];
-    [self.sendCodeBtn setTitleColor:[UIColor colorWithHexString:@"0x171717"] forState:UIControlStateSelected];
-    [self.sendCodeBtn addTarget:self action:@selector(onSendCode:) forControlEvents:UIControlEventTouchDown];
-    self.sendCodeBtn.enabled = NO;
+//    self.sendCodeBtn = [[UIButton alloc] initWithFrame:CGRectMake(passwordContainer.frame.size.width - 72, (inputHeight - 1 - 20) / 2.0, 72, 33)];
+//    [self.sendCodeBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
+//    self.sendCodeBtn.titleLabel.font = [UIFont pingFangSCWithWeight:FontWeightStyleRegular size:12];
+//    self.sendCodeBtn.layer.borderWidth = 1;
+//    self.sendCodeBtn.layer.cornerRadius = 4;
+//    self.sendCodeBtn.layer.borderColor = [UIColor colorWithHexString:@"0x191919"].CGColor;
+//    [self.sendCodeBtn setTitleColor:[UIColor colorWithHexString:@"0x171717"] forState:UIControlStateNormal];
+//    [self.sendCodeBtn setTitleColor:[UIColor colorWithHexString:@"0x171717"] forState:UIControlStateSelected];
+//    [self.sendCodeBtn addTarget:self action:@selector(onSendCode:) forControlEvents:UIControlEventTouchDown];
+//    self.sendCodeBtn.enabled = NO;
     
     
     topPos += inputHeight + 58;
@@ -394,7 +394,7 @@ alpha:1.0]
 }
 
 - (BOOL)isValidCode {
-    if (self.passwordField.text.length >= 4) {
+    if (self.passwordField.text.length >= 0) {
         return YES;
     } else {
         return NO;

@@ -110,9 +110,9 @@
     cell.tag = Modify_Mobile;
     [self.cells2 addObject:cell];
 
-    cell = [self getAttrCell:WFCString(@"Gender") rightText: [self getGenderString:self.userInfo.gender] mutable:YES];
-    cell.tag = Modify_Gender;
-    [self.cells2 addObject:cell];
+//    cell = [self getAttrCell:WFCString(@"Gender") rightText: [self getGenderString:self.userInfo.gender] mutable:YES];
+//    cell.tag = Modify_Gender;
+//    [self.cells2 addObject:cell];
 
     cell = [self getAttrCell:WFCString(@"Email") rightText:self.userInfo.email mutable:YES];
     cell.tag = Modify_Email;
@@ -122,13 +122,13 @@
     cell.tag = Modify_Address;
     [self.cells2 addObject:cell];
 
-    cell = [self getAttrCell:WFCString(@"Company") rightText:self.userInfo.company mutable:YES];
+    cell = [self getAttrCell:@"职务" rightText:self.userInfo.company mutable:YES];
     cell.tag = Modify_Company;
     [self.cells2 addObject:cell];
 
-    cell = [self getAttrCell:WFCString(@"SocialAccount") rightText:self.userInfo.social mutable:YES];
-    cell.tag = Modify_Social;
-    [self.cells2 addObject:cell];
+//    cell = [self getAttrCell:WFCString(@"SocialAccount") rightText:self.userInfo.social mutable:YES];
+//    cell.tag = Modify_Social;
+//    [self.cells2 addObject:cell];
     
     [self.tableView reloadData];
 }

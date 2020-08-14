@@ -25,6 +25,8 @@
 #import "UIImage+ERCategory.h"
 #import "UIFont+YH.h"
 #import "UIColor+YH.h"
+#import "AutoBreadcrumbViewController.h"
+
 @interface WFCUContactListViewController () <UITableViewDataSource, UISearchControllerDelegate, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating>
 @property (nonatomic, strong)UITableView *tableView;
 @property (nonatomic, strong)NSMutableArray<WFCCUserInfo *> *dataArray;
@@ -83,6 +85,7 @@ static NSMutableDictionary *hanziStringDict = nil;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.backgroundColor = [WFCUConfigManager globalManager].backgroudColor;
+    self.tableView.separatorColor = UIColor.groupTableViewBackgroundColor;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     self.tableView.tableHeaderView = nil;
@@ -94,7 +97,7 @@ static NSMutableDictionary *hanziStringDict = nil;
             [self updateRightBarBtn];
         }
     } else {
-      self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"bar_plus"] style:UIBarButtonItemStyleDone target:self action:@selector(onRightBarBtn:)];
+//      self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"bar_plus"] style:UIBarButtonItemStyleDone target:self action:@selector(onRightBarBtn:)];
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onUserInfoUpdated:) name:kUserInfoUpdated object:nil];
@@ -248,6 +251,7 @@ static NSMutableDictionary *hanziStringDict = nil;
 
 - (void)sortAndRefreshWithList:(NSArray *)friendList {
     self.sorting = YES;
+    
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         self.resultDic = [WFCUContactListViewController sortedArrayWithPinYinDic:friendList];
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -360,9 +364,9 @@ static NSMutableDictionary *hanziStringDict = nil;
                     contactCell = [[WFCUNewFriendTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"newFriendCell"];
                 }
                 
-                contactCell.nameLabel.text = WFCString(@"NewFriend");
-                contactCell.portraitView.image = [UIImage imageNamed:@"friend_request_icon"];
-                [contactCell refresh];
+                contactCell.nameLabel.text = @"倚天科技";
+                contactCell.portraitView.image = [UIImage imageNamed:@"AppIcon"];
+//                [contactCell refresh];
                 contactCell.separatorInset = UIEdgeInsetsMake(0, 60, 0, 0);
                 
                 contactCell.nameLabel.textColor = [WFCUConfigManager globalManager].textColor;
@@ -372,19 +376,19 @@ static NSMutableDictionary *hanziStringDict = nil;
                 if (contactCell == nil) {
                     contactCell = [[WFCUContactTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:REUSEIDENTIFY];
                 }
-                contactCell.separatorInset = UIEdgeInsetsMake(0, 60, 0, 0);
-                contactCell.nameLabel.text = WFCString(@"Group");
-                contactCell.portraitView.image = [UIImage imageNamed:@"contact_group_icon"];
+                contactCell.nameLabel.text = @"组织架构";
+                contactCell.portraitView.image = [UIImage imageNamed:@"company_icon"];
                 contactCell.nameLabel.textColor = [WFCUConfigManager globalManager].textColor;
                 return contactCell;
-            } else {
+            }
+            else {
                 WFCUContactTableViewCell *contactCell = [tableView dequeueReusableCellWithIdentifier:REUSEIDENTIFY];
                 if (contactCell == nil) {
                     contactCell = [[WFCUContactTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:REUSEIDENTIFY];
                 }
-                
-                contactCell.nameLabel.text = WFCString(@"Channel");
-                contactCell.portraitView.image = [UIImage imageNamed:@"contact_channel_icon"];
+                contactCell.separatorInset = UIEdgeInsetsMake(0, 60, 0, 0);
+                contactCell.nameLabel.text = @"我的群组";
+                contactCell.portraitView.image = [UIImage imageNamed:@"contact_group_icon"];
                 contactCell.nameLabel.textColor = [WFCUConfigManager globalManager].textColor;
                 return contactCell;
             }
@@ -613,17 +617,18 @@ static NSMutableDictionary *hanziStringDict = nil;
     } else {
         if (indexPath.section == 0) {
             if (indexPath.row == 0) {
-                UIViewController *addFriendVC = [[WFCUFriendRequestViewController alloc] init];
-                addFriendVC.hidesBottomBarWhenPushed = YES;
-                [self.navigationController pushViewController:addFriendVC animated:YES];
+                AutoBreadcrumbViewController * companyCtrl  = [[AutoBreadcrumbViewController alloc] init];
+                companyCtrl.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:companyCtrl animated:YES];
             } else if(indexPath.row == 1) {
+                AutoBreadcrumbViewController * companyCtrl  = [[AutoBreadcrumbViewController alloc] init];
+                companyCtrl.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:companyCtrl animated:YES];
+            } else {
                 WFCUFavGroupTableViewController *groupVC = [[WFCUFavGroupTableViewController alloc] init];;
                 groupVC.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:groupVC animated:YES];
-            } else {
-                WFCUFavChannelTableViewController *channelVC = [[WFCUFavChannelTableViewController alloc] init];;
-                channelVC.hidesBottomBarWhenPushed = YES;
-                [self.navigationController pushViewController:channelVC animated:YES];
+                
             }
             return;
         } else {

@@ -36,7 +36,7 @@
 #import "WFCUConfigManager.h"
 #import "QrCodeHelper.h"
 #import "WFCMeTableViewController.h"
-#import "XLSlideMenu.h"
+#import "ZYSliderViewController.h"
 #import "WFCUProfileTableViewController.h"
 #import "WFCUMultiVideoViewController.h"
 #import "WFCUVideoViewController.h"
@@ -80,10 +80,9 @@
     
     WFCMeTableViewController * meCtrl = [[WFCMeTableViewController alloc]init];
     WFCBaseTabBarController * rootCtrl = [WFCBaseTabBarController new];
-    XLSlideMenu *slideMenu = [[XLSlideMenu alloc] initWithRootViewController:rootCtrl];
-    slideMenu.leftViewController = meCtrl;
     
-    self.window.rootViewController = slideMenu;
+    ZYSliderViewController *sliderVC = [[ZYSliderViewController alloc] initWithMainViewController:rootCtrl leftViewController:meCtrl rightViewController:nil];
+    self.window.rootViewController = sliderVC;
     self.window.backgroundColor = [UIColor whiteColor];
     
     // 缓存路径 可以是Documents或者tmp文件夹

@@ -30,7 +30,7 @@ NSString *APP_SERVER_ADDRESS = @"http://121.37.200.66:8888";
 
 
 //NSString *ICE_ADDRESS = @"turn:turn.wildfirechat.cn:3478";
-NSString *ICE_ADDRESS = @"124.71.14.144:3478";
+NSString *ICE_ADDRESS = @"124.71.110.32:3478";
 NSString *ICE_USERNAME = @"thinker";
 NSString *ICE_PASSWORD = @"thinker";
 

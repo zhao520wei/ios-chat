@@ -58,16 +58,27 @@
     
     
     
-    vc = [AutoBreadcrumbViewController new];
+//    vc = [AutoBreadcrumbViewController new];
+//    vc.title = LocalizedString(@"Contact");
+//    nav = [[UINavigationController alloc] initWithRootViewController:vc];
+//    [nav.navigationBar setShadowImage:colorImage];
+//    item = nav.tabBarItem;
+//    item.title = LocalizedString(@"Contact");
+//    item.image = [UIImage imageNamed:@"tabbar_contacts"];
+//    item.selectedImage = [[UIImage imageNamed:@"tabbar_contacts_cover"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//    [item setTitleTextAttributes:@{NSForegroundColorAttributeName : kMainColor} forState:UIControlStateSelected];
+//    [self addChildViewController:nav];
+    
+    vc = [WFCUContactListViewController new];
     vc.title = LocalizedString(@"Contact");
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    [nav.navigationBar setShadowImage:colorImage];
     item = nav.tabBarItem;
     item.title = LocalizedString(@"Contact");
     item.image = [UIImage imageNamed:@"tabbar_contacts"];
     item.selectedImage = [[UIImage imageNamed:@"tabbar_contacts_cover"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     [item setTitleTextAttributes:@{NSForegroundColorAttributeName : kMainColor} forState:UIControlStateSelected];
     [self addChildViewController:nav];
+    
     
     
     vc = [[BrowserViewController alloc] initWithURL:[NSURL URLWithString: AppWebWork] withType:BrowserSourceWork];

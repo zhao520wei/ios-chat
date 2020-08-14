@@ -16,8 +16,10 @@
 #import "WFCUConfigManager.h"
 #import "WFCUMyProfileTableViewController.h"
 #import "WFCUMessageNotificationViewController.h"
-#import "XLSlideMenu.h"
+#import "ZYSliderViewController.h"
+#import "UIViewController+ZYSliderViewController.h"
 #import "WFCBaseTabBarController.h"
+#import "MeTableViewCell.h"
 
 @interface WFCMeTableViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong)UITableView *tableView;
@@ -29,9 +31,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) style:UITableViewStylePlain];
-    self.tableView.backgroundColor = [WFCUConfigManager globalManager].backgroudColor;
+    
+    UIImageView *backImgView = [[UIImageView alloc] init];
+    backImgView.image = [UIImage imageNamed:@"login_background"];
+    backImgView.frame = self.view.bounds;
+    backImgView.userInteractionEnabled = YES;
+    [self.view addSubview:backImgView];
+    
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 100, self.view.frame.size.width, self.view.frame.size.height - 100) style:UITableViewStylePlain];
+    self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -61,9 +69,9 @@
     self.itemDataSource = @[
         @{@"title":WFCString(@"MessageNotification"),
           @"image":@"notification_setting"},
-        @{@"title":WFCString(@"AccountSafety"),
+        @{@"title":@"关于我们",
           @"image":@"safe_setting"},
-        @{@"title":WFCString(@"Settings"),
+        @{@"title":@"系统设置",
           @"image":@"MoreSetting"}
     ];
     
@@ -120,20 +128,22 @@
         
         WFCCUserInfo *me = [[WFCCIMService sharedWFCIMService] getUserInfo:[WFCCNetworkService sharedInstance].userId refresh:YES];
         cell.userInfo = me;
-        cell.backgroundColor = [WFCUConfigManager globalManager].naviBackgroudColor;
+        cell.backgroundColor = [UIColor clearColor];
         return cell;
     } else {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"styleDefault"];
+        MeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"styleDefault"];
         if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"styleDefault"];
+            cell = [[MeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"styleDefault"];
         }
         
         cell.accessoryType = UITableViewCellAccessoryNone;
         cell.accessoryView = nil;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
   
-        cell.textLabel.text = self.itemDataSource[indexPath.section - 1][@"title"];
-        cell.imageView.image = [UIImage imageNamed:self.itemDataSource[indexPath.section - 1][@"image"]];
+        cell.centerLable.text = self.itemDataSource[indexPath.section - 1][@"title"];
+        
+//        cell.imageView.image = [UIImage imageNamed:self.itemDataSource[indexPath.section - 1][@"image"]];
+        cell.backgroundColor = [UIColor clearColor];
         return cell;
     }
     return nil;
@@ -141,13 +151,15 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        return 154;
+        return 150;
     } else {
         return 50;
     }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:true];
+     [[self sliderViewController] hideLeft];
     
     if (indexPath.section == 0) {
         WFCUMyProfileTableViewController *vc = [[WFCUMyProfileTableViewController alloc] init];
@@ -155,9 +167,8 @@
         if (self.navigationController) {
             [self.navigationController pushViewController:vc animated:YES];
         } else {
-            [self.xl_sldeMenu showRootViewControllerAnimated:true];
-            WFCBaseTabBarController * ctrl = (WFCBaseTabBarController *)self.xl_sldeMenu.rootViewController;
-            [ctrl.firstNav pushViewController:vc animated:true];
+         
+            [[self sliderViewController].sliderNavigationController pushViewController:vc animated:true];
         }
     } else if (indexPath.section == 1) {
         
@@ -166,22 +177,20 @@
         if (self.navigationController) {
             [self.navigationController pushViewController:mnvc animated:YES];
         } else {
-            [self.xl_sldeMenu showRootViewControllerAnimated:true];
-            WFCBaseTabBarController * ctrl = (WFCBaseTabBarController *)self.xl_sldeMenu.rootViewController;
-            [ctrl.firstNav pushViewController:mnvc animated:true];
+            [[self sliderViewController].sliderNavigationController pushViewController:mnvc animated:true];
         }
-
+        
     } else if(indexPath.section == 2) {
         WFCSecurityTableViewController * stvc = [[WFCSecurityTableViewController alloc] init];
         stvc.hidesBottomBarWhenPushed = YES;
         if (self.navigationController) {
             [self.navigationController pushViewController:stvc animated:YES];
         } else {
-            [self.xl_sldeMenu showRootViewControllerAnimated:true];
-            NSLog(@" --- %@ ", [self.xl_sldeMenu.rootViewController class]);
-            WFCBaseTabBarController * ctrl = (WFCBaseTabBarController *)self.xl_sldeMenu.rootViewController;
-            
-            [ctrl.firstNav pushViewController:stvc animated:true];
+            //            [self.xl_sldeMenu showRootViewControllerAnimated:true];
+            //            NSLog(@" --- %@ ", [self.xl_sldeMenu.rootViewController class]);
+            //            WFCBaseTabBarController * ctrl = (WFCBaseTabBarController *)self.xl_sldeMenu.rootViewController;
+            [[self sliderViewController] hideLeft];
+            [[self sliderViewController].sliderNavigationController pushViewController:stvc animated:true];
         }
     } else {
         WFCSettingTableViewController *vc = [[WFCSettingTableViewController alloc] init];
@@ -189,16 +198,17 @@
         if (self.navigationController) {
             [self.navigationController pushViewController:vc animated:YES];
         } else {
-            [self.xl_sldeMenu showRootViewControllerAnimated:true];
-            WFCBaseTabBarController * ctrl = (WFCBaseTabBarController *)self.xl_sldeMenu.rootViewController;
-            [ctrl.firstNav pushViewController:vc animated:true];
+            //            [self.xl_sldeMenu showRootViewControllerAnimated:true];
+            //            WFCBaseTabBarController * ctrl = (WFCBaseTabBarController *)self.xl_sldeMenu.rootViewController;
+            [[self sliderViewController] hideLeft];
+            [[self sliderViewController].sliderNavigationController pushViewController:vc animated:true];
         }
     }
     
-  
+    
 }
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
-    view.backgroundColor = [WFCUConfigManager globalManager].backgroudColor;
+    view.backgroundColor = [UIColor clearColor];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

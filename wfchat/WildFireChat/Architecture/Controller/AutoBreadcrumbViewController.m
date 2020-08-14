@@ -149,35 +149,35 @@
         }
         
     }
-    if (!self.isAbleSelected) {
-        // 添加群组
-        OrganizationNode *groupNode = [[OrganizationNode alloc]init];
-        groupNode.name = @"我的群组";
-        groupNode.address = kGroupNodeMark;
-        groupNode.itemId = @"";
-        groupNode.pathIds = @"";
-        groupNode.createTime = @"";
-        groupNode.nodeHeight = 60.0;
-        [baseNode addSubNode:groupNode];
-        
-        NSArray *ids = [[WFCCIMService sharedWFCIMService] getFavGroups];
-        
-        for (NSString *groupId in ids) {
-            WFCCGroupInfo *groupInfo = [[WFCCIMService sharedWFCIMService] getGroupInfo:groupId refresh:NO];
-            if (groupInfo) {
-                groupInfo.target = groupId;
-                SinglePersonNode *singleGroupNode = [[SinglePersonNode alloc]init];
-                singleGroupNode.nodeHeight = 50.0;
-                singleGroupNode.name = groupInfo.name;
-                singleGroupNode.displayName = groupInfo.name;
-                singleGroupNode.uid = groupInfo.target;
-                singleGroupNode.address = kGroupNodeMark;
-                [groupNode addSubNode:singleGroupNode];
-                [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onGroupInfoUpdated:) name:kGroupInfoUpdated object:groupId];
-            }
-        }
-        
-    }
+//    if (!self.isAbleSelected) {
+//        // 添加群组
+//        OrganizationNode *groupNode = [[OrganizationNode alloc]init];
+//        groupNode.name = @"我的群组";
+//        groupNode.address = kGroupNodeMark;
+//        groupNode.itemId = @"";
+//        groupNode.pathIds = @"";
+//        groupNode.createTime = @"";
+//        groupNode.nodeHeight = 60.0;
+//        [baseNode addSubNode:groupNode];
+//
+//        NSArray *ids = [[WFCCIMService sharedWFCIMService] getFavGroups];
+//
+//        for (NSString *groupId in ids) {
+//            WFCCGroupInfo *groupInfo = [[WFCCIMService sharedWFCIMService] getGroupInfo:groupId refresh:NO];
+//            if (groupInfo) {
+//                groupInfo.target = groupId;
+//                SinglePersonNode *singleGroupNode = [[SinglePersonNode alloc]init];
+//                singleGroupNode.nodeHeight = 50.0;
+//                singleGroupNode.name = groupInfo.name;
+//                singleGroupNode.displayName = groupInfo.name;
+//                singleGroupNode.uid = groupInfo.target;
+//                singleGroupNode.address = kGroupNodeMark;
+//                [groupNode addSubNode:singleGroupNode];
+//                [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onGroupInfoUpdated:) name:kGroupInfoUpdated object:groupId];
+//            }
+//        }
+//
+//    }
     
     
     self.currentNode = baseNode;
