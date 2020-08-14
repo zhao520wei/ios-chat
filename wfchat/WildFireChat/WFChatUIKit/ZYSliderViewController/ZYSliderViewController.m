@@ -8,6 +8,7 @@
 
 #import "ZYSliderViewController.h"
 #import "WFCBaseTabBarController.h"
+#import "WFCUConfigManager.h"
 
 #define kZYDeviceWidth [UIScreen mainScreen].bounds.size.width
 #define kZYDeviceHeight [UIScreen mainScreen].bounds.size.height
@@ -226,6 +227,12 @@ typedef NS_ENUM(NSUInteger, ZYDragDirection){
 
 - (void)panGestureHandler:(UIPanGestureRecognizer *)gesture
 {
+    
+    WFCUConfigManager * manager = [WFCUConfigManager globalManager];
+    if (manager.isNotFirstTab) {
+        return;
+    }
+
     CGPoint point = [gesture locationInView:self.view];
     
     switch (gesture.state) {

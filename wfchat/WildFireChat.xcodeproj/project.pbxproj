@@ -314,6 +314,7 @@
 		95F481D124E6626B0091D57E /* ZYSliderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F481CE24E6626B0091D57E /* ZYSliderViewController.m */; };
 		95F481D224E6626B0091D57E /* UIViewController+ZYSliderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F481CF24E6626B0091D57E /* UIViewController+ZYSliderViewController.m */; };
 		95F481D524E672C70091D57E /* MeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F481D424E672C70091D57E /* MeTableViewCell.m */; };
+		95F481D824E67C460091D57E /* RightArrowTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F481D724E67C460091D57E /* RightArrowTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -930,6 +931,8 @@
 		95F481D024E6626B0091D57E /* ZYSliderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYSliderViewController.h; sourceTree = "<group>"; };
 		95F481D324E672C70091D57E /* MeTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MeTableViewCell.h; sourceTree = "<group>"; };
 		95F481D424E672C70091D57E /* MeTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MeTableViewCell.m; sourceTree = "<group>"; };
+		95F481D624E67C460091D57E /* RightArrowTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RightArrowTableViewCell.h; sourceTree = "<group>"; };
+		95F481D724E67C460091D57E /* RightArrowTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RightArrowTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1615,6 +1618,8 @@
 				9530D5B124C85BA100CCC9F6 /* WFCUNewFriendTableViewCell.h */,
 				9530D5B224C85BA100CCC9F6 /* WFCUSelectedUserTableViewCell.h */,
 				9530D5B324C85BA100CCC9F6 /* WFCUContactTableViewCell.m */,
+				95F481D624E67C460091D57E /* RightArrowTableViewCell.h */,
+				95F481D724E67C460091D57E /* RightArrowTableViewCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -2746,6 +2751,7 @@
 				9530D75C24C85BA200CCC9F6 /* WFCUReceiptViewController.m in Sources */,
 				9530D7FC24C85BA200CCC9F6 /* UIImageView+WebCache.m in Sources */,
 				9530D75224C85BA200CCC9F6 /* WFCUInviteGroupMemberViewController.m in Sources */,
+				95F481D824E67C460091D57E /* RightArrowTableViewCell.m in Sources */,
 				9530D79924C85BA200CCC9F6 /* WFCUSwitchTableViewCell.m in Sources */,
 				2F94FC9D22291813005BD461 /* UIAlertController+supportedInterfaceOrientations.m in Sources */,
 				95CDA8E724CFCBF900EEA41E /* NJKWebViewProgressView.m in Sources */,

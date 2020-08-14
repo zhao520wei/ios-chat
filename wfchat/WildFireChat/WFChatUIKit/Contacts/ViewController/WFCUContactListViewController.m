@@ -26,6 +26,7 @@
 #import "UIFont+YH.h"
 #import "UIColor+YH.h"
 #import "AutoBreadcrumbViewController.h"
+#import "RightArrowTableViewCell.h"
 
 @interface WFCUContactListViewController () <UITableViewDataSource, UISearchControllerDelegate, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating>
 @property (nonatomic, strong)UITableView *tableView;
@@ -372,9 +373,9 @@ static NSMutableDictionary *hanziStringDict = nil;
                 contactCell.nameLabel.textColor = [WFCUConfigManager globalManager].textColor;
                 return contactCell;
             } else if(indexPath.row == 1) {
-                WFCUContactTableViewCell *contactCell = [tableView dequeueReusableCellWithIdentifier:REUSEIDENTIFY];
+                RightArrowTableViewCell *contactCell = [tableView dequeueReusableCellWithIdentifier:@"ArchitectureCell"];
                 if (contactCell == nil) {
-                    contactCell = [[WFCUContactTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:REUSEIDENTIFY];
+                    contactCell = [[RightArrowTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ArchitectureCell"];
                 }
                 contactCell.nameLabel.text = @"组织架构";
                 contactCell.portraitView.image = [UIImage imageNamed:@"company_icon"];
@@ -382,9 +383,9 @@ static NSMutableDictionary *hanziStringDict = nil;
                 return contactCell;
             }
             else {
-                WFCUContactTableViewCell *contactCell = [tableView dequeueReusableCellWithIdentifier:REUSEIDENTIFY];
+                RightArrowTableViewCell *contactCell = [tableView dequeueReusableCellWithIdentifier:@"ArchitectureCell"];
                 if (contactCell == nil) {
-                    contactCell = [[WFCUContactTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:REUSEIDENTIFY];
+                    contactCell = [[RightArrowTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ArchitectureCell"];
                 }
                 contactCell.separatorInset = UIEdgeInsetsMake(0, 60, 0, 0);
                 contactCell.nameLabel.text = @"我的群组";
