@@ -159,7 +159,7 @@
 
 - (NodeTreeView *)treeView{
     if (!_treeView) {
-        _treeView = [[NodeTreeView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, self.frame.size.height) treeViewStyle:self.treeStyle];
+        _treeView = [[NodeTreeView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - kTabBarHeight) treeViewStyle:self.treeStyle];
         _treeView.treeDelegate = self;
         _treeView.refreshPolicy = self.treeRefreshPolicy;
     }

@@ -213,14 +213,15 @@ API_AVAILABLE(ios(9.0))
 }
 
 - (void)onLoginSuccessUpdated {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         WFCCUserInfo *me = [[WFCCIMService sharedWFCIMService] getUserInfo:[WFCCNetworkService sharedInstance].userId refresh:YES];
           [self.headerButton sd_setImageWithURL:[NSURL URLWithString:me.portrait] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"PersonalChat"]];
+        if (!self.headerButton.imageView.image) {
+            [self.headerButton setImage:[UIImage imageNamed:@"PersonalChat"] forState:UIControlStateNormal];
+        }
     });
   
-//    if (!self.headerButton.imageView.image) {
-//        [self.headerButton setImage:[UIImage imageNamed:@"PersonalChat"] forState:UIControlStateNormal];
-//    }
+    
     
 }
 
@@ -401,6 +402,9 @@ API_AVAILABLE(ios(9.0))
     
     WFCCUserInfo *me = [[WFCCIMService sharedWFCIMService] getUserInfo:[WFCCNetworkService sharedInstance].userId refresh:YES];
     [self.headerButton sd_setImageWithURL:[NSURL URLWithString:me.portrait] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"PersonalChat"]];
+    if (!self.headerButton.imageView.image) {
+        [self.headerButton setImage:[UIImage imageNamed:@"PersonalChat"] forState:UIControlStateNormal];
+    }
     self.headerButton.layer.cornerRadius  = self.headerButton.frame.size.width/2;
     self.headerButton.layer.masksToBounds = YES;
     [self.headerButton addTarget:self action:@selector(onLeftBatBtn:) forControlEvents:UIControlEventTouchUpInside];
@@ -420,14 +424,10 @@ API_AVAILABLE(ios(9.0))
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onSendingMessageStatusUpdated:) name:kSendingMessageStatusUpdated object:nil];
     
-    
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onLoginSuccessUpdated) name:kUserLoginSuccessNotification object:nil];
     
     self.firstAppear = YES;
 }
-
-
 
 
 - (void)updateConnectionStatus:(ConnectionStatus)status {

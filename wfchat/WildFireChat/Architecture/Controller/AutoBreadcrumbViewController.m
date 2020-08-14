@@ -291,7 +291,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     // 这个应该是单颗树下最多数量 * 50
-    return  kScreenHeight + 100.0 ; //self.currentNode.subTreeHeight
+    return  kScreenHeight - kTabBarHeight ; //self.currentNode.subTreeHeight
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -452,7 +452,7 @@
 
 - (UITableView *)tableview{
     if (!_tableview) {
-        _tableview = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, kScreenWidth, kScreenHeight - 64) style:UITableViewStylePlain];
+        _tableview = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, kScreenWidth, kScreenHeight - kTabBarHeight - 64) style:UITableViewStylePlain];
         _tableview.tableFooterView = [[UIView alloc]init];
         _tableview.delegate = self;
         _tableview.dataSource = self;
