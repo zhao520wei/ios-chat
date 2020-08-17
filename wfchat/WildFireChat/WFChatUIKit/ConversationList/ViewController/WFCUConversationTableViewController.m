@@ -89,20 +89,15 @@ API_AVAILABLE(ios(9.0))
         self.searchController.searchBar.searchBarStyle = UISearchBarStyleDefault;
         UIImage* searchBarBg = [UIImage imageWithColor:[UIColor whiteColor] size:CGSizeMake(self.view.frame.size.width - 8 * 2, 36) cornerRadius:4];
         [self.searchController.searchBar setSearchFieldBackgroundImage:searchBarBg forState:UIControlStateNormal];
-//         self.searchController.searchBar.backgroundColor = [UIColor redColor];
     } else {
         [self.searchController.searchBar setValue:WFCString(@"Cancel") forKey:@"_cancelButtonText"];
+       
         UIImage* searchBarBg = [UIImage imageWithColor:[UIColor whiteColor] size:CGSizeMake(self.view.frame.size.width - 8 * 2, 36) cornerRadius:4];
         [self.searchController.searchBar setSearchFieldBackgroundImage:searchBarBg forState:UIControlStateNormal];
-//        self.searchController.searchBar.backgroundColor = [UIColor redColor];
         
-//        CAGradientLayer *gradient = [CAGradientLayer layer];
-//        gradient.frame = self.searchController.searchBar.bounds;
-//        gradient.colors = @[(id)[UIColor colorWithHexString:@"0x015ebc"].CGColor,(id)[UIColor colorWithHexString:@"0x2a95ff"].CGColor];
-//        gradient.startPoint = CGPointMake(0, 1);
-//        gradient.endPoint = CGPointMake(1, 0);
-//        gradient.locations = @[@(0.0f), @(1.0f)];
-//        [self.searchController.searchBar.layer addSublayer:gradient];
+        UIButton * searchButton = (UIButton *)[self.searchController.searchBar valueForKey:@"_cancelButton"];
+        [searchButton setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
+
     }
     
     
@@ -232,14 +227,21 @@ API_AVAILABLE(ios(9.0))
         [KxMenu dismissMenu];
         return;
     }
+    KxMenuItem * firstItem = [KxMenuItem menuItem:WFCString(@"StartChat")
+                                            image:[UIImage imageNamed:@"menu_start_chat"]
+                                           target:self
+                                           action:@selector(startChatAction:)];
+    firstItem.foreColor = UIColor.whiteColor;
+    KxMenuItem * secondItem =  [KxMenuItem menuItem:WFCString(@"ScanQRCode")
+                                             image:[UIImage imageNamed:@"menu_scan_qr"]
+                                            target:self
+                                            action:@selector(scanQrCodeAction:)];
+    secondItem.foreColor = UIColor.whiteColor;
     
     [KxMenu showMenuInView:self.navigationController.view
                   fromRect:CGRectMake(self.view.bounds.size.width - 56, kStatusBarAndNavigationBarHeight + searchExtra, 48, 5)
                  menuItems:@[
-                     [KxMenuItem menuItem:WFCString(@"StartChat")
-                                    image:[UIImage imageNamed:@"menu_start_chat"]
-                                   target:self
-                                   action:@selector(startChatAction:)],
+                     firstItem,
 //                     [KxMenuItem menuItem:WFCString(@"AddFriend")
 //                                    image:[UIImage imageNamed:@"menu_add_friends"]
 //                                   target:self
@@ -248,10 +250,7 @@ API_AVAILABLE(ios(9.0))
 //                                    image:[UIImage imageNamed:@"menu_listen_channel"]
 //                                   target:self
 //                                   action:@selector(listenChannelAction:)],
-                     [KxMenuItem menuItem:WFCString(@"ScanQRCode")
-                                    image:[UIImage imageNamed:@"menu_scan_qr"]
-                                   target:self
-                                   action:@selector(scanQrCodeAction:)]
+                    secondItem,
                  ]];
 }
 
@@ -397,7 +396,7 @@ API_AVAILABLE(ios(9.0))
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.conversations = [[NSMutableArray alloc] init];
-    
+    [self setNeedsStatusBarAppearanceUpdate];
     [self initSearchUIAndTableView];
     self.definesPresentationContext = YES;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"bar_plus"] style:UIBarButtonItemStyleDone target:self action:@selector(onRightBarBtn:)];
@@ -542,7 +541,8 @@ API_AVAILABLE(ios(9.0))
     
     self.tableHeaderViewHeight = 40.0;
     self.tableHeaderView = [[UIView alloc ]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 40)];
-    self.tableHeaderView.backgroundColor = [WFCUConfigManager globalManager ].backgroudColor ;
+    self.tableHeaderView.backgroundColor = kMainColor;
+    self.tableHeaderView.alpha = 0.85;
     
   
     self.tableFooterView =  [[UIView alloc ]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 40)];
@@ -576,7 +576,7 @@ API_AVAILABLE(ios(9.0))
     
     if (@available(iOS 9.0, *)) {
         self.headerStackView = [[UIStackView alloc] initWithArrangedSubviews:@[self.todoButton, self.unreadButton, self.scheduleButton]];
-        self.headerStackView.frame = CGRectMake(15, 0, self.view.bounds.size.width - 30, 40);
+        self.headerStackView.frame = CGRectMake(30, 0, self.view.bounds.size.width - 60, 40);
         self.headerStackView.alignment = UIStackViewAlignmentFill;
         self.headerStackView.distribution = UIStackViewDistributionEqualSpacing;
         [self.tableHeaderView addSubview:self.headerStackView];
@@ -590,45 +590,48 @@ API_AVAILABLE(ios(9.0))
 
 -(UIButton *)todoButton {
     if (!_todoButton) {
-        _todoButton = [UIButton buttonWithType:UIButtonTypeSystem];
-        _todoButton.frame = CGRectMake(0, 0, 40, 40);
-        [_todoButton setTitle:@"待办" forState:UIControlStateNormal];
-        _todoButton.titleLabel.font = [UIFont pingFangSCWithWeight:FontWeightStyleMedium size:15];
-        _todoButton.titleLabel.textColor = UIColor.blackColor;
+        _todoButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _todoButton.frame = CGRectMake(0, 0, 50, 40);
+        [_todoButton setTitle:@" 待办" forState:UIControlStateNormal];
+        [_todoButton setImage:[UIImage imageNamed:@"home_todo"] forState:UIControlStateNormal];
+        _todoButton.titleLabel.font = [UIFont pingFangSCWithWeight:FontWeightStyleMedium size:13];
+        [_todoButton setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
         [_todoButton addTarget:self action:@selector(todoButtonAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return  _todoButton;
 }
 - (UIButton *)unreadButton {
     if (!_unreadButton) {
-        _unreadButton = [UIButton buttonWithType:UIButtonTypeSystem];
-        _unreadButton.frame = CGRectMake(0, 0, 40, 40);
-        [_unreadButton setTitle:@"未读" forState:UIControlStateNormal];
-        _unreadButton.titleLabel.font = [UIFont pingFangSCWithWeight:FontWeightStyleMedium size:15] ;
-        _unreadButton.titleLabel.textColor = UIColor.blackColor;
+        _unreadButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _unreadButton.frame = CGRectMake(0, 0, 50, 40);
+        [_unreadButton setTitle:@" 未读" forState:UIControlStateNormal];
+        [_unreadButton setImage:[UIImage imageNamed:@"home_unread"] forState:UIControlStateNormal];
+        _unreadButton.titleLabel.font = [UIFont pingFangSCWithWeight:FontWeightStyleMedium size:13] ;
+        [_unreadButton setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
         [_unreadButton addTarget:self action:@selector(unreadButtonAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _unreadButton;
 }
 -(UIButton *)scheduleButton{
     if (!_scheduleButton) {
-        _scheduleButton = [UIButton buttonWithType:UIButtonTypeSystem];
-        _scheduleButton.frame = CGRectMake(0, 0, 40, 40);
-        [_scheduleButton setTitle:@"日程" forState:UIControlStateNormal];
-        _scheduleButton.titleLabel.font = [UIFont pingFangSCWithWeight:FontWeightStyleMedium size:15];
-        _scheduleButton.titleLabel.textColor = UIColor.redColor;
+        _scheduleButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _scheduleButton.frame = CGRectMake(0, 0, 50, 40);
+        [_scheduleButton setTitle:@" 日程" forState:UIControlStateNormal];
+        [_scheduleButton setImage:[UIImage imageNamed:@"home_schedule"] forState:UIControlStateNormal];
+        _scheduleButton.titleLabel.font = [UIFont pingFangSCWithWeight:FontWeightStyleMedium size:13];
+        [_scheduleButton setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
         [_scheduleButton addTarget:self action:@selector(scheduleButtonAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _scheduleButton;
 }
 -(UIButton *)pcLoginStatuButton {
     if (!_pcLoginStatuButton) {
-        _pcLoginStatuButton = [UIButton buttonWithType:UIButtonTypeSystem];
-        _pcLoginStatuButton.frame = CGRectMake(0, 0, 30, 30);
+        _pcLoginStatuButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _pcLoginStatuButton.frame = CGRectMake(0, 0, 50, 40);
 //        [_pcLoginStatuButton setImage:[UIImage imageNamed:@"pc_session"] forState:UIControlStateNormal];
         [_pcLoginStatuButton setTitle:@"PC已登录" forState:UIControlStateNormal];
-        _pcLoginStatuButton.titleLabel.font = [UIFont pingFangSCWithWeight:FontWeightStyleMedium size:15] ;
-        _pcLoginStatuButton.titleLabel.textColor = UIColor.blackColor;
+        _pcLoginStatuButton.titleLabel.font = [UIFont pingFangSCWithWeight:FontWeightStyleMedium size:13] ;
+        [_pcLoginStatuButton setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
         [_pcLoginStatuButton addTarget:self action:@selector(pcLoginStatuButtonAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return  _pcLoginStatuButton;;
@@ -704,6 +707,12 @@ API_AVAILABLE(ios(9.0))
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    [self.navigationController.navigationBar.subviews enumerateObjectsUsingBlock:^(UIView *view, NSUInteger idx, BOOL *stop) {
+        //iOS10,导航栏的私有接口为_UIBarBackground
+        if ([view isKindOfClass:NSClassFromString(@"_UIBarBackground")]) {
+            [view.subviews firstObject].hidden = YES;
+        }
+    }];
     
     if (self.firstAppear) {
         self.firstAppear = NO;
@@ -1306,4 +1315,6 @@ API_AVAILABLE(ios(9.0))
     
     [self.tableView reloadData];
 }
+
+
 @end

@@ -2366,9 +2366,9 @@
 			isa = PBXGroup;
 			children = (
 				95F481CD24E6626B0091D57E /* UIViewController+ZYSliderViewController.h */,
-				95F481CE24E6626B0091D57E /* ZYSliderViewController.m */,
 				95F481CF24E6626B0091D57E /* UIViewController+ZYSliderViewController.m */,
 				95F481D024E6626B0091D57E /* ZYSliderViewController.h */,
+				95F481CE24E6626B0091D57E /* ZYSliderViewController.m */,
 			);
 			path = ZYSliderViewController;
 			sourceTree = "<group>";

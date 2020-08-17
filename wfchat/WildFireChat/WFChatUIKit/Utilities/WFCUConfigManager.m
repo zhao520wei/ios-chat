@@ -8,6 +8,7 @@
 
 #import "WFCUConfigManager.h"
 #import "UIColor+YH.h"
+#import "UIImage+ERCategory.h"
 
 static WFCUConfigManager *sharedSingleton = nil;
 @implementation WFCUConfigManager
@@ -41,7 +42,7 @@ static WFCUConfigManager *sharedSingleton = nil;
 }
 
 - (void)setupNavBar {
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     UINavigationBar *bar = [UINavigationBar appearance];
     bar.barTintColor = [WFCUConfigManager globalManager].naviBackgroudColor;
@@ -57,6 +58,9 @@ static WFCUConfigManager *sharedSingleton = nil;
         navBarAppearance.titleTextAttributes = @{NSForegroundColorAttributeName:[WFCUConfigManager globalManager].naviTextColor};
     }
     
+    [bar setShadowImage:[[UIImage alloc] init]];
+    bar.shadowImage = nil;
+
     [[UITabBar appearance] setBarTintColor:[WFCUConfigManager globalManager].frameBackgroudColor];
     [UITabBar appearance].translucent = NO;
 }
@@ -137,7 +141,7 @@ static WFCUConfigManager *sharedSingleton = nil;
         if (self.selectedTheme == ThemeType_WFChat) {
             return [UIColor colorWithRed:0.1 green:0.27 blue:0.9 alpha:0.9];
         } else if(self.selectedTheme == ThemeType_White) {
-            return [UIColor colorWithHexString:@"0xededed"];;
+            return kMainColor;
         }
         return [UIColor colorWithRed:239/255.f green:239/255.f blue:239/255.f alpha:1.0f];
     }
@@ -158,11 +162,11 @@ static WFCUConfigManager *sharedSingleton = nil;
         return [UIColor whiteColor];
     } else {
         if (self.selectedTheme == ThemeType_WFChat) {
-            return [UIColor blackColor];
+            return [UIColor whiteColor];
         } else if(self.selectedTheme == ThemeType_White) {
-            [UIColor colorWithHexString:@"0c0c0c"];
+            return UIColor.whiteColor;
         }
-        return [UIColor blackColor];
+        return [UIColor whiteColor];
     }
 }
 

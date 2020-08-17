@@ -93,7 +93,7 @@
 - (NJKWebViewProgressView *)progressView {
     if (!_progressView) {
         _progressView = [[NJKWebViewProgressView alloc] init];
-        _progressView.progressBarView.backgroundColor = kMainColor;
+        _progressView.progressBarView.backgroundColor = [UIColor greenColor];
     }
     return _progressView;
 }

@@ -377,7 +377,7 @@
             OrganizationNode *orgNode = (OrganizationNode *)node;
             [self.breadcrumbView addSelectedNode:orgNode withTitle:orgNode.name];
         }else{
-            [self.breadcrumbView addSelectedNode:node withTitle:@"倚天软件"];
+            [self.breadcrumbView addSelectedNode:node withTitle:@"大连理工大学"];
         }
     }
     
@@ -445,7 +445,7 @@
         _breadcrumbView.showsHorizontalScrollIndicator = YES;
         _breadcrumbView.backgroundColor = [UIColor groupTableViewBackgroundColor];
         __weak typeof(self)weakSelf = self;
-        [_breadcrumbView addSelectedNode:weakSelf.currentNode withTitle:@"倚天科技公司"];
+        [_breadcrumbView addSelectedNode:weakSelf.currentNode withTitle:@"大连理工大学"];
         _breadcrumbView.selectNode = ^(BaseTreeNode *node,UITableViewRowAnimation nodeTreeAnimation) {
             if (node.subNodes.count == 0) {
                 NSLog(@"do nothing");

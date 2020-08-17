@@ -155,6 +155,10 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self updateBadgeNumber];
+    
+//    UIImage *colorImage = [UIImage imageWithColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.3] size:CGSizeMake(kScreenWidth, 0.34)];
+//    [self.navigationController.navigationBar setShadowImage:colorImage];
+  
 }
 
 - (void)updateBadgeNumber {
