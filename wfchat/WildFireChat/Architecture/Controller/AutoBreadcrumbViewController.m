@@ -10,8 +10,8 @@
 #import "BreadcrumbHeaderView.h"
 #import "AppService.h"
 #import "OrganizationNode.h"
-
 #import "TreeOrganizationDisplayCell.h"
+#import "MBProgressHUD.h"
 
  NSString * kGroupNodeMark = @"---";
 
@@ -62,7 +62,7 @@
         [self clearAllSelectedNode];
     }
     
-    self.rowAnimation = UITableViewRowAnimationNone;
+    self.rowAnimation = UITableViewRowAnimationTop;
     self.view.backgroundColor = [UIColor whiteColor];
     
     //    [self loadData];
@@ -80,12 +80,20 @@
 
 - (void) loadRealData {
     __weak __typeof(self) weakSelf = self;
-
+    __block MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.label.text = @"获取中...";
+    [hud showAnimated:YES];
     [[AppService sharedAppService] loadCompanyArchitectureDataWithSuccess:^(NSDictionary * _Nonnull tree) {
+        [hud hideAnimated:YES];
         [weakSelf.view addSubview:weakSelf.tableview];
         [weakSelf dealwithDictionaryTree:tree];
     } error:^(NSInteger error_code) {
-        
+        [hud hideAnimated:NO];
+        hud = [MBProgressHUD showHUDAddedTo:weakSelf.view animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.label.text = @"获取失败";
+        hud.offset = CGPointMake(0.f, MBProgressMaxOffset);
+        [hud hideAnimated:YES afterDelay:1.f];
     }];
     
     //    [[AppService sharedAppService] getCompanyArchitectureDataWithSuccess:^(NSDictionary * _Nonnull tree) {
@@ -289,8 +297,7 @@
 #pragma mark ======== System Delegate ========
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    // 这个应该是单颗树下最多数量 * 50
-    return  kScreenHeight - kTabBarHeight ; //self.currentNode.subTreeHeight
+    return  self.currentNode.subTreeHeight;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -316,7 +323,7 @@
     static NSString *CELL_ID = @"StructureTreeOrganizationDisplayCellID";
     TreeOrganizationDisplayCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_ID];
     if (cell == nil) {
-        cell = [[TreeOrganizationDisplayCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CELL_ID treeStyle:NodeTreeViewStyleBreadcrumbs treeRefreshPolicy:NodeTreeRefreshPolicyAutomic];
+        cell = [[TreeOrganizationDisplayCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CELL_ID treeStyle:NodeTreeViewStyleBreadcrumbs treeRefreshPolicy:NodeTreeRefreshPolicyManaul];
         cell.isSingleSelected = self.isSingleSelected;
         //cell事件的block回调,只负责将所选择的点传递出来，更新headerview，不需要手动刷新
         __weak typeof(self)weakSelf = self;
@@ -360,7 +367,9 @@
 #pragma mark ======== Method Overrides ========
 - (void)selectNode:(BaseTreeNode *)node nodeTreeAnimation:(UITableViewRowAnimation)rowAnimation{
     //更新header
+     self.rowAnimation = rowAnimation;
     if (node.subNodes.count>0) {
+        self.currentNode = node;
         if ([node isMemberOfClass:[SinglePersonNode class]]) {
             SinglePersonNode *personNode = (SinglePersonNode *)node;
             [self.breadcrumbView addSelectedNode:personNode withTitle:personNode.displayName];
@@ -368,9 +377,11 @@
             OrganizationNode *orgNode = (OrganizationNode *)node;
             [self.breadcrumbView addSelectedNode:orgNode withTitle:orgNode.name];
         }else{
-            [self.breadcrumbView addSelectedNode:node withTitle:@"倚天科技公司"];
+            [self.breadcrumbView addSelectedNode:node withTitle:@"倚天软件"];
         }
     }
+    
+    [self.tableview reloadData];
 }
 
 #pragma mark ======== Event Response ========
@@ -451,7 +462,7 @@
 
 - (UITableView *)tableview{
     if (!_tableview) {
-        _tableview = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, kScreenWidth, kScreenHeight - kTabBarHeight - 64) style:UITableViewStylePlain];
+        _tableview = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, kScreenWidth, kScreenHeight - 64) style:UITableViewStylePlain];
         _tableview.tableFooterView = [[UIView alloc]init];
         _tableview.delegate = self;
         _tableview.dataSource = self;

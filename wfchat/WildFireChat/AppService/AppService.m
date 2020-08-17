@@ -383,7 +383,7 @@ static AppService *sharedSingleton = nil;
 - (void) loadCompanyArchitectureDataWithSuccess:(void(^)(NSDictionary *tree))successBlock
                                           error:(void(^)(NSInteger error_code))errorBlock {
     
-    NSDictionary * result = [[NSUserDefaults standardUserDefaults] dictionaryForKey:kCompanyArchitectureJson];
+    NSDictionary * result = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"1111"];
     if (result) {
         successBlock(result);
     } else {

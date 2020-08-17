@@ -42,7 +42,7 @@
 @property (strong, nonatomic)UITableViewCell *voipCallCell;
 @property (strong, nonatomic)UITableViewCell *addFriendCell;
 @property (strong, nonatomic)UITableViewCell *momentCell;
-@property (strong, nonatomic)UITableViewCell *phoneCell;
+//@property (strong, nonatomic)UITableViewCell *phoneCell;
 
 
 @property (nonatomic, strong)UITableView *tableView;
@@ -191,29 +191,30 @@
 //
 //        }
         
-        if (self.userInfo.email.length > 0) {
-            UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
-            cell.textLabel.text = self.userInfo.email;
-            [self.cells addObject:cell];
-        }
+//        if (self.userInfo.email.length > 0) {
+//            UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+//            cell.textLabel.text = self.userInfo.email;
+//            [self.cells addObject:cell];
+//        }
+//
+//        if (self.userInfo.address.length) {
+//            UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+//            cell.textLabel.text = self.userInfo.address;
+//            [self.cells addObject:cell];
+//        }
+//
+//        if (self.userInfo.company.length) {
+//            UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+//            cell.textLabel.text = self.userInfo.company;
+//            [self.cells addObject:cell];
+//        }
+//
+//        if (self.userInfo.social.length) {
+//            UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+//            cell.textLabel.text = self.userInfo.social;
+//            [self.cells addObject:cell];
+//        }
         
-        if (self.userInfo.address.length) {
-            UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
-            cell.textLabel.text = self.userInfo.address;
-            [self.cells addObject:cell];
-        }
-        
-        if (self.userInfo.company.length) {
-            UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
-            cell.textLabel.text = self.userInfo.company;
-            [self.cells addObject:cell];
-        }
-        
-        if (self.userInfo.social.length) {
-            UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
-            cell.textLabel.text = self.userInfo.social;
-            [self.cells addObject:cell];
-        }
     }
     
     if(NSClassFromString(@"SDTimeLineTableViewController")) {
@@ -233,19 +234,19 @@
         self.momentCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
-    self.phoneCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"momentCell"];
-    for (UIView *subView in self.phoneCell.subviews) {
-           [subView removeFromSuperview];
-    }
-    NSString * phoneNum = [NSString stringWithFormat:@"电话: %@",self.userInfo.mobile];
-    UIButton *phoneButton = [[UIButton alloc] initWithFrame:CGRectMake(16, 0, self.view.frame.size.width - 100, 50)];
-    [phoneButton setTitle: phoneNum forState:UIControlStateNormal];
-    [phoneButton setTitleColor:[WFCUConfigManager globalManager].textColor forState:UIControlStateNormal];
-    phoneButton.titleLabel.font = [UIFont pingFangSCWithWeight:FontWeightStyleRegular size:16];
-    phoneButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    [phoneButton addTarget:self action:@selector(phoneClick) forControlEvents:UIControlEventTouchUpInside];
-    [self.phoneCell addSubview:phoneButton];
-    self.phoneCell.selectionStyle = UITableViewCellSelectionStyleNone;
+//    self.phoneCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"momentCell"];
+//    for (UIView *subView in self.phoneCell.subviews) {
+//           [subView removeFromSuperview];
+//    }
+//    NSString * phoneNum = [NSString stringWithFormat:@"电话: %@",self.userInfo.mobile];
+//    UIButton *phoneButton = [[UIButton alloc] initWithFrame:CGRectMake(16, 0, self.view.frame.size.width - 100, 50)];
+//    [phoneButton setTitle: phoneNum forState:UIControlStateNormal];
+//    [phoneButton setTitleColor:[WFCUConfigManager globalManager].textColor forState:UIControlStateNormal];
+//    phoneButton.titleLabel.font = [UIFont pingFangSCWithWeight:FontWeightStyleRegular size:16];
+//    phoneButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+//    [phoneButton addTarget:self action:@selector(phoneClick) forControlEvents:UIControlEventTouchUpInside];
+//    [self.phoneCell addSubview:phoneButton];
+//    self.phoneCell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     
     
@@ -389,13 +390,15 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
         return self.headerCells.count;
-    } else if (section == 1) {
-        if (self.phoneCell) {
-            return 1;
-        } else {
-            return 0;
-        }
-    } else if(section == 2) {
+    }
+//    else if (section == 1) {
+//        if (self.phoneCell) {
+//            return 1;
+//        } else {
+//            return 0;
+//        }
+//    }
+    else if(section == 1) {
         return self.cells.count;
     } else {
         if (self.sendMessageCell) {
@@ -410,9 +413,11 @@
     NSLog(@"section:%ld",(long)indexPath.section);
     if (indexPath.section == 0) {
        return self.headerCells[indexPath.row];
-    } else if (indexPath.section == 1) {
-        return self.phoneCell;
-    } else if (indexPath.section == 1) {
+    }
+//    else if (indexPath.section == 1) {
+//        return self.phoneCell;
+//    }
+    else if (indexPath.section == 1) {
            return self.cells[indexPath.row];
     } else {
         if (self.sendMessageCell) {
@@ -429,7 +434,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     if (self.sendMessageCell || self.voipCallCell || self.addFriendCell) {
-        return 4;
+        return 3;
     } else {
         return 2;
     }
@@ -464,13 +469,15 @@
         } else {
             return 50;
         }
-    } else if(indexPath.section == 1) {
-        if (self.phoneCell) {
-            return 50;
-        } else {
-            return 0;
-        }
-    } else if(indexPath.section == 2) {
+    }
+//    else if(indexPath.section == 1) {
+//        if (self.phoneCell) {
+//            return 50;
+//        } else {
+//            return 0;
+//        }
+//    }
+    else if(indexPath.section == 1) {
             return 50;
     }  else {
         return 50;
