@@ -33,7 +33,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.backgroundColor = [WFCUConfigManager globalManager].backgroudColor;
-    self.title = WFCString(@"Settings");
+    self.title = @"系统设置";
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 0.1)];
     [self.tableView reloadData];
     
@@ -149,8 +149,6 @@
     } else if (section == 4) {
         return 1; //举报
     } else if (section == 5) {
-        return 1; //diagnose
-    } else if (section == 6) {
         return 1; //logout
     }
     return 0;
@@ -225,9 +223,6 @@
             cell.textLabel.text = WFCString(@"Complain");
         }
     } else if (indexPath.section == 5) {
-        [self hiddenSeparatorLine:cell];
-        cell.textLabel.text = WFCString(@"Diagnose");
-    } else if (indexPath.section == 6) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"buttonCell"];
         for (UIView *subView in cell.subviews) {
             [subView removeFromSuperview];

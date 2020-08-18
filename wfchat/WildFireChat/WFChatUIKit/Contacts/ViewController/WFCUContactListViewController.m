@@ -255,28 +255,31 @@ static NSMutableDictionary *hanziStringDict = nil;
 - (void)sortAndRefreshWithList:(NSArray *)friendList {
     self.sorting = YES;
     
+    
+    
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         self.resultDic = [WFCUContactListViewController sortedArrayWithPinYinDic:friendList];
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             self.allFriendSectionDic = self.resultDic[@"infoDic"];
             self.allKeys = self.resultDic[@"allKeys"];
           if (!self.selectContact && !self.searchController.active) {
             UILabel *countLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 48)];
             countLabel.textAlignment = NSTextAlignmentCenter;
-            
+
             UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 0.5)];
             line.backgroundColor = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:0.8];
             [countLabel addSubview:line];
-            
+
             [countLabel setText:[NSString stringWithFormat:WFCString(@"NumberOfContacts"), (int)self.dataArray.count]];
             countLabel.font = [UIFont systemFontOfSize:14];
             countLabel.textColor = [UIColor grayColor];
-            
+
             self.tableView.tableFooterView = countLabel;
           } else {
             self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
           }
-            
+
             [self.tableView reloadData];
             self.sorting = NO;
             if (self.needSort) {
@@ -298,15 +301,15 @@ static NSMutableDictionary *hanziStringDict = nil;
 }
 
 - (void)onClearAllUnread:(NSNotification *)notification {
-    if ([notification.object intValue] == 1) {
-        [[WFCCIMService sharedWFCIMService] clearUnreadFriendRequestStatus];
-        [self updateBadgeNumber];
-    }
+//    if ([notification.object intValue] == 1) {
+//        [[WFCCIMService sharedWFCIMService] clearUnreadFriendRequestStatus];
+//        [self updateBadgeNumber];
+//    }
 }
 
 - (void)updateBadgeNumber {
-    int count = [[WFCCIMService sharedWFCIMService] getUnreadFriendRequestStatus];
-    [self.tabBarController.tabBar showBadgeOnItemIndex:1 badgeValue:count];
+//    int count = [[WFCCIMService sharedWFCIMService] getUnreadFriendRequestStatus];
+//    [self.tabBarController.tabBar showBadgeOnItemIndex:1 badgeValue:count];
 }
 
 
@@ -746,12 +749,14 @@ static NSMutableDictionary *hanziStringDict = nil;
     NSMutableArray *_tempOtherArr = [NSMutableArray new];
     BOOL isReturn = NO;
     NSMutableDictionary *firstLetterDict = [[NSMutableDictionary alloc] init];
+    // 这样多了24倍的循环
     for (NSString *key in _keys) {
         if ([_tempOtherArr count]) {
             isReturn = YES;
         }
         NSMutableArray *tempArr = [NSMutableArray new];
-        for (id user in userList) {
+        for (int i = 0; i < userList.count; i++) {
+            id user = userList[i];
             NSString *firstLetter;
 
             WFCCUserInfo *userInfo = (WFCCUserInfo*)user;

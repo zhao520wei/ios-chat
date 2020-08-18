@@ -20,6 +20,8 @@
 #import "UIViewController+ZYSliderViewController.h"
 #import "WFCBaseTabBarController.h"
 #import "MeTableViewCell.h"
+#import "WFCUBrowserViewController.h"
+#import "WFCConfig.h"
 
 @interface WFCMeTableViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong)UITableView *tableView;
@@ -181,7 +183,10 @@
         }
         
     } else if(indexPath.section == 2) {
-        WFCSecurityTableViewController * stvc = [[WFCSecurityTableViewController alloc] init];
+        WFCUBrowserViewController * stvc = [[WFCUBrowserViewController alloc] init];
+        stvc.url = USER_PRIVACY_URL;
+        
+//        WFCSecurityTableViewController * stvc = [[WFCSecurityTableViewController alloc] init];
         stvc.hidesBottomBarWhenPushed = YES;
         if (self.navigationController) {
             [self.navigationController pushViewController:stvc animated:YES];
