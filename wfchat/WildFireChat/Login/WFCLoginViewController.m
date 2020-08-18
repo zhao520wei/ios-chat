@@ -384,13 +384,20 @@ alpha:1.0]
 }
 
 - (BOOL)isValidNumber {
-    NSString * MOBILE = @"^((1[34578]))\\d{9}$";
-    NSPredicate *regextestmobile = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", MOBILE];
-    if (self.userNameField.text.length == 11 && ([regextestmobile evaluateWithObject:self.userNameField.text] == YES)) {
+//    NSString * MOBILE = @"^((1[34578]))\\d{9}$";
+//    NSPredicate *regextestmobile = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", MOBILE];
+//    if (self.userNameField.text.length == 11 && ([regextestmobile evaluateWithObject:self.userNameField.text] == YES)) {
+//        return YES;
+//    } else {
+//        return NO;
+//    }
+    
+    if (self.userNameField.text.length > 1) {
         return YES;
     } else {
         return NO;
     }
+    
 }
 
 - (BOOL)isValidCode {

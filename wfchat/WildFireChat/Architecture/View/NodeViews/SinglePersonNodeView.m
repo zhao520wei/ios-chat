@@ -8,7 +8,7 @@
 
 #import "SinglePersonNodeView.h"
 #import "UIFont+YH.h"
-
+#import "SDWebImage.h"
 
 
 @interface SinglePersonNodeView ()
@@ -28,6 +28,8 @@
  选择按钮
  */
 @property (nonatomic, strong) UIButton *selectBtn;
+
+@property (nonatomic, strong) UIImageView * portraitImgView;
 
 
 @property (nonatomic, assign) BOOL isAbleSelected;// 是否能选中状态
@@ -71,6 +73,8 @@
 //    _nameLabel.backgroundColor = UIColor.redColor;
 //    _IDLabel.backgroundColor = UIColor.purpleColor;
 //    _departmentLabel.backgroundColor = UIColor.orangeColor;
+    
+    [_portraitImgView sd_setImageWithURL:[NSURL URLWithString:personNode.portrait] placeholderImage:[UIImage imageNamed:@"PersonalChat"]];
 }
 
 - (void)layoutSubviews{
@@ -80,10 +84,11 @@
         _selectBtn.frame = CGRectMake(15, self.frame.size.height/2-6, 18, 18);
         leftOffset += 50.0 ;
     }
+    _portraitImgView.frame = CGRectMake(15+leftOffset, 10, 30, 30);
     
-    _nameLabel.frame = CGRectMake(15+leftOffset, 0, self.frame.size.width - 100, self.frame.size.height);
-    _IDLabel.frame = CGRectMake(15+leftOffset+80+12, self.frame.size.height/2-7, 150, 14);
-    _departmentLabel.frame = CGRectMake(15+leftOffset+80+12+150+12, 0, self.frame.size.width-(15+leftOffset+150+12+80+12+12), self.frame.size.height);
+    _nameLabel.frame = CGRectMake(15+leftOffset + 40, 0, self.frame.size.width - 100, self.frame.size.height);
+    _IDLabel.frame = CGRectMake(15+leftOffset+80+12 + 40, self.frame.size.height/2-7, 150, 14);
+    _departmentLabel.frame = CGRectMake(15+leftOffset+80+12+150+12 + 40, 0, self.frame.size.width-(15+leftOffset+150+12+80+12+12), self.frame.size.height);
 }
 
 #pragma mark ======== Private Methods ========
@@ -95,6 +100,7 @@
     [self addSubview:self.nameLabel];
     [self addSubview:self.IDLabel];
     [self addSubview:self.departmentLabel];
+    [self addSubview:self.portraitImgView];
 }
 
 - (void)btnSelect:(UIButton *)btn{
@@ -113,6 +119,15 @@
 
     }
     return _nameLabel;
+}
+
+-(UIImageView *)portraitImgView{
+    if (!_portraitImgView) {
+        _portraitImgView = [[UIImageView alloc]init];
+        _portraitImgView.layer.cornerRadius = 15;
+        _portraitImgView.layer.masksToBounds = YES;
+    }
+    return _portraitImgView;
 }
 
 - (UILabel *)IDLabel{

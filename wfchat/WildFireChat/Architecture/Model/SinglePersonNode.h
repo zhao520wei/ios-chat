@@ -30,6 +30,8 @@
 
 @property (nonatomic, copy) NSString * address;
 
+@property (nonatomic, copy) NSString * portrait;
+
 /**
  是否选中
  */

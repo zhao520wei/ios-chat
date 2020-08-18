@@ -151,6 +151,7 @@
             singlePersonNode1.password = tempDic[@"password"];
             singlePersonNode1.uid = tempDic[@"uid"];
             singlePersonNode1.name = tempDic[@"name"];
+            singlePersonNode1.portrait = tempDic[@"portrait"];
             [baseNode addSubNode:singlePersonNode1];
             
         }
@@ -237,6 +238,7 @@
                 singlePersonNode1.password = tempDic[@"password"];
                 singlePersonNode1.uid = tempDic[@"uid"];
                 singlePersonNode1.name = tempDic[@"name"];
+                singlePersonNode1.portrait = tempDic[@"portrait"];
                 singlePersonNode1.nodeHeight = 50.0;
                 [simpleNode addSubNode:singlePersonNode1];
             }
