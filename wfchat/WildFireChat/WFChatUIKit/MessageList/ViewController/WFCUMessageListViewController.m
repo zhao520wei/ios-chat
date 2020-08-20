@@ -1281,7 +1281,17 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:kVoiceMessageStartPlaying object:@(self.playingMessageId)];
     } else if([model.message.content isKindOfClass:[WFCCVideoMessageContent class]]) {
         WFCCVideoMessageContent *videoMsg = (WFCCVideoMessageContent *)model.message.content;
-        NSURL *url = [NSURL URLWithString:videoMsg.remoteUrl];
+//        NSString *charactersToEscape = @"`＃％^ {} \” [] | \\ <>";
+//        NSCharacterSet *allowedCharacters = [[NSCharacterSet characterSetWithCharactersInString:charactersToEscape] invertedSet];
+//        NSString *encodedUrl = [videoMsg.remoteUrl stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+        
+//        NSString * encodedUrl = [videoMsg.remoteUrl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//        NSURL *url = [NSURL URLWithString:videoMsg.localPath];
+        NSURL *url =  [NSURL fileURLWithPath:videoMsg.localPath];
+//        NSLog(@"原始URL： %@ \n 视频的url ： %@",videoMsg.remoteUrl ,encodedUrl);
+        
+        
+        
         
         if (!self.videoPlayerViewController) {
             self.videoPlayerViewController = [VideoPlayerKit videoPlayerWithContainingView:self.view optionalTopView:nil hideTopViewWithControls:YES];
@@ -1415,8 +1425,8 @@
             model.message.status = Message_Status_Played;
             [self.collectionView reloadItemsAtIndexPaths:@[[self.collectionView indexPathForCell:cell]]];
         }
-        
-        [self startPlay:model];
+        [self prepardToPlay:model];
+//        [self startPlay:model];
     } else if ([model.message.content isKindOfClass:[WFCCLeaveMessageContent class]]) {
         WFCCLeaveMessageContent * leaveMessage = (WFCCLeaveMessageContent *)model.message.content;
         WFCUBrowserViewController *bvc = [[WFCUBrowserViewController alloc] init];

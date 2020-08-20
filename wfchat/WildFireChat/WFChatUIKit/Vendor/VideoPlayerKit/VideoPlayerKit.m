@@ -479,7 +479,12 @@ static const NSTimeInterval controlsAnimationDuration = 0.4;
 
 - (void)setURL:(NSURL *)url
 {
-    AVPlayerItem *playerItem = [AVPlayerItem playerItemWithURL:url];
+//    AVPlayerItem *playerItem = [AVPlayerItem playerItemWithURL:url];
+    
+    
+    AVPlayerItem *playerItem = [AVPlayerItem playerItemWithAsset:[AVAsset assetWithURL:url]];
+    
+    
     
     [playerItem addObserver:self
                  forKeyPath:@"status"
@@ -553,9 +558,12 @@ static const NSTimeInterval controlsAnimationDuration = 0.4;
     if (object != [_videoPlayer currentItem]) {
         return;
     }
-        
+    NSString * playItemError = _videoPlayer.error.description;
+    NSLog(@"_videoPlayer.error : %@", playItemError);
+    
     if ([keyPath isEqualToString:@"status"]) {
         AVPlayerStatus status = [[change objectForKey:NSKeyValueChangeNewKey] integerValue];
+        NSLog(@"视频播放status： %ld", (long)status);
         switch (status) {
             case AVPlayerStatusReadyToPlay:
                 playWhenReady = YES;
@@ -565,6 +573,12 @@ static const NSTimeInterval controlsAnimationDuration = 0.4;
                 break;
             case AVPlayerStatusFailed:
                 // TODO:
+                [self removeObserversFromVideoPlayerItem];
+                [self removePlayerTimeObservers];
+                self.videoPlayer = nil;
+                [self minimizeVideo];
+                break;
+            case AVPlayerStatusUnknown:
                 [self removeObserversFromVideoPlayerItem];
                 [self removePlayerTimeObservers];
                 self.videoPlayer = nil;

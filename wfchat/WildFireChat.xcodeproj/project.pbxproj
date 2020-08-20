@@ -1923,21 +1923,21 @@
 		9530D67424C85BA100CCC9F6 /* VideoPlayerKit */ = {
 			isa = PBXGroup;
 			children = (
+				9530D67A24C85BA100CCC9F6 /* VideoPlayerKit.h */,
+				9530D68324C85BA100CCC9F6 /* VideoPlayerKit.m */,
+				9530D68124C85BA100CCC9F6 /* VideoPlayer.h */,
+				9530D67B24C85BA100CCC9F6 /* VideoPlayerView.h */,
+				9530D68224C85BA100CCC9F6 /* VideoPlayerView.m */,
 				9530D67524C85BA100CCC9F6 /* VideoPlayerSampleViewController.h */,
+				9530D67C24C85BA100CCC9F6 /* VideoPlayerSampleViewController.m */,
 				9530D67624C85BA100CCC9F6 /* FullScreenView.h */,
+				9530D67F24C85BA100CCC9F6 /* FullScreenView.m */,
+				9530D67E24C85BA100CCC9F6 /* AirplayActiveView.h */,
 				9530D67724C85BA100CCC9F6 /* AirplayActiveView.m */,
 				9530D67824C85BA100CCC9F6 /* VideoPlayerSampleView.h */,
-				9530D67924C85BA100CCC9F6 /* FullScreenViewController.h */,
-				9530D67A24C85BA100CCC9F6 /* VideoPlayerKit.h */,
-				9530D67B24C85BA100CCC9F6 /* VideoPlayerView.h */,
-				9530D67C24C85BA100CCC9F6 /* VideoPlayerSampleViewController.m */,
 				9530D67D24C85BA100CCC9F6 /* VideoPlayerSampleView.m */,
-				9530D67E24C85BA100CCC9F6 /* AirplayActiveView.h */,
-				9530D67F24C85BA100CCC9F6 /* FullScreenView.m */,
+				9530D67924C85BA100CCC9F6 /* FullScreenViewController.h */,
 				9530D68024C85BA100CCC9F6 /* FullScreenViewController.m */,
-				9530D68124C85BA100CCC9F6 /* VideoPlayer.h */,
-				9530D68224C85BA100CCC9F6 /* VideoPlayerView.m */,
-				9530D68324C85BA100CCC9F6 /* VideoPlayerKit.m */,
 			);
 			path = VideoPlayerKit;
 			sourceTree = "<group>";
@@ -2943,7 +2943,7 @@
 				CODE_SIGN_ENTITLEMENTS = WildFireChat/WildFireChat.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 4P3U5L7UKK;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2982,7 +2982,7 @@
 				CODE_SIGN_ENTITLEMENTS = WildFireChat/WildFireChat.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 4P3U5L7UKK;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
