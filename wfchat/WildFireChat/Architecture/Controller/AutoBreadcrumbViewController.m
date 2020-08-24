@@ -91,7 +91,7 @@
         [hud hideAnimated:NO];
         hud = [MBProgressHUD showHUDAddedTo:weakSelf.view animated:YES];
         hud.mode = MBProgressHUDModeText;
-        hud.label.text = @"获取失败";
+        hud.label.text = [NSString stringWithFormat:@"获取失败 %ld", error_code];
         hud.offset = CGPointMake(0.f, MBProgressMaxOffset);
         [hud hideAnimated:YES afterDelay:1.f];
     }];
