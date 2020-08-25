@@ -1021,6 +1021,10 @@
         if ([self.delegate respondsToSelector:@selector(sentLeaveMessage)]) {
             [self.delegate sentLeaveMessage];
         }
+    } else if (itemTag == 7) {
+        if ([self.delegate respondsToSelector:@selector(sendUniversalCustomMessage)]) {
+            [self.delegate sendUniversalCustomMessage];
+        }
     }
     
     

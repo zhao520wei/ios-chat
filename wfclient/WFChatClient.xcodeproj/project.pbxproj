@@ -134,12 +134,18 @@
 		90E4D1E01FFB0AE200B9A4E4 /* WFCCLocationMessageContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E4D1DE1FFB0AE200B9A4E4 /* WFCCLocationMessageContent.m */; };
 		90F584991FFDB39800F7FFA8 /* WFCCChangeGroupPortraitNotificationContent.h in Headers */ = {isa = PBXBuildFile; fileRef = 90F584971FFDB39700F7FFA8 /* WFCCChangeGroupPortraitNotificationContent.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		90F5849A1FFDB39800F7FFA8 /* WFCCChangeGroupPortraitNotificationContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 90F584981FFDB39800F7FFA8 /* WFCCChangeGroupPortraitNotificationContent.m */; };
-		9534A96A24CACACB00AF1FC0 /* WFCCLeaveMessageContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 956CBC3624BD4CC000BE34A6 /* WFCCLeaveMessageContent.m */; };
 		956CBC4424BD8EBA00BE34A6 /* WFCCGroupMemberMutedNotificationContent.h in Headers */ = {isa = PBXBuildFile; fileRef = 956CBC4224BD8EB900BE34A6 /* WFCCGroupMemberMutedNotificationContent.h */; };
 		956CBC4524BD8EBA00BE34A6 /* WFCCGroupMemberMutedNotificationContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 956CBC4324BD8EBA00BE34A6 /* WFCCGroupMemberMutedNotificationContent.m */; };
 		95D197EB24C532C400004273 /* TestClass.h in Headers */ = {isa = PBXBuildFile; fileRef = 95D197E924C532C400004273 /* TestClass.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		95D197EC24C532C400004273 /* TestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D197EA24C532C400004273 /* TestClass.m */; };
-		95FB01BB24C56C5A0022283E /* WFCCLeaveMessageContent.h in Headers */ = {isa = PBXBuildFile; fileRef = 956CBC3524BD4CC000BE34A6 /* WFCCLeaveMessageContent.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		95D6321F24F3C5CB00004E16 /* WFCCUnivesalCustomMessageContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D6321924F3A2E200004E16 /* WFCCUnivesalCustomMessageContent.m */; };
+		95D6322024F3C5DA00004E16 /* WFCCUnivesalCustomMessageContent.h in Headers */ = {isa = PBXBuildFile; fileRef = 95D6321824F3A2E200004E16 /* WFCCUnivesalCustomMessageContent.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		95D6322124F3C60000004E16 /* WFCCLeaveMessageContent.h in Headers */ = {isa = PBXBuildFile; fileRef = 956CBC3524BD4CC000BE34A6 /* WFCCLeaveMessageContent.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		95D6322224F3C60D00004E16 /* WFCCLeaveMessageContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 956CBC3624BD4CC000BE34A6 /* WFCCLeaveMessageContent.m */; };
+		95D6322524F3C73900004E16 /* ButtonItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 95D6322324F3C73900004E16 /* ButtonItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		95D6322624F3C73900004E16 /* ButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D6322424F3C73900004E16 /* ButtonItem.m */; };
+		95D6322924F3C74600004E16 /* BodyItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 95D6322724F3C74500004E16 /* BodyItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		95D6322A24F3C74600004E16 /* BodyItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D6322824F3C74600004E16 /* BodyItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -278,6 +284,12 @@
 		956CBC4324BD8EBA00BE34A6 /* WFCCGroupMemberMutedNotificationContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFCCGroupMemberMutedNotificationContent.m; sourceTree = "<group>"; };
 		95D197E924C532C400004273 /* TestClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestClass.h; sourceTree = "<group>"; };
 		95D197EA24C532C400004273 /* TestClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestClass.m; sourceTree = "<group>"; };
+		95D6321824F3A2E200004E16 /* WFCCUnivesalCustomMessageContent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WFCCUnivesalCustomMessageContent.h; sourceTree = "<group>"; };
+		95D6321924F3A2E200004E16 /* WFCCUnivesalCustomMessageContent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WFCCUnivesalCustomMessageContent.m; sourceTree = "<group>"; };
+		95D6322324F3C73900004E16 /* ButtonItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ButtonItem.h; sourceTree = "<group>"; };
+		95D6322424F3C73900004E16 /* ButtonItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ButtonItem.m; sourceTree = "<group>"; };
+		95D6322724F3C74500004E16 /* BodyItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BodyItem.h; sourceTree = "<group>"; };
+		95D6322824F3C74600004E16 /* BodyItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BodyItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -411,6 +423,8 @@
 				90E4D1DE1FFB0AE200B9A4E4 /* WFCCLocationMessageContent.m */,
 				956CBC3524BD4CC000BE34A6 /* WFCCLeaveMessageContent.h */,
 				956CBC3624BD4CC000BE34A6 /* WFCCLeaveMessageContent.m */,
+				95D6321824F3A2E200004E16 /* WFCCUnivesalCustomMessageContent.h */,
+				95D6321924F3A2E200004E16 /* WFCCUnivesalCustomMessageContent.m */,
 				2E6B50E31FAE9B10006B6E31 /* WFCCTransferGroupOwnerNotificationContent.h */,
 				2E6B50E41FAE9B10006B6E31 /* WFCCTransferGroupOwnerNotificationContent.m */,
 				90B044451FEFD6BA00AFE79B /* WFCCUnknownMessageContent.h */,
@@ -437,6 +451,10 @@
 				2FB87C6A243EF0FE0078A199 /* WFCCFriendGreetingMessageContent.m */,
 				95D197E924C532C400004273 /* TestClass.h */,
 				95D197EA24C532C400004273 /* TestClass.m */,
+				95D6322324F3C73900004E16 /* ButtonItem.h */,
+				95D6322424F3C73900004E16 /* ButtonItem.m */,
+				95D6322724F3C74500004E16 /* BodyItem.h */,
+				95D6322824F3C74600004E16 /* BodyItem.m */,
 			);
 			path = Messages;
 			sourceTree = "<group>";
@@ -525,7 +543,10 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95FB01BB24C56C5A0022283E /* WFCCLeaveMessageContent.h in Headers */,
+				95D6322924F3C74600004E16 /* BodyItem.h in Headers */,
+				95D6322524F3C73900004E16 /* ButtonItem.h in Headers */,
+				95D6322124F3C60000004E16 /* WFCCLeaveMessageContent.h in Headers */,
+				95D6322024F3C5DA00004E16 /* WFCCUnivesalCustomMessageContent.h in Headers */,
 				95D197EB24C532C400004273 /* TestClass.h in Headers */,
 				2B63367A2470DB7E008D6B38 /* WFCCReadReport.h in Headers */,
 				90D1F597208D65B500C2A9CA /* WFCCCallStartMessageContent.h in Headers */,
@@ -679,7 +700,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9534A96A24CACACB00AF1FC0 /* WFCCLeaveMessageContent.m in Sources */,
+				95D6322224F3C60D00004E16 /* WFCCLeaveMessageContent.m in Sources */,
+				95D6321F24F3C5CB00004E16 /* WFCCUnivesalCustomMessageContent.m in Sources */,
+				95D6322A24F3C74600004E16 /* BodyItem.m in Sources */,
 				95D197EC24C532C400004273 /* TestClass.m in Sources */,
 				2E6B50FE1FAE9B10006B6E31 /* WFCCImageMessageContent.m in Sources */,
 				2E6B51001FAE9B10006B6E31 /* WFCCKickoffGroupMemberNotificaionContent.m in Sources */,
@@ -734,6 +757,7 @@
 				2E6B50B51FAE990D006B6E31 /* wavreader.c in Sources */,
 				2E6B510E1FAE9B10006B6E31 /* WFCCTextMessageContent.m in Sources */,
 				2E6B51081FAE9B10006B6E31 /* WFCCNotificationMessageContent.m in Sources */,
+				95D6322624F3C73900004E16 /* ButtonItem.m in Sources */,
 				90F5849A1FFDB39800F7FFA8 /* WFCCChangeGroupPortraitNotificationContent.m in Sources */,
 				90B0444B1FEFDC1A00AFE79B /* WFCCChangeGroupNameNotificationContent.m in Sources */,
 				90B0444F1FEFDC4D00AFE79B /* WFCCModifyGroupAliasNotificationContent.m in Sources */,

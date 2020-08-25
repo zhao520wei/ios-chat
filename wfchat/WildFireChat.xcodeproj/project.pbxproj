@@ -311,6 +311,7 @@
 		95CDA8E024CFC8C600EEA41E /* demo.js in Resources */ = {isa = PBXBuildFile; fileRef = 95CDA8DD24CFC8C600EEA41E /* demo.js */; };
 		95CDA8E624CFCBF900EEA41E /* NJKWebViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CDA8E324CFCBF800EEA41E /* NJKWebViewProgress.m */; };
 		95CDA8E724CFCBF900EEA41E /* NJKWebViewProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CDA8E524CFCBF800EEA41E /* NJKWebViewProgressView.m */; };
+		95D6321E24F3C22800004E16 /* WFCUniversalCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D6321D24F3C22800004E16 /* WFCUniversalCustomCell.m */; };
 		95F481D124E6626B0091D57E /* ZYSliderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F481CE24E6626B0091D57E /* ZYSliderViewController.m */; };
 		95F481D224E6626B0091D57E /* UIViewController+ZYSliderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F481CF24E6626B0091D57E /* UIViewController+ZYSliderViewController.m */; };
 		95F481D524E672C70091D57E /* MeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F481D424E672C70091D57E /* MeTableViewCell.m */; };
@@ -925,6 +926,8 @@
 		95CDA8E324CFCBF800EEA41E /* NJKWebViewProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJKWebViewProgress.m; sourceTree = "<group>"; };
 		95CDA8E424CFCBF800EEA41E /* NJKWebViewProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NJKWebViewProgress.h; sourceTree = "<group>"; };
 		95CDA8E524CFCBF800EEA41E /* NJKWebViewProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJKWebViewProgressView.m; sourceTree = "<group>"; };
+		95D6321C24F3C22800004E16 /* WFCUniversalCustomCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WFCUniversalCustomCell.h; sourceTree = "<group>"; };
+		95D6321D24F3C22800004E16 /* WFCUniversalCustomCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WFCUniversalCustomCell.m; sourceTree = "<group>"; };
 		95F481CD24E6626B0091D57E /* UIViewController+ZYSliderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ZYSliderViewController.h"; sourceTree = "<group>"; };
 		95F481CE24E6626B0091D57E /* ZYSliderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYSliderViewController.m; sourceTree = "<group>"; };
 		95F481CF24E6626B0091D57E /* UIViewController+ZYSliderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ZYSliderViewController.m"; sourceTree = "<group>"; };
@@ -1375,36 +1378,38 @@
 		9530D52D24C85BA000CCC9F6 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				9530D52E24C85BA000CCC9F6 /* WFCUTextCell.m */,
 				9530D52F24C85BA000CCC9F6 /* WFCUMediaMessageCell.h */,
-				9530D53024C85BA000CCC9F6 /* MediaMessageGridViewCell.h */,
-				9530D53124C85BA000CCC9F6 /* WFCUStickerCell.m */,
-				9530D53224C85BA000CCC9F6 /* WFCUMessageCell.m */,
-				9530D53324C85BA000CCC9F6 /* WFCULocationCell.m */,
-				9530D53424C85BA000CCC9F6 /* WFCUFileCell.m */,
-				9530D53524C85BA000CCC9F6 /* WFCULeaveCell.m */,
-				9530D53624C85BA000CCC9F6 /* WFCURecallCell.m */,
-				9530D53724C85BA000CCC9F6 /* WFCUVideoCell.m */,
-				9530D53824C85BA000CCC9F6 /* WFCUVoiceCell.m */,
-				9530D53924C85BA000CCC9F6 /* WFCUMessageCellBase.h */,
-				9530D53A24C85BA000CCC9F6 /* WFCUInformationCell.m */,
-				9530D53B24C85BA000CCC9F6 /* WFCUImageCell.h */,
-				9530D53C24C85BA000CCC9F6 /* WFCUCallSummaryCell.m */,
-				9530D53D24C85BA000CCC9F6 /* WFCULocationCell.h */,
-				9530D53E24C85BA000CCC9F6 /* WFCUMessageCell.h */,
-				9530D53F24C85BA000CCC9F6 /* WFCUStickerCell.h */,
 				9530D54024C85BA000CCC9F6 /* WFCUMediaMessageCell.m */,
+				9530D54324C85BA000CCC9F6 /* WFCURecallCell.h */,
+				9530D53624C85BA000CCC9F6 /* WFCURecallCell.m */,
+				9530D54424C85BA000CCC9F6 /* WFCUVideoCell.h */,
+				9530D53724C85BA000CCC9F6 /* WFCUVideoCell.m */,
+				9530D54B24C85BA000CCC9F6 /* WFCUVoiceCell.h */,
+				9530D53824C85BA000CCC9F6 /* WFCUVoiceCell.m */,
+				9530D54824C85BA000CCC9F6 /* WFCUCallSummaryCell.h */,
+				9530D53C24C85BA000CCC9F6 /* WFCUCallSummaryCell.m */,
+				9530D53B24C85BA000CCC9F6 /* WFCUImageCell.h */,
+				9530D54724C85BA000CCC9F6 /* WFCUImageCell.m */,
+				9530D53D24C85BA000CCC9F6 /* WFCULocationCell.h */,
+				9530D53324C85BA000CCC9F6 /* WFCULocationCell.m */,
+				9530D54524C85BA000CCC9F6 /* WFCULeaveCell.h */,
+				9530D53524C85BA000CCC9F6 /* WFCULeaveCell.m */,
+				95D6321C24F3C22800004E16 /* WFCUniversalCustomCell.h */,
+				95D6321D24F3C22800004E16 /* WFCUniversalCustomCell.m */,
+				9530D53E24C85BA000CCC9F6 /* WFCUMessageCell.h */,
+				9530D53224C85BA000CCC9F6 /* WFCUMessageCell.m */,
+				9530D53F24C85BA000CCC9F6 /* WFCUStickerCell.h */,
+				9530D53124C85BA000CCC9F6 /* WFCUStickerCell.m */,
+				9530D53024C85BA000CCC9F6 /* MediaMessageGridViewCell.h */,
 				9530D54124C85BA000CCC9F6 /* MediaMessageGridViewCell.m */,
 				9530D54224C85BA000CCC9F6 /* WFCUTextCell.h */,
-				9530D54324C85BA000CCC9F6 /* WFCURecallCell.h */,
-				9530D54424C85BA000CCC9F6 /* WFCUVideoCell.h */,
-				9530D54524C85BA000CCC9F6 /* WFCULeaveCell.h */,
+				9530D52E24C85BA000CCC9F6 /* WFCUTextCell.m */,
 				9530D54624C85BA000CCC9F6 /* WFCUFileCell.h */,
-				9530D54724C85BA000CCC9F6 /* WFCUImageCell.m */,
-				9530D54824C85BA000CCC9F6 /* WFCUCallSummaryCell.h */,
+				9530D53424C85BA000CCC9F6 /* WFCUFileCell.m */,
 				9530D54924C85BA000CCC9F6 /* WFCUInformationCell.h */,
+				9530D53A24C85BA000CCC9F6 /* WFCUInformationCell.m */,
+				9530D53924C85BA000CCC9F6 /* WFCUMessageCellBase.h */,
 				9530D54A24C85BA000CCC9F6 /* WFCUMessageCellBase.m */,
-				9530D54B24C85BA000CCC9F6 /* WFCUVoiceCell.h */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -2719,6 +2724,7 @@
 				9530D7E724C85BA200CCC9F6 /* SDRefreshHeaderView.m in Sources */,
 				9530D7AB24C85BA200CCC9F6 /* WFCUSelectFileViewController.m in Sources */,
 				9530D80324C85BA200CCC9F6 /* UIView+TYAlertView.m in Sources */,
+				95D6321E24F3C22800004E16 /* WFCUniversalCustomCell.m in Sources */,
 				9530D80C24C85BA200CCC9F6 /* YLGIFImage.m in Sources */,
 				90854287222A06870009713D /* CreateBarCodeViewController.m in Sources */,
 				9530D73324C85BA200CCC9F6 /* WFCULocationCell.m in Sources */,

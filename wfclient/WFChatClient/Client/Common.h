@@ -103,6 +103,8 @@
 #define THINGS_CONTENT_TYPE_LOST_EVENT 502
 
 //自定义消息
+#define MESSAGE_CONTENT_TYPE_UNIVERSAL  1100 // 通用自定义消息
 #define MESSAGE_CONTENT_TYPE_LEAVE   1101    // 请假消息
+
 
 #endif /* Common_h */

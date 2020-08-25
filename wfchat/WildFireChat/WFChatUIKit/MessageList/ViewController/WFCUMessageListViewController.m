@@ -63,6 +63,7 @@
 
 #import "WFCULeaveCell.h"
 #import <WFChatClient/WFCCLeaveMessageContent.h>
+#import "WFCUniversalCustomCell.h"
 
 // 聊天详情页面
 
@@ -689,6 +690,7 @@
     
     //MARK: 自定义消息类型
     [self registerCell:[WFCULeaveCell class] forContent:[WFCCLeaveMessageContent class]];
+    [self registerCell:[WFCUniversalCustomCell class] forContent:[WFCCUnivesalCustomMessageContent class]];
     
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"FooterView"];
@@ -1431,7 +1433,12 @@
         WFCCLeaveMessageContent * leaveMessage = (WFCCLeaveMessageContent *)model.message.content;
         WFCUBrowserViewController *bvc = [[WFCUBrowserViewController alloc] init];
         bvc.title = [NSString stringWithFormat:@"%@", leaveMessage.title];
-//        bvc.url = @"https://www.baidu.com";
+        bvc.url = leaveMessage.targetUrl;
+        [self.navigationController pushViewController:bvc animated:YES];
+    } else if ([model.message.content isKindOfClass:[WFCCUnivesalCustomMessageContent class]]) {
+        WFCCUnivesalCustomMessageContent * leaveMessage = (WFCCUnivesalCustomMessageContent *)model.message.content;
+        WFCUBrowserViewController *bvc = [[WFCUBrowserViewController alloc] init];
+        bvc.title = [NSString stringWithFormat:@"%@", leaveMessage.title];
         bvc.url = leaveMessage.targetUrl;
         [self.navigationController pushViewController:bvc animated:YES];
     }
@@ -1788,6 +1795,33 @@
     leaveMesage.status = 1;
     leaveMesage.targetUrl = @"https://www.baidu.com";
     [self sendMessage:leaveMesage];
+}
+static int bodyCount = 3;
+static int buttonCount = 1;
+- (void)sendUniversalCustomMessage {
+    
+    NSMutableArray * buttons = [NSMutableArray array];
+    NSMutableArray * bodys = [NSMutableArray array];
+    for (int i = 0; i < bodyCount; i++) {
+        BodyItem * item = [[BodyItem alloc]init];
+        item.name = [NSString stringWithFormat:@"标题 %d",i];
+        item.value = @"内容";
+        [bodys addObject:item];
+    }
+    
+    for (int i = 0; i < buttonCount; i++) {
+        ButtonItem * item = [[ButtonItem alloc]init];
+        item.name = [NSString stringWithFormat:@"btn%d:",i];
+        item.type = 1;
+        item.value = @"http://www.baidu.com";
+        [buttons addObject:item];
+    }
+    
+    WFCCUnivesalCustomMessageContent * message = [WFCCUnivesalCustomMessageContent contentWithTitle:@"[通知] 一二三" withButtons:buttons withBodys:bodys withStatus:1 withTag: @"[通知]" withTargetUrl:@"https://www.baidu.com"];
+    
+    [self sendMessage:message];
+    bodyCount++;
+    buttonCount++;
 }
 
 #pragma mark - SDPhotoBrowserDelegate
