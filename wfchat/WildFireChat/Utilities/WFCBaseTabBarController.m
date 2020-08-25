@@ -118,23 +118,23 @@
 //    [self addChildViewController:nav];
     
       
-    vc = [UIViewController new];
-    vc.view.backgroundColor = UIColor.whiteColor;
-    vc.title = LocalizedString(@"Me");
-    nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    [nav.navigationBar setShadowImage:colorImage];
-    item = nav.tabBarItem;
-    item.title = LocalizedString(@"Me");
-    item.image = [UIImage imageNamed:@"tabbar_me"];
-    item.selectedImage = [[UIImage imageNamed:@"tabbar_me_cover"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    [item setTitleTextAttributes:@{NSForegroundColorAttributeName : kMainColor} forState:UIControlStateSelected];
-    
-    UILabel * centerLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 200, 100)];
-    centerLabel.text = @"正在开发中，敬请等待";
-    [vc.view addSubview:centerLabel];
-    centerLabel.center = vc.view.center;
-    
-    [self addChildViewController:nav];
+//    vc = [UIViewController new];
+//    vc.view.backgroundColor = UIColor.whiteColor;
+//    vc.title = LocalizedString(@"Me");
+//    nav = [[UINavigationController alloc] initWithRootViewController:vc];
+//    [nav.navigationBar setShadowImage:colorImage];
+//    item = nav.tabBarItem;
+//    item.title = LocalizedString(@"Me");
+//    item.image = [UIImage imageNamed:@"tabbar_me"];
+//    item.selectedImage = [[UIImage imageNamed:@"tabbar_me_cover"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//    [item setTitleTextAttributes:@{NSForegroundColorAttributeName : kMainColor} forState:UIControlStateSelected];
+//
+//    UILabel * centerLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 200, 100)];
+//    centerLabel.text = @"正在开发中，敬请等待";
+//    [vc.view addSubview:centerLabel];
+//    centerLabel.center = vc.view.center;
+//
+//    [self addChildViewController:nav];
     
     
     self.settingNav = nav;

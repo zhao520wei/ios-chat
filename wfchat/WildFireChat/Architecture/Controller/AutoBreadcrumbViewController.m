@@ -12,6 +12,7 @@
 #import "OrganizationNode.h"
 #import "TreeOrganizationDisplayCell.h"
 #import "MBProgressHUD.h"
+#import "WFCLoginViewController.h"
 
  NSString * kGroupNodeMark = @"---";
 
@@ -94,6 +95,11 @@
         hud.label.text = [NSString stringWithFormat:@"获取失败 %ld", error_code];
         hud.offset = CGPointMake(0.f, MBProgressMaxOffset);
         [hud hideAnimated:YES afterDelay:1.f];
+        
+        if (error_code == 13) {
+            [[WFCCNetworkService sharedInstance] disconnect:YES clearSession:NO];
+            [weakSelf.navigationController popViewControllerAnimated:true];
+        }
     }];
     
     //    [[AppService sharedAppService] getCompanyArchitectureDataWithSuccess:^(NSDictionary * _Nonnull tree) {

@@ -1805,7 +1805,7 @@ static int buttonCount = 1;
     for (int i = 0; i < bodyCount; i++) {
         BodyItem * item = [[BodyItem alloc]init];
         item.name = [NSString stringWithFormat:@"标题 %d",i];
-        item.value = @"内容";
+        item.value = @"内容标题";
         [bodys addObject:item];
     }
     

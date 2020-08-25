@@ -370,7 +370,7 @@ static NSMutableDictionary *hanziStringDict = nil;
                     contactCell = [[WFCUNewFriendTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"newFriendCell"];
                 }
                 
-                contactCell.nameLabel.text = @"倚天科技";
+                contactCell.nameLabel.text = @"倚天软件";
                 contactCell.portraitView.image = [UIImage imageNamed:@"AppIcon"];
 //                [contactCell refresh];
                 contactCell.separatorInset = UIEdgeInsetsMake(0, 60, 0, 0);
@@ -382,7 +382,7 @@ static NSMutableDictionary *hanziStringDict = nil;
                 if (contactCell == nil) {
                     contactCell = [[RightArrowTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ArchitectureCell"];
                 }
-                contactCell.nameLabel.text = @"组织架构";
+                contactCell.nameLabel.text = @"大连理工大学";
                 contactCell.portraitView.image = [UIImage imageNamed:@"company_icon"];
                 contactCell.nameLabel.textColor = [WFCUConfigManager globalManager].textColor;
                 return contactCell;
