@@ -32,7 +32,7 @@
 #define GrayTextColor  [UIColor grayColor]
 #define BlueTextColor  [UIColor blueColor]
 // 单个消息的 base
-@interface WFCUMessageCell ()
+@interface WFCUMessageCell ()<UIGestureRecognizerDelegate>
 @property (nonatomic, strong)UIActivityIndicatorView *activityIndicatorView;
 @property (nonatomic, strong)UIImageView *failureView;
 @property (nonatomic, strong)UIImageView *maskView;
@@ -425,11 +425,13 @@
         [_bubbleView addGestureRecognizer:[[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(onLongPressed:)]];
         
         UITapGestureRecognizer *doubleTapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(onDoubleTaped:)];
+        doubleTapGesture.delegate = self;
         doubleTapGesture.numberOfTapsRequired = 2;
         doubleTapGesture.numberOfTouchesRequired = 1;
         [_bubbleView addGestureRecognizer:doubleTapGesture];
         
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTaped:)];
+        tap.delegate = self;
         [_bubbleView addGestureRecognizer:tap];
         [tap requireGestureRecognizerToFail:doubleTapGesture];
         tap.cancelsTouchesInView = NO;
@@ -487,4 +489,16 @@
 - (void)dealloc {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
+#pragma mark UIGestureRecognizerDelegate
+
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    if ([touch.view isKindOfClass:[UIButton class]]) {
+        //放过button点击拦截
+        return NO;
+    }else{
+        return YES;
+    }
+}
+
 @end

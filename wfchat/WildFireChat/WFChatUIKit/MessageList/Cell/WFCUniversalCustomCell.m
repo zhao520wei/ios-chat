@@ -10,6 +10,9 @@
 #import <WFChatClient/WFCChatClient.h>
 #import "AttributedLabel.h"
 #import "WFCUUtilities.h"
+#import "UIView+Screenshot.h"
+#import "BrowserViewController.h"
+#import "MultiParamButton.h"
 
 @interface WFCUniversalCustomCell ()
 
@@ -17,7 +20,9 @@
 
 @property (nonatomic, strong)UILabel *contentLabel;
 
-@property (nonatomic, strong)UILabel * bottomLabel;
+//@property (nonatomic, strong)UILabel * bottomLabel;
+
+@property (nonatomic, strong) UIView * bottomView;
 
 @end
 
@@ -67,17 +72,46 @@
         NSString * newStr = [NSString stringWithFormat:@"%@  ",item.name];
         [buttonStr appendString:newStr];
     }
-    if (model.message.direction == MessageDirection_Send) {
-        self.bottomLabel.textAlignment = NSTextAlignmentRight;
-    } else {
-        self.bottomLabel.textAlignment = NSTextAlignmentLeft;
+//    if (model.message.direction == MessageDirection_Send) {
+//        self.bottomLabel.textAlignment = NSTextAlignmentRight;
+//    } else {
+//        self.bottomLabel.textAlignment = NSTextAlignmentLeft;
+//    }
+//
+//
+//    self.bottomLabel.text = buttonStr;
+    
+    [self.contentLabel setUserInteractionEnabled:NO];
+    
+    for (int i= 0; i < universalContent.buttons.count; i++) {
+        ButtonItem * item = universalContent.buttons[i];
+        MultiParamButton * button = [MultiParamButton buttonWithType:UIButtonTypeCustom];
+        [button setTintColor:kMainColor];
+        [button setTitle:item.name forState:UIControlStateNormal];
+        [button setBackgroundColor:kMainColor];
+        button.titleLabel.font = [UIFont systemFontOfSize:13];
+        CGSize size = [WFCUUtilities getTextDrawingSize:item.name font:[UIFont systemFontOfSize:18] constrainedSize:CGSizeMake(100, 100)];
+        int buttonWidth  = size.width;
+        button.frame = CGRectMake(10 * i + i * buttonWidth , 0, buttonWidth  , 20);
+        button.status = item.type;
+        button.url = item.value;
+        button.layer.cornerRadius = 5;
+        [button addTarget:self action:@selector(buttonActions:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [self.bottomView addSubview:button];
     }
     
     
-    self.bottomLabel.text = buttonStr;
+    
     [self layoutSubviews];
 }
 
+-(void) buttonActions:(MultiParamButton *)btn {
+    
+    BrowserViewController * browser = [[BrowserViewController alloc] init];
+    browser.URL = [NSURL URLWithString:btn.url];
+    [[self currentController].navigationController pushViewController:browser animated:YES];
+}
 
 
 - (UILabel *)titleLabel {
@@ -105,17 +139,25 @@
     return _contentLabel;
 }
 
--(UILabel *)bottomLabel{
-    if (!_bottomLabel) {
-        _bottomLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, self.bubbleView.frame.size.height - 25, self.bubbleView.frame.size.width- 20, 25)];
-        _bottomLabel.font = [UIFont systemFontOfSize:15];
-       
-        _bottomLabel.backgroundColor = [UIColor clearColor];
-        _bottomLabel.numberOfLines = 1;
-        _bottomLabel.textColor  = kMainColor;
-        [self.bubbleView addSubview:_bottomLabel];
+//-(UILabel *)bottomLabel{
+//    if (!_bottomLabel) {
+//        _bottomLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, self.bubbleView.frame.size.height - 25, self.bubbleView.frame.size.width- 20, 25)];
+//        _bottomLabel.font = [UIFont systemFontOfSize:15];
+//
+//        _bottomLabel.backgroundColor = [UIColor clearColor];
+//        _bottomLabel.numberOfLines = 1;
+//        _bottomLabel.textColor  = kMainColor;
+//        [self.bubbleView addSubview:_bottomLabel];
+//    }
+//    return _bottomLabel;;
+//}
+
+-(UIView *)bottomView{
+    if (!_bottomView) {
+        _bottomView = [[UIView alloc] initWithFrame:CGRectMake(10, self.bubbleView.frame.size.height - 25, self.bubbleView.frame.size.width- 20, 25)];
+        [self.bubbleView addSubview:_bottomView];
     }
-    return _bottomLabel;;
+    return  _bottomView;
 }
 
 

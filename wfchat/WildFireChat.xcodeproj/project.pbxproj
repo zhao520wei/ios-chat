@@ -306,6 +306,7 @@
 		9569903524CBDCFC0009F332 /* SinglePersonNodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569902724CBDCFC0009F332 /* SinglePersonNodeView.m */; };
 		9569903624CBDCFC0009F332 /* OrganizationNodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569902824CBDCFC0009F332 /* OrganizationNodeView.m */; };
 		958D85FD24D40E0B00A0F29D /* NSString+WFCAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 958D85FC24D40E0B00A0F29D /* NSString+WFCAttribute.m */; };
+		95AFD0A324F64C9900F18699 /* MultiParamButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AFD0A224F64C9900F18699 /* MultiParamButton.m */; };
 		95CDA8DE24CFC8C600EEA41E /* BrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CDA8DB24CFC8C600EEA41E /* BrowserViewController.m */; };
 		95CDA8DF24CFC8C600EEA41E /* demo.html in Resources */ = {isa = PBXBuildFile; fileRef = 95CDA8DC24CFC8C600EEA41E /* demo.html */; };
 		95CDA8E024CFC8C600EEA41E /* demo.js in Resources */ = {isa = PBXBuildFile; fileRef = 95CDA8DD24CFC8C600EEA41E /* demo.js */; };
@@ -918,6 +919,8 @@
 		9569902B24CBDCFC0009F332 /* CustomNodeModelProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomNodeModelProtocol.h; sourceTree = "<group>"; };
 		958D85FB24D40E0B00A0F29D /* NSString+WFCAttribute.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+WFCAttribute.h"; sourceTree = "<group>"; };
 		958D85FC24D40E0B00A0F29D /* NSString+WFCAttribute.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+WFCAttribute.m"; sourceTree = "<group>"; };
+		95AFD0A124F64C9900F18699 /* MultiParamButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MultiParamButton.h; sourceTree = "<group>"; };
+		95AFD0A224F64C9900F18699 /* MultiParamButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MultiParamButton.m; sourceTree = "<group>"; };
 		95CDA8DA24CFC8C600EEA41E /* BrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowserViewController.h; sourceTree = "<group>"; };
 		95CDA8DB24CFC8C600EEA41E /* BrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrowserViewController.m; sourceTree = "<group>"; };
 		95CDA8DC24CFC8C600EEA41E /* demo.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = demo.html; sourceTree = "<group>"; };
@@ -1698,6 +1701,8 @@
 			children = (
 				9530D5EB24C85BA100CCC9F6 /* WFCUMediaMessageDownloader.h */,
 				9530D5EC24C85BA100CCC9F6 /* WFCUUtilities.h */,
+				95AFD0A124F64C9900F18699 /* MultiParamButton.h */,
+				95AFD0A224F64C9900F18699 /* MultiParamButton.m */,
 				9530D5ED24C85BA100CCC9F6 /* WFCUConfigManager.h */,
 				9530D5EE24C85BA100CCC9F6 /* WFCUAppServiceProvider.h */,
 				9530D5EF24C85BA100CCC9F6 /* WFCUConfigManager.m */,
@@ -2665,6 +2670,7 @@
 				9530D80924C85BA200CCC9F6 /* TYShowAlertView.m in Sources */,
 				9530D76924C85BA200CCC9F6 /* WFCUSelectedUserInfo.m in Sources */,
 				9569903524CBDCFC0009F332 /* SinglePersonNodeView.m in Sources */,
+				95AFD0A324F64C9900F18699 /* MultiParamButton.m in Sources */,
 				9530D80824C85BA200CCC9F6 /* TYAlertDropDownAnimation.m in Sources */,
 				9530D7BA24C85BA200CCC9F6 /* CCHCenterOfMassMapClusterer.m in Sources */,
 				9530D79724C85BA200CCC9F6 /* WFCUParticipantCollectionViewCell.m in Sources */,
@@ -2949,7 +2955,7 @@
 				CODE_SIGN_ENTITLEMENTS = WildFireChat/WildFireChat.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = 4P3U5L7UKK;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2988,7 +2994,7 @@
 				CODE_SIGN_ENTITLEMENTS = WildFireChat/WildFireChat.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = 4P3U5L7UKK;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (

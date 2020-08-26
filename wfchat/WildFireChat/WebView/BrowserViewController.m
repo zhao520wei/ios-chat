@@ -105,7 +105,6 @@
         //        image = [image kswv_imageWithTintColor:[UIColor blueColor]];
         [button setImage:image forState:UIControlStateNormal];
 //        [button setTitle:@"返回" forState:UIControlStateNormal];
-        [button setTintColor:[UIColor blackColor]];
         [button addTarget:self action:@selector(backButtonHandler:) forControlEvents:UIControlEventTouchUpInside];
         [button.titleLabel setFont:[UIFont systemFontOfSize:17]];
         [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -197,7 +196,6 @@
     [self.view addSubview:self.webView];
 
     
-    self.navigationController.navigationBar.tintColor = kMainColor;
     if (self.sourceType != BrowserSourceWork) {
         self.navigationItem.leftBarButtonItem = self.backBarButtonItem;
         self.webView.frame = self.view.bounds;

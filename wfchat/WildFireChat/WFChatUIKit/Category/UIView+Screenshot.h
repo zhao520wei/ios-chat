@@ -11,4 +11,6 @@
 @interface UIView (Screenshot)
 - (UIImage *)screenshot;
 - (UIImage *)screenshotWithRect:(CGRect)rect;
+
+- (UIViewController *)currentController;
 @end

@@ -1230,7 +1230,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:kVoiceMessagePlayStoped object:nil];
 }
 
--(void)prepardToPlay:(WFCUMessageModel *)model {
+-(void)prepardToPlay:(WFCUMessageModel *)model {  // 这个地方不一定能够兼容视频播放
     
     if (self.playingMessageId == model.message.messageId) {
         [self stopPlayer];
@@ -1813,7 +1813,7 @@ static int buttonCount = 1;
         ButtonItem * item = [[ButtonItem alloc]init];
         item.name = [NSString stringWithFormat:@"btn%d:",i];
         item.type = 1;
-        item.value = @"http://www.baidu.com";
+        item.value = @"https://www.qq.com/";
         [buttons addObject:item];
     }
     

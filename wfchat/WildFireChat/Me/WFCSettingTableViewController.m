@@ -199,7 +199,7 @@
         if (indexPath.row == 0) {
             [self showSeparatorLine:cell];
             cell.textLabel.text = WFCString(@"CurrentVersion");
-            cell.detailTextLabel.text = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@(%@)",[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"],[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]];
             cell.accessoryType = UITableViewCellAccessoryNone;
         } if (indexPath.row == 1) {
             cell.textLabel.text = WFCString(@"HelpFeedback");

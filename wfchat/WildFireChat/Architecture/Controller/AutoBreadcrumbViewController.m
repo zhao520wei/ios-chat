@@ -12,7 +12,6 @@
 #import "OrganizationNode.h"
 #import "TreeOrganizationDisplayCell.h"
 #import "MBProgressHUD.h"
-#import "WFCLoginViewController.h"
 
  NSString * kGroupNodeMark = @"---";
 
