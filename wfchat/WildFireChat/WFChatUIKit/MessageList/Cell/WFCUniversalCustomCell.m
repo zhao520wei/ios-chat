@@ -24,6 +24,10 @@
 
 @property (nonatomic, strong) UIView * bottomView;
 
+@property(nonatomic, strong) UIView * firstLine;
+
+@property(nonatomic, strong) UIView * secondLine;
+
 @end
 
 
@@ -40,10 +44,12 @@
         NSString * newStr = [NSString stringWithFormat:@"%@: %@\n",item.name, item.value];
         [contentStr appendString:newStr];
     }
+    
     CGSize bodyTextsize = [WFCUUtilities getTextDrawingSize:contentStr font:[UIFont systemFontOfSize:18] constrainedSize:CGSizeMake(width, 8000)];
     
+    CGSize titleTextsize = [WFCUUtilities getTextDrawingSize:universalContent.title font:[UIFont systemFontOfSize:16] constrainedSize:CGSizeMake(width, 8000)];
     
-    CGFloat heigth = 30 + buttonHeight + bodyTextsize.height ;
+    CGFloat heigth = 10 + titleTextsize.height + buttonHeight + bodyTextsize.height ;
     
     CGSize size = CGSizeMake(200, heigth);
     
@@ -57,13 +63,23 @@
 - (void)setModel:(WFCUMessageModel *)model {
     [super setModel:model];
     
+    [self clearOldData];
+    
     WFCCUnivesalCustomMessageContent *universalContent = (WFCCUnivesalCustomMessageContent *)model.message.content;
     self.titleLabel.text = [NSString stringWithFormat:@"%@",universalContent.title];
     NSMutableString * contentStr = [NSMutableString string];
-    for (BodyItem *item in universalContent.bodys) {
-        NSString * newStr = [NSString stringWithFormat:@"%@: %@\n",item.name, item.value];
-        [contentStr appendString:newStr];
+   
+    for (int i = 0; i < universalContent.bodys.count; i++) {
+        BodyItem *item = universalContent.bodys[i];
+        if (i == universalContent.bodys.count - 1) {
+            NSString * newStr = [NSString stringWithFormat:@"%@: %@",item.name, item.value];
+            [contentStr appendString:newStr];
+        } else {
+            NSString * newStr = [NSString stringWithFormat:@"%@: %@\n",item.name, item.value];
+            [contentStr appendString:newStr];
+        }
     }
+    
     self.contentLabel.text = contentStr;
     [self.contentLabel setText:contentStr lineSpacing:10.0];
     
@@ -83,6 +99,7 @@
     
     [self.contentLabel setUserInteractionEnabled:NO];
     
+    CGFloat buttonX = 0.0;
     for (int i= 0; i < universalContent.buttons.count; i++) {
         ButtonItem * item = universalContent.buttons[i];
         MultiParamButton * button = [MultiParamButton buttonWithType:UIButtonTypeCustom];
@@ -92,7 +109,9 @@
         button.titleLabel.font = [UIFont systemFontOfSize:13];
         CGSize size = [WFCUUtilities getTextDrawingSize:item.name font:[UIFont systemFontOfSize:18] constrainedSize:CGSizeMake(100, 100)];
         int buttonWidth  = size.width;
-        button.frame = CGRectMake(10 * i + i * buttonWidth , 0, buttonWidth  , 20);
+        buttonX += size.width;
+        buttonX = 10 * i;
+        button.frame = CGRectMake(buttonX , 0, buttonWidth , 20);
         button.status = item.type;
         button.url = item.value;
         button.layer.cornerRadius = 5;
@@ -103,7 +122,30 @@
     
     
     
+    CGSize titleTextsize = [WFCUUtilities getTextDrawingSize:universalContent.title font:[UIFont systemFontOfSize:18] constrainedSize:CGSizeMake(200, 8000)];
+   
+    self.titleLabel.frame = CGRectMake(10, 0, self.bubbleView.frame.size.width-20, titleTextsize.height);
+    self.firstLine.frame = CGRectMake(10, titleTextsize.height + 3, self.bubbleView.frame.size.width-30, 1);
+    
+   
+
+    if (universalContent.buttons.count > 0) {
+        self.secondLine.hidden = false;
+         self.contentLabel.frame = CGRectMake(10, titleTextsize.height + 5, self.bubbleView.frame.size.width-30, self.bubbleView.frame.size.height - 35 - titleTextsize.height);
+    } else {
+        self.secondLine.hidden = true;
+         self.contentLabel.frame = CGRectMake(10, titleTextsize.height + 5, self.bubbleView.frame.size.width-30, self.bubbleView.frame.size.height - titleTextsize.height);
+    }
+   
     [self layoutSubviews];
+}
+
+-(void) clearOldData{
+    self.titleLabel.text = nil;
+    self.contentLabel.text = nil;
+    for (UIView * view in self.bottomView.subviews) {
+        [view removeFromSuperview];
+    }
 }
 
 -(void) buttonActions:(MultiParamButton *)btn {
@@ -117,10 +159,10 @@
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, self.bubbleView.frame.size.width-20, 30)];
-        _titleLabel.font = [UIFont systemFontOfSize:16];
+        _titleLabel.font = [UIFont systemFontOfSize:15];
         _titleLabel.textAlignment = NSTextAlignmentLeft;
         _titleLabel.backgroundColor = [UIColor clearColor];
-        _titleLabel.numberOfLines = 1;
+        _titleLabel.numberOfLines = 0;
         [self.bubbleView addSubview:_titleLabel];
     }
     return _titleLabel;
@@ -129,7 +171,7 @@
 - (UILabel *)contentLabel{
     if (!_contentLabel) {
         _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 30 + 5, self.bubbleView.frame.size.width-20, self.bubbleView.frame.size.height - 60)];
-        _contentLabel.font = [UIFont systemFontOfSize:15];
+        _contentLabel.font = [UIFont systemFontOfSize:14];
         _contentLabel.textAlignment = NSTextAlignmentLeft;
         _contentLabel.backgroundColor = [UIColor clearColor];
         _contentLabel.textColor = [UIColor grayColor];
@@ -160,5 +202,22 @@
     return  _bottomView;
 }
 
+-(UIView *)firstLine{
+    if (!_firstLine) {
+        _firstLine = [[UIView alloc] init];
+        _firstLine.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        [self.bubbleView addSubview:_firstLine];
+    }
+    return _firstLine;
+}
+
+-(UIView *)secondLine{
+    if (!_secondLine) {
+        _secondLine = [[UIView alloc] initWithFrame:CGRectMake(10, self.bubbleView.frame.size.height - 32, self.bubbleView.frame.size.width- 30, 1)];
+        _secondLine.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        [self.bubbleView addSubview:_secondLine];
+    }
+    return  _secondLine;
+}
 
 @end

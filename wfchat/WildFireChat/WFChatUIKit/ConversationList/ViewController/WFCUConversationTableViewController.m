@@ -209,12 +209,12 @@ API_AVAILABLE(ios(9.0))
 }
 
 - (void)onLoginSuccessUpdated {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         WFCCUserInfo *me = [[WFCCIMService sharedWFCIMService] getUserInfo:[WFCCNetworkService sharedInstance].userId refresh:YES];
           [self.headerButton sd_setImageWithURL:[NSURL URLWithString:me.portrait] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"PersonalChat"]];
-        if (!self.headerButton.imageView.image) {
-            [self.headerButton setImage:[UIImage imageNamed:@"PersonalChat"] forState:UIControlStateNormal];
-        }
+//        if (!self.headerButton.imageView.image) {
+//            [self.headerButton setImage:[UIImage imageNamed:@"PersonalChat"] forState:UIControlStateNormal];
+//        }
     });
   
     

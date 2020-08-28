@@ -255,8 +255,6 @@ static NSMutableDictionary *hanziStringDict = nil;
 - (void)sortAndRefreshWithList:(NSArray *)friendList {
     self.sorting = YES;
     
-    
-    
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         self.resultDic = [WFCUContactListViewController sortedArrayWithPinYinDic:friendList];
         
@@ -623,9 +621,9 @@ static NSMutableDictionary *hanziStringDict = nil;
     } else {
         if (indexPath.section == 0) {
             if (indexPath.row == 0) {
-                AutoBreadcrumbViewController * companyCtrl  = [[AutoBreadcrumbViewController alloc] init];
-                companyCtrl.hidesBottomBarWhenPushed = YES;
-                [self.navigationController pushViewController:companyCtrl animated:YES];
+//                AutoBreadcrumbViewController * companyCtrl  = [[AutoBreadcrumbViewController alloc] init];
+//                companyCtrl.hidesBottomBarWhenPushed = YES;
+//                [self.navigationController pushViewController:companyCtrl animated:YES];
             } else if(indexPath.row == 1) {
                 AutoBreadcrumbViewController * companyCtrl  = [[AutoBreadcrumbViewController alloc] init];
                 companyCtrl.hidesBottomBarWhenPushed = YES;

@@ -22,6 +22,7 @@
 #import "MeTableViewCell.h"
 #import "WFCUBrowserViewController.h"
 #import "WFCConfig.h"
+#import "MBProgressHUD.h"
 
 @interface WFCMeTableViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong)UITableView *tableView;
@@ -73,7 +74,7 @@
           @"image":@"notification_setting"},
         @{@"title":@"关于我们",
           @"image":@"safe_setting"},
-        @{@"title":@"系统设置",
+        @{@"title":@"退出登录",
           @"image":@"MoreSetting"}
     ];
     
@@ -161,9 +162,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:true];
-     [[self sliderViewController] hideLeft];
+     
     
     if (indexPath.section == 0) {
+        [[self sliderViewController] hideLeft];
         WFCUMyProfileTableViewController *vc = [[WFCUMyProfileTableViewController alloc] init];
         vc.hidesBottomBarWhenPushed = YES;
         if (self.navigationController) {
@@ -173,7 +175,7 @@
             [[self sliderViewController].sliderNavigationController pushViewController:vc animated:true];
         }
     } else if (indexPath.section == 1) {
-        
+        [[self sliderViewController] hideLeft];
         WFCUMessageNotificationViewController *mnvc = [[WFCUMessageNotificationViewController alloc] init];
         mnvc.hidesBottomBarWhenPushed = YES;
         if (self.navigationController) {
@@ -183,31 +185,42 @@
         }
         
     } else if(indexPath.section == 2) {
-        WFCUBrowserViewController * stvc = [[WFCUBrowserViewController alloc] init];
-        stvc.url = USER_PRIVACY_URL;
+//        WFCUBrowserViewController * stvc = [[WFCUBrowserViewController alloc] init];
+//        stvc.url = USER_PRIVACY_URL;
+//
+//        stvc.hidesBottomBarWhenPushed = YES;
+//        if (self.navigationController) {
+//            [self.navigationController pushViewController:stvc animated:YES];
+//        } else {
+//            [[self sliderViewController] hideLeft];
+//            [[self sliderViewController].sliderNavigationController pushViewController:stvc animated:true];
+//        }
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.label.text = @"正在开发中，敬请期待";
+        hud.mode = MBProgressHUDModeText;
+        [hud hideAnimated:YES afterDelay:2];
         
-//        WFCSecurityTableViewController * stvc = [[WFCSecurityTableViewController alloc] init];
-        stvc.hidesBottomBarWhenPushed = YES;
-        if (self.navigationController) {
-            [self.navigationController pushViewController:stvc animated:YES];
-        } else {
-            //            [self.xl_sldeMenu showRootViewControllerAnimated:true];
-            //            NSLog(@" --- %@ ", [self.xl_sldeMenu.rootViewController class]);
-            //            WFCBaseTabBarController * ctrl = (WFCBaseTabBarController *)self.xl_sldeMenu.rootViewController;
-            [[self sliderViewController] hideLeft];
-            [[self sliderViewController].sliderNavigationController pushViewController:stvc animated:true];
-        }
     } else {
-        WFCSettingTableViewController *vc = [[WFCSettingTableViewController alloc] init];
-        vc.hidesBottomBarWhenPushed = YES;
-        if (self.navigationController) {
-            [self.navigationController pushViewController:vc animated:YES];
-        } else {
-            //            [self.xl_sldeMenu showRootViewControllerAnimated:true];
-            //            WFCBaseTabBarController * ctrl = (WFCBaseTabBarController *)self.xl_sldeMenu.rootViewController;
-            [[self sliderViewController] hideLeft];
-            [[self sliderViewController].sliderNavigationController pushViewController:vc animated:true];
-        }
+//        WFCSettingTableViewController *vc = [[WFCSettingTableViewController alloc] init];
+//        vc.hidesBottomBarWhenPushed = YES;
+//        if (self.navigationController) {
+//            [self.navigationController pushViewController:vc animated:YES];
+//        } else {
+//            //            [self.xl_sldeMenu showRootViewControllerAnimated:true];
+//            //            WFCBaseTabBarController * ctrl = (WFCBaseTabBarController *)self.xl_sldeMenu.rootViewController;
+//            [[self sliderViewController] hideLeft];
+//            [[self sliderViewController].sliderNavigationController pushViewController:vc animated:true];
+//        }
+       
+        
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:kSavedToken];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:kSavedUserId];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:kSavedWebToken];
+        //退出后就不需要推送了，第一个参数为YES
+        //如果希望再次登录时能够保留历史记录，第二个参数为NO。如果需要清除掉本地历史记录第二个参数用YES
+        [[WFCCNetworkService sharedInstance] disconnect:YES clearSession:NO];
+        
+         [[self sliderViewController] hideLeft];
     }
     
     

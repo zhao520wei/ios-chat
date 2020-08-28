@@ -828,7 +828,12 @@
 
 - (void)onReceiveMessages:(NSNotification *)notification {
     NSArray<WFCCMessage *> *messages = notification.object;
-    [self appendMessages:messages newMessage:YES highlightId:0 forceButtom:NO];
+//    if (messages.count == 1 && [messages.firstObject.content isKindOfClass:[WFCCUnknownMessageContent class]]) {
+//         [self appendMessages:messages newMessage:NO highlightId:0 forceButtom:NO];
+//    } else {
+         [self appendMessages:messages newMessage:YES highlightId:0 forceButtom:NO];
+//    }
+   
     [[WFCCIMService sharedWFCIMService] clearUnreadStatus:self.conversation];
 }
 
@@ -1817,7 +1822,7 @@ static int buttonCount = 1;
         [buttons addObject:item];
     }
     
-    WFCCUnivesalCustomMessageContent * message = [WFCCUnivesalCustomMessageContent contentWithTitle:@"[通知] 一二三" withButtons:buttons withBodys:bodys withStatus:1 withTag: @"[通知]" withTargetUrl:@"https://www.baidu.com"];
+    WFCCUnivesalCustomMessageContent * message = [WFCCUnivesalCustomMessageContent contentWithTitle:@"[通知] 一二三一二三一二三一二三一二三一二三一二三一二三一二三" withButtons:buttons withBodys:bodys withStatus:1 withTag: @"[通知]" withTargetUrl:@"https://www.baidu.com"];
     
     [self sendMessage:message];
     bodyCount++;

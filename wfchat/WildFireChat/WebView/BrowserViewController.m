@@ -101,7 +101,7 @@
 - (UIBarButtonItem *)backBarButtonItem {
     if (_backBarButtonItem == nil) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        UIImage *image = [UIImage imageNamed:@"nav_back"];
+        UIImage *image = [UIImage imageNamed:@"back_normal"];
         //        image = [image kswv_imageWithTintColor:[UIColor blueColor]];
         [button setImage:image forState:UIControlStateNormal];
 //        [button setTitle:@"返回" forState:UIControlStateNormal];

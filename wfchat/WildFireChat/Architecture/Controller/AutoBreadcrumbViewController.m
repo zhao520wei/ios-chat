@@ -96,8 +96,11 @@
         [hud hideAnimated:YES afterDelay:1.f];
         
         if (error_code == 13) {
-            [[WFCCNetworkService sharedInstance] disconnect:YES clearSession:NO];
-            [weakSelf.navigationController popViewControllerAnimated:true];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [weakSelf.navigationController popViewControllerAnimated:true];
+                [[WFCCNetworkService sharedInstance] disconnect:YES clearSession:NO];
+            });
+            
         }
     }];
     
