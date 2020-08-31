@@ -312,6 +312,7 @@
 		95CDA8E024CFC8C600EEA41E /* demo.js in Resources */ = {isa = PBXBuildFile; fileRef = 95CDA8DD24CFC8C600EEA41E /* demo.js */; };
 		95CDA8E624CFCBF900EEA41E /* NJKWebViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CDA8E324CFCBF800EEA41E /* NJKWebViewProgress.m */; };
 		95CDA8E724CFCBF900EEA41E /* NJKWebViewProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CDA8E524CFCBF800EEA41E /* NJKWebViewProgressView.m */; };
+		95CE095A24FCD24C00118F52 /* UIViewController+FixStatusbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 95CE095924FCD24C00118F52 /* UIViewController+FixStatusbar.m */; };
 		95D6321E24F3C22800004E16 /* WFCUniversalCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D6321D24F3C22800004E16 /* WFCUniversalCustomCell.m */; };
 		95F481D124E6626B0091D57E /* ZYSliderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F481CE24E6626B0091D57E /* ZYSliderViewController.m */; };
 		95F481D224E6626B0091D57E /* UIViewController+ZYSliderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F481CF24E6626B0091D57E /* UIViewController+ZYSliderViewController.m */; };
@@ -929,6 +930,8 @@
 		95CDA8E324CFCBF800EEA41E /* NJKWebViewProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJKWebViewProgress.m; sourceTree = "<group>"; };
 		95CDA8E424CFCBF800EEA41E /* NJKWebViewProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NJKWebViewProgress.h; sourceTree = "<group>"; };
 		95CDA8E524CFCBF800EEA41E /* NJKWebViewProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJKWebViewProgressView.m; sourceTree = "<group>"; };
+		95CE095824FCD24C00118F52 /* UIViewController+FixStatusbar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+FixStatusbar.h"; sourceTree = "<group>"; };
+		95CE095924FCD24C00118F52 /* UIViewController+FixStatusbar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+FixStatusbar.m"; sourceTree = "<group>"; };
 		95D6321C24F3C22800004E16 /* WFCUniversalCustomCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WFCUniversalCustomCell.h; sourceTree = "<group>"; };
 		95D6321D24F3C22800004E16 /* WFCUniversalCustomCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WFCUniversalCustomCell.m; sourceTree = "<group>"; };
 		95F481CD24E6626B0091D57E /* UIViewController+ZYSliderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ZYSliderViewController.h"; sourceTree = "<group>"; };
@@ -1473,6 +1476,8 @@
 				9530D56C24C85BA000CCC9F6 /* UIView+Toast.m */,
 				955C916A24CA8400007AC43C /* UIView+gradient.h */,
 				955C916B24CA8400007AC43C /* UIView+gradient.m */,
+				95CE095824FCD24C00118F52 /* UIViewController+FixStatusbar.h */,
+				95CE095924FCD24C00118F52 /* UIViewController+FixStatusbar.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -2758,6 +2763,7 @@
 				2E1D1FFC1FAF0AE600F4405D /* AppDelegate.m in Sources */,
 				9530D78D24C85BA200CCC9F6 /* WFCThemeTableViewCell.m in Sources */,
 				9530D7BC24C85BA200CCC9F6 /* pinyin.c in Sources */,
+				95CE095A24FCD24C00118F52 /* UIViewController+FixStatusbar.m in Sources */,
 				9530D74C24C85BA200CCC9F6 /* UIView+Toast.m in Sources */,
 				9530D7A824C85BA200CCC9F6 /* WFCUFaceBoard.m in Sources */,
 				9530D75C24C85BA200CCC9F6 /* WFCUReceiptViewController.m in Sources */,
@@ -2955,7 +2961,7 @@
 				CODE_SIGN_ENTITLEMENTS = WildFireChat/WildFireChat.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = 4P3U5L7UKK;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2994,7 +3000,7 @@
 				CODE_SIGN_ENTITLEMENTS = WildFireChat/WildFireChat.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = 4P3U5L7UKK;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (

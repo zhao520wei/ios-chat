@@ -109,9 +109,9 @@
         button.titleLabel.font = [UIFont systemFontOfSize:13];
         CGSize size = [WFCUUtilities getTextDrawingSize:item.name font:[UIFont systemFontOfSize:18] constrainedSize:CGSizeMake(100, 100)];
         int buttonWidth  = size.width;
-        buttonX += size.width;
-        buttonX = 10 * i;
         button.frame = CGRectMake(buttonX , 0, buttonWidth , 20);
+        buttonX += size.width;
+        buttonX += 10;
         button.status = item.type;
         button.url = item.value;
         button.layer.cornerRadius = 5;
@@ -149,10 +149,12 @@
 }
 
 -(void) buttonActions:(MultiParamButton *)btn {
+    if (btn.url != nil && btn.url.length > 5) {
+        BrowserViewController * browser = [[BrowserViewController alloc] init];
+        browser.URL = [NSURL URLWithString:btn.url];
+        [[self currentController].navigationController pushViewController:browser animated:YES];
+    }
     
-    BrowserViewController * browser = [[BrowserViewController alloc] init];
-    browser.URL = [NSURL URLWithString:btn.url];
-    [[self currentController].navigationController pushViewController:browser animated:YES];
 }
 
 

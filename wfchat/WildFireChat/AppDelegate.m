@@ -130,6 +130,7 @@
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             UIViewController *loginVC = [[WFCLoginViewController alloc] init];
             UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:loginVC];
+            nav.modalPresentationStyle = UIModalPresentationFullScreen;
             [self.window.rootViewController presentViewController:nav animated:YES completion:nil];
         });
         
@@ -271,6 +272,7 @@
         } else if (status == kConnectionStatusLogout) {
             UIViewController *loginVC = [[WFCLoginViewController alloc] init];
             UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:loginVC];
+            nav.modalPresentationStyle = UIModalPresentationFullScreen;
             [self.window.rootViewController presentViewController:nav animated:YES completion:nil];
         } 
     });

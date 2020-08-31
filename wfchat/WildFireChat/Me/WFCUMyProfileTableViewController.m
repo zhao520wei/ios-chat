@@ -31,6 +31,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+//    double systemVersion = [UIDevice currentDevice].systemVersion.floatValue;
+//    if (systemVersion >= 13 ) {
+//        UINavigationController * nav = self.navigationController;
+//        if ([nav respondsToSelector:@selector(setAutomaticallyAdjustsScrollViewInsets:)]) {
+//            nav.automaticallyAdjustsScrollViewInsets = NO;
+//        }
+//        if ([nav respondsToSelector:@selector(setEdgesForExtendedLayout:)]) {
+//            nav.edgesForExtendedLayout = UIRectEdgeNone;
+//        }
+//    }
+   
+    
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
     [self.view addSubview:self.tableView];
     
@@ -44,6 +56,30 @@
     
     self.title = WFCString(@"MyInformation");
 }
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self loadData:YES];
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+  
+    [self setNeedsStatusBarAppearanceUpdate];
+    //解决在iOS 13上 导航栏和状态栏 重叠
+    [self.navigationController.view setNeedsLayout];
+}
+
+-(BOOL)prefersStatusBarHidden{
+    return NO;
+}
+-(UIViewController *)childViewControllerForStatusBarHidden{
+    return self;
+}
+- (UIStatusBarAnimation)preferredStatusBarUpdateAnimation{
+    return  UIStatusBarAnimationFade;
+}
+
 
 - (void)onUserInfoUpdated:(NSNotification *)notification {
     WFCCUserInfo *userInfo = notification.userInfo[@"userInfo"];
@@ -133,10 +169,7 @@
     [self.tableView reloadData];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self loadData:YES];
-}
+
 
 - (UITableViewCell *)getAttrCell:(NSString *)leftText rightText:(NSString *)rightText mutable:(BOOL)mutable {
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];

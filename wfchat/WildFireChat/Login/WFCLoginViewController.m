@@ -80,7 +80,7 @@ alpha:1.0]
     CGFloat hintHeight = 26;
     CGFloat topPos = 26;
     
-    self.containerView = [[UIView alloc] initWithFrame:CGRectMake(15, 131, bgRect.size.width - 30, bgRect.size.height - 262)];
+    self.containerView = [[UIView alloc] initWithFrame:CGRectMake(15, 141, bgRect.size.width - 30, (bgRect.size.width - 30) * 1.1)];
     self.containerView.layer.cornerRadius = 10;
     self.containerView.layer.masksToBounds = true;
     self.containerView.backgroundColor = [UIColor whiteColor];
@@ -310,15 +310,15 @@ alpha:1.0]
         });
     } error:^(int errCode, NSString *message) {
         NSLog(@"login error with code %d, message %@", errCode, message);
-      dispatch_async(dispatch_get_main_queue(), ^{
-        [hud hideAnimated:YES];
-        
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        hud.mode = MBProgressHUDModeText;
-        hud.label.text = @"登录失败";
-        hud.offset = CGPointMake(0.f, MBProgressMaxOffset);
-        [hud hideAnimated:YES afterDelay:1.f];
-      });
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [hud hideAnimated:YES];
+            
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.mode = MBProgressHUDModeText;
+            hud.label.text = @"登录失败";
+            hud.offset = CGPointMake(0.f, MBProgressMaxOffset);
+            [hud hideAnimated:YES afterDelay:1.f];
+        });
     }];
 }
 

@@ -593,6 +593,7 @@ static NSMutableDictionary *hanziStringDict = nil;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSArray *dataSource;
     if (self.searchController.active || self.selectContact) {
         if ((self.showCreateChannel || self.showMentionAll) && !self.searchController.active) {

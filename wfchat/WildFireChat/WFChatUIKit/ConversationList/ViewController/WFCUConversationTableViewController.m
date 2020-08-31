@@ -542,7 +542,13 @@ API_AVAILABLE(ios(9.0))
     self.tableHeaderViewHeight = 40.0;
     self.tableHeaderView = [[UIView alloc ]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 40)];
     self.tableHeaderView.backgroundColor = kMainColor;
-    self.tableHeaderView.alpha = 0.85;
+    double systemVersion = [UIDevice currentDevice].systemVersion.floatValue;
+    if (systemVersion < 13.0) {
+         self.tableHeaderView.alpha = 0.85;
+    } else {
+        self.tableHeaderView.alpha  = 1.00;
+    }
+   
     
   
     self.tableFooterView =  [[UIView alloc ]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 40)];
