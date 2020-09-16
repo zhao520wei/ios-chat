@@ -534,6 +534,11 @@ API_AVAILABLE(ios(9.0))
 
 - (void)refreshList {
     self.conversations = [[[WFCCIMService sharedWFCIMService] getConversationInfos:@[@(Single_Type), @(Group_Type), @(Channel_Type)] lines:@[@(0)]] mutableCopy];
+    
+    for (WFCCConversationInfo * info in self.conversations) {
+        NSLog(@"----- unreadCount.unread :%d   lastMessage.fromUser :%@   lastMessage.status:%ld", info.unreadCount.unread, info.lastMessage.fromUser,(long)info.lastMessage.status);
+    }
+    
     [self updateBadgeNumber];
     [self checkTableFooterLabelInfo];
     [self.tableView reloadData];
@@ -913,6 +918,7 @@ API_AVAILABLE(ios(9.0))
                         cell = [[WFCUContactTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"friendCell"];
                     }
                     cell.big = NO;
+                    cell.isInSearch = YES;
                     cell.separatorInset = UIEdgeInsetsMake(0, 68, 0, 0);
                     cell.userId = self.searchFriendList[indexPath.row].userId;
                     return cell;
@@ -929,6 +935,7 @@ API_AVAILABLE(ios(9.0))
                             cell = [[WFCUContactTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"friendCell"];
                         }
                         cell.big = NO;
+                        cell.isInSearch = YES;
                         if (indexPath.row == 1) {
                             cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
                             
@@ -1191,16 +1198,47 @@ API_AVAILABLE(ios(9.0))
         
         [self refreshList];
     }];
+    UITableViewRowAction *unRead = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"标为未读" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        WFCCConversationInfo * conversationInfo =  ws.conversations[indexPath.row];
+        conversationInfo.unreadCount.unread = 1;
+        WFCCMessage * lastMessage = conversationInfo.lastMessage;
+        NSLog(@"更新后 updateLastMessage %ld",(long)lastMessage.status);
+        long lastMessageId =  lastMessage.messageId;
+        lastMessage.status = Message_Status_Unread;
+       
+        bool updateLastMessage = [[WFCCIMService sharedWFCIMService] updateMessage:lastMessageId status:Message_Status_Unread];
+         [[WFCCIMService sharedWFCIMService] updateMessage:lastMessageId content:lastMessage.content];
+        NSLog(@"更新后 updateLastMessage %d",updateLastMessage);
+    
+        [self refreshList];
+        
+    }];
+    UITableViewRowAction *readed = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"标为已读" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+            [[WFCCIMService sharedWFCIMService] clearUnreadStatus:ws.conversations[indexPath.row].conversation];
+           [self refreshList];
+       }];
     
     
     setTop.backgroundColor = kMainColor;
     setUntop.backgroundColor = [UIColor redColor];
-    
+    NSMutableArray *actions = [NSMutableArray array];
     if (self.conversations[indexPath.row].isTop) {
-        return @[delete, setUntop ];
+        [actions addObject:delete];
+        [actions addObject:setUntop];
     } else {
-        return @[delete, setTop];
+        [actions addObject:delete];
+        [actions addObject:setTop];
     }
+    // 需要判断是否消息免打扰
+    if (!self.conversations[indexPath.row].isSilent) {
+        if (self.conversations[indexPath.row].unreadCount.unread > 0 ) {
+            [actions addObject:readed];
+        } else {
+            [actions addObject:unRead];
+        }
+    }
+    
+    return [actions copy];
 };
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {

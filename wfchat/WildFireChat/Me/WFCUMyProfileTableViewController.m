@@ -125,11 +125,11 @@
     [self addLabel:WFCString(@"Portrait") onCell:headerCell isHeaderCell:YES isLeft:YES];
     [self.cells1 addObject:headerCell];
 
-    UITableViewCell *cell = [self getAttrCell:WFCString(@"Nickname") rightText:self.userInfo.displayName mutable:YES];
+    UITableViewCell *cell = [self getAttrCell:@"姓名" rightText:self.userInfo.displayName mutable:NO];
     cell.tag = Modify_DisplayName;
     [self.cells1 addObject:cell];
     
-    cell = [self getAttrCell:WFCString(@"QRCode") rightText:@"" mutable:YES];
+    cell = [self getAttrCell:WFCString(@"QRCode") rightText:@"" mutable:NO];
     cell.tag = 1000;
     [self.cells1 addObject:cell];
     UIImage *qrcode = [UIImage imageNamed:@"qrcode"];
@@ -138,11 +138,11 @@
     qrview.image = qrcode;
     [cell addSubview:qrview];
 
-    cell = [self getAttrCell:@"账号" rightText:self.userInfo.name mutable:YES];
+    cell = [self getAttrCell:@"账号" rightText:self.userInfo.name mutable:NO];
     cell.tag = 100;
     [self.cells1 addObject:cell];
 
-    cell = [self getAttrCell:WFCString(@"Mobile") rightText:self.userInfo.mobile mutable:YES];
+    cell = [self getAttrCell:WFCString(@"Mobile") rightText:self.userInfo.mobile mutable:NO];
     cell.tag = Modify_Mobile;
     [self.cells2 addObject:cell];
 
@@ -150,15 +150,15 @@
 //    cell.tag = Modify_Gender;
 //    [self.cells2 addObject:cell];
 
-    cell = [self getAttrCell:WFCString(@"Email") rightText:self.userInfo.email mutable:YES];
+    cell = [self getAttrCell:WFCString(@"Email") rightText:self.userInfo.email mutable:NO];
     cell.tag = Modify_Email;
     [self.cells2 addObject:cell];
 
-    cell = [self getAttrCell:WFCString(@"Address") rightText:self.userInfo.address mutable:YES];
+    cell = [self getAttrCell:WFCString(@"Address") rightText:self.userInfo.address mutable:NO];
     cell.tag = Modify_Address;
     [self.cells2 addObject:cell];
 
-    cell = [self getAttrCell:@"职务" rightText:self.userInfo.company mutable:YES];
+    cell = [self getAttrCell:@"部门" rightText:self.userInfo.company mutable:NO];
     cell.tag = Modify_Company;
     [self.cells2 addObject:cell];
 
@@ -272,6 +272,8 @@
             [self sexAlterView];
             return;
         }
+        
+        return;
         
         WFCUModifyMyProfileViewController *mpvc = [[WFCUModifyMyProfileViewController alloc] init];
         mpvc.modifyType = cell.tag;

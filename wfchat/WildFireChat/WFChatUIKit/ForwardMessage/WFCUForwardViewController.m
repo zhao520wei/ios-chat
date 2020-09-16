@@ -150,6 +150,7 @@
                 if (cell == nil) {
                     cell = [[WFCUContactTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"friendCell"];
                 }
+                cell.isInSearch = YES;
                 cell.userId = self.searchFriendList[indexPath.row].userId;
                 return cell;
             }

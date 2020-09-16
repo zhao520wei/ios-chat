@@ -17,4 +17,6 @@
 @property (nonatomic, strong)NSString *groupAlias;
 
 @property (nonatomic, assign, getter=isBig)BOOL big;
+
+@property (nonatomic, assign)BOOL isInSearch;
 @end

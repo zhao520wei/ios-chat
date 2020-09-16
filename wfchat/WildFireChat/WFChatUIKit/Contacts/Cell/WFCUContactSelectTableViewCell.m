@@ -11,9 +11,12 @@
 #import "SDWebImage.h"
 #import "UIColor+YH.h"
 #import "UIFont+YH.h"
+#import "WFCUConfigManager.h"
+
 @interface WFCUContactSelectTableViewCell()
 @property(nonatomic, strong)UIImageView *checkImageView;
 @property(nonatomic, strong)UIImageView *portraitView;
+@property(nonatomic, strong) UILabel *departmentLabel;
 @end
 
 @implementation WFCUContactSelectTableViewCell
@@ -44,11 +47,23 @@
     if(!_nameLabel) {
         _nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(50 + 40 + 12, 19, [UIScreen mainScreen].bounds.size.width - (16 + 20 + 19 + 40 + 12) - 48, 16)];
         _nameLabel.font = [UIFont pingFangSCWithWeight:FontWeightStyleRegular size:16];
-               _nameLabel.textColor = [UIColor colorWithHexString:@"0x1d1d1d"];
+        _nameLabel.textColor = [WFCUConfigManager globalManager].textColor;
         [self.contentView addSubview:_nameLabel];
     }
     return _nameLabel;
 }
+
+-(UILabel *)departmentLabel {
+    if (!_departmentLabel) {
+        _departmentLabel = [[UILabel alloc]initWithFrame:CGRectMake(100, 19, [UIScreen mainScreen].bounds.size.width - 120, 16)];
+        _departmentLabel.font = [UIFont pingFangSCWithWeight:FontWeightStyleRegular size:13];
+        _departmentLabel.textAlignment = NSTextAlignmentRight;
+        _departmentLabel.textColor = [WFCUConfigManager globalManager].textColor;
+        [self.contentView addSubview:_departmentLabel];
+    }
+    return _departmentLabel;
+}
+
 - (void)setDisabled:(BOOL)disabled {
     _disabled = disabled;
     if (disabled) {
@@ -92,5 +107,6 @@
     } else {
         self.nameLabel.text = friendInfo.displayName;
     }
+    self.departmentLabel.text = friendInfo.company;
 }
 @end

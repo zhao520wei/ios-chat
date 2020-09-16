@@ -622,10 +622,11 @@
 
 - (UIView *)pluginInputView {
     if (!_pluginInputView) {
+        
 #if WFCU_SUPPORT_VOIP
         BOOL hasVoip = self.conversation.type == Single_Type || (self.conversation.type == Group_Type && [WFAVEngineKit sharedEngineKit].supportMultiCall);
 #else
-        BOOL hasVoip = NO;
+//        BOOL hasVoip = NO;
 #endif
         _pluginInputView = [[WFCUPluginBoardView alloc] initWithDelegate:self withVoip:hasVoip];
     }

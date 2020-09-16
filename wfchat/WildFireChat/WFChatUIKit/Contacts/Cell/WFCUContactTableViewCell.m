@@ -14,7 +14,7 @@
 #import "WFCUConfigManager.h"
 
 @interface WFCUContactTableViewCell ()
-
+@property(nonatomic, strong) UILabel *departmentLabel;
 @end
 
 @implementation WFCUContactTableViewCell
@@ -42,6 +42,7 @@
         _nameLabel.frame = CGRectMake(16 + 40 + 11, (self.frame.size.height - 17) / 2.0, [UIScreen mainScreen].bounds.size.width - (16 + 40 + 11), 17);
         _nameLabel.font = [UIFont pingFangSCWithWeight:FontWeightStyleRegular size:16];
     }
+    _departmentLabel.frame = CGRectMake(100, 19, [UIScreen mainScreen].bounds.size.width - 120, 16);
 }
 - (void)onUserInfoUpdated:(NSNotification *)notification {
     WFCCUserInfo *userInfo = notification.userInfo[@"userInfo"];
@@ -76,6 +77,12 @@
     } else {
         self.nameLabel.text = [NSString stringWithFormat:@"user<%@>", userInfo.userId];
     }
+    if (self.isInSearch) {
+        self.departmentLabel.text =  userInfo.company;
+    } else {
+        self.departmentLabel.text = @"";
+    }
+    
 }
 
 - (UIImageView *)portraitView {
@@ -96,7 +103,16 @@
     }
     return _nameLabel;
 }
-
+-(UILabel *)departmentLabel {
+    if (!_departmentLabel) {
+        _departmentLabel = [[UILabel alloc]initWithFrame:CGRectMake(100, 19, [UIScreen mainScreen].bounds.size.width - 120, 16)];
+        _departmentLabel.font = [UIFont pingFangSCWithWeight:FontWeightStyleRegular size:13];
+        _departmentLabel.textAlignment = NSTextAlignmentRight;
+        _departmentLabel.textColor = [WFCUConfigManager globalManager].textColor;
+        [self.contentView addSubview:_departmentLabel];
+    }
+    return _departmentLabel;
+}
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }

@@ -143,10 +143,12 @@
         self.aliasLabel.text = alias;
         
         self.displayNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(94, 32, width - 94 - 8, 21)];
-        self.displayNameLabel.text = self.userInfo.displayName;
+        self.displayNameLabel.font = [UIFont systemFontOfSize:12];
+        self.displayNameLabel.textColor = [UIColor grayColor];
+        self.displayNameLabel.text = [NSString stringWithFormat:@"姓名: %@", self.userInfo.displayName];
         
         self.userNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(94, 60, width - 94 - 8, 11)];
-        self.userNameLabel.text = [NSString stringWithFormat:@"职务:%@", self.userInfo.company];
+        self.userNameLabel.text = [NSString stringWithFormat:@"部门:%@", self.userInfo.company];
         self.userNameLabel.font = [UIFont systemFontOfSize:12];
         self.userNameLabel.textColor = [UIColor grayColor];
     } else {
@@ -157,7 +159,7 @@
         self.displayNameLabel.font = [UIFont pingFangSCWithWeight:FontWeightStyleMedium size:20];
         
         self.userNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(94, 50, width - 94 - 8, 21)];
-        self.userNameLabel.text = [NSString stringWithFormat:@"职务:%@", self.userInfo.company];
+        self.userNameLabel.text = [NSString stringWithFormat:@"部门:%@", self.userInfo.company];
         self.userNameLabel.font = [UIFont systemFontOfSize:12];
         self.userNameLabel.textColor = [UIColor grayColor];
     }

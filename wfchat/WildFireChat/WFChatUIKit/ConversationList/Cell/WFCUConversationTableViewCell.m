@@ -113,6 +113,8 @@
 
 - (void)setInfo:(WFCCConversationInfo *)info {
     _info = info;
+      NSLog(@"++++++ unreadCount.unread :%d   lastMessage.fromUser :%@   lastMessage.status:%ld", info.unreadCount.unread, info.lastMessage.fromUser,(long)info.lastMessage.status);
+    
     if (info.unreadCount.unread == 0) {
         self.bubbleView.hidden = YES;
     } else {

@@ -437,7 +437,7 @@ static NSMutableDictionary *hanziStringDict = nil;
             if (selectCell == nil) {
                 selectCell = [[WFCUContactTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:REUSEIDENTIFY];
             }
-            
+            selectCell.isInSearch = YES;
             WFCCUserInfo *userInfo = dataSource[indexPath.row];
             selectCell.userId = userInfo.userId;
             
@@ -466,7 +466,7 @@ static NSMutableDictionary *hanziStringDict = nil;
                     contactCell = [[WFCUContactTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:REUSEIDENTIFY];
                 }
                 contactCell.separatorInset = UIEdgeInsetsMake(0, 60, 0, 0);
-
+                contactCell.isInSearch = YES;
               contactCell.nameLabel.text = WFCString(@"Group");
               contactCell.portraitView.image = [UIImage imageNamed:@"contact_group_icon"];
               contactCell.nameLabel.textColor = [WFCUConfigManager globalManager].textColor;
@@ -477,7 +477,7 @@ static NSMutableDictionary *hanziStringDict = nil;
             if (contactCell == nil) {
                 contactCell = [[WFCUContactTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:REUSEIDENTIFY];
             }
-            
+            contactCell.isInSearch = self.searchController.active ? YES:NO ;
             WFCCUserInfo *userInfo = dataSource[indexPath.row];
             contactCell.userId = userInfo.userId;
             contactCell.nameLabel.textColor = [WFCUConfigManager globalManager].textColor;
