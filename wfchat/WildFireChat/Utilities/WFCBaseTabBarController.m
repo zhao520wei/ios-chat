@@ -84,6 +84,7 @@
     vc = [[BrowserViewController alloc] initWithURL:[NSURL URLWithString: AppWebWork] withType:BrowserSourceWork];
     vc.title = LocalizedString(@"Discover");
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    nav.title = LocalizedString(@"Discover");
     item = nav.tabBarItem;
     //    item = [[UITabBarItem alloc]initWithTitle:LocalizedString(@"Me") image:[UIImage imageNamed:@"tabbar_me"] selectedImage:[[UIImage imageNamed:@"tabbar_me_cover"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     [nav.navigationBar setShadowImage:colorImage];

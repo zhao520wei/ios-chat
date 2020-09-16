@@ -136,7 +136,17 @@
         
     }
     
+    [self someMethod];
     return YES;
+}
+
+- (void)someMethod {
+    int i = 10;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSLog(@"++++++++++++++: %d",i);
+    });
+    i = 20;
+    NSLog(@"++++++++++++++ ------: %d",i);
 }
 
 

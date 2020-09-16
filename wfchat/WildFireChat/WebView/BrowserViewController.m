@@ -200,6 +200,7 @@
         self.navigationItem.leftBarButtonItem = self.backBarButtonItem;
         self.webView.frame = self.view.bounds;
     }else {
+        self.title = @"工作";
         self.webView.frame = CGRectMake(0, 0, kScreenWidth, self.view.bounds.size.height - kTabBarHeight);
     }
     

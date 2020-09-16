@@ -43,12 +43,14 @@
         {
             [[WFCCIMService sharedWFCIMService] setConversation:_conversation top:value success:nil error:^(int error_code) {
                 [ws.valueSwitch setOn:!value];
+                NSLog(@"switch error_code SwitchType_Conversation_Top: %d", error_code);
             }];
             break;
         }
         case SwitchType_Conversation_Silent:
         {
             [[WFCCIMService sharedWFCIMService] setConversation:_conversation silent:value success:nil error:^(int error_code) {
+                 NSLog(@"switch error_code SwitchType_Conversation_Silent: %d", error_code);
                 [ws.valueSwitch setOn:!value];
             }];
             break;
@@ -58,7 +60,7 @@
             [[WFCCIMService sharedWFCIMService] setGlobalSlient:!value success:^{
                
             } error:^(int error_code) {
-               
+                NSLog(@"switch error_code SwitchType_Setting_Global_Silent: %d", error_code);
             }];
             break;
         }
@@ -66,6 +68,7 @@
             [[WFCCIMService sharedWFCIMService] setHiddenNotificationDetail:!value success:^{
                 
             } error:^(int error_code) {
+                 NSLog(@"switch error_code SwitchType_Setting_Show_Notification_Detail: %d", error_code);
                 dispatch_async(dispatch_get_main_queue(), ^{
                     ws.valueSwitch.on = !ws.valueSwitch.on; 
                 });
@@ -76,7 +79,7 @@
             [[WFCCIMService sharedWFCIMService] setHiddenGroupMemberName:!value group:self.conversation.target success:^{
                 
             } error:^(int error_code) {
-                
+                 NSLog(@"switch error_code SwitchType_Conversation_Show_Alias: %d", error_code);
             }];
         }
             break;
@@ -84,7 +87,7 @@
             [[WFCCIMService sharedWFCIMService] setFavGroup:self.conversation.target fav:value success:^{
                 
             } error:^(int error_code) {
-                
+                 NSLog(@"switch error_code SwitchType_Conversation_Save_To_Contact: %d", error_code);
             }];
             break;
         default:

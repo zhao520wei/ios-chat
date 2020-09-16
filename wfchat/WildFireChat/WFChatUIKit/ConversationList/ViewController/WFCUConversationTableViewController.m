@@ -221,6 +221,16 @@ API_AVAILABLE(ios(9.0))
     
 }
 
+- (void) onUserHeardImageUpdated:(NSNotification *)notification {
+    WFCCUserInfo *userInfo = notification.userInfo[@"userInfo"];
+    if ([[WFCCNetworkService sharedInstance].userId isEqualToString:userInfo.userId]) {
+        [self.headerButton sd_setImageWithURL:[NSURL URLWithString:userInfo.portrait] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"PersonalChat"]];
+        NSLog(@"首页更新用户头像 success");
+    }else {
+        NSLog(@"首页更新用户头像 failed");
+    }
+}
+
 - (void)onRightBarBtn:(UIBarButtonItem *)sender {
     CGFloat searchExtra = 0;
     if ([KxMenu isShowing]) {
@@ -427,6 +437,8 @@ API_AVAILABLE(ios(9.0))
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onSendingMessageStatusUpdated:) name:kSendingMessageStatusUpdated object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onLoginSuccessUpdated) name:kUserLoginSuccessNotification object:nil];
+    
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onUserHeardImageUpdated:) name:kUserInfoUpdated object:nil];
     
     self.firstAppear = YES;
 }
@@ -1159,7 +1171,7 @@ API_AVAILABLE(ios(9.0))
             [ws refreshList];
         } error:^(int error_code) {
             MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:ws.view animated:NO];
-            hud.label.text = WFCString(@"UpdateFailure");
+            hud.label.text = [NSString stringWithFormat:@"%@ error_code:%d", WFCString(@"UpdateFailure"), error_code];
             hud.mode = MBProgressHUDModeText;
             hud.removeFromSuperViewOnHide = YES;
             [hud hideAnimated:NO afterDelay:1.5];
