@@ -13,10 +13,12 @@
 #import <AddressBookUI/AddressBookUI.h>
 #import <CoreLocation/CoreLocation.h>
 #import "UIView+Screenshot.h"
+#import "MapNaviagateRouteManager.h"
 
 @interface WFCULocationViewController () <CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property(nonatomic, strong) UIBarButtonItem *sendButton;
+@property(nonatomic, strong) UIBarButtonItem *navigateButton;
 @property(nonatomic, strong) CLLocationManager *locationManager;
 @property(nonatomic, strong) WFCULocationPoint *locationPoint;
 @property(nonatomic, strong) CLGeocoder * geoCoder;
@@ -28,6 +30,10 @@
 @property(nonatomic, strong) UITableView *locationTableView;
 @property(nonatomic, strong) NSMutableArray<CLPlacemark *> *marks;
 @property(nonatomic, weak) id<LocationViewControllerDelegate> delegate;
+
+@property(nonatomic, copy) NSString *destination;
+
+@property(nonatomic, assign) BOOL isLocationOrNavigate; // YES:Location  NO:Navigate
 @end
 
 @implementation WFCULocationViewController
@@ -37,6 +43,7 @@
         _locationManager = [[CLLocationManager alloc] init];
         _geoCoder = [[CLGeocoder alloc] init];
         _delegate = delegate;
+        self.isLocationOrNavigate = YES;
     }
     return self;
 }
@@ -46,6 +53,8 @@
     if (self) {
         _locationPoint = locationPoint;
         _geoCoder = [[CLGeocoder alloc] init];
+        self.destination = @"目的地";
+        self.isLocationOrNavigate = NO;
     }
     return self;
 }
@@ -103,6 +112,10 @@
         theRegion.span.latitudeDelta    = 0.01f;
         [self.mapView addAnnotation:self.locationPoint];
         [self.mapView setRegion:theRegion animated:YES];
+        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"导航" style:UIBarButtonItemStyleDone target:self action:@selector(onNavigate:)];
+        self.navigationItem.rightBarButtonItem = item;
+        self.navigateButton = item;
+        [self reverseGeoLocation:self.locationPoint.coordinate];
     }
     
     self.mapView.delegate = self;
@@ -140,6 +153,16 @@
     }
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
+
+- (void)onNavigate:(id)sender {
+    // 后台返回的目的地坐标是百度地图的
+    // 百度地图与高德地图、苹果地图采用的坐标系不一样，故高德和苹果只能用地名不能用后台返回的坐标
+
+    [MapNaviagateRouteManager presentRouteNaviMenuOnController:self withCoordate:self.locationPoint.coordinate destination:self.destination];
+    
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -210,24 +233,27 @@
     self.sendButton.enabled = NO;
     [self.geoCoder reverseGeocodeLocation:location
                         completionHandler:^(NSArray *placemarks, NSError *error) {
-         if (!error) {
-             CLPlacemark *mark = [placemarks firstObject];
-             ws.marks = [placemarks mutableCopy];
-             NSArray *lines = mark.addressDictionary[@"FormattedAddressLines"];
-             NSString *title = [lines componentsJoinedByString:@"\n"];
+        if (!error) {
+            CLPlacemark *mark = [placemarks firstObject];
+            ws.marks = [placemarks mutableCopy];
+            NSArray *lines = mark.addressDictionary[@"FormattedAddressLines"];
+            NSString *title = [lines componentsJoinedByString:@"\n"];
+            ws.destination = title;
+            if (self.isLocationOrNavigate) {
+                WFCULocationPoint *ponit = [[WFCULocationPoint alloc] initWithCoordinate:locationCoordinate2D andTitle:nil];
+                [ws.mapView addAnnotation:ponit];
+                ws.locationPoint = [[WFCULocationPoint alloc] initWithCoordinate:locationCoordinate2D andTitle:title];;
+                ws.sendButton.enabled = YES;
+                ws.title = title;
+                [ws.locationTableView reloadData];
+            }
             
-             WFCULocationPoint *ponit = [[WFCULocationPoint alloc] initWithCoordinate:locationCoordinate2D andTitle:nil];
-             [ws.mapView addAnnotation:ponit];
-             ws.locationPoint = [[WFCULocationPoint alloc] initWithCoordinate:locationCoordinate2D andTitle:title];;
-             ws.sendButton.enabled = YES;
-             ws.title = title;
-             [ws.locationTableView reloadData];
-         } else {
-             ws.locationPoint = nil;
-             ws.sendButton.enabled = NO;
-             ws.title = @"位置";
-         }
-     }];
+        } else {
+            ws.locationPoint = nil;
+            ws.sendButton.enabled = NO;
+            ws.title = @"位置";
+        }
+    }];
 }
 
 - (void)dismiss:(id)sender {

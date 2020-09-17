@@ -294,6 +294,7 @@
 		9530D80F24C8604700CCC9F6 /* Stickers.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9530D80E24C8604600CCC9F6 /* Stickers.bundle */; };
 		9534A96E24CAD20A00AF1FC0 /* WFCArchitectureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9534A96D24CAD20A00AF1FC0 /* WFCArchitectureViewController.m */; };
 		9539B4AA24D154CB00DEA036 /* WFCURLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 9539B4A924D154CB00DEA036 /* WFCURLCache.m */; };
+		953FF98A2513167D000F1220 /* MapNaviagateRouteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 953FF9892513167D000F1220 /* MapNaviagateRouteManager.m */; };
 		955C916C24CA8400007AC43C /* UIView+gradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 955C916B24CA8400007AC43C /* UIView+gradient.m */; };
 		955C916E24CABA1F007AC43C /* launch_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 955C916D24CABA1F007AC43C /* launch_icon.png */; };
 		9569902C24CBDCFC0009F332 /* SinglePersonNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569900624CBDCFB0009F332 /* SinglePersonNode.m */; };
@@ -893,6 +894,8 @@
 		9534A96D24CAD20A00AF1FC0 /* WFCArchitectureViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WFCArchitectureViewController.m; sourceTree = "<group>"; };
 		9539B4A824D154CB00DEA036 /* WFCURLCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WFCURLCache.h; sourceTree = "<group>"; };
 		9539B4A924D154CB00DEA036 /* WFCURLCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WFCURLCache.m; sourceTree = "<group>"; };
+		953FF9882513167D000F1220 /* MapNaviagateRouteManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapNaviagateRouteManager.h; sourceTree = "<group>"; };
+		953FF9892513167D000F1220 /* MapNaviagateRouteManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapNaviagateRouteManager.m; sourceTree = "<group>"; };
 		955C916A24CA8400007AC43C /* UIView+gradient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+gradient.h"; sourceTree = "<group>"; };
 		955C916B24CA8400007AC43C /* UIView+gradient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+gradient.m"; sourceTree = "<group>"; };
 		955C916D24CABA1F007AC43C /* launch_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch_icon.png; sourceTree = "<group>"; };
@@ -981,6 +984,8 @@
 				149B3109241E300C00B935D3 /* UIFont+YH.m */,
 				958D85FB24D40E0B00A0F29D /* NSString+WFCAttribute.h */,
 				958D85FC24D40E0B00A0F29D /* NSString+WFCAttribute.m */,
+				953FF9882513167D000F1220 /* MapNaviagateRouteManager.h */,
+				953FF9892513167D000F1220 /* MapNaviagateRouteManager.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -2535,6 +2540,7 @@
 				9530D7A324C85BA200CCC9F6 /* QrCodeHelper.m in Sources */,
 				9530D75524C85BA200CCC9F6 /* WFCUBlackListViewController.m in Sources */,
 				9530D7E024C85BA200CCC9F6 /* AFURLResponseSerialization.m in Sources */,
+				953FF98A2513167D000F1220 /* MapNaviagateRouteManager.m in Sources */,
 				9530D7FE24C85BA200CCC9F6 /* SDImageCacheConfig.m in Sources */,
 				149B3107241D292C00B935D3 /* UIColor+YH.m in Sources */,
 				9530D7F324C85BA200CCC9F6 /* FLAnimatedImageView.m in Sources */,

@@ -1876,6 +1876,8 @@ static int buttonCount = 1;
     UIMenuItem *recallItem = [[UIMenuItem alloc]initWithTitle:WFCString(@"Recall") action:@selector(performRecall:)];
     UIMenuItem *complainItem = [[UIMenuItem alloc]initWithTitle:WFCString(@"Complain") action:@selector(performComplain:)];
     UIMenuItem *multiSelectItem = [[UIMenuItem alloc]initWithTitle:WFCString(@"MultiSelect") action:@selector(performMultiSelect:)];
+    UIMenuItem *saveItem = [[UIMenuItem alloc]initWithTitle:@"保存" action:@selector(performSaveFile)];
+    
     
     CGRect menuPos;
     if ([baseCell isKindOfClass:[WFCUMessageCell class]]) {
@@ -1906,6 +1908,10 @@ static int buttonCount = 1;
         //        [msg.content isKindOfClass:[WFCCSoundMessageContent class]] || //语音消息禁止转发，出于安全原因考虑，微信就禁止转发。如果您能确保安全，可以把这行注释打开
         [msg.content isKindOfClass:[WFCCStickerMessageContent class]]) {
         [items addObject:forwardItem];
+    }
+    
+    if ([msg.content isKindOfClass:[WFCCImageMessageContent class]] || [msg.content isKindOfClass:[WFCCVideoMessageContent class]] ) {
+        [items addObject:saveItem];
     }
     
     BOOL canRecall = NO;
@@ -1964,7 +1970,7 @@ static int buttonCount = 1;
 
 -(BOOL)canPerformAction:(SEL)action withSender:(id)sender {
     if(self.cell4Menu) {
-        if (action == @selector(performDelete:) || action == @selector(performCopy:) || action == @selector(performForward:) || action == @selector(performRecall:) || action == @selector(performComplain:) || action == @selector(performMultiSelect:)) {
+        if (action == @selector(performDelete:) || action == @selector(performCopy:) || action == @selector(performForward:) || action == @selector(performRecall:) || action == @selector(performComplain:) || action == @selector(performMultiSelect:) || action == @selector(performSaveFile)) {
             return YES; //显示自定义的菜单项
         } else {
             return NO;
@@ -2058,6 +2064,90 @@ static int buttonCount = 1;
 - (void)performMultiSelect:(UIMenuItem *)sender {
     self.multiSelecting = !self.multiSelecting;
 }
+
+- (void)performSaveFile {
+    if (self.cell4Menu) {
+        // 没有下载还得先下载
+        WFCCMessage * message = self.cell4Menu.model.message;
+        
+        if ([message.content isKindOfClass:[WFCCImageMessageContent class]]) {
+            // 图片
+            WFCCImageMessageContent * imageMessage = (WFCCImageMessageContent *) message.content;
+            if (imageMessage.localPath.length > 0) {
+                UIImage *image = [UIImage imageWithContentsOfFile:imageMessage.localPath];
+                if (image) {
+                    UIImageWriteToSavedPhotosAlbum(image, self, @selector(savedPhotoImage:didFinishSavingWithError:contextInfo:), nil);
+                }
+            } else {
+                [self startDownloadImageAndVideoWithMessage:self.cell4Menu.model];
+            }
+            
+        } else if ([message.content isKindOfClass:[WFCCVideoMessageContent class]]){
+            //视频
+            WFCCVideoMessageContent * videoMessage = (WFCCVideoMessageContent*) message.content;
+            if (videoMessage.localPath.length > 0) {
+                if (UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(videoMessage.localPath)) {
+                    //保存相册核心代码
+                    UISaveVideoAtPathToSavedPhotosAlbum(videoMessage.localPath, self, @selector(video:didFinishSavingWithError:contextInfo:), nil);
+                }
+            } else {
+                [self startDownloadImageAndVideoWithMessage:self.cell4Menu.model];
+            }
+           
+        }
+    }
+}
+
+- (void) startDownloadImageAndVideoWithMessage:(WFCUMessageModel *)model {
+    
+    __block MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    __weak typeof(self) weakSelf = self;
+    BOOL isDownloading = [[WFCUMediaMessageDownloader sharedDownloader] tryDownload:model.message success:^(long long messageUid, NSString *localPath) {
+        model.mediaDownloading = NO;
+        [hud hideAnimated:YES];
+        [weakSelf performSaveFile];
+    } error:^(long long messageUid, int error_code) {
+        model.mediaDownloading = NO;
+        hud.mode = MBProgressHUDModeText;
+        hud.label.text = [NSString stringWithFormat:@"下载失败 error_code: %d",error_code];
+        [hud hideAnimated:YES afterDelay:1];
+    }];
+    
+    if (isDownloading) {
+        model.mediaDownloading = YES;
+    }
+}
+
+//保存完成后调用的方法
+- (void) savedPhotoImage:(UIImage*)image didFinishSavingWithError: (NSError *)error contextInfo: (void *)contextInfo {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    if (error) {
+        NSLog(@"保存图片出错%@", error.localizedDescription);
+        hud.label.text = [NSString stringWithFormat:@"保存图片出错%@", error.localizedDescription];
+    }
+    else {
+        NSLog(@"保存图片成功");
+        hud.label.text = @"保存图片成功";
+    }
+    [hud hideAnimated:YES afterDelay:1];
+}
+
+//保存视频完成之后的回调
+- (void)video:(NSString *)videoPath didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+     hud.mode = MBProgressHUDModeText;
+    if (error) {
+        NSLog(@"保存视频失败%@", error.localizedDescription);
+        hud.label.text = [NSString stringWithFormat:@"保存视频失败%@", error.localizedDescription];
+    }
+    else {
+        NSLog(@"保存视频成功");
+        hud.label.text = @"保存视频成功";
+    }
+    [hud hideAnimated:YES afterDelay:1];
+}
+
 
 - (void)onMenuHidden:(id)sender {
     UIMenuController *menu = [UIMenuController sharedMenuController];
