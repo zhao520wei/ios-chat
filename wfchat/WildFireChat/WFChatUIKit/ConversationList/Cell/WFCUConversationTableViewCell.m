@@ -26,7 +26,8 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     if (!self.isBig) {
-        _potraitView.frame = CGRectMake(16, 10, 40, 40);
+        _potraitView.frame = CGRectMake(0, 0, 40, 40);
+        _potraitBackgroundView.frame = CGRectMake(16, 10, 42, 42);
         _targetView.frame = CGRectMake(16 + 40 + 20, 11, [UIScreen mainScreen].bounds.size.width - (16 + 40 + 20 + 100), 16);
         _targetView.font = [UIFont pingFangSCWithWeight:FontWeightStyleRegular size:15];
         _digestView.frame = CGRectMake(16 + 40 + 20, 11 + 16 + 8, [UIScreen mainScreen].bounds.size.width - (16 + 40 + 20 + 20), 19);
@@ -130,9 +131,22 @@
     
     if (info.isSilent) {
         self.silentView.hidden = NO;
+        self.bubbleView.hidden = YES;
+        if (info.unreadCount.unread > 0) {
+            self.silentBubbleView.hidden = NO;
+            self.silentBubbleView.bubbleTipPositionAdjustment = CGPointMake(-12, -10);
+            self.silentBubbleView.isShowNotificationNumber = NO;
+            [self.silentBubbleView setBubbleTipNumber:1];
+        } else {
+            self.silentBubbleView.hidden = YES;
+        }
+        
     } else {
         _silentView.hidden = YES;
+         self.bubbleView.hidden = NO;
+        self.silentBubbleView.hidden = YES;
     }
+    
   
     [self update:info.conversation];
     self.timeView.hidden = NO;
@@ -269,13 +283,22 @@
 
 - (UIImageView *)potraitView {
     if (!_potraitView) {
-        _potraitView = [[UIImageView alloc] initWithFrame:CGRectMake(16, 12, 48, 48)];
+        _potraitView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 48, 48)];
         _potraitView.clipsToBounds = YES;
         _potraitView.layer.cornerRadius = 4.f;
-        [self.contentView addSubview:_potraitView];
+        [self.potraitBackgroundView addSubview:_potraitView];
     }
     return _potraitView;
 }
+
+-(UIView *)potraitBackgroundView {
+    if (!_potraitBackgroundView) {
+        _potraitBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(16, 12, 50, 50)];
+         [self.contentView addSubview:_potraitBackgroundView];
+    }
+    return _potraitBackgroundView;
+}
+
 
 - (UIImageView *)statusView {
     if (!_statusView) {
@@ -338,11 +361,16 @@
     return _bubbleView;
 }
 
-//-(BubbleTipView *)rightBubbleView {
-//    if (!_rightBubbleView) {
-//
-//    }
-//}
+-(BubbleTipView *)silentBubbleView {
+    if (!_silentBubbleView) {
+        if (self.potraitBackgroundView) {
+            _silentBubbleView = [[BubbleTipView alloc] initWithSuperView:self.potraitBackgroundView];
+            _silentBubbleView.hidden = NO ;
+        }
+    }
+    return _silentBubbleView;
+}
+
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
