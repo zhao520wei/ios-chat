@@ -23,6 +23,7 @@
 #import "WFCUBrowserViewController.h"
 #import "WFCConfig.h"
 #import "MBProgressHUD.h"
+#import "WFCAboutUsViewController.h"
 
 @interface WFCMeTableViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong)UITableView *tableView;
@@ -195,10 +196,11 @@
 //            [[self sliderViewController] hideLeft];
 //            [[self sliderViewController].sliderNavigationController pushViewController:stvc animated:true];
 //        }
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        hud.label.text = @"正在开发中，敬请期待";
-        hud.mode = MBProgressHUDModeText;
-        [hud hideAnimated:YES afterDelay:2];
+       
+        [[self sliderViewController] hideLeft];
+        WFCAboutUsViewController * aboutUsVC = [[WFCAboutUsViewController alloc] init];
+        aboutUsVC.hidesBottomBarWhenPushed = YES;
+        [[self sliderViewController].sliderNavigationController pushViewController:aboutUsVC animated:true];
         
     } else {
 //        WFCSettingTableViewController *vc = [[WFCSettingTableViewController alloc] init];

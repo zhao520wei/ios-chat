@@ -80,6 +80,7 @@
 		90FF267E222AB34B0001D8AF /* PCLoginConfirmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FF267D222AB34B0001D8AF /* PCLoginConfirmViewController.m */; };
 		95181F2C24D2A29600EC60C1 /* WFCNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95181F2B24D2A29600EC60C1 /* WFCNavigationController.m */; };
 		95181F3024D2A2DB00EC60C1 /* CRGradientNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 95181F2E24D2A2DB00EC60C1 /* CRGradientNavigationBar.m */; };
+		951946AC2514672000088B3C /* WFCAboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 951946AB2514672000088B3C /* WFCAboutUsViewController.m */; };
 		9530D51A24C8502F00CCC9F6 /* WFCBaseTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9530D51824C8502E00CCC9F6 /* WFCBaseTabBarController.m */; };
 		9530D72C24C85BA200CCC9F6 /* WFCPrivacyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9530D52224C85BA000CCC9F6 /* WFCPrivacyViewController.m */; };
 		9530D72D24C85BA200CCC9F6 /* Archive.zip in Resources */ = {isa = PBXBuildFile; fileRef = 9530D52424C85BA000CCC9F6 /* Archive.zip */; };
@@ -459,6 +460,8 @@
 		95181F2B24D2A29600EC60C1 /* WFCNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WFCNavigationController.m; sourceTree = "<group>"; };
 		95181F2E24D2A2DB00EC60C1 /* CRGradientNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRGradientNavigationBar.m; sourceTree = "<group>"; };
 		95181F2F24D2A2DB00EC60C1 /* CRGradientNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRGradientNavigationBar.h; sourceTree = "<group>"; };
+		951946AA2514672000088B3C /* WFCAboutUsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WFCAboutUsViewController.h; sourceTree = "<group>"; };
+		951946AB2514672000088B3C /* WFCAboutUsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WFCAboutUsViewController.m; sourceTree = "<group>"; };
 		9530D51824C8502E00CCC9F6 /* WFCBaseTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFCBaseTabBarController.m; sourceTree = "<group>"; };
 		9530D51924C8502E00CCC9F6 /* WFCBaseTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFCBaseTabBarController.h; sourceTree = "<group>"; };
 		9530D52224C85BA000CCC9F6 /* WFCPrivacyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFCPrivacyViewController.m; sourceTree = "<group>"; };
@@ -1753,6 +1756,8 @@
 				9530D5FF24C85BA100CCC9F6 /* WFCMeTableViewHeaderViewCell.m */,
 				9530D60C24C85BA100CCC9F6 /* WFCUMyProfileTableViewController.m */,
 				9530D60D24C85BA100CCC9F6 /* WFCUMyPortraitViewController.h */,
+				951946AA2514672000088B3C /* WFCAboutUsViewController.h */,
+				951946AB2514672000088B3C /* WFCAboutUsViewController.m */,
 			);
 			path = Me;
 			sourceTree = "<group>";
@@ -2799,6 +2804,7 @@
 				9530D7CD24C85BA200CCC9F6 /* DNAlbum.m in Sources */,
 				9530D73724C85BA200CCC9F6 /* WFCUVideoCell.m in Sources */,
 				9530D7FA24C85BA200CCC9F6 /* SDWebImageDownloaderOperation.m in Sources */,
+				951946AC2514672000088B3C /* WFCAboutUsViewController.m in Sources */,
 				9530D7AF24C85BA200CCC9F6 /* WFCUPluginItemView.m in Sources */,
 				9530D72E24C85BA200CCC9F6 /* WFCUVerifyRequestViewController.m in Sources */,
 				9530D78624C85BA200CCC9F6 /* WFCSecurityTableViewController.m in Sources */,

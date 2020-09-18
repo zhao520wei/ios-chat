@@ -129,6 +129,7 @@ alpha:1.0]
     self.passwordField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, passwordContainer.frame.size.width - 20 , inputHeight - 1)];
     self.passwordField.font = [UIFont pingFangSCWithWeight:FontWeightStyleRegular size:16];
     self.passwordField.placeholder = @"请输入您的密码";
+    self.passwordField.secureTextEntry = YES;
     self.passwordField.returnKeyType = UIReturnKeyDone;
     self.passwordField.keyboardType = UIKeyboardTypeNumberPad;
     self.passwordField.delegate = self;

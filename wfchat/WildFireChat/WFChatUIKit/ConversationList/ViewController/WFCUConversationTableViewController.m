@@ -64,14 +64,14 @@ API_AVAILABLE(ios(9.0))
 @property (nonatomic, strong) UIView *pcSessionView;
 
 @property (nonatomic, strong) UIView * tableHeaderView;
-@property (nonatomic, assign) float tableHeaderViewHeight;
+//@property (nonatomic, assign) float tableHeaderViewHeight;
 @property (nonatomic, strong) UIView * tableFooterView;
 
-@property (nonatomic, strong) UIButton * todoButton;
-@property (nonatomic, strong) UIButton * unreadButton;
-@property (nonatomic, strong) UIButton * scheduleButton;
-@property (nonatomic, strong) UIButton * pcLoginStatuButton;
-@property (nonatomic, strong) UIStackView * headerStackView ;
+//@property (nonatomic, strong) UIButton * todoButton;
+//@property (nonatomic, strong) UIButton * unreadButton;
+//@property (nonatomic, strong) UIButton * scheduleButton;
+//@property (nonatomic, strong) UIButton * pcLoginStatuButton;
+//@property (nonatomic, strong) UIStackView * headerStackView ;
 
 @property (nonatomic, strong) UIButton * headerButton;
 
@@ -124,7 +124,7 @@ API_AVAILABLE(ios(9.0))
         self.tableView.tableHeaderView = _searchController.searchBar;
     }
     self.definesPresentationContext = YES;
-    
+    [self updatePcSession];
     [self initTableHeaderAndFooter];
     self.view.backgroundColor = [WFCUConfigManager globalManager].backgroudColor;
 }
@@ -556,7 +556,7 @@ API_AVAILABLE(ios(9.0))
 
 - (void) initTableHeaderAndFooter {
     
-    self.tableHeaderViewHeight = 40.0;
+//    self.tableHeaderViewHeight = 40.0;
     self.tableHeaderView = [[UIView alloc ]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 40)];
     self.tableHeaderView.backgroundColor = kMainColor;
     double systemVersion = [UIDevice currentDevice].systemVersion.floatValue;
@@ -573,7 +573,7 @@ API_AVAILABLE(ios(9.0))
     
     [self checkTableFooterLabelInfo];
     
-    [self initTableHeaderButtons];
+//    [self initTableHeaderButtons];
     
 }
 
@@ -595,70 +595,70 @@ API_AVAILABLE(ios(9.0))
 }
 
 
-- (void) initTableHeaderButtons {
-    
-    if (@available(iOS 9.0, *)) {
-        self.headerStackView = [[UIStackView alloc] initWithArrangedSubviews:@[self.todoButton, self.unreadButton, self.scheduleButton]];
-        self.headerStackView.frame = CGRectMake(30, 0, self.view.bounds.size.width - 60, 40);
-        self.headerStackView.alignment = UIStackViewAlignmentFill;
-        self.headerStackView.distribution = UIStackViewDistributionEqualSpacing;
-        [self.tableHeaderView addSubview:self.headerStackView];
-//        [self updatePcSession];
-    } else {
-        // Fallback on earlier versions
-    }
-    
-    
-}
+//- (void) initTableHeaderButtons {
+//
+//    if (@available(iOS 9.0, *)) {
+//        self.headerStackView = [[UIStackView alloc] initWithArrangedSubviews:@[self.todoButton, self.unreadButton, self.scheduleButton]];
+//        self.headerStackView.frame = CGRectMake(30, 0, self.view.bounds.size.width - 60, 40);
+//        self.headerStackView.alignment = UIStackViewAlignmentFill;
+//        self.headerStackView.distribution = UIStackViewDistributionEqualSpacing;
+//        [self.tableHeaderView addSubview:self.headerStackView];
+////        [self updatePcSession];
+//    } else {
+//        // Fallback on earlier versions
+//    }
+//
+//
+//}
 
--(UIButton *)todoButton {
-    if (!_todoButton) {
-        _todoButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _todoButton.frame = CGRectMake(0, 0, 50, 40);
-        [_todoButton setTitle:@" 待办" forState:UIControlStateNormal];
-        [_todoButton setImage:[UIImage imageNamed:@"home_todo"] forState:UIControlStateNormal];
-        _todoButton.titleLabel.font = [UIFont pingFangSCWithWeight:FontWeightStyleMedium size:13];
-        [_todoButton setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
-        [_todoButton addTarget:self action:@selector(todoButtonAction) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return  _todoButton;
-}
-- (UIButton *)unreadButton {
-    if (!_unreadButton) {
-        _unreadButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _unreadButton.frame = CGRectMake(0, 0, 50, 40);
-        [_unreadButton setTitle:@" 未读" forState:UIControlStateNormal];
-        [_unreadButton setImage:[UIImage imageNamed:@"home_unread"] forState:UIControlStateNormal];
-        _unreadButton.titleLabel.font = [UIFont pingFangSCWithWeight:FontWeightStyleMedium size:13] ;
-        [_unreadButton setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
-        [_unreadButton addTarget:self action:@selector(unreadButtonAction) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _unreadButton;
-}
--(UIButton *)scheduleButton{
-    if (!_scheduleButton) {
-        _scheduleButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _scheduleButton.frame = CGRectMake(0, 0, 50, 40);
-        [_scheduleButton setTitle:@" 日程" forState:UIControlStateNormal];
-        [_scheduleButton setImage:[UIImage imageNamed:@"home_schedule"] forState:UIControlStateNormal];
-        _scheduleButton.titleLabel.font = [UIFont pingFangSCWithWeight:FontWeightStyleMedium size:13];
-        [_scheduleButton setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
-        [_scheduleButton addTarget:self action:@selector(scheduleButtonAction) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _scheduleButton;
-}
--(UIButton *)pcLoginStatuButton {
-    if (!_pcLoginStatuButton) {
-        _pcLoginStatuButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _pcLoginStatuButton.frame = CGRectMake(0, 0, 50, 40);
-//        [_pcLoginStatuButton setImage:[UIImage imageNamed:@"pc_session"] forState:UIControlStateNormal];
-        [_pcLoginStatuButton setTitle:@"PC已登录" forState:UIControlStateNormal];
-        _pcLoginStatuButton.titleLabel.font = [UIFont pingFangSCWithWeight:FontWeightStyleMedium size:13] ;
-        [_pcLoginStatuButton setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
-        [_pcLoginStatuButton addTarget:self action:@selector(pcLoginStatuButtonAction) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return  _pcLoginStatuButton;;
-}
+//-(UIButton *)todoButton {
+//    if (!_todoButton) {
+//        _todoButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//        _todoButton.frame = CGRectMake(0, 0, 50, 40);
+//        [_todoButton setTitle:@" 待办" forState:UIControlStateNormal];
+//        [_todoButton setImage:[UIImage imageNamed:@"home_todo"] forState:UIControlStateNormal];
+//        _todoButton.titleLabel.font = [UIFont pingFangSCWithWeight:FontWeightStyleMedium size:13];
+//        [_todoButton setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
+//        [_todoButton addTarget:self action:@selector(todoButtonAction) forControlEvents:UIControlEventTouchUpInside];
+//    }
+//    return  _todoButton;
+//}
+//- (UIButton *)unreadButton {
+//    if (!_unreadButton) {
+//        _unreadButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//        _unreadButton.frame = CGRectMake(0, 0, 50, 40);
+//        [_unreadButton setTitle:@" 未读" forState:UIControlStateNormal];
+//        [_unreadButton setImage:[UIImage imageNamed:@"home_unread"] forState:UIControlStateNormal];
+//        _unreadButton.titleLabel.font = [UIFont pingFangSCWithWeight:FontWeightStyleMedium size:13] ;
+//        [_unreadButton setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
+//        [_unreadButton addTarget:self action:@selector(unreadButtonAction) forControlEvents:UIControlEventTouchUpInside];
+//    }
+//    return _unreadButton;
+//}
+//-(UIButton *)scheduleButton{
+//    if (!_scheduleButton) {
+//        _scheduleButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//        _scheduleButton.frame = CGRectMake(0, 0, 50, 40);
+//        [_scheduleButton setTitle:@" 日程" forState:UIControlStateNormal];
+//        [_scheduleButton setImage:[UIImage imageNamed:@"home_schedule"] forState:UIControlStateNormal];
+//        _scheduleButton.titleLabel.font = [UIFont pingFangSCWithWeight:FontWeightStyleMedium size:13];
+//        [_scheduleButton setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
+//        [_scheduleButton addTarget:self action:@selector(scheduleButtonAction) forControlEvents:UIControlEventTouchUpInside];
+//    }
+//    return _scheduleButton;
+//}
+//-(UIButton *)pcLoginStatuButton {
+//    if (!_pcLoginStatuButton) {
+//        _pcLoginStatuButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//        _pcLoginStatuButton.frame = CGRectMake(0, 0, 50, 40);
+////        [_pcLoginStatuButton setImage:[UIImage imageNamed:@"pc_session"] forState:UIControlStateNormal];
+//        [_pcLoginStatuButton setTitle:@"PC已登录" forState:UIControlStateNormal];
+//        _pcLoginStatuButton.titleLabel.font = [UIFont pingFangSCWithWeight:FontWeightStyleMedium size:13] ;
+//        [_pcLoginStatuButton setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
+//        [_pcLoginStatuButton addTarget:self action:@selector(pcLoginStatuButtonAction) forControlEvents:UIControlEventTouchUpInside];
+//    }
+//    return  _pcLoginStatuButton;;
+//}
 - (void) todoButtonAction {
     BrowserViewController* ctrl = [[BrowserViewController alloc] initWithURL:[NSURL URLWithString:AppWebTodo] withType:BrowserSourceTodo];
     ctrl.hidesBottomBarWhenPushed = true;
@@ -685,7 +685,7 @@ API_AVAILABLE(ios(9.0))
         self.tableView.tableFooterView = nil;
     } else {
         self.tableView.tableFooterView = self.tableFooterView;
-        self.tableHeaderViewHeight = 40;
+//        self.tableHeaderViewHeight = 40;
         [self updatePcSession];
     }
 }
@@ -694,25 +694,22 @@ API_AVAILABLE(ios(9.0))
     NSArray<WFCCPCOnlineInfo *> *onlines = [[WFCCIMService sharedWFCIMService] getPCOnlineInfos];
     
     if (onlines.count) {
-        [self.headerStackView addArrangedSubview:self.pcLoginStatuButton];
+        self.tableView.tableHeaderView = self.pcSessionView;
     } else {
-        [self.headerStackView removeArrangedSubview:self.pcLoginStatuButton];
-        [self.pcLoginStatuButton removeFromSuperview];
-    }
-    
-
-}
-
-- (void) testStackView:(BOOL)isExchange {
-    if (isExchange) {
-        [self.headerStackView addArrangedSubview:self.pcLoginStatuButton];
-       
-    } else {
-        [self.headerStackView removeArrangedSubview:self.pcLoginStatuButton];
-        [self.pcLoginStatuButton removeFromSuperview];
-       
+        self.tableView.tableHeaderView = nil;
     }
 }
+
+//- (void) testStackView:(BOOL)isExchange {
+//    if (isExchange) {
+//        [self.headerStackView addArrangedSubview:self.pcLoginStatuButton];
+//
+//    } else {
+//        [self.headerStackView removeArrangedSubview:self.pcLoginStatuButton];
+//        [self.pcLoginStatuButton removeFromSuperview];
+//
+//    }
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -813,6 +810,8 @@ API_AVAILABLE(ios(9.0))
         [_pcSessionView addSubview:iv];
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(68, 10, 100, 20)];
         label.text = WFCString(@"PCLogined");
+        label.textColor = [UIColor grayColor];
+        label.font = [UIFont systemFontOfSize:15];
         [_pcSessionView addSubview:label];
         _pcSessionView.userInteractionEnabled = YES;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapPCBar:)];
@@ -1100,7 +1099,7 @@ API_AVAILABLE(ios(9.0))
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (self.searchController.isActive) {
-        self.tableHeaderViewHeight = 0.0;
+//        self.tableHeaderViewHeight = 0.0;
         if (self.searchConversationList.count + self.searchGroupList.count + self.searchFriendList.count > 0) {
             UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 32)];
             header.backgroundColor = [WFCUConfigManager globalManager].backgroudColor;
@@ -1140,7 +1139,7 @@ API_AVAILABLE(ios(9.0))
             return header;
         }
     } else {
-        self.tableHeaderViewHeight = 40.0;
+//        self.tableHeaderViewHeight = 40.0;
         return self.tableHeaderView;
     }
 }
@@ -1149,7 +1148,7 @@ API_AVAILABLE(ios(9.0))
     if (self.searchController.isActive) {
         return 32;
     }
-    return self.tableHeaderViewHeight;
+    return 0;
 }
 
 
