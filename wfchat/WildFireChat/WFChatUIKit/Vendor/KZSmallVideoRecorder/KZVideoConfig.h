@@ -29,7 +29,7 @@
 #define kzVideo_w_h (4.0/3)
 
 // 视频默认 宽的分辨率  高 = kzVideoWidthPX / kzVideo_w_h
-#define kzVideoWidthPX  200.0
+#define kzVideoWidthPX  300.0
 
 //控制条高度 小屏幕时
 #define kzControViewHeight  120.0

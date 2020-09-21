@@ -1970,16 +1970,16 @@
 		9530D68424C85BA100CCC9F6 /* KZSmallVideoRecorder */ = {
 			isa = PBXGroup;
 			children = (
-				9530D68524C85BA100CCC9F6 /* KZVideoListViewController.h */,
+				9530D68A24C85BA100CCC9F6 /* KZVideoConfig.h */,
 				9530D68624C85BA100CCC9F6 /* KZVideoConfig.m */,
 				9530D68724C85BA100CCC9F6 /* KZVideoSupport.h */,
-				9530D68824C85BA100CCC9F6 /* KZVideoPlayer.m */,
-				9530D68924C85BA100CCC9F6 /* KZVideoViewController.m */,
-				9530D68A24C85BA100CCC9F6 /* KZVideoConfig.h */,
-				9530D68B24C85BA100CCC9F6 /* KZVideoListViewController.m */,
 				9530D68C24C85BA100CCC9F6 /* KZVideoSupport.m */,
 				9530D68D24C85BA100CCC9F6 /* KZVideoPlayer.h */,
+				9530D68824C85BA100CCC9F6 /* KZVideoPlayer.m */,
 				9530D68E24C85BA100CCC9F6 /* KZVideoViewController.h */,
+				9530D68924C85BA100CCC9F6 /* KZVideoViewController.m */,
+				9530D68524C85BA100CCC9F6 /* KZVideoListViewController.h */,
+				9530D68B24C85BA100CCC9F6 /* KZVideoListViewController.m */,
 			);
 			path = KZSmallVideoRecorder;
 			sourceTree = "<group>";
@@ -2973,7 +2973,7 @@
 				CODE_SIGN_ENTITLEMENTS = WildFireChat/WildFireChat.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_TEAM = 4P3U5L7UKK;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3012,7 +3012,7 @@
 				CODE_SIGN_ENTITLEMENTS = WildFireChat/WildFireChat.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_TEAM = 4P3U5L7UKK;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (

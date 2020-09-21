@@ -143,7 +143,6 @@
         
     } else {
         _silentView.hidden = YES;
-         self.bubbleView.hidden = NO;
         self.silentBubbleView.hidden = YES;
     }
     

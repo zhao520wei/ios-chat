@@ -139,7 +139,7 @@ void kz_dispatch_after(float time, dispatch_block_t block)
         NSLog(@"缩略图获取失败!:%@",error);
         return;
     }
-    UIImage *image = [UIImage imageWithCGImage:cgimage scale:0.6 orientation:UIImageOrientationRight];
+    UIImage *image = [UIImage imageWithCGImage:cgimage scale:1.0 orientation:UIImageOrientationRight];
     NSData *imgData = UIImageJPEGRepresentation(image, 1.0);
     NSString *videoPath = [videoUrl.absoluteString stringByReplacingOccurrencesOfString:@"file://" withString: @""];
     NSString *thumPath = [videoPath stringByReplacingOccurrencesOfString:@"mp4" withString: @"jpg"];

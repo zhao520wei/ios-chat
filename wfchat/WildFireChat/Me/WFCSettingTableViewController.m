@@ -234,7 +234,7 @@
         [btn setTitleColor:[UIColor colorWithHexString:@"0xf95569"]
                   forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(onLogoutBtn:) forControlEvents:UIControlEventTouchUpInside];
-        [cell addSubview:btn];
+        [cell.contentView addSubview:btn];
     }
     
     return cell;

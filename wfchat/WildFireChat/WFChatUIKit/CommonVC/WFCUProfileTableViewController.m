@@ -281,7 +281,7 @@
         [btn addTarget:self action:@selector(onVoipCallBtn:) forControlEvents:UIControlEventTouchDown];
         [btn setTitleColor:[UIColor colorWithHexString:@"0x5b6e8e"] forState:UIControlStateNormal];
         btn.titleLabel.font = [UIFont pingFangSCWithWeight:FontWeightStyleMedium size:16];
-        [self.voipCallCell addSubview:btn];
+        [self.voipCallCell.contentView addSubview:btn];
 #endif
     } else if([[WFCCNetworkService sharedInstance].userId isEqualToString:self.userId]) {
         
@@ -296,7 +296,7 @@
         [btn addTarget:self action:@selector(onAddFriendBtn:) forControlEvents:UIControlEventTouchDown];
         btn.layer.cornerRadius = 5.f;
         btn.layer.masksToBounds = YES;
-        [self.addFriendCell addSubview:btn];
+        [self.addFriendCell.contentView addSubview:btn];
         
     }
     [self.tableView reloadData];
