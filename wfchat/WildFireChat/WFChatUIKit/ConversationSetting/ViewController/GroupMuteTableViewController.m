@@ -7,7 +7,7 @@
 //
 
 #import "GroupMuteTableViewController.h"
-#import "SDWebImage.h"
+#import "UIImageView+WebCache.h"
 #import "WFCUContactListViewController.h"
 #import "WFCUGeneralSwitchTableViewCell.h"
 

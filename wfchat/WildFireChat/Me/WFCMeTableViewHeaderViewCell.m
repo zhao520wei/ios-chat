@@ -7,7 +7,7 @@
 //
 
 #import "WFCMeTableViewHeaderViewCell.h"
-#import "SDWebImage.h"
+#import "UIImageView+WebCache.h"
 #import "UIFont+YH.h"
 #import "UIColor+YH.h"
 #import "WFCUConfigManager.h"

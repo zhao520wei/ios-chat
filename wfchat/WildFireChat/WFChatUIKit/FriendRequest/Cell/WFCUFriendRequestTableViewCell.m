@@ -7,7 +7,7 @@
 //
 
 #import "WFCUFriendRequestTableViewCell.h"
-#import "SDWebImage.h"
+#import "UIImageView+WebCache.h"
 #import <WFChatClient/WFCChatClient.h>
 #import "UIFont+YH.h"
 #import "UIColor+YH.h"

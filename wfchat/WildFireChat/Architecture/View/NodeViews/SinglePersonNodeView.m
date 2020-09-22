@@ -8,7 +8,7 @@
 
 #import "SinglePersonNodeView.h"
 #import "UIFont+YH.h"
-#import "SDWebImage.h"
+#import "UIImageView+WebCache.h"
 
 
 @interface SinglePersonNodeView ()

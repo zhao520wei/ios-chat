@@ -7,7 +7,7 @@
 //
 
 #import "RightArrowTableViewCell.h"
-#import "SDWebImage.h"
+#import "UIImageView+WebCache.h"
 #import "UIColor+YH.h"
 #import "UIFont+YH.h"
 #import "WFCUConfigManager.h"

@@ -8,7 +8,7 @@
 
 #import "WFCUImageCell.h"
 #import <WFChatClient/WFCChatClient.h>
-#import "SDWebImage.h"
+#import "UIImageView+WebCache.h"
 
 @interface WFCUImageCell ()
 @property(nonatomic, strong) UIImageView *shadowMaskView;

@@ -33,8 +33,8 @@
 #import "UIColor+YH.h"
 #import "UIView+Toast.h"
 #import "WFCUSeletedUserViewController.h"
-
-#import "SDWebImage.h"
+#import "UIButton+WebCache.h"
+#import "UIImageView+WebCache.h"
 #import "AutoBreadcrumbViewController.h"
 #import "BrowserViewController.h"
 #import "WFCConfig.h"
@@ -45,7 +45,7 @@
 // 消息的列表页
 
 API_AVAILABLE(ios(9.0))
-@interface WFCUConversationTableViewController () <UISearchControllerDelegate, UISearchResultsUpdating, UITableViewDelegate, UITableViewDataSource>
+@interface WFCUConversationTableViewController () <UISearchControllerDelegate, UISearchBarDelegate ,UISearchResultsUpdating, UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong)NSMutableArray<WFCCConversationInfo *> *conversations;
 
 @property (nonatomic, strong)  UISearchController       *searchController;
@@ -85,19 +85,19 @@ API_AVAILABLE(ios(9.0))
     self.searchController.searchResultsUpdater = self;
     self.searchController.delegate = self;
     self.searchController.dimsBackgroundDuringPresentation = NO;
+    
     if (@available(iOS 13, *)) {
         self.searchController.searchBar.searchBarStyle = UISearchBarStyleDefault;
         UIImage* searchBarBg = [UIImage imageWithColor:[UIColor whiteColor] size:CGSizeMake(self.view.frame.size.width - 8 * 2, 36) cornerRadius:4];
         [self.searchController.searchBar setSearchFieldBackgroundImage:searchBarBg forState:UIControlStateNormal];
     } else {
         [self.searchController.searchBar setValue:WFCString(@"Cancel") forKey:@"_cancelButtonText"];
-       
+        
         UIImage* searchBarBg = [UIImage imageWithColor:[UIColor whiteColor] size:CGSizeMake(self.view.frame.size.width - 8 * 2, 36) cornerRadius:4];
         [self.searchController.searchBar setSearchFieldBackgroundImage:searchBarBg forState:UIControlStateNormal];
         
-        UIButton * searchButton = (UIButton *)[self.searchController.searchBar valueForKey:@"_cancelButton"];
-        [searchButton setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
-
+        self.searchController.searchBar.delegate = self;
+        
     }
     
     
@@ -1369,6 +1369,20 @@ API_AVAILABLE(ios(9.0))
     }
     
     [self.tableView reloadData];
+}
+
+#pragma mark - UISearchBarDelegate
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    searchBar.showsCancelButton = YES;
+    for (id cencelButton in [searchBar.subviews[0] subviews])
+    {
+        if([cencelButton isKindOfClass:[UIButton class]])
+        {
+            UIButton *btn = (UIButton *)cencelButton;
+            [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        }
+    }
 }
 
 

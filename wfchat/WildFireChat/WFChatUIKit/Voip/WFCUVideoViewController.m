@@ -15,7 +15,7 @@
 #import <WFAVEngineKit/WFAVEngineKit.h>
 #import "WFCUFloatingWindow.h"
 #endif
-#import "SDWebImage.h"
+#import "UIImageView+WebCache.h"
 #import <WFChatClient/WFCCConversation.h>
 #import "UIFont+YH.h"
 #import "UIColor+YH.h"

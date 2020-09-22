@@ -7,7 +7,7 @@
 //
 
 #import "DiscoverMomentsTableViewCell.h"
-#import "SDWebImage.h"
+#import "UIImageView+WebCache.h"
 #import "BubbleTipView.h"
 
 

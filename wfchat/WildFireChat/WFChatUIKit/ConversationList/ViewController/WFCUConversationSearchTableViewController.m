@@ -12,7 +12,7 @@
 
 #import "WFCUMessageListViewController.h"
 
-#import "SDWebImage.h"
+#import "UIImageView+WebCache.h"
 #import "WFCUUtilities.h"
 #import "UITabBar+badge.h"
 #import "KxMenu.h"
@@ -23,7 +23,7 @@
 #import "WFCUConfigManager.h"
 
 
-@interface WFCUConversationSearchTableViewController () <UISearchControllerDelegate, UISearchResultsUpdating, UITableViewDelegate, UITableViewDataSource>
+@interface WFCUConversationSearchTableViewController () <UISearchControllerDelegate, UISearchBarDelegate ,UISearchResultsUpdating, UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong)NSMutableArray<WFCCMessage* > *messages;
 @property (nonatomic, strong)  UISearchController       *searchController;
 @property (nonatomic, strong) UITableView *tableView;
@@ -46,6 +46,10 @@
         UIImage* searchBarBg = [UIImage imageWithColor:[UIColor whiteColor] size:CGSizeMake(self.view.frame.size.width - 8 * 2, 36) cornerRadius:4];
         [self.searchController.searchBar setSearchFieldBackgroundImage:searchBarBg forState:UIControlStateNormal];
     } else {
+        UIImage* searchBarBg = [UIImage imageWithColor:[UIColor whiteColor] size:CGSizeMake(self.view.frame.size.width - 8 * 2, 36) cornerRadius:4];
+        [self.searchController.searchBar setSearchFieldBackgroundImage:searchBarBg forState:UIControlStateNormal];
+        
+        self.searchController.searchBar.delegate = self;
         [self.searchController.searchBar setValue:WFCString(@"Cancel") forKey:@"_cancelButtonText"];
     }
     
@@ -181,5 +185,19 @@
     
     //刷新表格
     [self.tableView reloadData];
+}
+
+#pragma mark - UISearchBarDelegate
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    searchBar.showsCancelButton = YES;
+    for (id cencelButton in [searchBar.subviews[0] subviews])
+    {
+        if([cencelButton isKindOfClass:[UIButton class]])
+        {
+            UIButton *btn = (UIButton *)cencelButton;
+            [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        }
+    }
 }
 @end

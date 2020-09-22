@@ -7,7 +7,7 @@
 //
 
 #import "WFCUForwardMessageCell.h"
-#import "SDWebImage.h"
+#import "UIImageView+WebCache.h"
 
 
 @interface WFCUForwardMessageCell()

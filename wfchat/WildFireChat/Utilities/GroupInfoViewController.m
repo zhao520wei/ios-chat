@@ -8,7 +8,7 @@
 
 #import "GroupInfoViewController.h"
 #import <WFChatClient/WFCChatClient.h>
-#import "SDWebImage.h"
+#import "UIImageView+WebCache.h"
 #import "WFCUMessageListViewController.h"
 
 

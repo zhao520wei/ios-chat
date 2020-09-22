@@ -7,7 +7,7 @@
 //
 #if WFCU_SUPPORT_VOIP
 #import "WFCUParticipantCollectionViewCell.h"
-#import "SDWebImage.h"
+#import "UIImageView+WebCache.h"
 #import "WFCUWaitingAnimationView.h"
 
 @interface WFCUParticipantCollectionViewCell ()

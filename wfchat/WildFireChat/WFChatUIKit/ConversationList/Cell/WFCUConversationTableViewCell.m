@@ -9,7 +9,7 @@
 #import "WFCUConversationTableViewCell.h"
 #import "WFCUUtilities.h"
 #import <WFChatClient/WFCChatClient.h>
-#import "SDWebImage.h"
+#import "UIImageView+WebCache.h"
 #import "WFCUConfigManager.h"
 #import "UIColor+YH.h"
 #import "UIFont+YH.h"
@@ -374,4 +374,5 @@
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
 @end

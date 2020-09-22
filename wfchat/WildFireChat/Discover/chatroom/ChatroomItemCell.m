@@ -7,7 +7,7 @@
 //
 
 #import "ChatroomItemCell.h"
-#import "SDWebImage.h"
+#import "UIImageView+WebCache.h"
 
 @implementation ChatroomItemCell
 - (void)setChatroomInfo:(WFCCChatroomInfo *)chatroomInfo {

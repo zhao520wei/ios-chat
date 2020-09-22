@@ -8,7 +8,7 @@
 
 #import "WFCUContactListViewController.h"
 #import <WFChatClient/WFCChatClient.h>
-#import "SDWebImage.h"
+#import "UIImageView+WebCache.h"
 #import "WFCUProfileTableViewController.h"
 #import "WFCUContactSelectTableViewCell.h"
 #import "WFCUContactTableViewCell.h"
@@ -28,7 +28,7 @@
 #import "AutoBreadcrumbViewController.h"
 #import "RightArrowTableViewCell.h"
 
-@interface WFCUContactListViewController () <UITableViewDataSource, UISearchControllerDelegate, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating>
+@interface WFCUContactListViewController () <UITableViewDataSource, UISearchBarDelegate ,UISearchControllerDelegate, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating>
 @property (nonatomic, strong)UITableView *tableView;
 @property (nonatomic, strong)NSMutableArray<WFCCUserInfo *> *dataArray;
 @property (nonatomic, strong)NSMutableArray<NSString *> *selectedContacts;
@@ -123,6 +123,7 @@ static NSMutableDictionary *hanziStringDict = nil;
         [self.searchController.searchBar setValue:WFCString(@"Cancel") forKey:@"_cancelButtonText"];
         UIImage* searchBarBg = [UIImage imageWithColor:[UIColor whiteColor] size:CGSizeMake(self.view.frame.size.width - 8 * 2, 36) cornerRadius:4];
         [self.searchController.searchBar setSearchFieldBackgroundImage:searchBarBg forState:UIControlStateNormal];
+         self.searchController.searchBar.delegate = self;
     }
     
     if (@available(iOS 9.1, *)) {
@@ -708,6 +709,20 @@ static NSMutableDictionary *hanziStringDict = nil;
             }
         }
         self.needSort = YES;
+    }
+}
+
+#pragma mark - UISearchBarDelegate
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    searchBar.showsCancelButton = YES;
+    for (id cencelButton in [searchBar.subviews[0] subviews])
+    {
+        if([cencelButton isKindOfClass:[UIButton class]])
+        {
+            UIButton *btn = (UIButton *)cencelButton;
+            [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        }
     }
 }
 

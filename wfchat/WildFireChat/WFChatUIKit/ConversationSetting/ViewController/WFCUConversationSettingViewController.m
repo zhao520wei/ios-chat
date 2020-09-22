@@ -7,7 +7,7 @@
 //
 
 #import "WFCUConversationSettingViewController.h"
-#import "SDWebImage.h"
+#import "UIImageView+WebCache.h"
 #import <WFChatClient/WFCChatClient.h>
 #import "WFCUConversationSettingMemberCollectionViewLayout.h"
 #import "WFCUConversationSettingMemberCell.h"
@@ -625,7 +625,7 @@
         return cell;
       
   } else if ([self isSearchMessageCell:indexPath]) {
-    return [self cellOfTable:tableView WithTitle:WFCString(@"SearchMessageContent") withDetailTitle:nil withDisclosureIndicator:NO withSwitch:NO withSwitchType:SwitchType_Conversation_None];
+    return [self cellOfTable:tableView WithTitle:WFCString(@"SearchMessageContent") withDetailTitle:nil withDisclosureIndicator:YES withSwitch:NO withSwitchType:SwitchType_Conversation_None];
   } else if ([self isMessageSilentCell:indexPath]) {
     return [self cellOfTable:tableView WithTitle:WFCString(@"Silent") withDetailTitle:nil withDisclosureIndicator:NO withSwitch:YES withSwitchType:SwitchType_Conversation_Silent];
   } else if ([self isSetTopCell:indexPath]) {
