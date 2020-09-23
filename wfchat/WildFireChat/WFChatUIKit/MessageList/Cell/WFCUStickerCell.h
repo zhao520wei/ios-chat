@@ -9,5 +9,5 @@
 #import "WFCUMediaMessageCell.h"
 
 @interface WFCUStickerCell : WFCUMediaMessageCell
-@property (nonatomic, strong)UIImageView *thumbnailView;
+
 @end

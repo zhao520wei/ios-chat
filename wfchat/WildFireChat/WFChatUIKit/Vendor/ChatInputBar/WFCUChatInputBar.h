@@ -53,6 +53,9 @@
 - (UINavigationController *)requireNavi;
 
 - (void)onTyping:(WFCCTypingType)type;
+
+@optional
+- (void)gifDidCapture:(NSData *)gifData;
 @end
 
 typedef NS_ENUM(NSInteger, ChatInputBarStatus) {

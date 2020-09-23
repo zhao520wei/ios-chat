@@ -1631,6 +1631,18 @@
     [self sendMessage:imgContent];
 }
 
+-(void)gifDidCapture:(NSData *)gifData {
+    //save gif
+    UInt64 recordTime = [[NSDate date] timeIntervalSince1970]*1000;
+    
+    NSString *filePath = [[WFCCUtilities getDocumentPathWithComponent:@"/IMG"] stringByAppendingPathComponent:[NSString stringWithFormat:@"gif%lld.jpg", recordTime]];
+    
+    [gifData writeToFile:filePath atomically:YES];
+    
+    WFCCStickerMessageContent *stickerContent = [WFCCStickerMessageContent contentFrom:filePath];
+    [self sendMessage:stickerContent];
+}
+
 - (void)videoDidCapture:(NSString *)videoPath thumbnail:(UIImage *)image duration:(long)duration {
     WFCCVideoMessageContent *videoContent = [WFCCVideoMessageContent contentPath:videoPath thumbnail:image];
     [self sendMessage:videoContent];
