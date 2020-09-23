@@ -1753,6 +1753,7 @@
 }
 #if WFCU_SUPPORT_VOIP
 - (void)didTouchVideoBtn:(BOOL)isAudioOnly {
+    
     if(self.conversation.type == Single_Type) {
         WFCUVideoViewController *videoVC = [[WFCUVideoViewController alloc] initWithTargets:@[self.conversation.target] conversation:self.conversation audioOnly:isAudioOnly];
         [[WFAVEngineKit sharedEngineKit] presentViewController:videoVC];

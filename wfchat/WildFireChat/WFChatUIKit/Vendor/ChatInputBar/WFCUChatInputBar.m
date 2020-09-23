@@ -1000,6 +1000,17 @@
         return;
     } else if(itemTag == 4) {
 #if WFCU_SUPPORT_VOIP
+        // 判断是否正在视频通话中
+        
+        if ([WFAVEngineKit sharedEngineKit].currentSession != nil) {
+            // 正在通话中，禁止在此通话
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.parentView animated:YES];
+            hud.label.text = @"当前正在通话中，请勿重复拨打";
+            hud.mode = MBProgressHUDModeText;
+            [hud hideAnimated:YES afterDelay:1];
+            return;
+        }
+        
         UIActionSheet *actionSheet =
         [[UIActionSheet alloc] initWithTitle:nil
                                     delegate:self
