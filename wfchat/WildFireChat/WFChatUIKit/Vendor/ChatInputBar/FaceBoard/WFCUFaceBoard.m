@@ -399,7 +399,7 @@
                 
                 if ((cli == FACE_COUNT_ROW -1 && col == FACE_COUNT_CLU - 1) || i == self.faceEmojiArray.count) {
                     UIButton *back = [UIButton buttonWithType:UIButtonTypeCustom];
-                    [back setImage:[UIImage imageNamed:@"del_emoji_normal"] forState:UIControlStateNormal];
+                    [back setImage:[UIImage imageNamed:@"del_emoji_select"] forState:UIControlStateNormal];
                     [back setImage:[UIImage imageNamed:@"del_emoji_select"] forState:UIControlStateSelected];
                     [back addTarget:self action:@selector(backFace) forControlEvents:UIControlEventTouchUpInside];
                     
