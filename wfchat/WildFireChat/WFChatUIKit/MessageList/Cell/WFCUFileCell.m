@@ -11,7 +11,7 @@
 
 @implementation WFCUFileCell
 + (CGSize)sizeForClientArea:(WFCUMessageModel *)msgModel withViewWidth:(CGFloat)width {
-    return CGSizeMake(width*4/5, 50);
+    return CGSizeMake(width, 70);
 }
 
 - (void)setModel:(WFCUMessageModel *)model {
@@ -40,14 +40,14 @@
     
     CGRect bounds = self.contentArea.bounds;
     if (model.message.direction == MessageDirection_Send) {
-        self.fileImageView.frame = CGRectMake(bounds.size.width - 40, 4, 36, 42);
-        self.fileNameLabel.frame = CGRectMake(4, 4, bounds.size.width - 48, 22);
-        self.sizeLabel.frame = CGRectMake(4, 30, bounds.size.width - 48, 15);
+        self.fileImageView.frame = CGRectMake(bounds.size.width - 40, 4, 40, 46);
+        self.fileNameLabel.frame = CGRectMake(4, 4, bounds.size.width - 48, 45);
+        self.sizeLabel.frame = CGRectMake(4, 50, bounds.size.width - 48, 15);
         self.sizeLabel.textAlignment = NSTextAlignmentLeft;
     } else {
-        self.fileImageView.frame = CGRectMake(4, 4, 36, 42);
-        self.fileNameLabel.frame = CGRectMake(44, 4, bounds.size.width - 48, 22);
-        self.sizeLabel.frame = CGRectMake(44, 30, bounds.size.width - 48, 15);
+        self.fileImageView.frame = CGRectMake(4, 4, 40, 46);
+        self.fileNameLabel.frame = CGRectMake(44, 4, bounds.size.width - 48, 45);
+        self.sizeLabel.frame = CGRectMake(44, 50, bounds.size.width - 48, 15);
         self.sizeLabel.textAlignment = NSTextAlignmentRight;
     }
     
@@ -74,7 +74,8 @@
 - (UILabel *)fileNameLabel {
     if (!_fileNameLabel) {
         _fileNameLabel = [[UILabel alloc] init];
-        _fileNameLabel.font = [UIFont systemFontOfSize:20];
+        _fileNameLabel.font = [UIFont systemFontOfSize:15];
+        _fileNameLabel.numberOfLines = 2;
         [_fileNameLabel setTextColor:[UIColor blackColor]];
         [self.contentArea addSubview:_fileNameLabel];
     }
@@ -83,7 +84,7 @@
 - (UILabel *)sizeLabel {
     if (!_sizeLabel) {
         _sizeLabel = [[UILabel alloc] init];
-        _sizeLabel.font = [UIFont systemFontOfSize:15];
+        _sizeLabel.font = [UIFont systemFontOfSize:12];
         [self.contentArea addSubview:_sizeLabel];
     }
     return _sizeLabel;
