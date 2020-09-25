@@ -194,6 +194,41 @@ static AppService *sharedSingleton = nil;
           }];
 }
 
+- (void)Get:(NSString *)path data:(id)data success:(void(^)(NSDictionary *dict))successBlock error:(void(^)(NSError * _Nonnull error))errorBlock {
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
+    
+    //在调用其他接口时需要把cookie传给后台，也就是设置cookie的过程
+    NSData *cookiesdata = [[NSUserDefaults standardUserDefaults] objectForKey:@"WFC_APPSERVER_COOKIES"];//url和登陆时传的url 是同一个
+    if([cookiesdata length]) {
+        NSArray *cookies = [NSKeyedUnarchiver unarchiveObjectWithData:cookiesdata];
+        NSHTTPCookie *cookie;
+        for (cookie in cookies) {
+            [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
+        }
+    }
+    
+    [manager GET:[APP_SERVER_ADDRESS stringByAppendingPathComponent:path]
+      parameters:data progress:nil
+         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        //Save cookies
+        NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL: [NSURL URLWithString:APP_SERVER_ADDRESS]];
+        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:cookies];
+        [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"WFC_APPSERVER_COOKIES"];
+        
+        NSDictionary *dict = responseObject;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            successBlock(dict);
+        });
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            errorBlock(error);
+        });
+    }];
+  
+}
+
 - (void)uploadLogs:(void(^)(void))successBlock error:(void(^)(NSString *errorMsg))errorBlock {
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         NSMutableArray<NSString *> *logFiles = [[WFCCNetworkService getLogFilesPath]  mutableCopy];
@@ -415,6 +450,50 @@ static AppService *sharedSingleton = nil;
         errorBlock(error.code);
     }];
     
+}
+
+- (void)loadFileListWithType:(int)type
+                 withSuccess:(void(^)(NSDictionary *tree))successBlock
+                       error:(void(^)(NSInteger error_code))errorBlock {
+    NSString * path = @"/file/tree";
+    NSDictionary *param = @{@"type":@(type),@"content":@"",@"pageIndex":@(0),@"pageSize":@(15),};
+    [self post:path data:param success:^(NSDictionary *dict) {
+        NSLog(@"/file/tree success : %@", dict);
+        NSInteger code = [dict[@"code"] integerValue];
+        NSDictionary * result = dict[@"result"];
+        
+        if (result != nil) {
+            successBlock(result);
+        } else {
+            errorBlock(code);
+        }
+    } error:^(NSError * _Nonnull error) {
+        NSLog(@"/file/tree error: %@", error);
+         errorBlock(error.code);
+    }];
+}
+
+- (void)loadFileGroupInfoWithContent:(NSString *)content
+                         withSuccess:(void(^)(NSArray *tree))successBlock
+                               error:(void(^)(NSInteger error_code))errorBlock {
+    NSString * path = @"/file/group";
+    NSDictionary *param = @{};
+    
+    [self Get:path data:param success:^(NSDictionary *dict) {
+        NSLog(@"/file/group success: %@", dict);
+        NSInteger code = [dict[@"code"] integerValue];
+        NSArray * result = dict[@"result"];
+        
+        if (result != nil) {
+            successBlock(result);
+        } else {
+            errorBlock(code);
+        }
+        
+    } error:^(NSError * _Nonnull error) {
+        NSLog(@"/file/group  error: %@", error);
+        errorBlock(error.code);
+    }];
 }
 
 @end

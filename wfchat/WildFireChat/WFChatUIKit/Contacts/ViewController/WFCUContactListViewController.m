@@ -28,7 +28,7 @@
 #import "AutoBreadcrumbViewController.h"
 #import "RightArrowTableViewCell.h"
 
-@interface WFCUContactListViewController () <UITableViewDataSource, UISearchBarDelegate ,UISearchControllerDelegate, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating>
+@interface WFCUContactListViewController () <UITableViewDataSource, UISearchBarDelegate ,UISearchControllerDelegate, UITableViewDelegate, UISearchResultsUpdating>
 @property (nonatomic, strong)UITableView *tableView;
 @property (nonatomic, strong)NSMutableArray<WFCCUserInfo *> *dataArray;
 @property (nonatomic, strong)NSMutableArray<NSString *> *selectedContacts;

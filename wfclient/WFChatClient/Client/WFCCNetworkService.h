@@ -221,6 +221,10 @@ typedef NS_ENUM(NSInteger, ConnectionStatus) {
  */
 - (void)setServerAddress:(NSString *)host;
 
+
+/// 获取 ServerAddress
+- (NSString *)getHost;
+
 /**
  设置当前设备的device token
 
