@@ -11,11 +11,13 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SingleFileModel : NSObject
-@property (nonatomic, strong) NSString * fileTime;
+@property (nonatomic, assign) int64_t  fileTime;
 @property (nonatomic, strong) NSString * from;
 @property (nonatomic, strong) NSString * name;
 @property (nonatomic, strong) NSString * url;
 @property (nonatomic, assign) int  type;
+
+@property (nonatomic, strong) NSString * timeStr;
 
 -(instancetype)initWithDic:(NSDictionary *) dic;
 

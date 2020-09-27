@@ -535,9 +535,9 @@ API_AVAILABLE(ios(9.0))
 - (void)refreshList {
     self.conversations = [[[WFCCIMService sharedWFCIMService] getConversationInfos:@[@(Single_Type), @(Group_Type), @(Channel_Type)] lines:@[@(0)]] mutableCopy];
     
-    for (WFCCConversationInfo * info in self.conversations) {
-        NSLog(@"----- unreadCount.unread :%d   lastMessage.fromUser :%@   lastMessage.status:%ld", info.unreadCount.unread, info.lastMessage.fromUser,(long)info.lastMessage.status);
-    }
+//    for (WFCCConversationInfo * info in self.conversations) {
+//        NSLog(@"----- unreadCount.unread :%d   lastMessage.fromUser :%@   lastMessage.status:%ld", info.unreadCount.unread, info.lastMessage.fromUser,(long)info.lastMessage.status);
+//    }
     
     [self updateBadgeNumber];
     [self checkTableFooterLabelInfo];

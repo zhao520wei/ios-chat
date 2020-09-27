@@ -15,22 +15,25 @@
 #import "AppService.h"
 #import "WFCFileModel.h"
 #import "WFCFileCell.h"
+#import "WFCUBrowserViewController.h"
+#import "FileListParm.h"
+#import "WFCFileSearchViewController.h"
 
-@interface WFCFileViewController ()<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate ,UISearchControllerDelegate, UISearchResultsUpdating>
+@interface WFCFileViewController ()<UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) UISearchController *searchController;
 @property (nonatomic, strong)UITableView *tableView;
 @property (nonatomic, strong)NSMutableArray *dataArray;
-@property (nonatomic, strong) NSMutableArray *searchList;
+@property (nonatomic, strong)NSMutableArray * originalDataArray;
 
-@property(nonatomic, assign)BOOL sorting;
-@property(nonatomic, assign)BOOL needSort;
 
 @property (nonatomic, strong) UIStackView *headerStackView;
 @property (nonatomic, strong) UIButton * wordBtn;
 @property (nonatomic, strong) UIButton * excelBtn;
 @property (nonatomic, strong) UIButton * pptBtn;
 @property (nonatomic, strong) UIButton * pdfBtn;
+
+@property (nonatomic, strong) WFCFileSearchViewController * fileSearchVC;
 @end
 
 @implementation WFCFileViewController
@@ -59,9 +62,10 @@
     self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"expansion"];
     
-    self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
-    self.searchController.searchResultsUpdater = self;
-    self.searchController.delegate = self;
+    self.fileSearchVC = [[WFCFileSearchViewController alloc]init];
+    self.searchController = [[UISearchController alloc] initWithSearchResultsController:self.fileSearchVC];
+    self.searchController.searchResultsUpdater = self.fileSearchVC;
+    self.searchController.delegate = self.fileSearchVC;
     self.searchController.dimsBackgroundDuringPresentation = NO;
     
     if (@available(iOS 13, *)) {
@@ -73,7 +77,7 @@
         [self.searchController.searchBar setValue:WFCString(@"Cancel") forKey:@"_cancelButtonText"];
         UIImage* searchBarBg = [UIImage imageWithColor:[UIColor whiteColor] size:CGSizeMake(self.view.frame.size.width - 8 * 2, 36) cornerRadius:4];
         [self.searchController.searchBar setSearchFieldBackgroundImage:searchBarBg forState:UIControlStateNormal];
-        self.searchController.searchBar.delegate = self;
+        self.searchController.searchBar.delegate = self.fileSearchVC;
     }
     
     if (@available(iOS 9.1, *)) {
@@ -105,7 +109,7 @@
     self.wordBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [self.wordBtn setImagePosition:ImagePositionTop spacing:5];
     [self.wordBtn setTitleColor:textColor forState:UIControlStateNormal];
-    self.wordBtn.frame = CGRectMake(0, 0, 70, 70);
+    self.wordBtn.frame = CGRectMake(0, 0, 40, 70);
     
     self.excelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.excelBtn setImage:[UIImage imageNamed:@"file_excel"] forState:UIControlStateNormal];
@@ -113,7 +117,7 @@
     self.excelBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [self.excelBtn setImagePosition:ImagePositionTop spacing:5];
     [self.excelBtn setTitleColor:textColor forState:UIControlStateNormal];
-    self.excelBtn.frame = CGRectMake(0, 0, 70, 70);
+    self.excelBtn.frame = CGRectMake(0, 0, 40, 70);
     
     self.pptBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.pptBtn setImage:[UIImage imageNamed:@"file_ppt"] forState:UIControlStateNormal];
@@ -121,7 +125,7 @@
     self.pptBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [self.pptBtn setImagePosition:ImagePositionTop spacing:5];
     [self.pptBtn setTitleColor:textColor forState:UIControlStateNormal];
-    self.pptBtn.frame = CGRectMake(0, 0, 70, 70);
+    self.pptBtn.frame = CGRectMake(0, 0, 40, 70);
     
     self.pdfBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.pdfBtn setImage:[UIImage imageNamed:@"file_pdf"] forState:UIControlStateNormal];
@@ -129,28 +133,39 @@
     self.pdfBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [self.pdfBtn setImagePosition:ImagePositionTop spacing:5];
     [self.pdfBtn setTitleColor:textColor forState:UIControlStateNormal];
-    self.pdfBtn.frame = CGRectMake(0, 0, 70, 70);
+    self.pdfBtn.frame = CGRectMake(0, 0, 40, 70);
     
     
     self.headerStackView = [[UIStackView alloc] initWithArrangedSubviews:@[self.wordBtn, self.excelBtn, self.pptBtn, self.pdfBtn]];
-    self.headerStackView.frame = CGRectMake(40, 15, self.view.bounds.size.width - 80, 70);
+    self.headerStackView.frame = CGRectMake(40, 10, self.view.bounds.size.width - 80, 80);
     self.headerStackView.alignment = UIStackViewAlignmentFill;
-    self.headerStackView.distribution = UIStackViewDistributionEqualSpacing;
-//    [self.tableHeaderView addSubview:self.headerStackView];
+    self.headerStackView.axis = UILayoutConstraintAxisHorizontal;
+    CGFloat space = (self.view.bounds.size.width - 80 - 40 * 4)/ 3;
+    self.headerStackView.spacing = space;
+    self.headerStackView.distribution = UIStackViewDistributionFillEqually;
+    
+    
+    //    [self.tableHeaderView addSubview:self.headerStackView];
     UIView * tableHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 100)];
     tableHeaderView.backgroundColor = [UIColor whiteColor];
     [tableHeaderView addSubview:self.headerStackView];
     self.tableView.tableHeaderView = tableHeaderView;
 }
 
+
+
 - (void)tableViewRefreshAction {
-    // 下拉刷新
+    // 下拉刷新MJRefreshNormalHeader
     __weak __typeof(self) weakSelf = self;
     self.tableView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-    
-        [[AppService sharedAppService] loadFileListWithType:0 withSuccess:^(NSDictionary * _Nonnull tree) {
+        FileListParm * parm = [[FileListParm alloc] init];
+        parm.type = 0;
+        parm.pageIndex = 1;
+        parm.content = @"";
+        [[AppService sharedAppService] loadFileListWithType:parm withSuccess:^(NSDictionary * _Nonnull tree) {
             // 结束刷新
             [weakSelf.tableView.mj_header endRefreshing];
+            [weakSelf.originalDataArray removeAllObjects];
             [weakSelf handleFileList:tree];
         } error:^(NSInteger error_code) {
             // 结束刷新
@@ -162,29 +177,92 @@
         } error:^(NSInteger error_code) {
             
         }];
-    
+        
     }];
     
-//    // 设置自动切换透明度(在导航栏下面自动隐藏)
-//    tableView.mj_header.automaticallyChangeAlpha = YES;
+    // 马上进入刷新状态
+    [self.tableView.mj_header beginRefreshing];
     
     // 上拉刷新
     self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        FileListParm * parm = [[FileListParm alloc] init];
+        parm.type = 0;
+        int length = 0;
+        for (WFCFileModel * model  in weakSelf.dataArray) {
+            length += model.files.count;
+        }
+        parm.pageIndex = length/20 + 1;
+        parm.content = @"";
+        
+        [[AppService sharedAppService] loadFileListWithType:parm withSuccess:^(NSDictionary * _Nonnull tree) {
+            
             // 结束刷新
             [weakSelf.tableView.mj_footer endRefreshing];
-        });
+            
+            [weakSelf handleFileList:tree];
+            //            [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
+        } error:^(NSInteger error_code) {
+            // 结束刷新
+            [weakSelf.tableView.mj_header endRefreshing];
+        }];
+        
     }];
+    
+    
 }
 
 - (void) handleFileList:(NSDictionary *)result {
     NSArray * fileList = result[@"fileList"];
     NSDictionary * pagination = result[@"pagination"];
     [self.dataArray removeAllObjects];
+    
     for (NSDictionary * dic in fileList) {
-        WFCFileModel * model = [[WFCFileModel alloc] initWithDic:dic];
-        [self.dataArray addObject:model];
+        SingleFileModel * model = [[SingleFileModel alloc] initWithDic:dic];
+        [self.originalDataArray addObject:model];
+    }
+    
+    
+    NSMutableArray *timeArr = [NSMutableArray array];
+    //首先把原数组中数据的日期取出来放入timeArr
+    [self.originalDataArray enumerateObjectsUsingBlock:^(SingleFileModel *model, NSUInteger idx, BOOL *stop) {
+        //这里只是根据日期判断，所以去掉时间字符串
+        [timeArr addObject:model.timeStr];
+    }];
+    //日期去重
+    NSSet *set = [NSSet setWithArray:timeArr];
+    NSArray *userArray = [set allObjects];
+    
+    //重新降序排序
+    NSSortDescriptor *sd1 = [NSSortDescriptor sortDescriptorWithKey:nil ascending:NO];//yes升序排列，no,降序排列
+    NSArray *descendingDateArr = [userArray sortedArrayUsingDescriptors:[NSArray arrayWithObjects:sd1, nil]];
+    
+    // 此时得到的descendingDateArr就是按照时间降序排好的日期数组
+    
+    //根据日期数组的个数，生成对应数量的外层model，外层model的detailModelArr置为空数组，放置子model（每一行显示的数据model）
+    [descendingDateArr enumerateObjectsUsingBlock:^(NSString * timeStr, NSUInteger idx, BOOL * _Nonnull stop) {
+        WFCFileModel *om = [[WFCFileModel alloc]init];
+        om.timestampStr = timeStr;
+        [om.files removeAllObjects];
+        [self.dataArray addObject:om];
+    }];
+    
+    //遍历未经处理的数组，取其中每个数据的日期，看与降序排列的日期数组相比，若日期匹配就把这个数据装到对应的外层model中
+    __weak __typeof(self) weakSelf = self;
+    [self.originalDataArray enumerateObjectsUsingBlock:^(SingleFileModel *singleFileModel, NSUInteger idx, BOOL * _Nonnull stop) {
+        for (NSString *str in descendingDateArr) {
+            if([str isEqualToString:singleFileModel.timeStr]) {
+                WFCFileModel *om = [weakSelf.dataArray objectAtIndex:[descendingDateArr indexOfObject:str]];
+                [om.files addObject:singleFileModel];
+            }
+        }
+    }];
+    
+    if (fileList.count < 20) {
+        [self.tableView.mj_footer endRefreshingWithNoMoreData];
+    }else {
+        [self.tableView.mj_footer resetNoMoreData];
     }
     
     [self.tableView reloadData];
@@ -217,20 +295,11 @@
 }
 
 
-- (void)setNeedSort:(BOOL)needSort {
-    _needSort = needSort;
-    if (needSort && !self.sorting) {
-        _needSort = NO;
-        if (self.searchController.active) {
-//            [self sortAndRefreshWithList:self.searchList];
-        } else {
-//            [self sortAndRefreshWithList:self.dataArray];
-        }
-    }
-}
+
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
     WFCFileModel * fileModel = self.dataArray[section];
     return fileModel.files.count;
 }
@@ -241,11 +310,16 @@
     if (!cell) {
         cell = [[WFCFileCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"fileCell"];
     }
+    WFCFileModel * fileSectionModel = self.dataArray[indexPath.section];
+    SingleFileModel * singleFileModel = fileSectionModel.files[indexPath.row];
+    cell.model = singleFileModel;
     return  cell;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    
     return self.dataArray.count;
+    
 }
 
 #pragma mark - UITableViewDelegate
@@ -254,17 +328,19 @@
     return 20.0;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 0.1;
+    return 1.0;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 80.0;
+    return 60.0;
 }
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UIView * sectionHeader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 20)];
     UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, kScreenWidth-30, 20)];
+    
     WFCFileModel * model = self.dataArray[section];
     label.text = model.timestampStr;
+    
     label.font = [UIFont systemFontOfSize:15];
     [sectionHeader addSubview:label];
     sectionHeader.backgroundColor = [UIColor whiteColor];
@@ -273,53 +349,15 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+    WFCFileModel * fileSectionModel = self.dataArray[indexPath.section];
+    SingleFileModel * singleFileModel = fileSectionModel.files[indexPath.row];
+    WFCUBrowserViewController *bvc = [[WFCUBrowserViewController alloc] init];
+    bvc.url = singleFileModel.url;
+    bvc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:bvc animated:YES];
 }
 
 
-#pragma mark - UISearchControllerDelegate
-- (void)didPresentSearchController:(UISearchController *)searchController {
-    self.tabBarController.tabBar.hidden = YES;
-    self.extendedLayoutIncludesOpaqueBars = YES;
-}
-
-- (void)willDismissSearchController:(UISearchController *)searchController {
-    self.tabBarController.tabBar.hidden = NO;
-    self.extendedLayoutIncludesOpaqueBars = NO;
-}
-
-- (void)didDismissSearchController:(UISearchController *)searchController {
-    self.needSort = YES;
-}
-
--(void)updateSearchResultsForSearchController:(UISearchController *)searchController {
-    if (searchController.active) {
-        NSString *searchString = [self.searchController.searchBar text];
-        if (self.searchList!= nil) {
-            [self.searchList removeAllObjects];
-            for (WFCCUserInfo *friend in self.dataArray) {
-                if ([friend.displayName.lowercaseString containsString:searchString.lowercaseString] || [friend.friendAlias.lowercaseString containsString:searchString.lowercaseString]) {
-                    [self.searchList addObject:friend];
-                }
-            }
-        }
-        self.needSort = YES;
-    }
-}
-
-#pragma mark - UISearchBarDelegate
-
-- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
-    searchBar.showsCancelButton = YES;
-    for (id cencelButton in [searchBar.subviews[0] subviews])
-    {
-        if([cencelButton isKindOfClass:[UIButton class]])
-        {
-            UIButton *btn = (UIButton *)cencelButton;
-            [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        }
-    }
-}
 
 #pragma mark - get/set
 
@@ -329,21 +367,24 @@
     }
     return _dataArray;
 }
--(NSMutableArray *)searchList{
-    if (!_searchList) {
-        _searchList = [NSMutableArray array];
+
+-(NSMutableArray *)originalDataArray{
+    if (!_originalDataArray) {
+        _originalDataArray = [NSMutableArray array];
     }
-    return _searchList;
+    return _originalDataArray;
 }
-
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end
+
+
+

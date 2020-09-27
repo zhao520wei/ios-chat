@@ -452,11 +452,13 @@ static AppService *sharedSingleton = nil;
     
 }
 
-- (void)loadFileListWithType:(int)type
+- (void)loadFileListWithType:(FileListParm *)parm
                  withSuccess:(void(^)(NSDictionary *tree))successBlock
                        error:(void(^)(NSInteger error_code))errorBlock {
     NSString * path = @"/file/tree";
-    NSDictionary *param = @{@"type":@(type),@"content":@"",@"pageIndex":@(0),@"pageSize":@(15),};
+    
+    NSDictionary *param = @{@"type":@(parm.type),@"content":parm.content,@"pageIndex":@(parm.pageIndex),@"pageSize":@(parm.pageSize),};
+    NSLog(@"param : %@", param);
     [self post:path data:param success:^(NSDictionary *dict) {
         NSLog(@"/file/tree success : %@", dict);
         NSInteger code = [dict[@"code"] integerValue];
@@ -477,7 +479,7 @@ static AppService *sharedSingleton = nil;
                          withSuccess:(void(^)(NSArray *tree))successBlock
                                error:(void(^)(NSInteger error_code))errorBlock {
     NSString * path = @"/file/group";
-    NSDictionary *param = @{};
+    NSDictionary *param = @{@"content":content};
     
     [self Get:path data:param success:^(NSDictionary *dict) {
         NSLog(@"/file/group success: %@", dict);

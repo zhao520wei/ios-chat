@@ -10,6 +10,7 @@
 #import <WFChatClient/WFCChatClient.h>
 #import "Device.h"
 #import "WFCUAppServiceProvider.h"
+#import "FileListParm.h"
 
 
 NS_ASSUME_NONNULL_BEGIN
@@ -50,7 +51,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)getCompanyArchitectureDataWithSuccess:(void(^)(NSDictionary *tree))successBlock
                                         error:(void(^)(NSInteger error_code))errorBlock;
 
-- (void)loadFileListWithType:(int)type
+- (void)loadFileListWithType:(FileListParm *)parm
                  withSuccess:(void(^)(NSDictionary *tree))successBlock
                        error:(void(^)(NSInteger error_code))errorBlock;
 
@@ -58,5 +59,6 @@ NS_ASSUME_NONNULL_BEGIN
                          withSuccess:(void(^)(NSArray *tree))successBlock
                                error:(void(^)(NSInteger error_code))errorBlock;
 @end
+
 
 NS_ASSUME_NONNULL_END

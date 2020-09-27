@@ -13,7 +13,7 @@
 -(instancetype)initWithDic:(NSDictionary *) dic{
     SingleFileModel * model = [[SingleFileModel alloc] init];
     if ([dic.allKeys containsObject:@"fileTime"]) {
-        model.fileTime = dic[@"fileTime"];
+        model.fileTime = [dic[@"fileTime"] longLongValue];
     }
     if ([dic.allKeys containsObject:@"from"]) {
         model.from = dic[@"from"];
@@ -27,8 +27,19 @@
     if ([dic.allKeys containsObject:@"type"]) {
         model.type = [dic[@"type"] intValue];
     }
+    [model timeStr];
     
     return model;
+}
+
+
+
+-(NSString *)timeStr {
+    NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"yyyy-MM-dd";
+    long time = _fileTime/1000;
+    NSDate * date = [NSDate dateWithTimeIntervalSince1970:time];
+    return [formatter stringFromDate:date];
 }
 
 @end
