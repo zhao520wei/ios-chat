@@ -64,16 +64,16 @@
             self.title = @"档案";
             break;
         case File_word:
-            self.title = @"Word";
+            self.title = @"所有Word文件";
             break;
         case File_excel:
-            self.title = @"Excel";
+            self.title = @"所有Excel文件";
             break;
         case File_ppt:
-            self.title = @"PPT";
+            self.title = @"所有PPT文件";
             break;
         case File_pdf:
-            self.title = @"PDF";
+            self.title = @"所有PDF文件";
             break;
         default:
             break;
