@@ -394,11 +394,10 @@
     }
     
     [self.tableView reloadData];
-    
     if (self.dataArray.count == 0) {
-        MBProgressHUD * hud = [[MBProgressHUD alloc] initWithView:self.view];
+        MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.mode = MBProgressHUDModeText;
-        hud.label.text = @"没有历史数据";
+        hud.label.text = @"没有历史文件数据";
         [hud hideAnimated:YES afterDelay:1.f];
     }
 }
@@ -456,10 +455,10 @@
     
     [self.tableView reloadData];
     if (self.searchList.count == 0) {
-        MBProgressHUD * hud = [[MBProgressHUD alloc] initWithView:self.searchController.view];
+        MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.mode = MBProgressHUDModeText;
         hud.label.text = @"没有找到对应的搜索结果";
-        [hud hideAnimated:YES afterDelay:1.f];
+        [hud hideAnimated:YES afterDelay:2.f];
     }
 }
 
