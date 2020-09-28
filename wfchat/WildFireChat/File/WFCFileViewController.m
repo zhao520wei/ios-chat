@@ -226,6 +226,11 @@
             }
             parm.pageIndex = length/20 + 1;
             parm.content = @"";
+            // 判断是否已经最后一页了
+            if (length % 20 != 0) { // 会出现最后一页正好是20的尾端情况
+                [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
+                return;
+            }
         }
        
         [[AppService sharedAppService] loadFileListWithType:parm withSuccess:^(NSDictionary * _Nonnull tree) {
