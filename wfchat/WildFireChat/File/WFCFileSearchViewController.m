@@ -10,10 +10,7 @@
 
 @interface WFCFileSearchViewController ()
 
-@property (nonatomic, strong) NSMutableArray *searchList;
 
-@property(nonatomic, assign)BOOL sorting;
-@property(nonatomic, assign)BOOL needSort;
 
 @end
 
@@ -25,55 +22,7 @@
     self.view.backgroundColor = [UIColor redColor];
 }
 
-#pragma mark - UISearchControllerDelegate
 
-
-- (void)didPresentSearchController:(UISearchController *)searchController {
-    self.tabBarController.tabBar.hidden = YES;
-    self.extendedLayoutIncludesOpaqueBars = YES;
-}
-
-- (void)willDismissSearchController:(UISearchController *)searchController {
-    self.tabBarController.tabBar.hidden = NO;
-    self.extendedLayoutIncludesOpaqueBars = NO;
-}
-
-- (void)didDismissSearchController:(UISearchController *)searchController {
-    self.needSort = YES;
-}
-
--(void)updateSearchResultsForSearchController:(UISearchController *)searchController {
-    if (searchController.active) {
-        NSString *searchString = [searchController.searchBar text];
-        if (self.searchList!= nil) {
-            [self.searchList removeAllObjects];
-
-        }
-        self.needSort = YES;
-    }
-}
-
-#pragma mark - UISearchBarDelegate
-
-- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
-    searchBar.showsCancelButton = YES;
-    for (id cencelButton in [searchBar.subviews[0] subviews])
-    {
-        if([cencelButton isKindOfClass:[UIButton class]])
-        {
-            UIButton *btn = (UIButton *)cencelButton;
-            [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        }
-    }
-}
-
-#pragma mark - get/set
--(NSMutableArray *)searchList{
-    if (!_searchList) {
-        _searchList = [NSMutableArray array];
-    }
-    return _searchList;
-}
 
 /*
 #pragma mark - Navigation

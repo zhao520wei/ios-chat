@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface WFCFileSearchViewController : UIViewController<UISearchBarDelegate ,UISearchControllerDelegate, UISearchResultsUpdating>
+@interface WFCFileSearchViewController : UIViewController
 
 @end
 
