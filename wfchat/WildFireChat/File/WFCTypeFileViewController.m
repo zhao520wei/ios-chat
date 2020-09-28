@@ -1,28 +1,23 @@
 //
-//  WFCFileSearchViewController.m
+//  WFCTypeFileViewController.m
 //  WildFireChat
 //
-//  Created by 赵伟 on 2020/9/27.
+//  Created by 赵伟 on 2020/9/28.
 //  Copyright © 2020 WildFireChat. All rights reserved.
 //
 
-#import "WFCFileSearchViewController.h"
+#import "WFCTypeFileViewController.h"
 
-@interface WFCFileSearchViewController ()
-
-
+@interface WFCTypeFileViewController ()
 
 @end
 
-@implementation WFCFileSearchViewController
+@implementation WFCTypeFileViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor redColor];
 }
-
-
 
 /*
 #pragma mark - Navigation

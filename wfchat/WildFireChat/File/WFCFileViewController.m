@@ -17,7 +17,8 @@
 #import "WFCFileCell.h"
 #import "WFCUBrowserViewController.h"
 #import "FileListParm.h"
-#import "WFCFileSearchViewController.h"
+
+#import "WFCTopImageBottomLabelButton.h"
 
 @interface WFCFileViewController ()<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate ,UISearchControllerDelegate, UISearchResultsUpdating>
 
@@ -34,10 +35,10 @@
 @property(nonatomic, strong) NSString * searchKeyword;
 
 @property (nonatomic, strong) UIStackView *headerStackView;
-@property (nonatomic, strong) UIButton * wordBtn;
-@property (nonatomic, strong) UIButton * excelBtn;
-@property (nonatomic, strong) UIButton * pptBtn;
-@property (nonatomic, strong) UIButton * pdfBtn;
+@property (nonatomic, strong) WFCTopImageBottomLabelButton * wordBtn;
+@property (nonatomic, strong) WFCTopImageBottomLabelButton * excelBtn;
+@property (nonatomic, strong) WFCTopImageBottomLabelButton * pptBtn;
+@property (nonatomic, strong) WFCTopImageBottomLabelButton * pdfBtn;
 
 @end
 
@@ -111,46 +112,11 @@
         return;
     }
     
-    UIColor * textColor = [UIColor blackColor];
-    
-    self.wordBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.wordBtn setImage:[UIImage imageNamed:@"file_word"] forState:UIControlStateNormal];
-    [self.wordBtn setTitle:@"0" forState:UIControlStateNormal];
-    self.wordBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-    [self.wordBtn setImagePosition:ImagePositionTop spacing:5];
-    [self.wordBtn setTitleColor:textColor forState:UIControlStateNormal];
-    self.wordBtn.frame = CGRectMake(0, 0, 40, 70);
-    
-    self.excelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.excelBtn setImage:[UIImage imageNamed:@"file_excel"] forState:UIControlStateNormal];
-    [self.excelBtn setTitle:@"0" forState:UIControlStateNormal];
-    self.excelBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-    [self.excelBtn setImagePosition:ImagePositionTop spacing:5];
-    [self.excelBtn setTitleColor:textColor forState:UIControlStateNormal];
-    self.excelBtn.frame = CGRectMake(0, 0, 40, 70);
-    
-    self.pptBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.pptBtn setImage:[UIImage imageNamed:@"file_ppt"] forState:UIControlStateNormal];
-    [self.pptBtn setTitle:@"0" forState:UIControlStateNormal];
-    self.pptBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-    [self.pptBtn setImagePosition:ImagePositionTop spacing:5];
-    [self.pptBtn setTitleColor:textColor forState:UIControlStateNormal];
-    self.pptBtn.frame = CGRectMake(0, 0, 40, 70);
-    
-    self.pdfBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.pdfBtn setImage:[UIImage imageNamed:@"file_pdf"] forState:UIControlStateNormal];
-    [self.pdfBtn setTitle:@"0" forState:UIControlStateNormal];
-    self.pdfBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-    [self.pdfBtn setImagePosition:ImagePositionTop spacing:5];
-    [self.pdfBtn setTitleColor:textColor forState:UIControlStateNormal];
-    self.pdfBtn.frame = CGRectMake(0, 0, 40, 70);
-    
-    
     self.headerStackView = [[UIStackView alloc] initWithArrangedSubviews:@[self.wordBtn, self.excelBtn, self.pptBtn, self.pdfBtn]];
     self.headerStackView.frame = CGRectMake(40, 10, self.view.bounds.size.width - 80, 80);
     self.headerStackView.alignment = UIStackViewAlignmentFill;
     self.headerStackView.axis = UILayoutConstraintAxisHorizontal;
-    CGFloat space = (self.view.bounds.size.width - 80 - 40 * 4)/ 3;
+    CGFloat space = (self.view.bounds.size.width - 80 - 35 * 4)/ 3;
     self.headerStackView.spacing = space;
     self.headerStackView.distribution = UIStackViewDistributionFillEqually;
     
@@ -258,6 +224,27 @@
     }
 }
 
+- (void)buttonActions:(WFCTopImageBottomLabelButton *)button {
+    
+    switch (button.buttonTag) {
+        case 1:
+            
+            break;
+        case 2:
+            
+            break;
+        case 3:
+            
+            break;
+        case 4:
+            
+            break;
+        default:
+            break;
+    }
+}
+
+#pragma mark - Network
 
 - (void) handleFileList:(NSDictionary *)result {
     NSArray * fileList = result[@"fileList"];
@@ -376,22 +363,22 @@
         NSString *numStr = [NSString stringWithFormat:@"%d",num] ;
         switch (type) {
             case 1:
-                [self.wordBtn setTitle:numStr forState:UIControlStateNormal];
+                self.wordBtn.title = numStr;
                 break;
             case 2:
-                [self.excelBtn setTitle:numStr forState:UIControlStateNormal];
+                self.excelBtn.title = numStr;
                 break;
             case 3:
-                [self.pptBtn setTitle:numStr forState:UIControlStateNormal];
+                self.pptBtn.title = numStr;
                 break;
             case 4:
-                [self.pdfBtn setTitle:numStr forState:UIControlStateNormal];
+                self.pdfBtn.title = numStr;
                 break;
             default:
                 break;
         }
     }
-    
+    [self.headerStackView setNeedsDisplay];
 }
 
 #pragma mark - UITableViewDataSource
@@ -576,6 +563,40 @@
         [self.tableView reloadData];
     }
 }
+
+-(WFCTopImageBottomLabelButton *)wordBtn{
+    if (!_wordBtn) {
+        _wordBtn = [[WFCTopImageBottomLabelButton alloc]initWithFrame:CGRectMake(0, 0, 35, 70) withImage:[UIImage imageNamed:@"file_word"]];
+        _wordBtn.buttonTag = 1;
+        [_wordBtn addTarget:self action:@selector(buttonActions:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _wordBtn;
+}
+-(WFCTopImageBottomLabelButton *)excelBtn {
+    if (!_excelBtn) {
+        _excelBtn = [[WFCTopImageBottomLabelButton alloc]initWithFrame:CGRectMake(0, 0, 35, 70) withImage:[UIImage imageNamed:@"file_excel"]];
+        _excelBtn.buttonTag = 2;
+        [_excelBtn addTarget:self action:@selector(buttonActions:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _excelBtn;
+}
+-(WFCTopImageBottomLabelButton *)pptBtn{
+    if (!_pptBtn) {
+        _pptBtn = [[WFCTopImageBottomLabelButton alloc]initWithFrame:CGRectMake(0, 0, 35, 70) withImage:[UIImage imageNamed:@"file_ppt"]];
+        _pptBtn.buttonTag = 3;
+        [_pptBtn addTarget:self action:@selector(buttonActions:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _pptBtn;
+}
+-(WFCTopImageBottomLabelButton *)pdfBtn {
+    if (!_pdfBtn) {
+        _pdfBtn = [[WFCTopImageBottomLabelButton alloc]initWithFrame:CGRectMake(0, 0, 35, 70) withImage:[UIImage imageNamed:@"file_pdf"]];
+        _pdfBtn.buttonTag = 4;
+        [_pdfBtn addTarget:self action:@selector(buttonActions:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _pdfBtn;
+}
+
 
 /*
  #pragma mark - Navigation

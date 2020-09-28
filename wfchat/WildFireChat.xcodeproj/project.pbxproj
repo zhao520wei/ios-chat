@@ -375,6 +375,8 @@
 		95375251251DF32F0097D13B /* WFCFileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 95375250251DF32F0097D13B /* WFCFileModel.m */; };
 		95375254251DF5450097D13B /* SingleFileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 95375253251DF5450097D13B /* SingleFileModel.m */; };
 		9539B4AA24D154CB00DEA036 /* WFCURLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 9539B4A924D154CB00DEA036 /* WFCURLCache.m */; };
+		953D237325218FBC005717FA /* WFCTopImageBottomLabelButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 953D237225218FBC005717FA /* WFCTopImageBottomLabelButton.m */; };
+		953D2376252195B1005717FA /* WFCTypeFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 953D2375252195B1005717FA /* WFCTypeFileViewController.m */; };
 		953FF98A2513167D000F1220 /* MapNaviagateRouteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 953FF9892513167D000F1220 /* MapNaviagateRouteManager.m */; };
 		955C916C24CA8400007AC43C /* UIView+gradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 955C916B24CA8400007AC43C /* UIView+gradient.m */; };
 		955C916E24CABA1F007AC43C /* launch_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 955C916D24CABA1F007AC43C /* launch_icon.png */; };
@@ -385,7 +387,6 @@
 		95682C7A252069A9002405CE /* MJDIYBackFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 95682C71252069A9002405CE /* MJDIYBackFooter.m */; };
 		95682C7B252069A9002405CE /* MJChiBaoZiHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 95682C75252069A9002405CE /* MJChiBaoZiHeader.m */; };
 		95682C7C252069A9002405CE /* MJChiBaoZiFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 95682C76252069A9002405CE /* MJChiBaoZiFooter.m */; };
-		95682C7F25209546002405CE /* WFCFileSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95682C7E25209546002405CE /* WFCFileSearchViewController.m */; };
 		9569902C24CBDCFC0009F332 /* SinglePersonNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569900624CBDCFB0009F332 /* SinglePersonNode.m */; };
 		9569902D24CBDCFC0009F332 /* OrganizationNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569900824CBDCFB0009F332 /* OrganizationNode.m */; };
 		9569902E24CBDCFC0009F332 /* BaseTreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 9569900C24CBDCFB0009F332 /* BaseTreeNode.m */; };
@@ -1146,6 +1147,10 @@
 		95375253251DF5450097D13B /* SingleFileModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SingleFileModel.m; sourceTree = "<group>"; };
 		9539B4A824D154CB00DEA036 /* WFCURLCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WFCURLCache.h; sourceTree = "<group>"; };
 		9539B4A924D154CB00DEA036 /* WFCURLCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WFCURLCache.m; sourceTree = "<group>"; };
+		953D237125218FBC005717FA /* WFCTopImageBottomLabelButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WFCTopImageBottomLabelButton.h; sourceTree = "<group>"; };
+		953D237225218FBC005717FA /* WFCTopImageBottomLabelButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WFCTopImageBottomLabelButton.m; sourceTree = "<group>"; };
+		953D2374252195B1005717FA /* WFCTypeFileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WFCTypeFileViewController.h; sourceTree = "<group>"; };
+		953D2375252195B1005717FA /* WFCTypeFileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WFCTypeFileViewController.m; sourceTree = "<group>"; };
 		953FF9882513167D000F1220 /* MapNaviagateRouteManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapNaviagateRouteManager.h; sourceTree = "<group>"; };
 		953FF9892513167D000F1220 /* MapNaviagateRouteManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapNaviagateRouteManager.m; sourceTree = "<group>"; };
 		955C916A24CA8400007AC43C /* UIView+gradient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+gradient.h"; sourceTree = "<group>"; };
@@ -1165,8 +1170,6 @@
 		95682C74252069A9002405CE /* MJDIYAutoFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJDIYAutoFooter.h; sourceTree = "<group>"; };
 		95682C75252069A9002405CE /* MJChiBaoZiHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJChiBaoZiHeader.m; sourceTree = "<group>"; };
 		95682C76252069A9002405CE /* MJChiBaoZiFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJChiBaoZiFooter.m; sourceTree = "<group>"; };
-		95682C7D25209546002405CE /* WFCFileSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WFCFileSearchViewController.h; sourceTree = "<group>"; };
-		95682C7E25209546002405CE /* WFCFileSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WFCFileSearchViewController.m; sourceTree = "<group>"; };
 		9569900524CBDCFB0009F332 /* OrganizationNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrganizationNode.h; sourceTree = "<group>"; };
 		9569900624CBDCFB0009F332 /* SinglePersonNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinglePersonNode.m; sourceTree = "<group>"; };
 		9569900724CBDCFB0009F332 /* SinglePersonNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SinglePersonNode.h; sourceTree = "<group>"; };
@@ -2642,8 +2645,8 @@
 			children = (
 				953751F6251DC0140097D13B /* WFCFileViewController.h */,
 				953751F7251DC0140097D13B /* WFCFileViewController.m */,
-				95682C7D25209546002405CE /* WFCFileSearchViewController.h */,
-				95682C7E25209546002405CE /* WFCFileSearchViewController.m */,
+				953D2374252195B1005717FA /* WFCTypeFileViewController.h */,
+				953D2375252195B1005717FA /* WFCTypeFileViewController.m */,
 				9537524C251DED810097D13B /* WFCFileCell.h */,
 				9537524D251DED810097D13B /* WFCFileCell.m */,
 				9537524F251DF32F0097D13B /* WFCFileModel.h */,
@@ -2652,6 +2655,8 @@
 				95375253251DF5450097D13B /* SingleFileModel.m */,
 				95682C6725204099002405CE /* FileListParm.h */,
 				95682C6825204099002405CE /* FileListParm.m */,
+				953D237125218FBC005717FA /* WFCTopImageBottomLabelButton.h */,
+				953D237225218FBC005717FA /* WFCTopImageBottomLabelButton.m */,
 			);
 			path = File;
 			sourceTree = "<group>";
@@ -3136,7 +3141,6 @@
 				2F94FB9022291577005BD461 /* LBXScanView.m in Sources */,
 				9530D7CC24C85BA200CCC9F6 /* SDBrowserImageView.m in Sources */,
 				2F4B0EB3245C232E000A41C6 /* CreateDeviceViewController.m in Sources */,
-				95682C7F25209546002405CE /* WFCFileSearchViewController.m in Sources */,
 				9530D7D624C85BA200CCC9F6 /* DNImageFetchOperation.m in Sources */,
 				9535E6A525188F7F00C8094E /* SDAnimatedImage.m in Sources */,
 				9537524E251DED810097D13B /* WFCFileCell.m in Sources */,
@@ -3277,6 +3281,7 @@
 				9530D7B224C85BA200CCC9F6 /* CCHMapClusterController.m in Sources */,
 				958D85FD24D40E0B00A0F29D /* NSString+WFCAttribute.m in Sources */,
 				9530D78E24C85BA200CCC9F6 /* WFCThemeTableViewController.m in Sources */,
+				953D237325218FBC005717FA /* WFCTopImageBottomLabelButton.m in Sources */,
 				9535E6DE25188F7F00C8094E /* SDDisplayLink.m in Sources */,
 				9530D73B24C85BA200CCC9F6 /* WFCUMediaMessageCell.m in Sources */,
 				2F94FCA722291813005BD461 /* LBXPermissionCamera.m in Sources */,
@@ -3429,6 +3434,7 @@
 				9530D7D824C85BA200CCC9F6 /* DNFullImageButton.m in Sources */,
 				9535E6B925188F7F00C8094E /* SDImageCoderHelper.m in Sources */,
 				9085428B222A07280009713D /* UIImageView+CornerRadius.m in Sources */,
+				953D2376252195B1005717FA /* WFCTypeFileViewController.m in Sources */,
 				9530D73F24C85BA200CCC9F6 /* WFCUMessageModel.m in Sources */,
 				9535E6A025188F7F00C8094E /* SDWebImageOperation.m in Sources */,
 			);
