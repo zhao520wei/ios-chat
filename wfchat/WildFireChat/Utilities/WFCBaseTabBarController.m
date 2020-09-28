@@ -120,7 +120,7 @@
 //    [self addChildViewController:nav];
     
       
-    vc = [[WFCFileViewController alloc] init];
+    vc = [[WFCFileViewController alloc] initWithFileType:File_all];
     vc.title = LocalizedString(@"Me");
     nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [nav.navigationBar setShadowImage:colorImage];

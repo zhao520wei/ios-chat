@@ -17,8 +17,8 @@
 #import "WFCFileCell.h"
 #import "WFCUBrowserViewController.h"
 #import "FileListParm.h"
-
 #import "WFCTopImageBottomLabelButton.h"
+#import "MBProgressHUD.h"
 
 @interface WFCFileViewController ()<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate ,UISearchControllerDelegate, UISearchResultsUpdating>
 
@@ -44,11 +44,41 @@
 
 @implementation WFCFileViewController
 
+-(instancetype)initWithFileType:(WFCCFileType)type {
+    self = [super init];
+    if (self) {
+        self.type = type;
+        
+    }
+    return self;
+}
+
+#pragma mark - life cycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.title = @"档案";
+    switch (self.type) {
+        case File_all:
+            self.title = @"档案";
+            break;
+        case File_word:
+            self.title = @"Word";
+            break;
+        case File_excel:
+            self.title = @"Excel";
+            break;
+        case File_ppt:
+            self.title = @"PPT";
+            break;
+        case File_pdf:
+            self.title = @"PDF";
+            break;
+        default:
+            break;
+    }
+    
     
     [self setupTableViewAndSearchView];
     
@@ -88,8 +118,27 @@
     if (@available(iOS 9.1, *)) {
         self.searchController.obscuresBackgroundDuringPresentation = NO;
     }
+    switch (self.type) {
+        case File_all:
+            [self.searchController.searchBar setPlaceholder:@"搜索所有文件"];
+            break;
+        case File_word:
+            [self.searchController.searchBar setPlaceholder:@"搜索word文件"];
+            break;
+        case File_excel:
+            [self.searchController.searchBar setPlaceholder:@"搜索excel文件"];
+            break;
+        case File_ppt:
+            [self.searchController.searchBar setPlaceholder:@"搜索ppt文件"];
+            break;
+        case File_pdf:
+            [self.searchController.searchBar setPlaceholder:@"搜索pdf文件"];
+            break;
+        default:
+            [self.searchController.searchBar setPlaceholder:@"搜索所有文件"];
+            break;
+    }
     
-    [self.searchController.searchBar setPlaceholder:@"搜索文件"];
     
     if (@available(iOS 11.0, *)) {
         self.navigationItem.searchController = _searchController;
@@ -107,8 +156,10 @@
 
 - (void)setupTableViewHeader {
     
-    if (self.searchController.active) {
-        self.tableView.tableHeaderView = nil;
+    if (self.searchController.active || self.type != File_all) {
+        UIView * view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 1)];
+        view.backgroundColor = [WFCUConfigManager globalManager].backgroudColor;
+        self.tableView.tableHeaderView = view;
         return;
     }
     
@@ -133,8 +184,27 @@
     __weak __typeof(self) weakSelf = self;
     self.tableView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         FileListParm * parm = [[FileListParm alloc] init];
-        parm.type = 0;
         parm.pageIndex = 1;
+        switch (weakSelf.type) {
+            case File_all:
+                parm.type = 0;
+                break;
+            case File_word:
+                parm.type = 1;
+                break;
+            case File_excel:
+                parm.type = 2;
+                break;
+            case File_ppt:
+                parm.type = 3;
+                break;
+            case File_pdf:
+                parm.type = 4;
+                break;
+            default:
+                 parm.type = 0;
+                break;
+        }
         if (weakSelf.searchController.active) {
             parm.content = weakSelf.searchKeyword;
         } else {
@@ -156,7 +226,7 @@
             [weakSelf.tableView.mj_header endRefreshing];
         }];
         
-        if (!weakSelf.searchController.isActive) {
+        if (!self.searchController.isActive && self.type == File_all) {
             [[AppService sharedAppService] loadFileGroupInfoWithContent:@"" withSuccess:^(NSArray * _Nonnull tree) {
                 [weakSelf handleFileGroupInfo:tree];
             } error:^(NSInteger error_code) {
@@ -178,8 +248,28 @@
         // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
         
         FileListParm * parm = [[FileListParm alloc] init];
-        parm.type = 0;
         int length = 0;
+        switch (weakSelf.type) {
+            case File_all:
+                parm.type = 0;
+                break;
+            case File_word:
+                parm.type = 1;
+                break;
+            case File_excel:
+                parm.type = 2;
+                break;
+            case File_ppt:
+                parm.type = 3;
+                break;
+            case File_pdf:
+                parm.type = 4;
+                break;
+            default:
+                 parm.type = 0;
+                break;
+        }
+        
         if (weakSelf.searchController.active) {
             for (WFCFileModel * model  in weakSelf.searchList) {
                 length += model.files.count;
@@ -225,30 +315,35 @@
 }
 
 - (void)buttonActions:(WFCTopImageBottomLabelButton *)button {
-    
+    WFCCFileType type;
     switch (button.buttonTag) {
         case 1:
-            
+            type = File_word;
             break;
         case 2:
-            
+            type = File_excel;
             break;
         case 3:
-            
+            type = File_ppt;
             break;
         case 4:
-            
+            type = File_pdf;
             break;
         default:
+            type = File_all;
             break;
     }
+    
+    WFCFileViewController * fileVC = [[WFCFileViewController alloc] initWithFileType:type];
+    fileVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:fileVC animated:YES];
 }
 
 #pragma mark - Network
 
 - (void) handleFileList:(NSDictionary *)result {
     NSArray * fileList = result[@"fileList"];
-    NSDictionary * pagination = result[@"pagination"];
+//    NSDictionary * pagination = result[@"pagination"];
     [self.dataArray removeAllObjects];
     
     for (NSDictionary * dic in fileList) {
@@ -299,11 +394,18 @@
     }
     
     [self.tableView reloadData];
+    
+    if (self.dataArray.count == 0) {
+        MBProgressHUD * hud = [[MBProgressHUD alloc] initWithView:self.view];
+        hud.mode = MBProgressHUDModeText;
+        hud.label.text = @"没有历史数据";
+        [hud hideAnimated:YES afterDelay:1.f];
+    }
 }
 
 - (void) handleSearchFileList:(NSDictionary *)result {
     NSArray * fileList = result[@"fileList"];
-    NSDictionary * pagination = result[@"pagination"];
+//    NSDictionary * pagination = result[@"pagination"];
     [self.searchList removeAllObjects];
     
     for (NSDictionary * dic in fileList) {
@@ -353,6 +455,12 @@
     }
     
     [self.tableView reloadData];
+    if (self.searchList.count == 0) {
+        MBProgressHUD * hud = [[MBProgressHUD alloc] initWithView:self.searchController.view];
+        hud.mode = MBProgressHUDModeText;
+        hud.label.text = @"没有找到对应的搜索结果";
+        [hud hideAnimated:YES afterDelay:1.f];
+    }
 }
 
 - (void) handleFileGroupInfo:(NSArray *)list {
@@ -426,18 +534,19 @@
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 20.0;
+    return 30.0;
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 0.1;
+    return 10.0;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 60.0;
 }
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UIView * sectionHeader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 20)];
-    UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, kScreenWidth-30, 20)];
+    UIView * sectionHeader = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 30)];
+    UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(15, 5, kScreenWidth-30, 20)];
     if (self.searchController.active && self.searchList.count > 0) {
         WFCFileModel * model = self.searchList[section];
         label.text = model.timestampStr;
@@ -451,6 +560,12 @@
     return  sectionHeader;
 }
 
+- (nullable UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    UIView * footer = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 10)];
+    footer.backgroundColor = [WFCUConfigManager globalManager].backgroudColor;
+    return footer;
+}
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
@@ -459,10 +574,12 @@
         WFCFileModel * fileSectionModel = self.searchList[indexPath.section];
         SingleFileModel * singleFileModel = fileSectionModel.files[indexPath.row];
         bvc.url = singleFileModel.url;
+        bvc.title = singleFileModel.name;
     } else {
         WFCFileModel * fileSectionModel = self.dataArray[indexPath.section];
         SingleFileModel * singleFileModel = fileSectionModel.files[indexPath.row];
         bvc.url = singleFileModel.url;
+        bvc.title = singleFileModel.name;
     }
     bvc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:bvc animated:YES];
@@ -475,15 +592,21 @@
 }
 
 - (void)didPresentSearchController:(UISearchController *)searchController {
-    self.tabBarController.tabBar.hidden = YES;
-    self.extendedLayoutIncludesOpaqueBars = YES;
+    if (self.type == File_all) {
+        self.tabBarController.tabBar.hidden = YES;
+        self.extendedLayoutIncludesOpaqueBars = YES;
+    }
+    
     [self setupTableViewHeader];
     [self switchTableHeaderRefresh];
 }
 
 - (void)willDismissSearchController:(UISearchController *)searchController {
-    self.tabBarController.tabBar.hidden = NO;
-    self.extendedLayoutIncludesOpaqueBars = NO;
+    if (self.type == File_all) {
+        self.tabBarController.tabBar.hidden = NO;
+        self.extendedLayoutIncludesOpaqueBars = NO;
+    }
+    
 }
 
 
