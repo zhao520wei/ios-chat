@@ -104,7 +104,7 @@ alpha:1.0]
     self.userNameField.font = [UIFont pingFangSCWithWeight:FontWeightStyleRegular size:16];
     self.userNameField.placeholder = @"请输入您的账户名";
     self.userNameField.returnKeyType = UIReturnKeyNext;
-    self.userNameField.keyboardType = UIKeyboardTypePhonePad;
+    self.userNameField.keyboardType = UIKeyboardTypeDefault;
     self.userNameField.delegate = self;
     self.userNameField.clearButtonMode = UITextFieldViewModeWhileEditing;
     [self.userNameField addTarget:self action:@selector(textDidChange:) forControlEvents:UIControlEventEditingChanged];
@@ -131,7 +131,7 @@ alpha:1.0]
     self.passwordField.placeholder = @"请输入您的密码";
     self.passwordField.secureTextEntry = YES;
     self.passwordField.returnKeyType = UIReturnKeyDone;
-    self.passwordField.keyboardType = UIKeyboardTypeNumberPad;
+    self.passwordField.keyboardType = UIKeyboardTypeDefault;
     self.passwordField.delegate = self;
     self.passwordField.clearButtonMode = UITextFieldViewModeWhileEditing;
     [self.passwordField addTarget:self action:@selector(textDidChange:) forControlEvents:UIControlEventEditingChanged];

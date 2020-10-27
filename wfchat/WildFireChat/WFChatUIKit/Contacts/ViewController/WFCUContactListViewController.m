@@ -328,7 +328,7 @@ static NSMutableDictionary *hanziStringDict = nil;
         return dataSource.count;
     } else {
         if (section == 0) {
-            return 3;
+            return 2;
         } else {
             dataSource = self.allFriendSectionDic[self.allKeys[section - 1]];
             return dataSource.count;
@@ -363,25 +363,26 @@ static NSMutableDictionary *hanziStringDict = nil;
         
     } else {
         if (indexPath.section == 0) {
-            if (indexPath.row == 0) {
-                WFCUNewFriendTableViewCell *contactCell = [tableView dequeueReusableCellWithIdentifier:@"newFriendCell"];
-                if (contactCell == nil) {
-                    contactCell = [[WFCUNewFriendTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"newFriendCell"];
-                }
-                
-                contactCell.nameLabel.text = @"倚天软件";
-                contactCell.portraitView.image = [UIImage imageNamed:@"AppIcon"];
-//                [contactCell refresh];
-                contactCell.separatorInset = UIEdgeInsetsMake(0, 60, 0, 0);
-                
-                contactCell.nameLabel.textColor = [WFCUConfigManager globalManager].textColor;
-                return contactCell;
-            } else if(indexPath.row == 1) {
+//            if (indexPath.row == 0) {
+//                WFCUNewFriendTableViewCell *contactCell = [tableView dequeueReusableCellWithIdentifier:@"newFriendCell"];
+//                if (contactCell == nil) {
+//                    contactCell = [[WFCUNewFriendTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"newFriendCell"];
+//                }
+//
+//                contactCell.nameLabel.text = @"倚天软件";
+//                contactCell.portraitView.image = [UIImage imageNamed:@"AppIcon"];
+////                [contactCell refresh];
+//                contactCell.separatorInset = UIEdgeInsetsMake(0, 60, 0, 0);
+//
+//                contactCell.nameLabel.textColor = [WFCUConfigManager globalManager].textColor;
+//                return contactCell;
+//            } else
+            if(indexPath.row == 0) {
                 RightArrowTableViewCell *contactCell = [tableView dequeueReusableCellWithIdentifier:@"ArchitectureCell"];
                 if (contactCell == nil) {
                     contactCell = [[RightArrowTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ArchitectureCell"];
                 }
-                contactCell.nameLabel.text = @"大连理工大学";
+                contactCell.nameLabel.text = @"倚天软件";
                 contactCell.portraitView.image = [UIImage imageNamed:@"company_icon"];
                 contactCell.nameLabel.textColor = [WFCUConfigManager globalManager].textColor;
                 return contactCell;
@@ -622,11 +623,12 @@ static NSMutableDictionary *hanziStringDict = nil;
         
     } else {
         if (indexPath.section == 0) {
-            if (indexPath.row == 0) {
+//            if (indexPath.row == 0) {
 //                AutoBreadcrumbViewController * companyCtrl  = [[AutoBreadcrumbViewController alloc] init];
 //                companyCtrl.hidesBottomBarWhenPushed = YES;
 //                [self.navigationController pushViewController:companyCtrl animated:YES];
-            } else if(indexPath.row == 1) {
+//            } else
+            if(indexPath.row == 0) {
                 AutoBreadcrumbViewController * companyCtrl  = [[AutoBreadcrumbViewController alloc] init];
                 companyCtrl.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:companyCtrl animated:YES];
